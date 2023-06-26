@@ -31,5 +31,8 @@ extension UIColor {
     static var iconDefault: UIColor { return UIColor(named: "Icon_default") ?? UIColor() }
     static var iconDisabled: UIColor { return UIColor(named: "Icon_disabled") ?? UIColor() }
     static var iconSub: UIColor { return UIColor(named: "Icon_sub") ?? UIColor() }
+    
+    // Neon
+    static var neon100: UIColor { return UIColor(named: "Neon100") ?? UIColor() }
 }
 

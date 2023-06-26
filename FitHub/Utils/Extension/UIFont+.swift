@@ -64,7 +64,6 @@ public enum PretendardType {
 
 extension UIFont {
     static func pretendard(_ type: PretendardType) -> UIFont {
-        print("Pretendard-\(type.family)")
         return UIFont(name: "Pretendard-\(type.family)", size: type.size) ?? UIFont()
     }
 }
