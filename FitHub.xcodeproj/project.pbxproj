@@ -35,6 +35,8 @@
 		DBFFDA392A497A460008C2B5 /* PhoneAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFDA382A497A460008C2B5 /* PhoneAuthViewController.swift */; };
 		DBFFDA3B2A4983F90008C2B5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFDA3A2A4983F90008C2B5 /* BaseViewController.swift */; };
 		DBFFDA3E2A4988200008C2B5 /* PhoneAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFDA3D2A4988200008C2B5 /* PhoneAuthViewModel.swift */; };
+		DBFFDA422A499BC00008C2B5 /* StandardTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFDA412A499BC00008C2B5 /* StandardTextFieldView.swift */; };
+		DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFDA432A49BD910008C2B5 /* StandardButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,8 @@
 		DBFFDA382A497A460008C2B5 /* PhoneAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAuthViewController.swift; sourceTree = "<group>"; };
 		DBFFDA3A2A4983F90008C2B5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DBFFDA3D2A4988200008C2B5 /* PhoneAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAuthViewModel.swift; sourceTree = "<group>"; };
+		DBFFDA412A499BC00008C2B5 /* StandardTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardTextFieldView.swift; sourceTree = "<group>"; };
+		DBFFDA432A49BD910008C2B5 /* StandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,7 @@
 		DBFFDA1B2A47F0C30008C2B5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DBFFDA3A2A4983F90008C2B5 /* BaseViewController.swift */,
 				DBFFDA3F2A4988400008C2B5 /* Auth */,
 			);
 			path = Controllers;
@@ -126,6 +131,7 @@
 		DBFFDA1C2A47F0CD0008C2B5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DBFFDA402A499B310008C2B5 /* Custom */,
 				DBFFDA212A47F1250008C2B5 /* TempView.swift */,
 			);
 			path = Views;
@@ -143,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				DBFFDA272A47F1450008C2B5 /* Extension */,
-				DBFFDA3A2A4983F90008C2B5 /* BaseViewController.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -208,6 +213,15 @@
 				DBFFDA382A497A460008C2B5 /* PhoneAuthViewController.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		DBFFDA402A499B310008C2B5 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				DBFFDA412A499BC00008C2B5 /* StandardTextFieldView.swift */,
+				DBFFDA432A49BD910008C2B5 /* StandardButton.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,7 +328,9 @@
 				DBFFDA262A47F13C0008C2B5 /* TempService.swift in Sources */,
 				DBFFDA222A47F1250008C2B5 /* TempView.swift in Sources */,
 				DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */,
+				DBFFDA422A499BC00008C2B5 /* StandardTextFieldView.swift in Sources */,
 				DBFFDA292A47F1570008C2B5 /* UIColor+.swift in Sources */,
+				DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */,
 				DBFFDA352A492A4E0008C2B5 /* OAuthLoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
