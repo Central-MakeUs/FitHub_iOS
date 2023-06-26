@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */; };
 		DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */; };
-		DBFFD9EE2A47E2E20008C2B5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9ED2A47E2E20008C2B5 /* ViewController.swift */; };
+		DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9ED2A47E2E20008C2B5 /* OAuthLoginViewController.swift */; };
 		DBFFD9F32A47E2E40008C2B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBFFD9F22A47E2E40008C2B5 /* Assets.xcassets */; };
 		DBFFD9F62A47E2E40008C2B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBFFD9F42A47E2E40008C2B5 /* LaunchScreen.storyboard */; };
 		DBFFD9FF2A47E4650008C2B5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DBFFD9FE2A47E4650008C2B5 /* SnapKit */; };
@@ -31,13 +31,19 @@
 		DBFFDA302A4860330008C2B5 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DBFFDA2D2A4860330008C2B5 /* Pretendard-Medium.otf */; };
 		DBFFDA312A4860330008C2B5 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DBFFDA2E2A4860330008C2B5 /* Pretendard-SemiBold.otf */; };
 		DBFFDA322A4860330008C2B5 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DBFFDA2F2A4860330008C2B5 /* Pretendard-Regular.otf */; };
+		DBFFDA352A492A4E0008C2B5 /* OAuthLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFDA342A492A4E0008C2B5 /* OAuthLoginViewModel.swift */; };
+		DBFFDA392A497A460008C2B5 /* PhoneAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFDA382A497A460008C2B5 /* PhoneAuthViewController.swift */; };
+		DBFFDA3B2A4983F90008C2B5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFDA3A2A4983F90008C2B5 /* BaseViewController.swift */; };
+		DBFFDA3E2A4988200008C2B5 /* PhoneAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFDA3D2A4988200008C2B5 /* PhoneAuthViewModel.swift */; };
+		DBFFDA422A499BC00008C2B5 /* StandardTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFDA412A499BC00008C2B5 /* StandardTextFieldView.swift */; };
+		DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFDA432A49BD910008C2B5 /* StandardButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DBFFD9E62A47E2E20008C2B5 /* FitHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DBFFD9ED2A47E2E20008C2B5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DBFFD9ED2A47E2E20008C2B5 /* OAuthLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthLoginViewController.swift; sourceTree = "<group>"; };
 		DBFFD9F22A47E2E40008C2B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DBFFD9F52A47E2E40008C2B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DBFFD9F72A47E2E40008C2B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +55,12 @@
 		DBFFDA2D2A4860330008C2B5 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		DBFFDA2E2A4860330008C2B5 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		DBFFDA2F2A4860330008C2B5 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		DBFFDA342A492A4E0008C2B5 /* OAuthLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthLoginViewModel.swift; sourceTree = "<group>"; };
+		DBFFDA382A497A460008C2B5 /* PhoneAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAuthViewController.swift; sourceTree = "<group>"; };
+		DBFFDA3A2A4983F90008C2B5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		DBFFDA3D2A4988200008C2B5 /* PhoneAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAuthViewModel.swift; sourceTree = "<group>"; };
+		DBFFDA412A499BC00008C2B5 /* StandardTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardTextFieldView.swift; sourceTree = "<group>"; };
+		DBFFDA432A49BD910008C2B5 /* StandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +108,7 @@
 				DBFFDA1F2A47F0E50008C2B5 /* Resource */,
 				DBFFDA1E2A47F0E00008C2B5 /* Utils */,
 				DBFFDA1D2A47F0D50008C2B5 /* Models */,
+				DBFFDA332A492A2D0008C2B5 /* ViewModels */,
 				DBFFDA1C2A47F0CD0008C2B5 /* Views */,
 				DBFFDA1B2A47F0C30008C2B5 /* Controllers */,
 				DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */,
@@ -109,7 +122,8 @@
 		DBFFDA1B2A47F0C30008C2B5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DBFFD9ED2A47E2E20008C2B5 /* ViewController.swift */,
+				DBFFDA3A2A4983F90008C2B5 /* BaseViewController.swift */,
+				DBFFDA3F2A4988400008C2B5 /* Auth */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -117,6 +131,7 @@
 		DBFFDA1C2A47F0CD0008C2B5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DBFFDA402A499B310008C2B5 /* Custom */,
 				DBFFDA212A47F1250008C2B5 /* TempView.swift */,
 			);
 			path = Views;
@@ -172,6 +187,41 @@
 				DBFFDA2E2A4860330008C2B5 /* Pretendard-SemiBold.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		DBFFDA332A492A2D0008C2B5 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				DBFFDA3C2A49869D0008C2B5 /* Auth */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DBFFDA3C2A49869D0008C2B5 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				DBFFDA342A492A4E0008C2B5 /* OAuthLoginViewModel.swift */,
+				DBFFDA3D2A4988200008C2B5 /* PhoneAuthViewModel.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		DBFFDA3F2A4988400008C2B5 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				DBFFD9ED2A47E2E20008C2B5 /* OAuthLoginViewController.swift */,
+				DBFFDA382A497A460008C2B5 /* PhoneAuthViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		DBFFDA402A499B310008C2B5 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				DBFFDA412A499BC00008C2B5 /* StandardTextFieldView.swift */,
+				DBFFDA432A49BD910008C2B5 /* StandardButton.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,13 +319,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBFFDA2B2A47F1600008C2B5 /* UIFont+.swift in Sources */,
-				DBFFD9EE2A47E2E20008C2B5 /* ViewController.swift in Sources */,
+				DBFFDA392A497A460008C2B5 /* PhoneAuthViewController.swift in Sources */,
+				DBFFDA3B2A4983F90008C2B5 /* BaseViewController.swift in Sources */,
+				DBFFDA3E2A4988200008C2B5 /* PhoneAuthViewModel.swift in Sources */,
+				DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */,
 				DBFFDA242A47F12D0008C2B5 /* TempModel.swift in Sources */,
 				DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */,
 				DBFFDA262A47F13C0008C2B5 /* TempService.swift in Sources */,
 				DBFFDA222A47F1250008C2B5 /* TempView.swift in Sources */,
 				DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */,
+				DBFFDA422A499BC00008C2B5 /* StandardTextFieldView.swift in Sources */,
 				DBFFDA292A47F1570008C2B5 /* UIColor+.swift in Sources */,
+				DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */,
+				DBFFDA352A492A4E0008C2B5 /* OAuthLoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
