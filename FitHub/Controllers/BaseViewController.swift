@@ -17,6 +17,7 @@ class BaseViewController: UIViewController {
         
         setupAttributes()
         addSubView()
+        configureNavigation()
         layout()
         configureUI()
         setupBinding()
@@ -33,9 +34,14 @@ class BaseViewController: UIViewController {
     func layout() {
         
     }
+
+    func configureNavigation() {
+        self.navigationController?.navigationBar.tintColor = .iconDefault
+        self.navigationItem.backButtonTitle = ""
+    }
     
     func setupAttributes() {
-
+        
     }
     
     func setupBinding() {
