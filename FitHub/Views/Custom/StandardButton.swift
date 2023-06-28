@@ -26,6 +26,7 @@ final class StandardButton: UIButton {
         self.layer.cornerRadius = 5
         self.backgroundColor = .primary
         self.setTitleColor(.textDefault, for: .normal)
+        self.titleLabel?.font = .pretendard(.bodyMedium02)
     }
     
     required init?(coder: NSCoder) {
