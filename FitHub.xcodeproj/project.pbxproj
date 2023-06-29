@@ -11,6 +11,10 @@
 		DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51D2542A4B3DC0002415B0 /* AgreementViewController.swift */; };
 		DB51D2572A4BB8B5002415B0 /* AgreementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51D2562A4BB8B5002415B0 /* AgreementViewModel.swift */; };
 		DB51D2592A4C2719002415B0 /* AgreementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51D2582A4C2719002415B0 /* AgreementModel.swift */; };
+		DB6D93CF2A4D596D0011F9BC /* TelecomProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93CE2A4D596D0011F9BC /* TelecomProviderType.swift */; };
+		DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93D02A4D5D2F0011F9BC /* SimpleLabelCell.swift */; };
+		DB6D93D42A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93D32A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift */; };
+		DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93D62A4D62920011F9BC /* RegistInfoViewModel.swift */; };
 		DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */; };
 		DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */; };
 		DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9ED2A47E2E20008C2B5 /* OAuthLoginViewController.swift */; };
@@ -48,6 +52,10 @@
 		DB51D2542A4B3DC0002415B0 /* AgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewController.swift; sourceTree = "<group>"; };
 		DB51D2562A4BB8B5002415B0 /* AgreementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewModel.swift; sourceTree = "<group>"; };
 		DB51D2582A4C2719002415B0 /* AgreementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementModel.swift; sourceTree = "<group>"; };
+		DB6D93CE2A4D596D0011F9BC /* TelecomProviderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelecomProviderType.swift; sourceTree = "<group>"; };
+		DB6D93D02A4D5D2F0011F9BC /* SimpleLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleLabelCell.swift; sourceTree = "<group>"; };
+		DB6D93D32A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelecomProviderSelectorViewController.swift; sourceTree = "<group>"; };
+		DB6D93D62A4D62920011F9BC /* RegistInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistInfoViewModel.swift; sourceTree = "<group>"; };
 		DBFFD9E62A47E2E20008C2B5 /* FitHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +101,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB6D93D22A4D60DF0011F9BC /* TelecomProviderSelector */ = {
+			isa = PBXGroup;
+			children = (
+				DB6D93D02A4D5D2F0011F9BC /* SimpleLabelCell.swift */,
+			);
+			path = TelecomProviderSelector;
+			sourceTree = "<group>";
+		};
+		DB6D93D52A4D62820011F9BC /* TelecomProviderSelector */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TelecomProviderSelector;
+			sourceTree = "<group>";
+		};
 		DBFFD9DD2A47E2E20008C2B5 = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +155,7 @@
 			children = (
 				DBFFDA3A2A4983F90008C2B5 /* BaseViewController.swift */,
 				DBFFDA3F2A4988400008C2B5 /* Auth */,
+				DB6D93D32A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -148,8 +172,9 @@
 		DBFFDA1D2A47F0D50008C2B5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				DBFFDA232A47F12D0008C2B5 /* TempModel.swift */,
 				DB51D2582A4C2719002415B0 /* AgreementModel.swift */,
+				DBFFDA232A47F12D0008C2B5 /* TempModel.swift */,
+				DB6D93CE2A4D596D0011F9BC /* TelecomProviderType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -201,6 +226,7 @@
 		DBFFDA332A492A2D0008C2B5 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				DB6D93D52A4D62820011F9BC /* TelecomProviderSelector */,
 				DBFFDA3C2A49869D0008C2B5 /* Auth */,
 			);
 			path = ViewModels;
@@ -212,6 +238,7 @@
 				DBFFDA342A492A4E0008C2B5 /* OAuthLoginViewModel.swift */,
 				DBFFDA3D2A4988200008C2B5 /* PhoneAuthViewModel.swift */,
 				DB51D2562A4BB8B5002415B0 /* AgreementViewModel.swift */,
+				DB6D93D62A4D62920011F9BC /* RegistInfoViewModel.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -229,6 +256,7 @@
 		DBFFDA402A499B310008C2B5 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				DB6D93D22A4D60DF0011F9BC /* TelecomProviderSelector */,
 				DBFFDA412A499BC00008C2B5 /* StandardTextFieldView.swift */,
 				DBFFDA432A49BD910008C2B5 /* StandardButton.swift */,
 				DB51D2522A4B36A5002415B0 /* AgreementView.swift */,
@@ -330,6 +358,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB6D93D42A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift in Sources */,
 				DBFFDA2B2A47F1600008C2B5 /* UIFont+.swift in Sources */,
 				DBFFDA392A497A460008C2B5 /* PhoneAuthViewController.swift in Sources */,
 				DBFFDA3B2A4983F90008C2B5 /* BaseViewController.swift in Sources */,
@@ -339,10 +368,13 @@
 				DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */,
 				DBFFDA242A47F12D0008C2B5 /* TempModel.swift in Sources */,
 				DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */,
+				DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */,
+				DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */,
 				DBFFDA262A47F13C0008C2B5 /* TempService.swift in Sources */,
 				DB51D2572A4BB8B5002415B0 /* AgreementViewModel.swift in Sources */,
 				DBFFDA222A47F1250008C2B5 /* TempView.swift in Sources */,
 				DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */,
+				DB6D93CF2A4D596D0011F9BC /* TelecomProviderType.swift in Sources */,
 				DBFFDA422A499BC00008C2B5 /* StandardTextFieldView.swift in Sources */,
 				DBFFDA292A47F1570008C2B5 /* UIColor+.swift in Sources */,
 				DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */,
