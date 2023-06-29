@@ -36,7 +36,7 @@ final class StandardTextFieldView: UIView {
     
     var placeholder: String? {
         didSet {
-            self.textField.text = placeholder
+            self.textField.placeholder = placeholder
         }
     }
     
@@ -76,6 +76,7 @@ final class StandardTextFieldView: UIView {
         self.textField.snp.makeConstraints {
             $0.leading.equalTo(10)
             $0.top.equalTo(self.titleLabel.snp.bottom)
+            $0.bottom.equalToSuperview()
         }
         
         self.guideLabel.snp.makeConstraints {
