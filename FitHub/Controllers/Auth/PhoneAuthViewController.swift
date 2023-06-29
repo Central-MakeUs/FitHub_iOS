@@ -28,6 +28,7 @@ final class PhoneAuthViewController: BaseViewController {
     
     private let loginButton = StandardButton(type: .system).then {
         $0.setTitle("로그인", for: .normal)
+        $0.isEnabled = false
     }
     
     private let findPasswordButton = UIButton(type: .system).then {
@@ -57,6 +58,17 @@ final class PhoneAuthViewController: BaseViewController {
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    //MARK: -SetupBinding
+    override func setupBinding() {
+        self.registButton.rx.tap
+            .asDriver()
+            .drive(onNext: {
+                let agreementVC = AgreementViewController(AgreementViewModel())
+                self.navigationController?.pushViewController(agreementVC, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 
     //MARK: - AddSubView
