@@ -17,6 +17,9 @@
 		DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93D62A4D62920011F9BC /* RegistInfoViewModel.swift */; };
 		DB6D93D92A4DB2340011F9BC /* RegisterInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93D82A4DB2340011F9BC /* RegisterInfoModel.swift */; };
 		DB6D93DB2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93DA2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift */; };
+		DB6D93DE2A4E7E340011F9BC /* RegistInfoInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93DD2A4E7E340011F9BC /* RegistInfoInputViewController.swift */; };
+		DB6D93E22A4EC8C10011F9BC /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93E12A4EC8C10011F9BC /* PhoneVerificationViewController.swift */; };
+		DB6D93E42A4EDCE20011F9BC /* PasswordSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93E32A4EDCE20011F9BC /* PasswordSettingViewController.swift */; };
 		DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */; };
 		DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */; };
 		DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9ED2A47E2E20008C2B5 /* OAuthLoginViewController.swift */; };
@@ -58,6 +61,9 @@
 		DB6D93D62A4D62920011F9BC /* RegistInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistInfoViewModel.swift; sourceTree = "<group>"; };
 		DB6D93D82A4DB2340011F9BC /* RegisterInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInfoModel.swift; sourceTree = "<group>"; };
 		DB6D93DA2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateOfBirthTextFieldView.swift; sourceTree = "<group>"; };
+		DB6D93DD2A4E7E340011F9BC /* RegistInfoInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistInfoInputViewController.swift; sourceTree = "<group>"; };
+		DB6D93E12A4EC8C10011F9BC /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
+		DB6D93E32A4EDCE20011F9BC /* PasswordSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingViewController.swift; sourceTree = "<group>"; };
 		DBFFD9E62A47E2E20008C2B5 /* FitHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +122,26 @@
 				DB6D93DA2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift */,
 			);
 			path = TextField;
+			sourceTree = "<group>";
+		};
+		DB6D93DF2A4EC8790011F9BC /* Regist */ = {
+			isa = PBXGroup;
+			children = (
+				DB51D2542A4B3DC0002415B0 /* AgreementViewController.swift */,
+				DB6D93DD2A4E7E340011F9BC /* RegistInfoInputViewController.swift */,
+				DB6D93E12A4EC8C10011F9BC /* PhoneVerificationViewController.swift */,
+				DB6D93E32A4EDCE20011F9BC /* PasswordSettingViewController.swift */,
+			);
+			path = Regist;
+			sourceTree = "<group>";
+		};
+		DB6D93E02A4EC8890011F9BC /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				DBFFD9ED2A47E2E20008C2B5 /* OAuthLoginViewController.swift */,
+				DBFFDA382A497A460008C2B5 /* PhoneAuthViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		DBFFD9DD2A47E2E20008C2B5 = {
@@ -246,9 +272,8 @@
 		DBFFDA3F2A4988400008C2B5 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				DBFFD9ED2A47E2E20008C2B5 /* OAuthLoginViewController.swift */,
-				DBFFDA382A497A460008C2B5 /* PhoneAuthViewController.swift */,
-				DB51D2542A4B3DC0002415B0 /* AgreementViewController.swift */,
+				DB6D93E02A4EC8890011F9BC /* Login */,
+				DB6D93DF2A4EC8790011F9BC /* Regist */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -358,9 +383,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB6D93DE2A4E7E340011F9BC /* RegistInfoInputViewController.swift in Sources */,
 				DB6D93D42A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift in Sources */,
 				DB6D93D92A4DB2340011F9BC /* RegisterInfoModel.swift in Sources */,
 				DBFFDA2B2A47F1600008C2B5 /* UIFont+.swift in Sources */,
+				DB6D93E22A4EC8C10011F9BC /* PhoneVerificationViewController.swift in Sources */,
 				DBFFDA392A497A460008C2B5 /* PhoneAuthViewController.swift in Sources */,
 				DBFFDA3B2A4983F90008C2B5 /* BaseViewController.swift in Sources */,
 				DB6D93DB2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift in Sources */,
@@ -372,6 +399,7 @@
 				DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */,
 				DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */,
 				DBFFDA262A47F13C0008C2B5 /* TempService.swift in Sources */,
+				DB6D93E42A4EDCE20011F9BC /* PasswordSettingViewController.swift in Sources */,
 				DB51D2572A4BB8B5002415B0 /* AgreementViewModel.swift in Sources */,
 				DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */,
 				DB6D93CF2A4D596D0011F9BC /* TelecomProviderType.swift in Sources */,
