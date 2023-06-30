@@ -15,6 +15,8 @@
 		DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93D02A4D5D2F0011F9BC /* SimpleLabelCell.swift */; };
 		DB6D93D42A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93D32A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift */; };
 		DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93D62A4D62920011F9BC /* RegistInfoViewModel.swift */; };
+		DB6D93D92A4DB2340011F9BC /* RegisterInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93D82A4DB2340011F9BC /* RegisterInfoModel.swift */; };
+		DB6D93DB2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93DA2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift */; };
 		DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */; };
 		DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */; };
 		DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9ED2A47E2E20008C2B5 /* OAuthLoginViewController.swift */; };
@@ -54,6 +56,8 @@
 		DB6D93D02A4D5D2F0011F9BC /* SimpleLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleLabelCell.swift; sourceTree = "<group>"; };
 		DB6D93D32A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelecomProviderSelectorViewController.swift; sourceTree = "<group>"; };
 		DB6D93D62A4D62920011F9BC /* RegistInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistInfoViewModel.swift; sourceTree = "<group>"; };
+		DB6D93D82A4DB2340011F9BC /* RegisterInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInfoModel.swift; sourceTree = "<group>"; };
+		DB6D93DA2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateOfBirthTextFieldView.swift; sourceTree = "<group>"; };
 		DBFFD9E62A47E2E20008C2B5 /* FitHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +107,15 @@
 				DB6D93D02A4D5D2F0011F9BC /* SimpleLabelCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		DB6D93DC2A4E76E90011F9BC /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				DBFFDA412A499BC00008C2B5 /* StandardTextFieldView.swift */,
+				DB6D93DA2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift */,
+			);
+			path = TextField;
 			sourceTree = "<group>";
 		};
 		DBFFD9DD2A47E2E20008C2B5 = {
@@ -162,6 +175,7 @@
 			children = (
 				DB51D2582A4C2719002415B0 /* AgreementModel.swift */,
 				DB6D93CE2A4D596D0011F9BC /* TelecomProviderType.swift */,
+				DB6D93D82A4DB2340011F9BC /* RegisterInfoModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -242,8 +256,8 @@
 		DBFFDA402A499B310008C2B5 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				DB6D93DC2A4E76E90011F9BC /* TextField */,
 				DB6D93D22A4D60DF0011F9BC /* Cell */,
-				DBFFDA412A499BC00008C2B5 /* StandardTextFieldView.swift */,
 				DBFFDA432A49BD910008C2B5 /* StandardButton.swift */,
 				DB51D2522A4B36A5002415B0 /* AgreementView.swift */,
 			);
@@ -345,9 +359,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB6D93D42A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift in Sources */,
+				DB6D93D92A4DB2340011F9BC /* RegisterInfoModel.swift in Sources */,
 				DBFFDA2B2A47F1600008C2B5 /* UIFont+.swift in Sources */,
 				DBFFDA392A497A460008C2B5 /* PhoneAuthViewController.swift in Sources */,
 				DBFFDA3B2A4983F90008C2B5 /* BaseViewController.swift in Sources */,
+				DB6D93DB2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift in Sources */,
 				DBFFDA3E2A4988200008C2B5 /* PhoneAuthViewModel.swift in Sources */,
 				DB51D2592A4C2719002415B0 /* AgreementModel.swift in Sources */,
 				DB51D2532A4B36A5002415B0 /* AgreementView.swift in Sources */,
