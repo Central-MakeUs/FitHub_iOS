@@ -32,6 +32,7 @@ final class TelecomProviderSelectorViewController: BaseViewController {
     
     private let tableView = UITableView().then {
         $0.separatorStyle = .none
+        $0.backgroundColor = .white
         $0.register(SimpleLabelCell.self, forCellReuseIdentifier: SimpleLabelCell.identifier)
         $0.isScrollEnabled = false
     }

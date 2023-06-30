@@ -30,7 +30,7 @@ final class StandardTextFieldView: UIView {
         $0.text = "3:00"
     }
     
-    private lazy var stackView = UIStackView(arrangedSubviews: [textField, imageView])
+    private lazy var stackView = UIStackView(arrangedSubviews: [textField, statusImageView])
     
     private let textField = UITextField().then {
         $0.clearButtonMode = .whileEditing
@@ -42,13 +42,9 @@ final class StandardTextFieldView: UIView {
         }
     }
     
-    private let imageView = UIImageView().then {
-        $0.image = UIImage(named: "Empty")
-    }
-    
     private let statusImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        $0.image = UIImage(named: "logo")
+        $0.image = UIImage(named: "Empty")
     }
     
     private let guideLabel = UILabel().then {
@@ -58,6 +54,18 @@ final class StandardTextFieldView: UIView {
     var placeholder: String? {
         didSet {
             self.textField.placeholder = placeholder
+        }
+    }
+    
+    var text: String? {
+        didSet {
+            self.textField.text = text
+        }
+    }
+    
+    var isTextFieldEnabled: Bool = true {
+        didSet {
+            self.textField.isEnabled = isTextFieldEnabled
         }
     }
     
