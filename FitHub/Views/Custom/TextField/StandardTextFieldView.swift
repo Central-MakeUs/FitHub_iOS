@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class StandardTextFieldView: UIView {
     //MARK: - Properties
+    private let disposeBag = DisposeBag()
+    
     private let frameView = UIView().then {
         $0.layer.cornerRadius = 5
         $0.layer.borderWidth = 1
@@ -20,9 +24,26 @@ final class StandardTextFieldView: UIView {
         $0.textColor = .textDisabled
     }
     
+    private let timeLabel = UILabel().then {
+        $0.font = .pretendard(.labelMedium)
+        $0.textColor = .secondary
+        $0.text = "3:00"
+    }
+    
+    private lazy var stackView = UIStackView(arrangedSubviews: [textField, imageView])
+    
     private let textField = UITextField().then {
+        $0.clearButtonMode = .whileEditing
         $0.font = .pretendard(.bodyLarge02)
         $0.textColor = .textSub01
+        
+        if let clearButton = $0.value(forKeyPath: "_clearButton") as? UIButton {
+            clearButton.setImage(UIImage(named: "CancelIcon"), for: .normal)
+        }
+    }
+    
+    private let imageView = UIImageView().then {
+        $0.image = UIImage(named: "Empty")
     }
     
     private let statusImageView = UIImageView().then {
@@ -53,13 +74,22 @@ final class StandardTextFieldView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Binding
+    private func setupBinding() {
+        self.textField.rx.text
+            .bind(onNext: { text in
+                
+            })
+            .disposed(by: disposeBag)
+    }
+    
     //MARK: - AddSubView
     private func addSubView() {
         self.addSubview(self.frameView)
         self.addSubview(self.guideLabel)
         
         self.frameView.addSubview(self.titleLabel)
-        self.frameView.addSubview(self.textField)
+        self.frameView.addSubview(self.stackView)
     }
     
     //MARK: - Layout
@@ -70,13 +100,13 @@ final class StandardTextFieldView: UIView {
         }
         
         self.titleLabel.snp.makeConstraints {
-            $0.leading.top.equalTo(10)
+            $0.leading.top.equalToSuperview().offset(10)
         }
         
-        self.textField.snp.makeConstraints {
-            $0.leading.equalTo(10)
+        self.stackView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(10)
             $0.top.equalTo(self.titleLabel.snp.bottom)
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-10)
         }
         
         self.guideLabel.snp.makeConstraints {
