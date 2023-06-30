@@ -14,8 +14,5 @@ class RegistInfoViewModel {
     
     let selectedTelecomProvider: BehaviorRelay<TelecomProviderType?> = BehaviorRelay(value: nil)
     
-    init() {
-        print(TelecomProviderType.allCases)
-    }
-    
+//    let dateOfBirthInput = 
 }
