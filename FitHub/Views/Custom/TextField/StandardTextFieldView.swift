@@ -53,7 +53,8 @@ final class StandardTextFieldView: UIView {
     
     var placeholder: String? {
         didSet {
-            self.textField.placeholder = placeholder
+            self.textField.attributedPlaceholder = NSAttributedString(string: placeholder ?? "",
+                                                                      attributes: [.foregroundColor : UIColor.textDisabled])
         }
     }
     
