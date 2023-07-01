@@ -21,6 +21,8 @@ class BaseViewController: UIViewController {
         layout()
         configureUI()
         setupBinding()
+        
+        hideKeyboardWhenTapped()
     }
     
     func configureUI() {
