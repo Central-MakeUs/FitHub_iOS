@@ -11,7 +11,6 @@ import RxCocoa
 
 final class DateOfBirthTextFieldView: UIView {
     //MARK: - Properties
-    private let disposeBag = DisposeBag()
     
     private let frameView = UIView().then {
         $0.layer.cornerRadius = 5
@@ -25,7 +24,7 @@ final class DateOfBirthTextFieldView: UIView {
         $0.textColor = .textDisabled
     }
     
-    private let dateOfBirthTextField = UITextField().then {
+    let dateOfBirthTextField = UITextField().then {
         $0.clearsOnInsertion = true
         $0.keyboardType = .numberPad
         $0.font = .pretendard(.bodyLarge02)
@@ -39,7 +38,7 @@ final class DateOfBirthTextFieldView: UIView {
         $0.font = .pretendard(.bodyMedium02)
     }
     
-    private let sexNumberTextField = UITextField().then {
+    let sexNumberTextField = UITextField().then {
         $0.keyboardType = .numberPad
         $0.font = .pretendard(.bodyLarge02)
         $0.textColor = .textSub01
@@ -48,7 +47,7 @@ final class DateOfBirthTextFieldView: UIView {
     
     private let statusImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        $0.image = UIImage(named: "Check")
+        $0.image = UIImage(named: "Empty")
     }
     
     private let rightImageView = UIImageView().then {
@@ -70,54 +69,40 @@ final class DateOfBirthTextFieldView: UIView {
         super.init(frame: frame)
         self.addSubView()
         self.layout()
-        self.setupBinding()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Binding
-    private func setupBinding() {
-        dateOfBirthTextField.rx.text.orEmpty
-            .distinctUntilChanged()
-            .observe(on: MainScheduler.asyncInstance)
-            .subscribe(onNext: { [weak self] text in
-                self?.dateOfBirthTextField.text = String(text.prefix(6))
-
-                if text.count >= 6 {
-                    self?.sexNumberTextField.becomeFirstResponder()
-                }
-            })
-            .disposed(by: disposeBag)
-        
-        sexNumberTextField.rx.text.orEmpty
-            .distinctUntilChanged() // 현재 요소와 다른 요소일 경우만 리턴해주는 연산자
-            .observe(on: MainScheduler.asyncInstance)
-            .subscribe(onNext: { [weak self] text in
-                self?.sexNumberTextField.text = String(text.prefix(1))
-                
-                if text.count >= 1 {
-                    self?.sexNumberTextField.resignFirstResponder()
-                }
-            })
-            .disposed(by: disposeBag)
-        
-        NotificationCenter.default.rx
-            .notification(UIResponder.keyboardWillShowNotification)
-            .withUnretained(self)
-            .bind { (this,notification) in
-                print("키보드 올라감")
-            }
-            .disposed(by: disposeBag)
-        
-        NotificationCenter.default.rx
-            .notification(UIResponder.keyboardWillHideNotification)
-            .withUnretained(self)
-            .bind { (this,notification) in
-                print("에러검증")
-            }
-            .disposed(by: disposeBag)
+    //MARK: Method
+    func verifyFormat(_ status: UserInfoStatus) {
+        switch status {
+        case .notMatchPassword: fallthrough
+        case .notValidDateOfBirth: fallthrough
+        case .notValidPassword: fallthrough
+        case .notValidPhoneNumber: fallthrough
+        case .notValidSexNumber: fallthrough
+        case .underage: fallthrough
+        case .passwordLengthError:
+            self.guideLabel.textColor = .error
+            self.frameView.layer.borderColor = UIColor.error.cgColor
+            self.statusImageView.image = UIImage(named: "Warning")
+            self.guideLabel.text = status.message
+            self.titleLabel.textColor = .error
+        case .ok:
+            self.frameView.layer.borderColor = UIColor.iconDisabled.cgColor
+            self.statusImageView.image = UIImage(named: "Empty")
+            self.guideLabel.textColor = .textSub02
+            self.guideLabel.text = status.message
+            self.titleLabel.textColor = .textDisabled
+        case .success:
+            self.frameView.layer.borderColor = UIColor.info.cgColor
+            self.statusImageView.image = UIImage(named: "Check")
+            self.guideLabel.textColor = .info
+            self.guideLabel.text = status.message
+            self.titleLabel.textColor = .info
+        }
     }
     
     //MARK: - AddSubView
