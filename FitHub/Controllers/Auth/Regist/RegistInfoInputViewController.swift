@@ -99,7 +99,6 @@ final class RegistInfoInputViewController: BaseViewController {
             .debounce(.milliseconds(1500))
             .withUnretained(self.dateOfBirthInputTextFieldView)
             .emit(onNext: { (obj,status) in
-                print(status)
                 obj.verifyFormat(status)
             })
             .disposed(by: disposeBag)
