@@ -20,13 +20,13 @@ final class PhoneAuthViewController: BaseViewController {
     
     private let phoneNumberTextFieldView = StandardTextFieldView("휴대폰번호").then {
         $0.placeholder = "01012345678"
+        $0.keyboardType = .numberPad
     }
     
     private let passwordTextFieldView = StandardTextFieldView("비밀번호").then {
         $0.placeholder = "비밀번호 입력"
+        $0.keyboardType = .numberPad
     }
-    
-    private lazy var test = DateOfBirthTextFieldView()
     
     private let loginButton = StandardButton(type: .system).then {
         $0.setTitle("로그인", for: .normal)
@@ -78,7 +78,6 @@ final class PhoneAuthViewController: BaseViewController {
         self.view.addSubview(self.mainLabel)
         self.view.addSubview(self.phoneNumberTextFieldView)
         self.view.addSubview(self.passwordTextFieldView)
-        self.view.addSubview(self.test)
         self.view.addSubview(self.loginButton)
         self.view.addSubview(self.stackView)
     }
@@ -98,12 +97,6 @@ final class PhoneAuthViewController: BaseViewController {
         self.passwordTextFieldView.snp.makeConstraints {
             $0.top.equalTo(self.phoneNumberTextFieldView.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview().inset(20)
-        }
-        
-        
-        self.test.snp.makeConstraints { make in
-            make.top.equalTo(self.passwordTextFieldView.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(20)
         }
         
         self.loginButton.snp.makeConstraints {
