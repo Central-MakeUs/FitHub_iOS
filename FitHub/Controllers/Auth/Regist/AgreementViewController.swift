@@ -161,6 +161,12 @@ final class AgreementViewController: BaseViewController {
                 self.agreeAllButton.setImage(img, for: .normal)
             })
             .disposed(by: disposeBag)
+        
+        self.nextButton.rx.tap
+            .bind {
+                self.navigationController?.pushViewController(RegistInfoInputViewController(RegistInfoViewModel()), animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
     override func addSubView() {
