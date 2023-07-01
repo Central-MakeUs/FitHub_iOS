@@ -20,10 +20,12 @@ final class PhoneAuthViewController: BaseViewController {
     
     private let phoneNumberTextFieldView = StandardTextFieldView("휴대폰번호").then {
         $0.placeholder = "01012345678"
+        $0.keyboardType = .numberPad
     }
     
     private let passwordTextFieldView = StandardTextFieldView("비밀번호").then {
         $0.placeholder = "비밀번호 입력"
+        $0.keyboardType = .numberPad
     }
     
     private let loginButton = StandardButton(type: .system).then {
