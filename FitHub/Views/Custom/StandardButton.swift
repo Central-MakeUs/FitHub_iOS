@@ -20,13 +20,17 @@ final class StandardButton: UIButton {
         }
     }
     
+    override func setTitle(_ title: String?, for state: UIControl.State) {
+        super.setTitle(title, for: state)
+        self.titleLabel?.font = .pretendard(.bodyLarge02)
+    }
+    
     //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.layer.cornerRadius = 5
         self.backgroundColor = .primary
         self.setTitleColor(.textDefault, for: .normal)
-        self.titleLabel?.font = .pretendard(.bodyMedium02)
     }
     
     required init?(coder: NSCoder) {
