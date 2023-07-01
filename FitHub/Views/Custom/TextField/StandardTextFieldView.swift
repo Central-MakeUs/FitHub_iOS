@@ -30,9 +30,9 @@ final class StandardTextFieldView: UIView {
         $0.text = "3:00"
     }
     
-    private lazy var stackView = UIStackView(arrangedSubviews: [textField, imageView])
+    private lazy var stackView = UIStackView(arrangedSubviews: [textField, statusImageView])
     
-    private let textField = UITextField().then {
+    let textField = UITextField().then {
         $0.clearButtonMode = .whileEditing
         $0.font = .pretendard(.bodyLarge02)
         $0.textColor = .textSub01
@@ -42,13 +42,9 @@ final class StandardTextFieldView: UIView {
         }
     }
     
-    private let imageView = UIImageView().then {
-        $0.image = UIImage(named: "Empty")
-    }
-    
     private let statusImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        $0.image = UIImage(named: "logo")
+        $0.image = UIImage(named: "Empty")
     }
     
     private let guideLabel = UILabel().then {
@@ -57,7 +53,26 @@ final class StandardTextFieldView: UIView {
     
     var placeholder: String? {
         didSet {
-            self.textField.placeholder = placeholder
+            self.textField.attributedPlaceholder = NSAttributedString(string: placeholder ?? "",
+                                                                      attributes: [.foregroundColor : UIColor.textDisabled])
+        }
+    }
+    
+    var text: String? {
+        didSet {
+            self.textField.text = text
+        }
+    }
+    
+    var keyboardType: UIKeyboardType = .default {
+        didSet {
+            self.textField.keyboardType = self.keyboardType
+        }
+    }
+    
+    var isTextFieldEnabled: Bool = true {
+        didSet {
+            self.textField.isEnabled = isTextFieldEnabled
         }
     }
     
@@ -74,13 +89,34 @@ final class StandardTextFieldView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Binding
-    private func setupBinding() {
-        self.textField.rx.text
-            .bind(onNext: { text in
-                
-            })
-            .disposed(by: disposeBag)
+    //MARK: Method
+    func verifyFormat(_ status: UserInfoStatus) {
+        switch status {
+        case .notMatchPassword: fallthrough
+        case .notValidDateOfBirth: fallthrough
+        case .notValidPassword: fallthrough
+        case .notValidPhoneNumber: fallthrough
+        case .notValidSexNumber: fallthrough
+        case .underage: fallthrough
+        case .passwordLengthError:
+            self.guideLabel.textColor = .error
+            self.frameView.layer.borderColor = UIColor.error.cgColor
+            self.statusImageView.image = UIImage(named: "Warning")
+            self.guideLabel.text = status.message
+            self.titleLabel.textColor = .error
+        case .ok:
+            self.frameView.layer.borderColor = UIColor.iconDisabled.cgColor
+            self.statusImageView.image = UIImage(named: "Empty")
+            self.guideLabel.textColor = .textSub02
+            self.guideLabel.text = status.message
+            self.titleLabel.textColor = .textDisabled
+        case .success:
+            self.frameView.layer.borderColor = UIColor.info.cgColor
+            self.statusImageView.image = UIImage(named: "Check")
+            self.guideLabel.textColor = .info
+            self.guideLabel.text = status.message
+            self.titleLabel.textColor = .info
+        }
     }
     
     //MARK: - AddSubView

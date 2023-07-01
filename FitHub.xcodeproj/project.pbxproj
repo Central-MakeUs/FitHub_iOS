@@ -11,12 +11,19 @@
 		DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51D2542A4B3DC0002415B0 /* AgreementViewController.swift */; };
 		DB51D2572A4BB8B5002415B0 /* AgreementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51D2562A4BB8B5002415B0 /* AgreementViewModel.swift */; };
 		DB51D2592A4C2719002415B0 /* AgreementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51D2582A4C2719002415B0 /* AgreementModel.swift */; };
+		DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF32A4EECB300D702A1 /* UIViewController+.swift */; };
+		DB668AF72A4F041100D702A1 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF62A4F041100D702A1 /* ViewModelType.swift */; };
+		DB668AF92A4F06D000D702A1 /* RegistUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF82A4F06D000D702A1 /* RegistUserInfo.swift */; };
+		DB668AFC2A50017700D702A1 /* UserInfoStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AFB2A50017700D702A1 /* UserInfoStatus.swift */; };
 		DB6D93CF2A4D596D0011F9BC /* TelecomProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93CE2A4D596D0011F9BC /* TelecomProviderType.swift */; };
 		DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93D02A4D5D2F0011F9BC /* SimpleLabelCell.swift */; };
 		DB6D93D42A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93D32A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift */; };
 		DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93D62A4D62920011F9BC /* RegistInfoViewModel.swift */; };
 		DB6D93D92A4DB2340011F9BC /* RegisterInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93D82A4DB2340011F9BC /* RegisterInfoModel.swift */; };
 		DB6D93DB2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93DA2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift */; };
+		DB6D93DE2A4E7E340011F9BC /* RegistInfoInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93DD2A4E7E340011F9BC /* RegistInfoInputViewController.swift */; };
+		DB6D93E22A4EC8C10011F9BC /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93E12A4EC8C10011F9BC /* PhoneVerificationViewController.swift */; };
+		DB6D93E42A4EDCE20011F9BC /* PasswordSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93E32A4EDCE20011F9BC /* PasswordSettingViewController.swift */; };
 		DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */; };
 		DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */; };
 		DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9ED2A47E2E20008C2B5 /* OAuthLoginViewController.swift */; };
@@ -52,12 +59,19 @@
 		DB51D2542A4B3DC0002415B0 /* AgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewController.swift; sourceTree = "<group>"; };
 		DB51D2562A4BB8B5002415B0 /* AgreementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewModel.swift; sourceTree = "<group>"; };
 		DB51D2582A4C2719002415B0 /* AgreementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementModel.swift; sourceTree = "<group>"; };
+		DB668AF32A4EECB300D702A1 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		DB668AF62A4F041100D702A1 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		DB668AF82A4F06D000D702A1 /* RegistUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistUserInfo.swift; sourceTree = "<group>"; };
+		DB668AFB2A50017700D702A1 /* UserInfoStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoStatus.swift; sourceTree = "<group>"; };
 		DB6D93CE2A4D596D0011F9BC /* TelecomProviderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelecomProviderType.swift; sourceTree = "<group>"; };
 		DB6D93D02A4D5D2F0011F9BC /* SimpleLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleLabelCell.swift; sourceTree = "<group>"; };
 		DB6D93D32A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelecomProviderSelectorViewController.swift; sourceTree = "<group>"; };
 		DB6D93D62A4D62920011F9BC /* RegistInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistInfoViewModel.swift; sourceTree = "<group>"; };
 		DB6D93D82A4DB2340011F9BC /* RegisterInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInfoModel.swift; sourceTree = "<group>"; };
 		DB6D93DA2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateOfBirthTextFieldView.swift; sourceTree = "<group>"; };
+		DB6D93DD2A4E7E340011F9BC /* RegistInfoInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistInfoInputViewController.swift; sourceTree = "<group>"; };
+		DB6D93E12A4EC8C10011F9BC /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
+		DB6D93E32A4EDCE20011F9BC /* PasswordSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingViewController.swift; sourceTree = "<group>"; };
 		DBFFD9E62A47E2E20008C2B5 /* FitHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +115,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB668AF52A4F040300D702A1 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				DB668AF62A4F041100D702A1 /* ViewModelType.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		DB668AFA2A50016400D702A1 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				DB6D93CE2A4D596D0011F9BC /* TelecomProviderType.swift */,
+				DB668AFB2A50017700D702A1 /* UserInfoStatus.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		DB6D93D22A4D60DF0011F9BC /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +147,26 @@
 				DB6D93DA2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift */,
 			);
 			path = TextField;
+			sourceTree = "<group>";
+		};
+		DB6D93DF2A4EC8790011F9BC /* Regist */ = {
+			isa = PBXGroup;
+			children = (
+				DB51D2542A4B3DC0002415B0 /* AgreementViewController.swift */,
+				DB6D93DD2A4E7E340011F9BC /* RegistInfoInputViewController.swift */,
+				DB6D93E12A4EC8C10011F9BC /* PhoneVerificationViewController.swift */,
+				DB6D93E32A4EDCE20011F9BC /* PasswordSettingViewController.swift */,
+			);
+			path = Regist;
+			sourceTree = "<group>";
+		};
+		DB6D93E02A4EC8890011F9BC /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				DBFFD9ED2A47E2E20008C2B5 /* OAuthLoginViewController.swift */,
+				DBFFDA382A497A460008C2B5 /* PhoneAuthViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		DBFFD9DD2A47E2E20008C2B5 = {
@@ -173,9 +224,10 @@
 		DBFFDA1D2A47F0D50008C2B5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DB668AFA2A50016400D702A1 /* Enums */,
 				DB51D2582A4C2719002415B0 /* AgreementModel.swift */,
-				DB6D93CE2A4D596D0011F9BC /* TelecomProviderType.swift */,
 				DB6D93D82A4DB2340011F9BC /* RegisterInfoModel.swift */,
+				DB668AF82A4F06D000D702A1 /* RegistUserInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -183,6 +235,7 @@
 		DBFFDA1E2A47F0E00008C2B5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				DB668AF52A4F040300D702A1 /* Protocols */,
 				DBFFDA272A47F1450008C2B5 /* Extension */,
 			);
 			path = Utils;
@@ -210,6 +263,7 @@
 			children = (
 				DBFFDA282A47F1570008C2B5 /* UIColor+.swift */,
 				DBFFDA2A2A47F1600008C2B5 /* UIFont+.swift */,
+				DB668AF32A4EECB300D702A1 /* UIViewController+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -246,9 +300,8 @@
 		DBFFDA3F2A4988400008C2B5 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				DBFFD9ED2A47E2E20008C2B5 /* OAuthLoginViewController.swift */,
-				DBFFDA382A497A460008C2B5 /* PhoneAuthViewController.swift */,
-				DB51D2542A4B3DC0002415B0 /* AgreementViewController.swift */,
+				DB6D93E02A4EC8890011F9BC /* Login */,
+				DB6D93DF2A4EC8790011F9BC /* Regist */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -358,9 +411,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB6D93DE2A4E7E340011F9BC /* RegistInfoInputViewController.swift in Sources */,
 				DB6D93D42A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift in Sources */,
 				DB6D93D92A4DB2340011F9BC /* RegisterInfoModel.swift in Sources */,
 				DBFFDA2B2A47F1600008C2B5 /* UIFont+.swift in Sources */,
+				DB6D93E22A4EC8C10011F9BC /* PhoneVerificationViewController.swift in Sources */,
 				DBFFDA392A497A460008C2B5 /* PhoneAuthViewController.swift in Sources */,
 				DBFFDA3B2A4983F90008C2B5 /* BaseViewController.swift in Sources */,
 				DB6D93DB2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift in Sources */,
@@ -369,17 +424,22 @@
 				DB51D2532A4B36A5002415B0 /* AgreementView.swift in Sources */,
 				DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */,
 				DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */,
+				DB668AFC2A50017700D702A1 /* UserInfoStatus.swift in Sources */,
 				DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */,
 				DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */,
 				DBFFDA262A47F13C0008C2B5 /* TempService.swift in Sources */,
+				DB6D93E42A4EDCE20011F9BC /* PasswordSettingViewController.swift in Sources */,
 				DB51D2572A4BB8B5002415B0 /* AgreementViewModel.swift in Sources */,
 				DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */,
 				DB6D93CF2A4D596D0011F9BC /* TelecomProviderType.swift in Sources */,
+				DB668AF92A4F06D000D702A1 /* RegistUserInfo.swift in Sources */,
 				DBFFDA422A499BC00008C2B5 /* StandardTextFieldView.swift in Sources */,
 				DBFFDA292A47F1570008C2B5 /* UIColor+.swift in Sources */,
+				DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */,
 				DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */,
 				DBFFDA352A492A4E0008C2B5 /* OAuthLoginViewModel.swift in Sources */,
 				DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */,
+				DB668AF72A4F041100D702A1 /* ViewModelType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
