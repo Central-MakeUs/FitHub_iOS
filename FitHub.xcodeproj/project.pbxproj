@@ -24,6 +24,7 @@
 		DB6D93DE2A4E7E340011F9BC /* RegistInfoInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93DD2A4E7E340011F9BC /* RegistInfoInputViewController.swift */; };
 		DB6D93E22A4EC8C10011F9BC /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93E12A4EC8C10011F9BC /* PhoneVerificationViewController.swift */; };
 		DB6D93E42A4EDCE20011F9BC /* PasswordSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93E32A4EDCE20011F9BC /* PasswordSettingViewController.swift */; };
+		DB97F8352A527BCF009C09A1 /* StandardNotificationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F8342A527BCF009C09A1 /* StandardNotificationAlertView.swift */; };
 		DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */; };
 		DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */; };
 		DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9ED2A47E2E20008C2B5 /* OAuthLoginViewController.swift */; };
@@ -72,6 +73,7 @@
 		DB6D93DD2A4E7E340011F9BC /* RegistInfoInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistInfoInputViewController.swift; sourceTree = "<group>"; };
 		DB6D93E12A4EC8C10011F9BC /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
 		DB6D93E32A4EDCE20011F9BC /* PasswordSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingViewController.swift; sourceTree = "<group>"; };
+		DB97F8342A527BCF009C09A1 /* StandardNotificationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNotificationAlertView.swift; sourceTree = "<group>"; };
 		DBFFD9E62A47E2E20008C2B5 /* FitHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +169,14 @@
 				DBFFDA382A497A460008C2B5 /* PhoneAuthViewController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		DB97F8332A527B9F009C09A1 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				DB97F8342A527BCF009C09A1 /* StandardNotificationAlertView.swift */,
+			);
+			path = Alert;
 			sourceTree = "<group>";
 		};
 		DBFFD9DD2A47E2E20008C2B5 = {
@@ -309,6 +319,7 @@
 		DBFFDA402A499B310008C2B5 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				DB97F8332A527B9F009C09A1 /* Alert */,
 				DB6D93DC2A4E76E90011F9BC /* TextField */,
 				DB6D93D22A4D60DF0011F9BC /* Cell */,
 				DBFFDA432A49BD910008C2B5 /* StandardButton.swift */,
@@ -421,6 +432,7 @@
 				DB6D93DB2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift in Sources */,
 				DBFFDA3E2A4988200008C2B5 /* PhoneAuthViewModel.swift in Sources */,
 				DB51D2592A4C2719002415B0 /* AgreementModel.swift in Sources */,
+				DB97F8352A527BCF009C09A1 /* StandardNotificationAlertView.swift in Sources */,
 				DB51D2532A4B36A5002415B0 /* AgreementView.swift in Sources */,
 				DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */,
 				DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */,
