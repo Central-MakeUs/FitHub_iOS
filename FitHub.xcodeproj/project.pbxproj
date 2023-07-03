@@ -25,6 +25,10 @@
 		DB6D93E22A4EC8C10011F9BC /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93E12A4EC8C10011F9BC /* PhoneVerificationViewController.swift */; };
 		DB6D93E42A4EDCE20011F9BC /* PasswordSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93E32A4EDCE20011F9BC /* PasswordSettingViewController.swift */; };
 		DB97F8352A527BCF009C09A1 /* StandardNotificationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F8342A527BCF009C09A1 /* StandardNotificationAlertView.swift */; };
+		DB97F8382A52B2F2009C09A1 /* StandardAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F8372A52B2F2009C09A1 /* StandardAlertController.swift */; };
+		DB97F83A2A52B2F7009C09A1 /* StandardAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F8392A52B2F7009C09A1 /* StandardAlertAction.swift */; };
+		DB97F83C2A52B36E009C09A1 /* NotificationName+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F83B2A52B36E009C09A1 /* NotificationName+.swift */; };
+		DB97F83E2A52C1E3009C09A1 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F83D2A52C1E3009C09A1 /* PaddingLabel.swift */; };
 		DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */; };
 		DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */; };
 		DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9ED2A47E2E20008C2B5 /* OAuthLoginViewController.swift */; };
@@ -74,6 +78,10 @@
 		DB6D93E12A4EC8C10011F9BC /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
 		DB6D93E32A4EDCE20011F9BC /* PasswordSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingViewController.swift; sourceTree = "<group>"; };
 		DB97F8342A527BCF009C09A1 /* StandardNotificationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNotificationAlertView.swift; sourceTree = "<group>"; };
+		DB97F8372A52B2F2009C09A1 /* StandardAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardAlertController.swift; sourceTree = "<group>"; };
+		DB97F8392A52B2F7009C09A1 /* StandardAlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardAlertAction.swift; sourceTree = "<group>"; };
+		DB97F83B2A52B36E009C09A1 /* NotificationName+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+.swift"; sourceTree = "<group>"; };
+		DB97F83D2A52C1E3009C09A1 /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		DBFFD9E62A47E2E20008C2B5 /* FitHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -174,9 +182,19 @@
 		DB97F8332A527B9F009C09A1 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
+				DB97F8372A52B2F2009C09A1 /* StandardAlertController.swift */,
+				DB97F8392A52B2F7009C09A1 /* StandardAlertAction.swift */,
 				DB97F8342A527BCF009C09A1 /* StandardNotificationAlertView.swift */,
 			);
 			path = Alert;
+			sourceTree = "<group>";
+		};
+		DB97F8362A52B288009C09A1 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				DBFFDA3A2A4983F90008C2B5 /* BaseViewController.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		DBFFD9DD2A47E2E20008C2B5 = {
@@ -216,7 +234,7 @@
 		DBFFDA1B2A47F0C30008C2B5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DBFFDA3A2A4983F90008C2B5 /* BaseViewController.swift */,
+				DB97F8362A52B288009C09A1 /* Custom */,
 				DBFFDA3F2A4988400008C2B5 /* Auth */,
 				DB6D93D32A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift */,
 			);
@@ -274,6 +292,7 @@
 				DBFFDA282A47F1570008C2B5 /* UIColor+.swift */,
 				DBFFDA2A2A47F1600008C2B5 /* UIFont+.swift */,
 				DB668AF32A4EECB300D702A1 /* UIViewController+.swift */,
+				DB97F83B2A52B36E009C09A1 /* NotificationName+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -322,6 +341,7 @@
 				DB97F8332A527B9F009C09A1 /* Alert */,
 				DB6D93DC2A4E76E90011F9BC /* TextField */,
 				DB6D93D22A4D60DF0011F9BC /* Cell */,
+				DB97F83D2A52C1E3009C09A1 /* PaddingLabel.swift */,
 				DBFFDA432A49BD910008C2B5 /* StandardButton.swift */,
 				DB51D2522A4B36A5002415B0 /* AgreementView.swift */,
 			);
@@ -446,10 +466,14 @@
 				DB6D93CF2A4D596D0011F9BC /* TelecomProviderType.swift in Sources */,
 				DB668AF92A4F06D000D702A1 /* RegistUserInfo.swift in Sources */,
 				DBFFDA422A499BC00008C2B5 /* StandardTextFieldView.swift in Sources */,
+				DB97F83C2A52B36E009C09A1 /* NotificationName+.swift in Sources */,
 				DBFFDA292A47F1570008C2B5 /* UIColor+.swift in Sources */,
 				DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */,
 				DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */,
+				DB97F83E2A52C1E3009C09A1 /* PaddingLabel.swift in Sources */,
+				DB97F83A2A52B2F7009C09A1 /* StandardAlertAction.swift in Sources */,
 				DBFFDA352A492A4E0008C2B5 /* OAuthLoginViewModel.swift in Sources */,
+				DB97F8382A52B2F2009C09A1 /* StandardAlertController.swift in Sources */,
 				DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */,
 				DB668AF72A4F041100D702A1 /* ViewModelType.swift in Sources */,
 			);
