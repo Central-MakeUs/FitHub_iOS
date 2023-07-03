@@ -17,4 +17,13 @@ extension UIViewController {
     @objc func dismissKeyboard(){
         self.view.endEditing(true)
     }
+    
+    func notiAlert(_ content: String) {
+        let alert = StandardNotificationAlertView(content)
+        self.view.addSubview(alert)
+        alert.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(38)
+            $0.centerY.equalToSuperview()
+        }
+    }
 }
