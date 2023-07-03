@@ -64,15 +64,42 @@ final class PhoneAuthViewController: BaseViewController {
     
     //MARK: -SetupBinding
     override func setupBinding() {
-        self.registButton.rx.tap
-            .asDriver()
-            .drive(onNext: {
+        let input = PhoneAuthViewModel.Input(phoneNumberText: self.phoneNumberTextFieldView.textField.rx.text.orEmpty.asObservable(),
+                                             passwordText: self.passwordTextFieldView.textField.rx.text.orEmpty.asObservable(),
+                                             loginButtonTap: self.loginButton.rx.tap.asSignal(),
+                                             registButtonTap: self.registButton.rx.tap.asSignal(),
+                                             findPasswordButtonTap: self.findPasswordButton.rx.tap.asSignal())
+        
+        let output = self.viewModel.transform(input: input)
+        
+        output.loginEnable
+            .asDriver(onErrorJustReturn: false)
+            .drive(self.loginButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        
+        output.loginTap
+            .emit(onNext: { [weak self] in
+                // TODO: 로그인 api 호출
+                self?.notiAlert("아직 api안나왔지요")
+            })
+            .disposed(by: disposeBag)
+        
+        output.registTap
+            .emit(onNext: { [weak self] in
                 let agreementVC = AgreementViewController(AgreementViewModel())
-                self.navigationController?.pushViewController(agreementVC, animated: true)
+                self?.navigationController?.pushViewController(agreementVC, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        output.findPasswordTap
+            .emit(onNext: {
+                // TODO: 비밀번호 찾기 이동
+                self.notiAlert("비밀번호 찾기 이동 미구현")
             })
             .disposed(by: disposeBag)
     }
-
+    
     //MARK: - AddSubView
     override func addSubView() {
         self.view.addSubview(self.mainLabel)
