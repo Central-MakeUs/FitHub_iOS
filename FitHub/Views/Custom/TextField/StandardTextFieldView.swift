@@ -13,6 +13,8 @@ final class StandardTextFieldView: UIView {
     //MARK: - Properties
     private let disposeBag = DisposeBag()
     
+    private var currentBorderColor = UIColor.iconDisabled.cgColor
+    
     private let frameView = UIView().then {
         $0.layer.cornerRadius = 5
         $0.layer.borderWidth = 1
@@ -83,6 +85,7 @@ final class StandardTextFieldView: UIView {
         
         self.addSubView()
         self.layout()
+        self.setupBinding()
     }
     
     required init?(coder: NSCoder) {
@@ -105,7 +108,7 @@ final class StandardTextFieldView: UIView {
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .error
         case .ok:
-            self.frameView.layer.borderColor = UIColor.iconDisabled.cgColor
+            self.frameView.layer.borderColor = self.currentBorderColor
             self.statusImageView.image = UIImage(named: "Empty")
             self.guideLabel.textColor = .textSub02
             self.guideLabel.text = status.message
@@ -119,6 +122,23 @@ final class StandardTextFieldView: UIView {
         }
     }
     
+    //MARK: - SetupBinding
+    private func setupBinding() {
+        self.textField.rx.controlEvent(.editingDidBegin)
+            .bind(onNext: {
+                self.currentBorderColor = UIColor.iconSub.cgColor
+                self.frameView.layer.borderColor = UIColor.iconSub.cgColor
+            })
+            .disposed(by: disposeBag)
+    
+        self.textField.rx.controlEvent(.editingDidEnd)
+            .bind(onNext: {
+                self.currentBorderColor = UIColor.iconDisabled.cgColor
+                self.frameView.layer.borderColor = UIColor.iconDisabled.cgColor
+            })
+            .disposed(by: disposeBag)
+    }
+    
     //MARK: - AddSubView
     private func addSubView() {
         self.addSubview(self.frameView)
@@ -126,6 +146,7 @@ final class StandardTextFieldView: UIView {
         
         self.frameView.addSubview(self.titleLabel)
         self.frameView.addSubview(self.stackView)
+        self.frameView.addSubview(self.timeLabel)
     }
     
     //MARK: - Layout
