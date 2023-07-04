@@ -24,6 +24,7 @@ final class PhoneAuthViewController: BaseViewController {
     }
     
     private let passwordTextFieldView = StandardTextFieldView("비밀번호").then {
+        $0.textField.isSecureTextEntry = true
         $0.placeholder = "비밀번호 입력"
         $0.keyboardType = .numberPad
     }
