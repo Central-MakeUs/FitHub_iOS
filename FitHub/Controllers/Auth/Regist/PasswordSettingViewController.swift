@@ -76,9 +76,9 @@ final class PasswordSettingViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output.nextTap
-            .emit(onNext: {
-                //TODO: 다음 페이지 푸쉬
-                print("탭")
+            .emit(onNext: { [weak self] in
+                guard let self else { return }
+                self.navigationController?.pushViewController(ProfileSettingViewController(ProfileSettingViewModel(self.viewModel.userInfo)), animated: true)
             })
             .disposed(by: disposeBag)
     }

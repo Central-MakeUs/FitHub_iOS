@@ -104,12 +104,14 @@ final class StandardTextFieldView: UIView {
         case .notValidPhoneNumber: fallthrough
         case .notValidSexNumber: fallthrough
         case .underage: fallthrough
+        case .duplicateNickName: fallthrough
         case .passwordLengthError:
             self.guideLabel.textColor = .error
             self.frameView.layer.borderColor = UIColor.error.cgColor
             self.statusImageView.image = UIImage(named: "Warning")
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .error
+        case .nickNameOK: fallthrough
         case .passwordOK: fallthrough
         case .ok:
             self.frameView.layer.borderColor = self.currentBorderColor
@@ -117,6 +119,7 @@ final class StandardTextFieldView: UIView {
             self.guideLabel.textColor = .textSub02
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .textDisabled
+        case .nickNameSuccess: fallthrough
         case .passwordSuccess: fallthrough
         case .matchPassword:
             self.frameView.layer.borderColor = UIColor.info.cgColor
