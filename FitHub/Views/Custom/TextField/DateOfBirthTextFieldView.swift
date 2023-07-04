@@ -89,6 +89,7 @@ final class DateOfBirthTextFieldView: UIView {
         case .notValidPhoneNumber: fallthrough
         case .notValidSexNumber: fallthrough
         case .underage: fallthrough
+        case .duplicateNickName: fallthrough
         case .passwordLengthError:
             self.guideLabel.textColor = .error
             self.frameView.layer.borderColor = UIColor.error.cgColor
@@ -96,6 +97,7 @@ final class DateOfBirthTextFieldView: UIView {
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .error
         case .passwordOK: fallthrough
+        case .nickNameOK: fallthrough
         case .ok:
             self.frameView.layer.borderColor = self.currentBorderColor
             self.statusImageView.image = UIImage(named: "Empty")
@@ -103,6 +105,7 @@ final class DateOfBirthTextFieldView: UIView {
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .textDisabled
         case .passwordSuccess: fallthrough
+        case .nickNameSuccess: fallthrough
         case .matchPassword:
             self.frameView.layer.borderColor = UIColor.info.cgColor
             self.statusImageView.image = UIImage(named: "Check")
