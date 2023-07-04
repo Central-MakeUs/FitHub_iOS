@@ -12,6 +12,7 @@ import RxCocoa
 final class DateOfBirthTextFieldView: UIView {
     //MARK: - Properties
     private let disposeBag = DisposeBag()
+    private var status = UserInfoStatus.ok
     private var currentBorderColor = UIColor.iconDisabled.cgColor
 
     private let frameView = UIView().then {
@@ -80,6 +81,7 @@ final class DateOfBirthTextFieldView: UIView {
     
     //MARK: Method
     func verifyFormat(_ status: UserInfoStatus) {
+        self.status = status
         switch status {
         case .notMatchPassword: fallthrough
         case .notValidDateOfBirth: fallthrough
@@ -93,13 +95,15 @@ final class DateOfBirthTextFieldView: UIView {
             self.statusImageView.image = UIImage(named: "Warning")
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .error
+        case .passwordOK: fallthrough
         case .ok:
             self.frameView.layer.borderColor = self.currentBorderColor
             self.statusImageView.image = UIImage(named: "Empty")
             self.guideLabel.textColor = .textSub02
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .textDisabled
-        case .success:
+        case .passwordSuccess: fallthrough
+        case .matchPassword:
             self.frameView.layer.borderColor = UIColor.info.cgColor
             self.statusImageView.image = UIImage(named: "Check")
             self.guideLabel.textColor = .info
@@ -112,16 +116,21 @@ final class DateOfBirthTextFieldView: UIView {
     private func setupBinding() {
         Observable.merge(dateOfBirthTextField.rx.controlEvent(.editingDidBegin).asObservable(),
                          sexNumberTextField.rx.controlEvent(.editingDidBegin).asObservable())
-        .bind(onNext: { _ in
-            self.currentBorderColor = UIColor.iconSub.cgColor
-            self.frameView.layer.borderColor = UIColor.iconSub.cgColor
+        .bind(onNext: { [weak self] _ in
+            if self?.status == .ok {
+                self?.currentBorderColor = UIColor.iconSub.cgColor
+                self?.frameView.layer.borderColor = UIColor.iconSub.cgColor
+            }
         })
         .disposed(by: disposeBag)
         
         Observable.merge(dateOfBirthTextField.rx.controlEvent(.editingDidEnd).asObservable(),
                          sexNumberTextField.rx.controlEvent(.editingDidEnd).asObservable())
-        .bind(onNext: {
-            self.currentBorderColor = UIColor.iconDisabled.cgColor
+        .bind(onNext: { [weak self] _ in
+            if self?.status == .ok {
+                self?.currentBorderColor = UIColor.iconDisabled.cgColor
+                self?.frameView.layer.borderColor = UIColor.iconDisabled.cgColor
+            }
         })
         .disposed(by: disposeBag)
     }

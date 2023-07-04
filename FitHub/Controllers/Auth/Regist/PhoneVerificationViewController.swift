@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 final class PhoneVerificationViewController: BaseViewController {
     //MARK: - Properties
-    private let viewModel: RegistInfoViewModel
+    private let viewModel: PhoneVerificationViewModel
     
     private let verificationNumberTextField = StandardTextFieldView("인증번호").then {
         $0.placeholder = "인증번호 6자리 입력"
@@ -45,10 +47,11 @@ final class PhoneVerificationViewController: BaseViewController {
     
     private let nextButton = StandardButton(type: .system).then {
         $0.setTitle("다음", for: .normal)
+        $0.isEnabled = false
     }
     
     //MARK: - Init
-    init(_ viewModel: RegistInfoViewModel) {
+    init(_ viewModel: PhoneVerificationViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -59,34 +62,32 @@ final class PhoneVerificationViewController: BaseViewController {
     
     //MARK: - SetupBinding
     override func setupBinding() {
-        self.nextButton.rx.tap
-            .bind(onNext: { [weak self] in
-                guard let self else { return }
-                self.navigationController?.pushViewController(PasswordSettingViewController(self.viewModel), animated: true)
-            })
+        let input = PhoneVerificationViewModel.Input(authenticationNumber: self.verificationNumberTextField.textField.rx.text.orEmpty.asObservable(),
+                                                     resendTap: self.resendButton.rx.tap.asSignal(),
+                                                     nextTap: self.nextButton.rx.tap.asSignal())
+        
+        let output = self.viewModel.transform(input: input)
+        
+        output.nextButtonEnable
+            .asDriver(onErrorJustReturn: false)
+            .drive(self.nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        self.verificationNumberTextField.textField.rx.text.orEmpty
-            .map { String($0.prefix(6)) }
-            .bind(to: self.viewModel.authenticationNumber)
-            .disposed(by: disposeBag)
-        
-        self.viewModel.authenticationNumber
+        output.authNumber
+            .observe(on: MainScheduler.asyncInstance)
             .asDriver(onErrorJustReturn: "")
-            .drive(onNext: { [weak self] text in
+            .drive(self.verificationNumberTextField.textField.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.nextTap
+            .emit(onNext: { [weak self] in
                 guard let self else { return }
-                self.verificationNumberTextField.textField.text = text
+                self.navigationController?.pushViewController(PasswordSettingViewController(PasswordSettingViewModel(self.viewModel.userInfo)), animated: true)
             })
             .disposed(by: disposeBag)
         
-        self.viewModel.authenticationNumber
-            .map { $0.count == 6 }
-            .bind(to: self.nextButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-        
-        self.resendButton.rx.tap
-            .asDriver()
-            .drive (onNext:{
+        output.resendTap
+            .emit (onNext:{
                 self.notiAlert("인증번호 재발송")
             })
             .disposed(by: disposeBag)
