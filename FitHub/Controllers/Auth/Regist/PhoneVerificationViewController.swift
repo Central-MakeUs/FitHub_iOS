@@ -13,6 +13,7 @@ final class PhoneVerificationViewController: BaseViewController {
     
     private let verificationNumberTextField = StandardTextFieldView("인증번호").then {
         $0.placeholder = "인증번호 6자리 입력"
+        $0.textField.keyboardType = .numberPad
     }
     
     private let titleLabel = UILabel().then {
@@ -34,7 +35,7 @@ final class PhoneVerificationViewController: BaseViewController {
     }
     
     private let resendButton = UIButton(type: .system).then {
-        var attribute = AttributedString.init("재전송")
+        var attribute = AttributedString.init("재발송")
         attribute.font = .pretendard(.bodyMedium01)
         attribute.foregroundColor = .textSub01
         attribute.underlineStyle = .single
@@ -62,6 +63,31 @@ final class PhoneVerificationViewController: BaseViewController {
             .bind(onNext: { [weak self] in
                 guard let self else { return }
                 self.navigationController?.pushViewController(PasswordSettingViewController(self.viewModel), animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        self.verificationNumberTextField.textField.rx.text.orEmpty
+            .map { String($0.prefix(6)) }
+            .bind(to: self.viewModel.authenticationNumber)
+            .disposed(by: disposeBag)
+        
+        self.viewModel.authenticationNumber
+            .asDriver(onErrorJustReturn: "")
+            .drive(onNext: { [weak self] text in
+                guard let self else { return }
+                self.verificationNumberTextField.textField.text = text
+            })
+            .disposed(by: disposeBag)
+        
+        self.viewModel.authenticationNumber
+            .map { $0.count == 6 }
+            .bind(to: self.nextButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        self.resendButton.rx.tap
+            .asDriver()
+            .drive (onNext:{
+                self.notiAlert("인증번호 재발송")
             })
             .disposed(by: disposeBag)
     }

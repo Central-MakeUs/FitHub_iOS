@@ -11,7 +11,9 @@ import RxCocoa
 
 final class DateOfBirthTextFieldView: UIView {
     //MARK: - Properties
-    
+    private let disposeBag = DisposeBag()
+    private var currentBorderColor = UIColor.iconDisabled.cgColor
+
     private let frameView = UIView().then {
         $0.layer.cornerRadius = 5
         $0.layer.borderWidth = 1
@@ -69,6 +71,7 @@ final class DateOfBirthTextFieldView: UIView {
         super.init(frame: frame)
         self.addSubView()
         self.layout()
+        self.setupBinding()
     }
     
     required init?(coder: NSCoder) {
@@ -91,7 +94,7 @@ final class DateOfBirthTextFieldView: UIView {
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .error
         case .ok:
-            self.frameView.layer.borderColor = UIColor.iconDisabled.cgColor
+            self.frameView.layer.borderColor = self.currentBorderColor
             self.statusImageView.image = UIImage(named: "Empty")
             self.guideLabel.textColor = .textSub02
             self.guideLabel.text = status.message
@@ -103,6 +106,24 @@ final class DateOfBirthTextFieldView: UIView {
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .info
         }
+    }
+    
+    //MARK: - SetupBinding
+    private func setupBinding() {
+        Observable.merge(dateOfBirthTextField.rx.controlEvent(.editingDidBegin).asObservable(),
+                         sexNumberTextField.rx.controlEvent(.editingDidBegin).asObservable())
+        .bind(onNext: { _ in
+            self.currentBorderColor = UIColor.iconSub.cgColor
+            self.frameView.layer.borderColor = UIColor.iconSub.cgColor
+        })
+        .disposed(by: disposeBag)
+        
+        Observable.merge(dateOfBirthTextField.rx.controlEvent(.editingDidEnd).asObservable(),
+                         sexNumberTextField.rx.controlEvent(.editingDidEnd).asObservable())
+        .bind(onNext: {
+            self.currentBorderColor = UIColor.iconDisabled.cgColor
+        })
+        .disposed(by: disposeBag)
     }
     
     //MARK: - AddSubView
