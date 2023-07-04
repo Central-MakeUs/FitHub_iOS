@@ -20,7 +20,13 @@ class RegistInfoViewModel: ViewModelType {
     
     let stackViewCount = BehaviorRelay(value: 1)
     
-    let authenticationNumber = BehaviorRelay(value: "")
+    let passwordInputString = BehaviorRelay(value: "")
+    
+    let passwordVerificationString = BehaviorRelay(value: "")
+    
+    let passwordStatus = BehaviorRelay(value: "")
+    
+    let passwordVerificationStatus = BehaviorRelay(value: "")
     
     struct Input {
         let phoneTextFieldDidEditEvent: Observable<String>
@@ -68,6 +74,12 @@ class RegistInfoViewModel: ViewModelType {
         let sendButtonEnable = Observable.combineLatest(name, dateOfBirth, sexNumber, phoneNumber)
             .map { (name: $0.count > 0, dateOfBirth: $1.1, sexNumber:$2.1, phoneNumber: $3.1 == .ok) }
             .map { $0 && $1 && $2 && $3 }
+        
+        Observable.combineLatest(name, dateOfBirth, sexNumber, phoneNumber, telecom)
+            .map { RegistUserInfo(phoneNumber: $3.0, dateOfBirth: $1.0, sexNumber: $2.0, name: $0, telecom: $4) }
+            .bind(to: self.userInfo)
+            .disposed(by: disposeBag)
+            
         
         return Output(dateOfBirth: dateOfBirth,
                       sexNumber: sexNumber,

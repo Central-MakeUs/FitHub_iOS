@@ -137,7 +137,7 @@ final class RegistInfoInputViewController: BaseViewController {
             .asDriver(onErrorJustReturn: 1)
             .drive(onNext: { [weak self] stackCnt in
                 guard let self else { return }
-                self.navigationController?.pushViewController(PhoneVerificationViewController(self.viewModel), animated: true)
+                self.navigationController?.pushViewController(PhoneVerificationViewController(PhoneVerificationViewModel(userInfo: self.viewModel.userInfo)), animated: true)
             })
             .disposed(by: disposeBag)
         
