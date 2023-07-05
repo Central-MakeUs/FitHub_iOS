@@ -5,7 +5,7 @@
 //  Created by 신상우 on 2023/06/30.
 //
 
-import Foundation
+import UIKit
 
 struct RegistUserInfo {
     var phoneNumber: String?
@@ -15,4 +15,5 @@ struct RegistUserInfo {
     var name: String?
     var telecom: TelecomProviderType?
     var nickName: String?
+    var profileImage: UIImage?
 }
