@@ -9,8 +9,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-
-
 class RegistInfoViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
@@ -22,23 +20,31 @@ class RegistInfoViewModel: ViewModelType {
     
     let stackViewCount = BehaviorRelay(value: 1)
     
+    let passwordInputString = BehaviorRelay(value: "")
+    
+    let passwordVerificationString = BehaviorRelay(value: "")
+    
+    let passwordStatus = BehaviorRelay(value: "")
+    
+    let passwordVerificationStatus = BehaviorRelay(value: "")
+    
     struct Input {
         let phoneTextFieldDidEditEvent: Observable<String>
-        let telecomDidSelectEvent: Observable<String>
         let dateOfBirthTextFieldDidEditEvent: Observable<String>
         let sexNumberTextFieldDidEditEvent: Observable<String>
         let nameTextFieldDidEditEvent: Observable<String>
-        let nextButtonTapEvent: Observable<Int>
+        let sendButtonTapEvent: Observable<Int>
     }
     
     struct Output {
         let dateOfBirth: Observable<(String,Bool)>
         let sexNumber: Observable<(String,Bool)>
-        let dateOfBirthStatus: Observable<UserInfoStatus>
+        let dateOfBirthStatus: Observable<(UserInfoStatus,Bool)>
         let telecom: Observable<TelecomProviderType>
-        let nextButtonTapEvent: Observable<Int>
+        let name: Observable<String>
+        let sendButtonTapEvent: Observable<Int>
         let phoneNumber: Observable<(String,UserInfoStatus)>
-        let nextButtonEnable: Observable<Bool>
+        let sendButtonEnable: Observable<Bool>
     }
     
     func transform(input: Input) -> Output {
@@ -51,49 +57,38 @@ class RegistInfoViewModel: ViewModelType {
             .map { (String($0.prefix(1)), $0.count >= 1) }
         
         let dateOfBirthStatus = Observable.combineLatest(dateOfBirth, sexNumber)
-            .map { self.verifyDateOfBirth($0.0, sexNumStr: $1.0) }
+            .map { (self.verifyDateOfBirth($0.0, sexNumStr: $1.0), $0.1 && $1.1)}
         
-        let telecom = input.telecomDidSelectEvent
-            .compactMap { TelecomProviderType(rawValue: $0) }
+        let telecom = self.selectedTelecomProvider
+            .compactMap { $0 }
         
-        input.nextButtonTapEvent
+        input.sendButtonTapEvent
             .bind(to: stackViewCount)
             .disposed(by: disposeBag)
         
         let phoneNumber = input.phoneTextFieldDidEditEvent
-            .map { ($0, self.verifyPhoneNumber($0)) }
+            .map { (String($0.prefix(11)), self.verifyPhoneNumber($0)) }
         
-        let nextButtonEnable = Observable.combineLatest(stackViewCount, dateOfBirth, sexNumber, phoneNumber)
-            .map { (stackCnt: $0, dateOfBirth: $1.1, sexNumber:$2.1, phoneNumber: $3.1 == .ok) }
-            .map {
-                switch $0.stackCnt {
-                case 0: return $0.phoneNumber
-                case 1: return $0.phoneNumber
-                case 2: fallthrough
-                case 3: fallthrough
-                case 4: return $0.dateOfBirth && $0.sexNumber && $0.phoneNumber
-                default: return false
-                }
-            }
+        let name = input.nameTextFieldDidEditEvent
         
-//        Observable.combineLatest(dateOfBirth, sexNumber, telecom, name, phoneNumber)
-//            .map { (dateOfBirth, sexNumber, telecom, name, phoneNumber) in
-//                RegistUserInfo(phoneNumber: phoneNumber,
-//                               dateOfBirth: dateOfBirth.0,
-//                               sexNumber: sexNumber.0,
-//                               name: name,
-//                               telecom: telecom)
-//            }
-//            .bind(to: userInfo)
-//            .disposed(by: disposeBag)
+        let sendButtonEnable = Observable.combineLatest(name, dateOfBirth, sexNumber, phoneNumber)
+            .map { (name: $0.count > 0, dateOfBirth: $1.1, sexNumber:$2.1, phoneNumber: $3.1 == .ok) }
+            .map { $0 && $1 && $2 && $3 }
+        
+        Observable.combineLatest(name, dateOfBirth, sexNumber, phoneNumber, telecom)
+            .map { RegistUserInfo(phoneNumber: $3.0, dateOfBirth: $1.0, sexNumber: $2.0, name: $0, telecom: $4) }
+            .bind(to: self.userInfo)
+            .disposed(by: disposeBag)
             
+        
         return Output(dateOfBirth: dateOfBirth,
                       sexNumber: sexNumber,
                       dateOfBirthStatus: dateOfBirthStatus,
                       telecom: telecom,
-                      nextButtonTapEvent: input.nextButtonTapEvent,
+                      name: name,
+                      sendButtonTapEvent: input.sendButtonTapEvent,
                       phoneNumber: phoneNumber,
-                      nextButtonEnable: nextButtonEnable
+                      sendButtonEnable: sendButtonEnable
         )
     }
     
