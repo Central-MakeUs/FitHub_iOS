@@ -11,7 +11,7 @@ import RxSwift
 
 class ProfileSettingViewModel: ViewModelType {
     var disposeBag = DisposeBag()
-    private let userInfo: BehaviorRelay<RegistUserInfo>
+    let userInfo: BehaviorRelay<RegistUserInfo>
     
     private let profileImage = BehaviorRelay(value: UIImage(named: "DefaultProfile"))
     
