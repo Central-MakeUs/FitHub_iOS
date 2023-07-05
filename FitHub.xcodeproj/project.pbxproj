@@ -11,6 +11,8 @@
 		DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51D2542A4B3DC0002415B0 /* AgreementViewController.swift */; };
 		DB51D2572A4BB8B5002415B0 /* AgreementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51D2562A4BB8B5002415B0 /* AgreementViewModel.swift */; };
 		DB51D2592A4C2719002415B0 /* AgreementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51D2582A4C2719002415B0 /* AgreementModel.swift */; };
+		DB5D22302A546AB400B32485 /* PhoneVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */; };
+		DB5D22322A5470A800B32485 /* PasswordSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D22312A5470A800B32485 /* PasswordSettingViewModel.swift */; };
 		DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF32A4EECB300D702A1 /* UIViewController+.swift */; };
 		DB668AF72A4F041100D702A1 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF62A4F041100D702A1 /* ViewModelType.swift */; };
 		DB668AF92A4F06D000D702A1 /* RegistUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF82A4F06D000D702A1 /* RegistUserInfo.swift */; };
@@ -24,6 +26,11 @@
 		DB6D93DE2A4E7E340011F9BC /* RegistInfoInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93DD2A4E7E340011F9BC /* RegistInfoInputViewController.swift */; };
 		DB6D93E22A4EC8C10011F9BC /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93E12A4EC8C10011F9BC /* PhoneVerificationViewController.swift */; };
 		DB6D93E42A4EDCE20011F9BC /* PasswordSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93E32A4EDCE20011F9BC /* PasswordSettingViewController.swift */; };
+		DB7559DF2A548BC000B88B96 /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7559DE2A548BC000B88B96 /* ProfileSettingViewController.swift */; };
+		DB7559E12A548C6800B88B96 /* ProfileSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7559E02A548C6800B88B96 /* ProfileSettingViewModel.swift */; };
+		DB7559E32A55030400B88B96 /* SportsSelectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7559E22A55030400B88B96 /* SportsSelectingViewController.swift */; };
+		DB7559E52A55035800B88B96 /* SportsSelectingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7559E42A55035800B88B96 /* SportsSelectingViewModel.swift */; };
+		DB7559E72A55062C00B88B96 /* SportsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7559E62A55062C00B88B96 /* SportsCell.swift */; };
 		DB97F8352A527BCF009C09A1 /* StandardNotificationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F8342A527BCF009C09A1 /* StandardNotificationAlertView.swift */; };
 		DB97F8382A52B2F2009C09A1 /* StandardAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F8372A52B2F2009C09A1 /* StandardAlertController.swift */; };
 		DB97F83A2A52B2F7009C09A1 /* StandardAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F8392A52B2F7009C09A1 /* StandardAlertAction.swift */; };
@@ -64,6 +71,8 @@
 		DB51D2542A4B3DC0002415B0 /* AgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewController.swift; sourceTree = "<group>"; };
 		DB51D2562A4BB8B5002415B0 /* AgreementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewModel.swift; sourceTree = "<group>"; };
 		DB51D2582A4C2719002415B0 /* AgreementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementModel.swift; sourceTree = "<group>"; };
+		DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewModel.swift; sourceTree = "<group>"; };
+		DB5D22312A5470A800B32485 /* PasswordSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingViewModel.swift; sourceTree = "<group>"; };
 		DB668AF32A4EECB300D702A1 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		DB668AF62A4F041100D702A1 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		DB668AF82A4F06D000D702A1 /* RegistUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistUserInfo.swift; sourceTree = "<group>"; };
@@ -77,6 +86,11 @@
 		DB6D93DD2A4E7E340011F9BC /* RegistInfoInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistInfoInputViewController.swift; sourceTree = "<group>"; };
 		DB6D93E12A4EC8C10011F9BC /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
 		DB6D93E32A4EDCE20011F9BC /* PasswordSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingViewController.swift; sourceTree = "<group>"; };
+		DB7559DE2A548BC000B88B96 /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
+		DB7559E02A548C6800B88B96 /* ProfileSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewModel.swift; sourceTree = "<group>"; };
+		DB7559E22A55030400B88B96 /* SportsSelectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsSelectingViewController.swift; sourceTree = "<group>"; };
+		DB7559E42A55035800B88B96 /* SportsSelectingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsSelectingViewModel.swift; sourceTree = "<group>"; };
+		DB7559E62A55062C00B88B96 /* SportsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsCell.swift; sourceTree = "<group>"; };
 		DB97F8342A527BCF009C09A1 /* StandardNotificationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNotificationAlertView.swift; sourceTree = "<group>"; };
 		DB97F8372A52B2F2009C09A1 /* StandardAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardAlertController.swift; sourceTree = "<group>"; };
 		DB97F8392A52B2F7009C09A1 /* StandardAlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardAlertAction.swift; sourceTree = "<group>"; };
@@ -166,6 +180,8 @@
 				DB6D93DD2A4E7E340011F9BC /* RegistInfoInputViewController.swift */,
 				DB6D93E12A4EC8C10011F9BC /* PhoneVerificationViewController.swift */,
 				DB6D93E32A4EDCE20011F9BC /* PasswordSettingViewController.swift */,
+				DB7559DE2A548BC000B88B96 /* ProfileSettingViewController.swift */,
+				DB7559E22A55030400B88B96 /* SportsSelectingViewController.swift */,
 			);
 			path = Regist;
 			sourceTree = "<group>";
@@ -245,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				DBFFDA402A499B310008C2B5 /* Custom */,
+				DB7559E62A55062C00B88B96 /* SportsCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -322,6 +339,10 @@
 				DBFFDA3D2A4988200008C2B5 /* PhoneAuthViewModel.swift */,
 				DB51D2562A4BB8B5002415B0 /* AgreementViewModel.swift */,
 				DB6D93D62A4D62920011F9BC /* RegistInfoViewModel.swift */,
+				DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */,
+				DB5D22312A5470A800B32485 /* PasswordSettingViewModel.swift */,
+				DB7559E02A548C6800B88B96 /* ProfileSettingViewModel.swift */,
+				DB7559E42A55035800B88B96 /* SportsSelectingViewModel.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -443,15 +464,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB6D93DE2A4E7E340011F9BC /* RegistInfoInputViewController.swift in Sources */,
+				DB7559E32A55030400B88B96 /* SportsSelectingViewController.swift in Sources */,
 				DB6D93D42A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift in Sources */,
 				DB6D93D92A4DB2340011F9BC /* RegisterInfoModel.swift in Sources */,
 				DBFFDA2B2A47F1600008C2B5 /* UIFont+.swift in Sources */,
 				DB6D93E22A4EC8C10011F9BC /* PhoneVerificationViewController.swift in Sources */,
+				DB7559E52A55035800B88B96 /* SportsSelectingViewModel.swift in Sources */,
 				DBFFDA392A497A460008C2B5 /* PhoneAuthViewController.swift in Sources */,
+				DB7559DF2A548BC000B88B96 /* ProfileSettingViewController.swift in Sources */,
+				DB5D22302A546AB400B32485 /* PhoneVerificationViewModel.swift in Sources */,
 				DBFFDA3B2A4983F90008C2B5 /* BaseViewController.swift in Sources */,
 				DB6D93DB2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift in Sources */,
 				DBFFDA3E2A4988200008C2B5 /* PhoneAuthViewModel.swift in Sources */,
+				DB5D22322A5470A800B32485 /* PasswordSettingViewModel.swift in Sources */,
 				DB51D2592A4C2719002415B0 /* AgreementModel.swift in Sources */,
+				DB7559E72A55062C00B88B96 /* SportsCell.swift in Sources */,
+				DB7559E12A548C6800B88B96 /* ProfileSettingViewModel.swift in Sources */,
 				DB97F8352A527BCF009C09A1 /* StandardNotificationAlertView.swift in Sources */,
 				DB51D2532A4B36A5002415B0 /* AgreementView.swift in Sources */,
 				DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */,
