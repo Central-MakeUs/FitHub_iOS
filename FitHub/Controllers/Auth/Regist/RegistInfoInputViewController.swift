@@ -50,8 +50,8 @@ final class RegistInfoInputViewController: BaseViewController {
         $0.axis = .vertical
     }
     
-    private let nextButton = StandardButton(type: .system).then {
-        $0.setTitle("다음", for: .normal)
+    private let sendButton = StandardButton(type: .system).then {
+        $0.setTitle("인증번호 전송", for: .normal)
         $0.isEnabled = false
     }
     
@@ -67,11 +67,10 @@ final class RegistInfoInputViewController: BaseViewController {
     
     override func setupBinding() {
         let input = RegistInfoViewModel.Input(phoneTextFieldDidEditEvent: self.phoneNumberInputTextFieldView.textField.rx.text.orEmpty.asObservable(),
-                                              telecomDidSelectEvent: self.telecomProviderView.textField.rx.text.orEmpty.asObservable(),
                                               dateOfBirthTextFieldDidEditEvent: self.dateOfBirthInputTextFieldView.dateOfBirthTextField.rx.text.orEmpty.asObservable(),
                                               sexNumberTextFieldDidEditEvent: self.dateOfBirthInputTextFieldView.sexNumberTextField.rx.text.orEmpty.asObservable(),
                                               nameTextFieldDidEditEvent: self.nameInputTextFieldView.textField.rx.text.orEmpty.asObservable(),
-                                              nextButtonTapEvent: self.nextButton.rx.tap.map { [unowned self] in self.stackView.subviews.count })
+                                              sendButtonTapEvent: self.sendButton.rx.tap.map { [unowned self] in self.stackView.subviews.count })
         
         let output = self.viewModel.transform(input: input)
   
@@ -94,57 +93,90 @@ final class RegistInfoInputViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output.dateOfBirthStatus
-            .asSignal(onErrorJustReturn: (.notValidSexNumber))
-            .skip(1)
-            .debounce(.milliseconds(1500))
-            .withUnretained(self.dateOfBirthInputTextFieldView)
-            .emit(onNext: { (obj,status) in
-                obj.verifyFormat(status)
+            .asSignal(onErrorJustReturn: (.notValidSexNumber,false))
+            .withUnretained(self, resultSelector: { ($0,$1.0,$1.1) })
+            .emit(onNext: { (obj,status,isFull) in
+                if isFull {
+                    obj.dateOfBirthInputTextFieldView.verifyFormat(status)
+                    if obj.stackView.subviews.count == 3 && status == .ok {
+                        UIView.animate(withDuration: 0.3, animations: {
+                            self.stackView.insertArrangedSubview(self.nameInputTextFieldView, at: 0)
+                            self.nameInputTextFieldView.isHidden = false
+                            self.loadViewIfNeeded()
+                        }) { _ in
+                            self.nameInputTextFieldView.textField.becomeFirstResponder()
+                        }
+                    }
+                } else {
+                    obj.dateOfBirthInputTextFieldView.verifyFormat(.ok)
+                }
             })
             .disposed(by: disposeBag)
-            
         
         output.phoneNumber
             .asSignal(onErrorJustReturn: ("",.notValidPhoneNumber))
             .skip(1)
-            .debounce(.milliseconds(1500))
             .emit(onNext: { [weak self] (phNum, status) in
-                self?.phoneNumberInputTextFieldView.verifyFormat(status)
+                guard let self else { return }
+                self.phoneNumberInputTextFieldView.text = phNum
+                
+                if phNum.count == 11 {
+                    if stackView.subviews.count == 1 {
+                        self.stackView.insertArrangedSubview(self.telecomProviderView, at: 0)
+                        self.telecomProviderView.isHidden = false
+                        self.present(TelecomProviderSelectorViewController(viewModel: self.viewModel), animated: false)
+                    }
+                    self.phoneNumberInputTextFieldView.verifyFormat(status)
+                } else {
+                    self.phoneNumberInputTextFieldView.verifyFormat(.ok)
+                }
             })
             .disposed(by: disposeBag)
 
-        output.nextButtonTapEvent
+        output.sendButtonTapEvent
             .asDriver(onErrorJustReturn: 1)
             .drive(onNext: { [weak self] stackCnt in
                 guard let self else { return }
-    
-                switch stackCnt {
-                case 1:
-                    self.stackView.insertArrangedSubview(self.telecomProviderView, at: 0)
-                    self.telecomProviderView.isHidden = false
-                    self.present(TelecomProviderSelectorViewController(viewModel: self.viewModel), animated: false)
-                case 2: self.insertSubViewWithAnimation(self.dateOfBirthInputTextFieldView)
-                case 3: self.insertSubViewWithAnimation(self.nameInputTextFieldView)
-                default: self.navigationController?.pushViewController(PhoneVerificationViewController(self.viewModel), animated: true)
-                }
-                
-                self.loadViewIfNeeded()
+                self.navigationController?.pushViewController(PhoneVerificationViewController(PhoneVerificationViewModel(userInfo: self.viewModel.userInfo)), animated: true)
             })
             .disposed(by: disposeBag)
         
-        output.nextButtonEnable
+        output.sendButtonEnable
             .asDriver(onErrorJustReturn: false)
-            .drive(self.nextButton.rx.isEnabled)
+            .drive(self.sendButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        self.viewModel.selectedTelecomProvider
-            .compactMap { $0?.rawValue }
-            .bind(to: self.telecomProviderView.rx.text)
+        
+        output.telecom
+            .asDriver(onErrorJustReturn: .SKT)
+            .drive(onNext: { [weak self] telecomType in
+                guard let self else { return }
+                self.telecomProviderView.text = telecomType.rawValue
+                
+                if self.stackView.subviews.count == 2 {
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.stackView.insertArrangedSubview(self.dateOfBirthInputTextFieldView, at: 0)
+                        self.dateOfBirthInputTextFieldView.isHidden = false
+                        self.loadViewIfNeeded()
+                    }) { _ in
+                        self.dateOfBirthInputTextFieldView.dateOfBirthTextField.becomeFirstResponder()
+                    }
+                }
+            })
             .disposed(by: disposeBag)
+        
+        let tapGesture = UITapGestureRecognizer()
+        self.telecomProviderView.addGestureRecognizer(tapGesture)
+        
+        tapGesture.rx.event.bind(onNext: { [weak self] _ in
+            guard let self else { return }
+            self.present(TelecomProviderSelectorViewController(viewModel: self.viewModel), animated: false)
+        })
+        .disposed(by: disposeBag)
     }
     
     private func insertSubViewWithAnimation<T: UIView>(_ subView: T) {
-        UIView.animate(withDuration: 1.0, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.stackView.insertArrangedSubview(subView, at: 0)
             subView.isHidden = false
         })
@@ -153,7 +185,7 @@ final class RegistInfoInputViewController: BaseViewController {
     override func addSubView() {
         self.view.addSubview(self.titleLabel)
         self.view.addSubview(self.subTitleLabel)
-        self.view.addSubview(self.nextButton)
+        self.view.addSubview(self.sendButton)
         self.view.addSubview(self.stackView)
     }
     
@@ -174,7 +206,7 @@ final class RegistInfoInputViewController: BaseViewController {
             
         }
         
-        self.nextButton.snp.makeConstraints {
+        self.sendButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
             $0.height.equalTo(56)

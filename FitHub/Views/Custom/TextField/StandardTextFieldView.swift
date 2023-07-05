@@ -13,6 +13,9 @@ final class StandardTextFieldView: UIView {
     //MARK: - Properties
     private let disposeBag = DisposeBag()
     
+    private var status = UserInfoStatus.ok
+    private var currentBorderColor = UIColor.iconDisabled.cgColor
+    
     private let frameView = UIView().then {
         $0.layer.cornerRadius = 5
         $0.layer.borderWidth = 1
@@ -83,6 +86,7 @@ final class StandardTextFieldView: UIView {
         
         self.addSubView()
         self.layout()
+        self.setupBinding()
     }
     
     required init?(coder: NSCoder) {
@@ -91,6 +95,8 @@ final class StandardTextFieldView: UIView {
     
     //MARK: Method
     func verifyFormat(_ status: UserInfoStatus) {
+        self.status = status
+        
         switch status {
         case .notMatchPassword: fallthrough
         case .notValidDateOfBirth: fallthrough
@@ -98,25 +104,51 @@ final class StandardTextFieldView: UIView {
         case .notValidPhoneNumber: fallthrough
         case .notValidSexNumber: fallthrough
         case .underage: fallthrough
+        case .duplicateNickName: fallthrough
         case .passwordLengthError:
             self.guideLabel.textColor = .error
             self.frameView.layer.borderColor = UIColor.error.cgColor
             self.statusImageView.image = UIImage(named: "Warning")
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .error
+        case .nickNameOK: fallthrough
+        case .passwordOK: fallthrough
         case .ok:
-            self.frameView.layer.borderColor = UIColor.iconDisabled.cgColor
+            self.frameView.layer.borderColor = self.currentBorderColor
             self.statusImageView.image = UIImage(named: "Empty")
             self.guideLabel.textColor = .textSub02
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .textDisabled
-        case .success:
+        case .nickNameSuccess: fallthrough
+        case .passwordSuccess: fallthrough
+        case .matchPassword:
             self.frameView.layer.borderColor = UIColor.info.cgColor
             self.statusImageView.image = UIImage(named: "Check")
             self.guideLabel.textColor = .info
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .info
         }
+    }
+    
+    //MARK: - SetupBinding
+    private func setupBinding() {
+        self.textField.rx.controlEvent(.editingDidBegin)
+            .bind(onNext: { [weak self] in
+                if self?.status == .ok || self?.status == .passwordOK {
+                    self?.currentBorderColor = UIColor.iconSub.cgColor
+                    self?.frameView.layer.borderColor = UIColor.iconSub.cgColor
+                }
+            })
+            .disposed(by: disposeBag)
+    
+        self.textField.rx.controlEvent(.editingDidEnd)
+            .bind(onNext: { [weak self] in
+                if self?.status == .ok || self?.status == .passwordOK {
+                    self?.currentBorderColor = UIColor.iconDisabled.cgColor
+                    self?.frameView.layer.borderColor = UIColor.iconDisabled.cgColor
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     //MARK: - AddSubView
@@ -126,6 +158,7 @@ final class StandardTextFieldView: UIView {
         
         self.frameView.addSubview(self.titleLabel)
         self.frameView.addSubview(self.stackView)
+        self.frameView.addSubview(self.timeLabel)
     }
     
     //MARK: - Layout
