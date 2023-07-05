@@ -79,9 +79,9 @@ final class ProfileSettingViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output.nextTap
-            .emit(onNext: {
-                print("회원가입")
-                //TODO: 회원가입 완료 화면 push
+            .emit(onNext: { [weak self] in
+                guard let self else { return }
+                self.navigationController?.pushViewController(SportsSelectingViewController(SportsSelectingViewModel(self.viewModel.userInfo)), animated: true)
             })
             .disposed(by: disposeBag)
         
