@@ -164,11 +164,15 @@ final class RegistInfoInputViewController: BaseViewController {
                 }
             })
             .disposed(by: disposeBag)
-
-//        self.viewModel.selectedTelecomProvider
-//            .compactMap { $0?.rawValue }
-//            .bind(to: self.telecomProviderView.rx.text)
-//            .disposed(by: disposeBag)
+        
+        let tapGesture = UITapGestureRecognizer()
+        self.telecomProviderView.addGestureRecognizer(tapGesture)
+        
+        tapGesture.rx.event.bind(onNext: { [weak self] _ in
+            guard let self else { return }
+            self.present(TelecomProviderSelectorViewController(viewModel: self.viewModel), animated: false)
+        })
+        .disposed(by: disposeBag)
     }
     
     private func insertSubViewWithAnimation<T: UIView>(_ subView: T) {
