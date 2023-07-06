@@ -38,7 +38,7 @@ final class StandardTextFieldView: UIView {
         $0.textColor = .textSub01
     }
     
-    private let statusImageView = UIImageView().then {
+    let statusImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
         $0.image = nil
     }
