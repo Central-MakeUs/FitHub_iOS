@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxGesture
 
 final class RegistInfoInputViewController: BaseViewController {
     //MARK: - Properties
@@ -32,6 +33,7 @@ final class RegistInfoInputViewController: BaseViewController {
     
     private let telecomProviderView = StandardTextFieldView("통신사").then {
         $0.placeholder = "통신사 선택"
+        $0.statusImageView.image = UIImage(named: "ic_arrow_drop_down")
         $0.isHidden = true
         $0.isTextFieldEnabled = false
     }
@@ -165,14 +167,16 @@ final class RegistInfoInputViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        let tapGesture = UITapGestureRecognizer()
-        self.telecomProviderView.addGestureRecognizer(tapGesture)
-        
-        tapGesture.rx.event.bind(onNext: { [weak self] _ in
-            guard let self else { return }
-            self.present(TelecomProviderSelectorViewController(viewModel: self.viewModel), animated: false)
+        self.telecomProviderView.rx.tapGesture()
+            .when(.recognized)
+            .bind(onNext: { [weak self] _ in
+            self?.willPresentTelecomProviderSelectorViewController()
         })
         .disposed(by: disposeBag)
+    }
+    
+    private func willPresentTelecomProviderSelectorViewController() {
+        self.present(TelecomProviderSelectorViewController(viewModel: self.viewModel), animated: false)
     }
     
     private func insertSubViewWithAnimation<T: UIView>(_ subView: T) {

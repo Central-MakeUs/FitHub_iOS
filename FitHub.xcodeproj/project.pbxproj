@@ -36,6 +36,7 @@
 		DB97F83A2A52B2F7009C09A1 /* StandardAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F8392A52B2F7009C09A1 /* StandardAlertAction.swift */; };
 		DB97F83C2A52B36E009C09A1 /* NotificationName+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F83B2A52B36E009C09A1 /* NotificationName+.swift */; };
 		DB97F83E2A52C1E3009C09A1 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F83D2A52C1E3009C09A1 /* PaddingLabel.swift */; };
+		DB98D4E62A56E7970096D88F /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = DB98D4E52A56E7970096D88F /* RxGesture */; };
 		DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */; };
 		DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */; };
 		DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9ED2A47E2E20008C2B5 /* OAuthLoginViewController.swift */; };
@@ -132,6 +133,7 @@
 				DBFFDA162A47E8A70008C2B5 /* RxKakaoSDKCommon in Frameworks */,
 				DBFFDA142A47E8A70008C2B5 /* RxKakaoSDKAuth in Frameworks */,
 				DBFFDA062A47E4A50008C2B5 /* RxSwift in Frameworks */,
+				DB98D4E62A56E7970096D88F /* RxGesture in Frameworks */,
 				DBFFD9FF2A47E4650008C2B5 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,6 +399,7 @@
 				DBFFDA152A47E8A70008C2B5 /* RxKakaoSDKCommon */,
 				DBFFDA172A47E8A70008C2B5 /* RxKakaoSDKShare */,
 				DBFFDA192A47E8A70008C2B5 /* RxKakaoSDKUser */,
+				DB98D4E52A56E7970096D88F /* RxGesture */,
 			);
 			productName = FitHub;
 			productReference = DBFFD9E62A47E2E20008C2B5 /* FitHub.app */;
@@ -433,6 +436,7 @@
 				DBFFDA0C2A47E6E60008C2B5 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				DBFFDA0F2A47E71C0008C2B5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				DBFFDA122A47E8A70008C2B5 /* XCRemoteSwiftPackageReference "kakao-ios-sdk-rx" */,
+				DB98D4E42A56E7970096D88F /* XCRemoteSwiftPackageReference "RxGesture" */,
 			);
 			productRefGroup = DBFFD9E72A47E2E20008C2B5 /* Products */;
 			projectDirPath = "";
@@ -733,6 +737,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DB98D4E42A56E7970096D88F /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		DBFFD9FD2A47E4640008C2B5 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -784,6 +796,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DB98D4E52A56E7970096D88F /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB98D4E42A56E7970096D88F /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
+		};
 		DBFFD9FE2A47E4650008C2B5 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DBFFD9FD2A47E4640008C2B5 /* XCRemoteSwiftPackageReference "SnapKit" */;
