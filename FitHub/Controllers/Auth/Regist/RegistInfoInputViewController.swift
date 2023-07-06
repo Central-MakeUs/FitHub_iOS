@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxGesture
 
 final class RegistInfoInputViewController: BaseViewController {
     //MARK: - Properties
@@ -166,14 +167,16 @@ final class RegistInfoInputViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        let tapGesture = UITapGestureRecognizer()
-        self.telecomProviderView.addGestureRecognizer(tapGesture)
-        
-        tapGesture.rx.event.bind(onNext: { [weak self] _ in
-            guard let self else { return }
-            self.present(TelecomProviderSelectorViewController(viewModel: self.viewModel), animated: false)
+        self.telecomProviderView.rx.tapGesture()
+            .when(.recognized)
+            .bind(onNext: { [weak self] _ in
+            self?.willPresentTelecomProviderSelectorViewController()
         })
         .disposed(by: disposeBag)
+    }
+    
+    private func willPresentTelecomProviderSelectorViewController() {
+        self.present(TelecomProviderSelectorViewController(viewModel: self.viewModel), animated: false)
     }
     
     private func insertSubViewWithAnimation<T: UIView>(_ subView: T) {
