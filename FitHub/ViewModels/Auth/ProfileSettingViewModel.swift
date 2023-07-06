@@ -13,7 +13,7 @@ class ProfileSettingViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     let userInfo: BehaviorRelay<RegistUserInfo>
     
-    private let profileImage = BehaviorRelay(value: UIImage(named: "DefaultProfile"))
+    let profileImage = BehaviorRelay(value: UIImage(named: "DefaultProfile"))
     
     struct Input {
         let nickNameText: Observable<String>
