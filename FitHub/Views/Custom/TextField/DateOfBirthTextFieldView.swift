@@ -32,7 +32,8 @@ final class DateOfBirthTextFieldView: UIView {
         $0.keyboardType = .numberPad
         $0.font = .pretendard(.bodyLarge02)
         $0.textColor = .textSub01
-        $0.placeholder = "YYMMDD"
+        $0.attributedPlaceholder = NSAttributedString(string: "YYMMDD",
+                                                      attributes: [.foregroundColor : UIColor.textDisabled])
     }
     
     private let separatorLabel = UILabel().then {
@@ -45,12 +46,18 @@ final class DateOfBirthTextFieldView: UIView {
         $0.keyboardType = .numberPad
         $0.font = .pretendard(.bodyLarge02)
         $0.textColor = .textSub01
-        $0.placeholder = "0"
+        $0.attributedPlaceholder = NSAttributedString(string: "0",
+                                                      attributes: [.foregroundColor : UIColor.textDisabled])
     }
     
     private let statusImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        $0.image = UIImage(named: "Empty")
+        $0.image = nil
+    }
+    
+    private let clearButton = UIButton(type: .system).then {
+        $0.setImage(UIImage(named: "CancelIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        $0.isHidden = true
     }
     
     private let rightImageView = UIImageView().then {
@@ -100,7 +107,7 @@ final class DateOfBirthTextFieldView: UIView {
         case .nickNameOK: fallthrough
         case .ok:
             self.frameView.layer.borderColor = self.currentBorderColor
-            self.statusImageView.image = UIImage(named: "Empty")
+            self.statusImageView.image = nil
             self.guideLabel.textColor = .textSub02
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .textDisabled
@@ -120,6 +127,7 @@ final class DateOfBirthTextFieldView: UIView {
         Observable.merge(dateOfBirthTextField.rx.controlEvent(.editingDidBegin).asObservable(),
                          sexNumberTextField.rx.controlEvent(.editingDidBegin).asObservable())
         .bind(onNext: { [weak self] _ in
+            self?.clearButton.isHidden = false
             if self?.status == .ok {
                 self?.currentBorderColor = UIColor.iconSub.cgColor
                 self?.frameView.layer.borderColor = UIColor.iconSub.cgColor
@@ -130,12 +138,24 @@ final class DateOfBirthTextFieldView: UIView {
         Observable.merge(dateOfBirthTextField.rx.controlEvent(.editingDidEnd).asObservable(),
                          sexNumberTextField.rx.controlEvent(.editingDidEnd).asObservable())
         .bind(onNext: { [weak self] _ in
+            self?.clearButton.isHidden = true
             if self?.status == .ok {
                 self?.currentBorderColor = UIColor.iconDisabled.cgColor
                 self?.frameView.layer.borderColor = UIColor.iconDisabled.cgColor
             }
         })
         .disposed(by: disposeBag)
+        
+        let clearEvent = self.clearButton.rx.tap.share()
+            .map { "" }
+            
+        clearEvent
+            .bind(to: dateOfBirthTextField.rx.text)
+            .disposed(by: disposeBag)
+        
+        clearEvent
+            .bind(to: sexNumberTextField.rx.text)
+            .disposed(by: disposeBag)
     }
     
     //MARK: - AddSubView
@@ -149,6 +169,7 @@ final class DateOfBirthTextFieldView: UIView {
         self.frameView.addSubview(self.sexNumberTextField)
         self.frameView.addSubview(self.hiddenPWLabel)
         self.frameView.addSubview(self.statusImageView)
+        self.frameView.addSubview(self.clearButton)
     }
     
     //MARK: - Layout
@@ -186,6 +207,11 @@ final class DateOfBirthTextFieldView: UIView {
         
         self.statusImageView.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-10)
+            $0.centerY.equalToSuperview()
+        }
+        
+        self.clearButton.snp.makeConstraints {
+            $0.trailing.equalTo(self.statusImageView.snp.leading).offset(-10)
             $0.centerY.equalToSuperview()
         }
         
