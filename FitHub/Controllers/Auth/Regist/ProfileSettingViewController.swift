@@ -65,6 +65,7 @@ final class ProfileSettingViewController: BaseViewController {
         
         output.nickNameText
             .observe(on: MainScheduler.asyncInstance)
+            .catchAndReturn("")
             .bind(to: self.nickNameTextFieldView.textField.rx.text)
             .disposed(by: disposeBag)
   

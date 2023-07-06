@@ -32,7 +32,8 @@ class SportsSelectingViewModel: ViewModelType {
     }
     
     func transform(input: Input) -> Output {
-        Observable.combineLatest(input.didSelectItemEvent, selectedSports.asObservable())
+        Observable.combineLatest(input.didSelectItemEvent,
+                                 selectedSports.asObservable())
             .distinctUntilChanged { $0.0 == $1.0 }
             .bind(onNext: {
                 var newSelected = $1
