@@ -32,6 +32,7 @@ final class RegistInfoInputViewController: BaseViewController {
     
     private let telecomProviderView = StandardTextFieldView("통신사").then {
         $0.placeholder = "통신사 선택"
+        $0.statusImageView.image = UIImage(named: "ic_arrow_drop_down")
         $0.isHidden = true
         $0.isTextFieldEnabled = false
     }
