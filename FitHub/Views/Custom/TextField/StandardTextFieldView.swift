@@ -33,21 +33,14 @@ final class StandardTextFieldView: UIView {
         $0.text = "3:00"
     }
     
-    private lazy var stackView = UIStackView(arrangedSubviews: [textField, statusImageView])
-    
     let textField = UITextField().then {
-        $0.clearButtonMode = .whileEditing
         $0.font = .pretendard(.bodyLarge02)
         $0.textColor = .textSub01
-        
-        if let clearButton = $0.value(forKeyPath: "_clearButton") as? UIButton {
-            clearButton.setImage(UIImage(named: "CancelIcon"), for: .normal)
-        }
     }
     
-    private let statusImageView = UIImageView().then {
+    let statusImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        $0.image = UIImage(named: "Empty")
+        $0.image = nil
     }
     
     private let guideLabel = UILabel().then {
@@ -59,6 +52,16 @@ final class StandardTextFieldView: UIView {
             self.textField.attributedPlaceholder = NSAttributedString(string: placeholder ?? "",
                                                                       attributes: [.foregroundColor : UIColor.textDisabled])
         }
+    }
+    
+    private lazy var stackView = UIStackView(arrangedSubviews: [clearButton, statusImageView]).then {
+        $0.distribution = .fillProportionally
+        $0.spacing = 10
+    }
+    
+    private let clearButton = UIButton(type: .system).then {
+        $0.setImage(UIImage(named: "CancelIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        $0.isHidden = true
     }
     
     var text: String? {
@@ -134,6 +137,7 @@ final class StandardTextFieldView: UIView {
     private func setupBinding() {
         self.textField.rx.controlEvent(.editingDidBegin)
             .bind(onNext: { [weak self] in
+                self?.clearButton.isHidden = false
                 if self?.status == .ok || self?.status == .passwordOK {
                     self?.currentBorderColor = UIColor.iconSub.cgColor
                     self?.frameView.layer.borderColor = UIColor.iconSub.cgColor
@@ -143,11 +147,17 @@ final class StandardTextFieldView: UIView {
     
         self.textField.rx.controlEvent(.editingDidEnd)
             .bind(onNext: { [weak self] in
+                self?.clearButton.isHidden = true
                 if self?.status == .ok || self?.status == .passwordOK {
                     self?.currentBorderColor = UIColor.iconDisabled.cgColor
                     self?.frameView.layer.borderColor = UIColor.iconDisabled.cgColor
                 }
             })
+            .disposed(by: disposeBag)
+        
+        self.clearButton.rx.tap
+            .map { "" }
+            .bind(to: textField.rx.text)
             .disposed(by: disposeBag)
     }
     
@@ -157,8 +167,9 @@ final class StandardTextFieldView: UIView {
         self.addSubview(self.guideLabel)
         
         self.frameView.addSubview(self.titleLabel)
-        self.frameView.addSubview(self.stackView)
+        self.frameView.addSubview(self.textField)
         self.frameView.addSubview(self.timeLabel)
+        self.frameView.addSubview(self.stackView)
     }
     
     //MARK: - Layout
@@ -172,12 +183,20 @@ final class StandardTextFieldView: UIView {
             $0.leading.top.equalToSuperview().offset(10)
         }
         
-        self.stackView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(10)
+        self.textField.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        self.textField.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(10)
+            $0.trailing.equalTo(self.stackView.snp.leading).offset(-10)
             $0.top.equalTo(self.titleLabel.snp.bottom)
             $0.bottom.equalToSuperview().offset(-10)
         }
         
+        self.stackView.setContentHuggingPriority(.required, for: .horizontal)
+        self.stackView.snp.makeConstraints {
+            $0.trailing.equalToSuperview().offset(-10)
+            $0.centerY.equalToSuperview()
+        }
+
         self.guideLabel.snp.makeConstraints {
             $0.leading.equalTo(10)
             $0.top.equalTo(self.frameView.snp.bottom)
