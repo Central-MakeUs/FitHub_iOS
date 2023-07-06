@@ -36,11 +36,13 @@ class PasswordSettingViewModel: ViewModelType {
             .distinctUntilChanged()
             .map { self.verifyPassword($0) }
         
-        let passwordVerificationStatus = Observable.combineLatest(input.passwordInput, input.passwordVerificationInput)
+        let passwordVerificationStatus = Observable.combineLatest(input.passwordInput,
+                                                                  input.passwordVerificationInput)
             .distinctUntilChanged { $0.1 == $1.1 }
             .map { self.verifyPasswordVerification($0,$1) }
         
-        let nextButtonEnable = Observable.combineLatest(passwordStatus, passwordVerificationStatus)
+        let nextButtonEnable = Observable.combineLatest(passwordStatus,
+                                                        passwordVerificationStatus)
             .map { $0.0 == .passwordSuccess && $0.1 == .matchPassword }
         
         return Output(passwordStatus: passwordStatus,
