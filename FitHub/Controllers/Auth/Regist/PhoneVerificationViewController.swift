@@ -75,8 +75,8 @@ final class PhoneVerificationViewController: BaseViewController {
         
         output.authNumber
             .observe(on: MainScheduler.asyncInstance)
-            .asDriver(onErrorJustReturn: "")
-            .drive(self.verificationNumberTextField.textField.rx.text)
+            .catchAndReturn("")
+            .bind(to: self.verificationNumberTextField.textField.rx.text)
             .disposed(by: disposeBag)
         
         output.nextTap

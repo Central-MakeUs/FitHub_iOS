@@ -28,7 +28,8 @@ class PhoneAuthViewModel: ViewModelType {
     }
     
     func transform(input: Input) -> Output {
-        let loginEnable = Observable.combineLatest(input.phoneNumberText, input.passwordText)
+        let loginEnable = Observable.combineLatest(input.phoneNumberText,
+                                                   input.passwordText)
             .map { self.verifyPhoneNumber($0) && $1.count > 0 }
         
         
