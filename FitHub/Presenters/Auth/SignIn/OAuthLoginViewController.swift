@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import SnapKit
 import Then
+import AuthenticationServices
 
 final class OAuthLoginViewController: BaseViewController {
     //MARK: - Properties
@@ -81,6 +82,22 @@ final class OAuthLoginViewController: BaseViewController {
                 self.navigationController?.pushViewController(PhoneAuthViewController(PhoneAuthViewModel()), animated: true)
             })
             .disposed(by: self.disposeBag)
+        
+        self.appleLoginButton.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                self?.signInWithApple()
+            })
+            .disposed(by: disposeBag)
+        
+        // TODO: 타입 정해지면 스트림 안끊기게 catch 처리
+        self.viewModel.loginPublisher
+            .asDriver(onErrorJustReturn: "")
+            .drive(onNext: { str in
+                print(str)
+                // TODO: 로그인 처리 분기
+            })
+            .disposed(by: disposeBag)
     }
     
     //MARK: - AddSubView
@@ -117,3 +134,23 @@ final class OAuthLoginViewController: BaseViewController {
     }
 }
 
+extension OAuthLoginViewController: ASAuthorizationControllerDelegate {
+    func signInWithApple() {
+        let appleProvider = ASAuthorizationAppleIDProvider()
+        let request = appleProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = self
+        controller.performRequests()
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
+        self.viewModel.requestLogin(credential)
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        self.viewModel.loginPublisher.onError(AuthError.oauthFailed)
+    }
+}
