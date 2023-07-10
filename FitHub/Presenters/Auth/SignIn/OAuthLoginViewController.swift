@@ -66,6 +66,13 @@ final class OAuthLoginViewController: BaseViewController {
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("cnffur")
+        if let url = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String {
+            print("엥")
+            print(url)
+        } else {
+            print("안돼")
+        }
     }
     
     //MARK: - ConfigureUI
