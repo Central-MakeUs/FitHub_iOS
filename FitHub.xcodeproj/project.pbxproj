@@ -78,7 +78,7 @@
 		DB51D2582A4C2719002415B0 /* AgreementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementModel.swift; sourceTree = "<group>"; };
 		DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewModel.swift; sourceTree = "<group>"; };
 		DB5D22312A5470A800B32485 /* PasswordSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingViewModel.swift; sourceTree = "<group>"; };
-		DB5F84BD2A5CF43200E16C14 /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
+		DB5F84BE2A5CF72100E16C14 /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
 		DB668AF32A4EECB300D702A1 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		DB668AF62A4F041100D702A1 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		DB668AF82A4F06D000D702A1 /* RegistUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistUserInfo.swift; sourceTree = "<group>"; };
@@ -343,7 +343,7 @@
 				DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */,
 				DBFFD9F42A47E2E40008C2B5 /* LaunchScreen.storyboard */,
 				DBFFD9F72A47E2E40008C2B5 /* Info.plist */,
-				DB5F84BD2A5CF43200E16C14 /* AppInfo.xcconfig */,
+				DB5F84BE2A5CF72100E16C14 /* AppInfo.xcconfig */,
 			);
 			path = App;
 			sourceTree = "<group>";
