@@ -33,13 +33,14 @@ class ProfileSettingViewModel: ViewModelType {
     
     func transform(input: Input) -> Output {
         let nickNameText = input.nickNameText
-            .distinctUntilChanged()
+            .map { $0.filter { $0.isLetter } }
             .map { String($0.prefix(10)) }
         
         let nextButtonEnable = nickNameText
             .map { $0.count > 0 }
         
         let nickNameStatus = nickNameText
+            .distinctUntilChanged()
             .map { self.verifyNickName($0) }
         
         return Output(nextButtonEnable: nextButtonEnable,
