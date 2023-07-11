@@ -148,6 +148,11 @@ xcuserdata\
 /*.gcno\
 **/xcshareddata/WorkspaceSettings.xcsettings\
 \
-App/AppInfo.xcconfig\
-\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs22 \cf2 \kerning1\expnd0\expndtw0 \CocoaLigature0 FitHub/App/AppInfo.xcconfig
+\f0\fs26 \cf0 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
 # End of https://www.toptal.com/developers/gitignore/api/xcode,swiftpackagemanager,swift,fastlane}
