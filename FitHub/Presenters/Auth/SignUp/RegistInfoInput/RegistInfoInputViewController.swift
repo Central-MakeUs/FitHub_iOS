@@ -123,7 +123,7 @@ final class RegistInfoInputViewController: BaseViewController {
                 self.phoneNumberInputTextFieldView.text = phNum
                 
                 if phNum.count == 11 {
-                    if stackView.subviews.count == 1 {
+                    if stackView.subviews.count == 1 && status == .ok {
                         self.stackView.insertArrangedSubview(self.telecomProviderView, at: 0)
                         self.telecomProviderView.isHidden = false
                         self.present(TelecomProviderSelectorViewController(viewModel: self.viewModel), animated: false)
