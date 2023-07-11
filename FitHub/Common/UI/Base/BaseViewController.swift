@@ -26,7 +26,7 @@ class BaseViewController: UIViewController {
     }
     
     func configureUI() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .bgDefault
     }
     
     func addSubView() {
