@@ -14,7 +14,7 @@ final class SportsCell: UICollectionViewCell {
     //MARK: - Properties
     private let frameView = UIView().then {
         $0.layer.cornerRadius = itemWidth / 2
-        $0.backgroundColor = .bgDeep
+        $0.backgroundColor = .bgSub01
     }
     
     private let imageView = UIImageView().then {

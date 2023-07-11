@@ -22,7 +22,7 @@ final class AgreementViewController: BaseViewController {
     }
     
     private let frameView = UIView().then {
-        $0.backgroundColor = .bgDeep
+        $0.backgroundColor = .bgSub01
         $0.layer.cornerRadius = 5
     }
     
