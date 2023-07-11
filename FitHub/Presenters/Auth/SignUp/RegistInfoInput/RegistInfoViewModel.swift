@@ -12,6 +12,8 @@ import RxCocoa
 class RegistInfoViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
+    private let usecase: RegistInfoUseCase
+    
     var userInfo = BehaviorRelay<RegistUserInfo>(value: RegistUserInfo())
     
     let telecomProviders = Observable.of(TelecomProviderType.allCases)
@@ -19,14 +21,6 @@ class RegistInfoViewModel: ViewModelType {
     let selectedTelecomProvider: BehaviorRelay<TelecomProviderType?> = BehaviorRelay(value: nil)
     
     let stackViewCount = BehaviorRelay(value: 1)
-    
-    let passwordInputString = BehaviorRelay(value: "")
-    
-    let passwordVerificationString = BehaviorRelay(value: "")
-    
-    let passwordStatus = BehaviorRelay(value: "")
-    
-    let passwordVerificationStatus = BehaviorRelay(value: "")
     
     struct Input {
         let phoneTextFieldDidEditEvent: Observable<String>
@@ -47,6 +41,10 @@ class RegistInfoViewModel: ViewModelType {
         let sendButtonEnable: Observable<Bool>
     }
     
+    init(_ usecase: RegistInfoUseCase = RegistInfoUseCaseInteractor()) {
+        self.usecase = usecase
+    }
+    
     func transform(input: Input) -> Output {
         let dateOfBirth = input.dateOfBirthTextFieldDidEditEvent
             .distinctUntilChanged()
@@ -57,7 +55,7 @@ class RegistInfoViewModel: ViewModelType {
             .map { (String($0.prefix(1)), $0.count >= 1) }
         
         let dateOfBirthStatus = Observable.combineLatest(dateOfBirth, sexNumber)
-            .map { (self.verifyDateOfBirth($0.0, sexNumStr: $1.0), $0.1 && $1.1)}
+            .map { (self.usecase.verifyDateOfBirth($0.0, sexNumStr: $1.0), $0.1 && $1.1)}
         
         let telecom = self.selectedTelecomProvider
             .compactMap { $0 }
@@ -67,7 +65,7 @@ class RegistInfoViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         let phoneNumber = input.phoneTextFieldDidEditEvent
-            .map { (String($0.prefix(11)), self.verifyPhoneNumber($0)) }
+            .map { (String($0.prefix(11)), self.usecase.verifyPhoneNumber($0)) }
         
         let name = input.nameTextFieldDidEditEvent
         
@@ -90,26 +88,5 @@ class RegistInfoViewModel: ViewModelType {
                       phoneNumber: phoneNumber,
                       sendButtonEnable: sendButtonEnable
         )
-    }
-    
-    private func verifyPhoneNumber(_ numberStr: String) -> UserInfoStatus {
-        let phoneNumberRegex = "^010\\d{8}$"
-        let isValid = NSPredicate(format: "SELF MATCHES %@", phoneNumberRegex).evaluate(with: numberStr)
-        return isValid ? .ok : .notValidPhoneNumber
-    }
-    
-    private func verifyDateOfBirth(_ dateStr: String, sexNumStr: String) -> UserInfoStatus {
-        let dateRegex = "[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1])"
-        let sexNumRegex = "^[1-4]$"
-        
-        if !NSPredicate(format: "SELF MATCHES %@", dateRegex).evaluate(with: dateStr) {
-            return .notValidDateOfBirth
-        }
-        
-        if !NSPredicate(format: "SELF MATCHES %@", sexNumRegex).evaluate(with: sexNumStr) {
-            return .notValidSexNumber
-        }
-        
-        return .ok
     }
 }
