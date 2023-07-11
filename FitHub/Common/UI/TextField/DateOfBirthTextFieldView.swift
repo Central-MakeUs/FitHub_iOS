@@ -70,6 +70,11 @@ final class DateOfBirthTextFieldView: UIView {
         $0.font = .pretendard(.bodyMedium02)
     }
     
+    private lazy var stackView = UIStackView(arrangedSubviews: [clearButton, statusImageView]).then {
+        $0.distribution = .fillProportionally
+        $0.spacing = 10
+    }
+    
     private let guideLabel = UILabel().then {
         $0.font = .pretendard(.labelMedium)
     }
@@ -103,6 +108,8 @@ final class DateOfBirthTextFieldView: UIView {
             self.statusImageView.image = UIImage(named: "Warning")
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .error
+            self.stackView.spacing = 10
+            self.layoutIfNeeded()
         case .passwordOK: fallthrough
         case .nickNameOK: fallthrough
         case .ok:
@@ -111,6 +118,7 @@ final class DateOfBirthTextFieldView: UIView {
             self.guideLabel.textColor = .textSub02
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .textDisabled
+            self.stackView.spacing = 0
         case .passwordSuccess: fallthrough
         case .nickNameSuccess: fallthrough
         case .matchPassword:
@@ -119,6 +127,7 @@ final class DateOfBirthTextFieldView: UIView {
             self.guideLabel.textColor = .info
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .info
+            self.stackView.spacing = 10
         }
     }
     
@@ -168,8 +177,7 @@ final class DateOfBirthTextFieldView: UIView {
         self.frameView.addSubview(self.separatorLabel)
         self.frameView.addSubview(self.sexNumberTextField)
         self.frameView.addSubview(self.hiddenPWLabel)
-        self.frameView.addSubview(self.statusImageView)
-        self.frameView.addSubview(self.clearButton)
+        self.frameView.addSubview(self.stackView)
     }
     
     //MARK: - Layout
@@ -194,7 +202,7 @@ final class DateOfBirthTextFieldView: UIView {
             $0.centerX.equalToSuperview().offset(-20)
             $0.centerY.equalTo(self.dateOfBirthTextField)
         }
-        
+    
         self.sexNumberTextField.snp.makeConstraints {
             $0.leading.equalTo(self.separatorLabel.snp.trailing).offset(10)
             $0.centerY.equalTo(self.separatorLabel)
@@ -205,13 +213,9 @@ final class DateOfBirthTextFieldView: UIView {
             $0.centerY.centerY.equalTo(self.dateOfBirthTextField)
         }
         
-        self.statusImageView.snp.makeConstraints {
+        self.stackView.setContentHuggingPriority(.required, for: .horizontal)
+        self.stackView.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-10)
-            $0.centerY.equalToSuperview()
-        }
-        
-        self.clearButton.snp.makeConstraints {
-            $0.trailing.equalTo(self.statusImageView.snp.leading).offset(-10)
             $0.centerY.equalToSuperview()
         }
         
