@@ -78,6 +78,7 @@
 		DB51D2582A4C2719002415B0 /* AgreementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementModel.swift; sourceTree = "<group>"; };
 		DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewModel.swift; sourceTree = "<group>"; };
 		DB5D22312A5470A800B32485 /* PasswordSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingViewModel.swift; sourceTree = "<group>"; };
+		DB5F84BD2A5CF43200E16C14 /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
 		DB668AF32A4EECB300D702A1 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		DB668AF62A4F041100D702A1 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		DB668AF82A4F06D000D702A1 /* RegistUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistUserInfo.swift; sourceTree = "<group>"; };
@@ -106,7 +107,6 @@
 		DB97F83D2A52C1E3009C09A1 /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		DBD8526B2A5C4BB400588BF4 /* FitHub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FitHub.entitlements; sourceTree = "<group>"; };
 		DBFF259F2A5B991A00CF6DD4 /* OAuthLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthLoginUseCase.swift; sourceTree = "<group>"; };
-		DBFF25A42A5BB95C00CF6DD4 /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
 		DBFFD9E62A47E2E20008C2B5 /* FitHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -343,7 +343,7 @@
 				DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */,
 				DBFFD9F42A47E2E40008C2B5 /* LaunchScreen.storyboard */,
 				DBFFD9F72A47E2E40008C2B5 /* Info.plist */,
-				DBFF25A42A5BB95C00CF6DD4 /* AppInfo.xcconfig */,
+				DB5F84BD2A5CF43200E16C14 /* AppInfo.xcconfig */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -719,7 +719,6 @@
 		};
 		DBFFD9FB2A47E2E40008C2B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DBFF25A42A5BB95C00CF6DD4 /* AppInfo.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -754,7 +753,6 @@
 		};
 		DBFFD9FC2A47E2E40008C2B5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DBFF25A42A5BB95C00CF6DD4 /* AppInfo.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
