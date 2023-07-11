@@ -217,7 +217,7 @@ final class DateOfBirthTextFieldView: UIView {
         
         self.guideLabel.snp.makeConstraints {
             $0.leading.equalTo(10)
-            $0.top.equalTo(self.frameView.snp.bottom)
+            $0.top.equalTo(self.frameView.snp.bottom).offset(3)
             $0.bottom.equalToSuperview()
         }
     }
