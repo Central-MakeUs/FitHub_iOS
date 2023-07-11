@@ -26,7 +26,7 @@ final class OAuthLoginViewController: BaseViewController {
         configure.title = "카카오로 3초 만에 시작하기"
         configure.image = UIImage(named: "kakao")
         configure.imagePadding = 10
-        configure.baseForegroundColor = .textDefault
+        configure.baseForegroundColor = .black
         configure.baseBackgroundColor = UIColor(red: 254/255, green: 229/255, blue: 0, alpha: 1)
         $0.configuration = configure
     }
@@ -36,7 +36,7 @@ final class OAuthLoginViewController: BaseViewController {
         configure.title = "Apple로 계속하기"
         configure.image = UIImage(named: "apple")
         configure.imagePadding = 10
-        configure.baseForegroundColor = .textDefault
+        configure.baseForegroundColor = .black
         configure.baseBackgroundColor = .white
         $0.configuration = configure
     }
