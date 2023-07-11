@@ -15,7 +15,7 @@ final class TelecomProviderSelectorViewController: BaseViewController {
     //MARK: - Properties
     private lazy var frameViwe = UIView().then {
         $0.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-        $0.backgroundColor = .white
+        $0.backgroundColor = .bgSub01
         $0.layer.cornerRadius = 20
     }
     
@@ -32,7 +32,7 @@ final class TelecomProviderSelectorViewController: BaseViewController {
     
     private let tableView = UITableView().then {
         $0.separatorStyle = .none
-        $0.backgroundColor = .white
+        $0.backgroundColor = .bgSub01
         $0.register(SimpleLabelCell.self, forCellReuseIdentifier: SimpleLabelCell.identifier)
         $0.isScrollEnabled = false
     }
@@ -99,7 +99,7 @@ final class TelecomProviderSelectorViewController: BaseViewController {
         
         self.tableView.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
-            $0.top.equalTo(self.titleLabel.snp.bottom)
+            $0.top.equalTo(self.titleLabel.snp.bottom).offset(30)
         }
     }
     

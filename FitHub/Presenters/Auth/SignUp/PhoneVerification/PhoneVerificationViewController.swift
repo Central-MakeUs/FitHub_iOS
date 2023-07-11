@@ -45,6 +45,10 @@ final class PhoneVerificationViewController: BaseViewController {
         $0.setAttributedTitle(NSAttributedString(attribute), for: .normal)
     }
     
+    private lazy var labelStackView = UIStackView(arrangedSubviews: [codeNotReceivedLabel,resendButton]).then {
+        $0.spacing = 6
+    }
+    
     private let nextButton = StandardButton(type: .system).then {
         $0.setTitle("다음", for: .normal)
         $0.isEnabled = false
@@ -98,8 +102,7 @@ final class PhoneVerificationViewController: BaseViewController {
         self.view.addSubview(self.titleLabel)
         self.view.addSubview(self.subTitleLabel)
         self.view.addSubview(self.verificationNumberTextField)
-        self.view.addSubview(self.codeNotReceivedLabel)
-        self.view.addSubview(self.resendButton)
+        self.view.addSubview(self.labelStackView)
         self.view.addSubview(self.nextButton)
     }
     
@@ -119,14 +122,9 @@ final class PhoneVerificationViewController: BaseViewController {
             $0.top.equalTo(self.subTitleLabel.snp.bottom).offset(25)
         }
         
-        self.codeNotReceivedLabel.snp.makeConstraints {
+        self.labelStackView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(self.verificationNumberTextField.snp.bottom).offset(15)
-        }
-        
-        self.resendButton.snp.makeConstraints {
-            $0.leading.equalTo(self.codeNotReceivedLabel.snp.trailing).offset(6)
-            $0.centerY.equalTo(self.codeNotReceivedLabel)
         }
         
         self.nextButton.snp.makeConstraints {

@@ -23,8 +23,8 @@ extension UIColor {
     static var textSub02: UIColor { return UIColor(named: "Text_sub02") ?? UIColor() }
     
     // BagkGround
-    static var bgDeep: UIColor { return UIColor(named: "Bg_deep") ?? UIColor() }
-    static var bgLight: UIColor { return UIColor(named: "Bg_light") ?? UIColor() }
+    static var bgSub01: UIColor { return UIColor(named: "Bg_sub01") ?? UIColor() }
+    static var bgSub02: UIColor { return UIColor(named: "Bg_sub02") ?? UIColor() }
     static var bgDefault: UIColor { return UIColor(named: "Bg_default") ?? UIColor() }
     
     // Icon

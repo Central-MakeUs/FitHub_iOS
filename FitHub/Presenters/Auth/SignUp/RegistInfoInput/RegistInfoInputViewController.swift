@@ -15,7 +15,7 @@ final class RegistInfoInputViewController: BaseViewController {
     private let viewModel: RegistInfoViewModel
     
     private let titleLabel = UILabel().then {
-        $0.text = "휴대폰 번호로 가입"
+        $0.text = "휴대폰번호로 가입"
         $0.font = .pretendard(.headLineSmall)
         $0.textColor = .textDefault
     }
@@ -26,7 +26,7 @@ final class RegistInfoInputViewController: BaseViewController {
         $0.textColor = .textSub02
     }
     
-    private let phoneNumberInputTextFieldView = StandardTextFieldView("휴대폰 번호").then {
+    private let phoneNumberInputTextFieldView = StandardTextFieldView("휴대폰번호").then {
         $0.placeholder = "01012345678"
         $0.textField.keyboardType = .numberPad
     }
@@ -123,7 +123,7 @@ final class RegistInfoInputViewController: BaseViewController {
                 self.phoneNumberInputTextFieldView.text = phNum
                 
                 if phNum.count == 11 {
-                    if stackView.subviews.count == 1 {
+                    if stackView.subviews.count == 1 && status == .ok {
                         self.stackView.insertArrangedSubview(self.telecomProviderView, at: 0)
                         self.telecomProviderView.isHidden = false
                         self.present(TelecomProviderSelectorViewController(viewModel: self.viewModel), animated: false)
@@ -147,7 +147,6 @@ final class RegistInfoInputViewController: BaseViewController {
             .asDriver(onErrorJustReturn: false)
             .drive(self.sendButton.rx.isEnabled)
             .disposed(by: disposeBag)
-        
         
         output.telecom
             .asDriver(onErrorJustReturn: .SKT)

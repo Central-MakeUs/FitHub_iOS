@@ -114,14 +114,16 @@ final class StandardTextFieldView: UIView {
             self.statusImageView.image = UIImage(named: "Warning")
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .error
+            self.stackView.spacing = 10
         case .nickNameOK: fallthrough
         case .passwordOK: fallthrough
         case .ok:
             self.frameView.layer.borderColor = self.currentBorderColor
-            self.statusImageView.image = UIImage(named: "Empty")
+            self.statusImageView.image = nil
             self.guideLabel.textColor = .textSub02
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .textDisabled
+            self.stackView.spacing = 0
         case .nickNameSuccess: fallthrough
         case .passwordSuccess: fallthrough
         case .matchPassword:
@@ -130,6 +132,7 @@ final class StandardTextFieldView: UIView {
             self.guideLabel.textColor = .info
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .info
+            self.stackView.spacing = 10
         }
     }
     
@@ -199,7 +202,7 @@ final class StandardTextFieldView: UIView {
 
         self.guideLabel.snp.makeConstraints {
             $0.leading.equalTo(10)
-            $0.top.equalTo(self.frameView.snp.bottom)
+            $0.top.equalTo(self.frameView.snp.bottom).offset(3)
             $0.bottom.equalToSuperview()
         }
     }
