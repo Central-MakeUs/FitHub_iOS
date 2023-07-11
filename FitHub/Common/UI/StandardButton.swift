@@ -12,10 +12,10 @@ final class StandardButton: UIButton {
         didSet {
             if isEnabled {
                 self.backgroundColor = .primary
-                self.setTitleColor(.textDefault, for: .normal)
+                self.setTitleColor(.bgDefault, for: .normal)
             } else {
                 self.backgroundColor = .neon100
-                self.setTitleColor(.textDisabled, for: .normal)
+                self.setTitleColor(.bgDefault, for: .normal)
             }
         }
     }

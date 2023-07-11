@@ -14,7 +14,7 @@ final class StandardAlertController: UIViewController{
         $0.isLayoutMarginsRelativeArrangement = true
         $0.axis = .vertical
         $0.layer.masksToBounds = true
-        $0.backgroundColor = .bgLight
+        $0.backgroundColor = .bgSub02
         $0.layer.cornerRadius = 5
         
     }

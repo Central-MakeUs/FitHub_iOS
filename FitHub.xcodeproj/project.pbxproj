@@ -40,6 +40,7 @@
 		DB97F83C2A52B36E009C09A1 /* NotificationName+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F83B2A52B36E009C09A1 /* NotificationName+.swift */; };
 		DB97F83E2A52C1E3009C09A1 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F83D2A52C1E3009C09A1 /* PaddingLabel.swift */; };
 		DB98D4E62A56E7970096D88F /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = DB98D4E52A56E7970096D88F /* RxGesture */; };
+		DBB820B52A5D67CA0016CB63 /* RegistInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB820B42A5D67CA0016CB63 /* RegistInfoUseCase.swift */; };
 		DBFF25A02A5B991A00CF6DD4 /* OAuthLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF259F2A5B991A00CF6DD4 /* OAuthLoginUseCase.swift */; };
 		DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */; };
 		DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */; };
@@ -105,6 +106,7 @@
 		DB97F8392A52B2F7009C09A1 /* StandardAlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardAlertAction.swift; sourceTree = "<group>"; };
 		DB97F83B2A52B36E009C09A1 /* NotificationName+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+.swift"; sourceTree = "<group>"; };
 		DB97F83D2A52C1E3009C09A1 /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		DBB820B42A5D67CA0016CB63 /* RegistInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistInfoUseCase.swift; sourceTree = "<group>"; };
 		DBD8526B2A5C4BB400588BF4 /* FitHub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FitHub.entitlements; sourceTree = "<group>"; };
 		DBFF259F2A5B991A00CF6DD4 /* OAuthLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthLoginUseCase.swift; sourceTree = "<group>"; };
 		DBFFD9E62A47E2E20008C2B5 /* FitHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -297,6 +299,7 @@
 			children = (
 				DB668AF52A4F040300D702A1 /* Protocols */,
 				DBFFDA272A47F1450008C2B5 /* Extension */,
+				DB668AFA2A50016400D702A1 /* Enums */,
 				DBFF259A2A5B96EE00CF6DD4 /* UI */,
 				DB7134902A5BF46C0006EAAB /* AuthError.swift */,
 			);
@@ -323,7 +326,6 @@
 		DBFF259A2A5B96EE00CF6DD4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				DB668AFA2A50016400D702A1 /* Enums */,
 				DB97F8332A527B9F009C09A1 /* Alert */,
 				DB97F83D2A52C1E3009C09A1 /* PaddingLabel.swift */,
 				DBFFDA432A49BD910008C2B5 /* StandardButton.swift */,
@@ -352,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				DBFF259F2A5B991A00CF6DD4 /* OAuthLoginUseCase.swift */,
+				DBB820B42A5D67CA0016CB63 /* RegistInfoUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 				DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */,
 				DB97F83E2A52C1E3009C09A1 /* PaddingLabel.swift in Sources */,
 				DB97F83A2A52B2F7009C09A1 /* StandardAlertAction.swift in Sources */,
+				DBB820B52A5D67CA0016CB63 /* RegistInfoUseCase.swift in Sources */,
 				DBFFDA352A492A4E0008C2B5 /* OAuthLoginViewModel.swift in Sources */,
 				DB97F8382A52B2F2009C09A1 /* StandardAlertController.swift in Sources */,
 				DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */,
