@@ -36,14 +36,20 @@ class BaseViewController: UIViewController {
     func layout() {
         
     }
-
+    
     func configureNavigation() {
-        self.navigationController?.navigationBar.tintColor = .iconDefault
-        self.navigationItem.backButtonTitle = ""
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "BackButton")?.withRenderingMode(.alwaysOriginal),
+                                                                style: .plain,
+                                                                target: self,
+                                                                action: #selector(dldClickBackButton))
     }
     
     func setupAttributes() {
         
+    }
+    
+    @objc func dldClickBackButton() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func setupBinding() {
