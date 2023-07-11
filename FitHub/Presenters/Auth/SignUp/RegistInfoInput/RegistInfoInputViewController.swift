@@ -148,7 +148,6 @@ final class RegistInfoInputViewController: BaseViewController {
             .drive(self.sendButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        
         output.telecom
             .asDriver(onErrorJustReturn: .SKT)
             .drive(onNext: { [weak self] telecomType in
