@@ -72,6 +72,18 @@ final class FindPWViewController: BaseViewController {
             .asDriver(onErrorJustReturn: false)
             .drive(self.sendButton.rx.isEnabled)
             .disposed(by: disposeBag)
+        
+        self.sendButton.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                self?.pushPhoneVerificationViewController()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func pushPhoneVerificationViewController() {
+        let PhoneVerificationVC = PhoneVerificationViewController(PhoneVerificationViewModel())
+        self.navigationController?.pushViewController(PhoneVerificationVC, animated: true)
     }
     
     //MARK: - addSubView
