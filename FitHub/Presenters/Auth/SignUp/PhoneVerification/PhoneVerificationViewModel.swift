@@ -12,7 +12,8 @@ import RxCocoa
 class PhoneVerificationViewModel: ViewModelType {
     var disposeBag = DisposeBag()
 
-    let userInfo: BehaviorRelay<RegistUserInfo>
+    var userInfo: BehaviorRelay<RegistUserInfo>?
+    
     struct Input {
         let authenticationNumber: Observable<String>
         let resendTap: Signal<Void>
@@ -28,6 +29,10 @@ class PhoneVerificationViewModel: ViewModelType {
 
     init(userInfo: BehaviorRelay<RegistUserInfo>) {
         self.userInfo = userInfo
+    }
+    
+    init() {
+        
     }
 
     func transform(input: Input) -> Output {

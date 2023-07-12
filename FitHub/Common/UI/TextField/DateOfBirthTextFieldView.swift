@@ -18,7 +18,7 @@ final class DateOfBirthTextFieldView: UIView {
     private let frameView = UIView().then {
         $0.layer.cornerRadius = 5
         $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.iconDisabled.cgColor
+        $0.layer.borderColor = UIColor.iconEnabled.cgColor
     }
     
     private let titleLabel = UILabel().then {
@@ -143,14 +143,20 @@ final class DateOfBirthTextFieldView: UIView {
             }
         })
         .disposed(by: disposeBag)
+        let text = Observable.combineLatest(self.dateOfBirthTextField.rx.text.orEmpty,
+                                            self.sexNumberTextField.rx.text.orEmpty)
+            .map { $0 + $1 }
         
         Observable.merge(dateOfBirthTextField.rx.controlEvent(.editingDidEnd).asObservable(),
                          sexNumberTextField.rx.controlEvent(.editingDidEnd).asObservable())
-        .bind(onNext: { [weak self] _ in
+        .withLatestFrom(text)
+        .bind(onNext: { [weak self] text in
             self?.clearButton.isHidden = true
+
             if self?.status == .ok {
-                self?.currentBorderColor = UIColor.iconDisabled.cgColor
-                self?.frameView.layer.borderColor = UIColor.iconDisabled.cgColor
+                let color = text.isEmpty ? UIColor.iconEnabled.cgColor : UIColor.iconDisabled.cgColor
+                self?.currentBorderColor = color
+                self?.frameView.layer.borderColor = color
             }
         })
         .disposed(by: disposeBag)

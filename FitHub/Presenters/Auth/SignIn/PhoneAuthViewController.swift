@@ -94,11 +94,16 @@ final class PhoneAuthViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output.findPasswordTap
-            .emit(onNext: {
+            .emit(onNext: { [weak self] in
                 // TODO: 비밀번호 찾기 이동
-                self.notiAlert("비밀번호 찾기 이동 미구현")
+                self?.pushFindPasswordViewController()
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func pushFindPasswordViewController() {
+        let findPasswordVC = FindPWViewController(FindPWViewModel())
+        self.navigationController?.pushViewController(findPasswordVC, animated: true)
     }
     
     //MARK: - AddSubView

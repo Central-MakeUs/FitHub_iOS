@@ -1,15 +1,16 @@
 //
-//  StandardTextFieldView.swift
+//  VerificationNumberTextFieldView.swift
 //  FitHub
 //
-//  Created by 신상우 on 2023/06/26.
+//  Created by 신상우 on 2023/07/12.
 //
+
 
 import UIKit
 import RxSwift
 import RxCocoa
 
-final class StandardTextFieldView: UIView {
+final class VerificationNumberTextFieldView: UIView {
     //MARK: - Properties
     private let disposeBag = DisposeBag()
     
@@ -38,11 +39,6 @@ final class StandardTextFieldView: UIView {
         $0.textColor = .textSub01
     }
     
-    let statusImageView = UIImageView().then {
-        $0.contentMode = .scaleAspectFit
-        $0.image = nil
-    }
-    
     private let guideLabel = UILabel().then {
         $0.font = .pretendard(.labelMedium)
     }
@@ -54,7 +50,7 @@ final class StandardTextFieldView: UIView {
         }
     }
     
-    private lazy var stackView = UIStackView(arrangedSubviews: [clearButton, statusImageView]).then {
+    private lazy var stackView = UIStackView(arrangedSubviews: [clearButton, timeLabel]).then {
         $0.distribution = .fillProportionally
         $0.spacing = 10
     }
@@ -97,44 +93,6 @@ final class StandardTextFieldView: UIView {
     }
     
     //MARK: Method
-    func verifyFormat(_ status: UserInfoStatus) {
-        self.status = status
-        
-        switch status {
-        case .notMatchPassword: fallthrough
-        case .notValidDateOfBirth: fallthrough
-        case .notValidPassword: fallthrough
-        case .notValidPhoneNumber: fallthrough
-        case .notValidSexNumber: fallthrough
-        case .underage: fallthrough
-        case .duplicateNickName: fallthrough
-        case .passwordLengthError:
-            self.guideLabel.textColor = .error
-            self.frameView.layer.borderColor = UIColor.error.cgColor
-            self.statusImageView.image = UIImage(named: "Warning")
-            self.guideLabel.text = status.message
-            self.titleLabel.textColor = .error
-            self.stackView.spacing = 10
-        case .nickNameOK: fallthrough
-        case .passwordOK: fallthrough
-        case .ok:
-            self.frameView.layer.borderColor = self.currentBorderColor
-            self.statusImageView.image = nil
-            self.guideLabel.textColor = .textSub02
-            self.guideLabel.text = status.message
-            self.titleLabel.textColor = .textDisabled
-            self.stackView.spacing = 0
-        case .nickNameSuccess: fallthrough
-        case .passwordSuccess: fallthrough
-        case .matchPassword:
-            self.frameView.layer.borderColor = UIColor.info.cgColor
-            self.statusImageView.image = UIImage(named: "Check")
-            self.guideLabel.textColor = .info
-            self.guideLabel.text = status.message
-            self.titleLabel.textColor = .info
-            self.stackView.spacing = 10
-        }
-    }
     
     //MARK: - SetupBinding
     private func setupBinding() {

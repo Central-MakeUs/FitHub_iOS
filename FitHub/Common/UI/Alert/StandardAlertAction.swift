@@ -21,11 +21,13 @@ class StandardAlertAction: UIButton {
 
         switch style {
         case .cancel:
-            self.backgroundColor = .iconDisabled
+            self.backgroundColor = .bgSub01
+            self.setTitleColor(.textDefault, for: .normal)
         case .basic:
             self.backgroundColor = .primary
+            self.setTitleColor(.black, for: .normal)
         }
-        self.setTitleColor(.textDefault, for: .normal)
+        
         self.titleLabel?.font = .pretendard(.bodyLarge02)
         self.setTitle(title, for: .normal)
         self.addTarget(self, action: #selector(didClickAction), for: .touchUpInside)
