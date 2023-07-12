@@ -62,7 +62,6 @@ final class StandardAlertController: UIViewController{
         self.layout()
         self.configure()
         self.prepareAction()
-        
     }
     
     override func viewDidDisappear(_ animated: Bool) {

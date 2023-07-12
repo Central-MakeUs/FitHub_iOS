@@ -13,7 +13,7 @@ final class PhoneVerificationViewController: BaseViewController {
     //MARK: - Properties
     private let viewModel: PhoneVerificationViewModel
     
-    private let verificationNumberTextField = StandardTextFieldView("인증번호").then {
+    private let verificationNumberTextField = VerificationNumberTextFieldView("인증번호").then {
         $0.placeholder = "인증번호 6자리 입력"
         $0.textField.keyboardType = .numberPad
     }
@@ -86,7 +86,13 @@ final class PhoneVerificationViewController: BaseViewController {
         output.nextTap
             .emit(onNext: { [weak self] in
                 guard let self else { return }
-                self.navigationController?.pushViewController(PasswordSettingViewController(PasswordSettingViewModel(self.viewModel.userInfo)), animated: true)
+                if let userInfo = self.viewModel.userInfo {
+                    self.navigationController?.pushViewController(PasswordSettingViewController(PasswordSettingViewModel(userInfo)), animated: true)
+                } else {
+                    //TODO: 비밀번호 재설정 페이지 이동
+                    self.navigationController?.pushViewController(ResetPasswordViewController(ResetPasswordViewModel()), animated: true)
+                }
+                
             })
             .disposed(by: disposeBag)
         
