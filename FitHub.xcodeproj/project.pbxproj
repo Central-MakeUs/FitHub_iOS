@@ -41,6 +41,9 @@
 		DB97F83E2A52C1E3009C09A1 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F83D2A52C1E3009C09A1 /* PaddingLabel.swift */; };
 		DB98D4E62A56E7970096D88F /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = DB98D4E52A56E7970096D88F /* RxGesture */; };
 		DBB820B52A5D67CA0016CB63 /* RegistInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB820B42A5D67CA0016CB63 /* RegistInfoUseCase.swift */; };
+		DBB820B82A5E45940016CB63 /* FindPWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB820B72A5E45940016CB63 /* FindPWViewController.swift */; };
+		DBB820BA2A5E47BA0016CB63 /* FindPWViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB820B92A5E47BA0016CB63 /* FindPWViewModel.swift */; };
+		DBB820BC2A5E4D990016CB63 /* FindPWUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB820BB2A5E4D990016CB63 /* FindPWUseCase.swift */; };
 		DBFF25A02A5B991A00CF6DD4 /* OAuthLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF259F2A5B991A00CF6DD4 /* OAuthLoginUseCase.swift */; };
 		DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */; };
 		DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */; };
@@ -107,6 +110,9 @@
 		DB97F83B2A52B36E009C09A1 /* NotificationName+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+.swift"; sourceTree = "<group>"; };
 		DB97F83D2A52C1E3009C09A1 /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		DBB820B42A5D67CA0016CB63 /* RegistInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistInfoUseCase.swift; sourceTree = "<group>"; };
+		DBB820B72A5E45940016CB63 /* FindPWViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPWViewController.swift; sourceTree = "<group>"; };
+		DBB820B92A5E47BA0016CB63 /* FindPWViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPWViewModel.swift; sourceTree = "<group>"; };
+		DBB820BB2A5E4D990016CB63 /* FindPWUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPWUseCase.swift; sourceTree = "<group>"; };
 		DBD8526B2A5C4BB400588BF4 /* FitHub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FitHub.entitlements; sourceTree = "<group>"; };
 		DBFF259F2A5B991A00CF6DD4 /* OAuthLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthLoginUseCase.swift; sourceTree = "<group>"; };
 		DBFFD9E62A47E2E20008C2B5 /* FitHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,6 +195,15 @@
 			path = Alert;
 			sourceTree = "<group>";
 		};
+		DBB820B62A5E455B0016CB63 /* FindPW */ = {
+			isa = PBXGroup;
+			children = (
+				DBB820B72A5E45940016CB63 /* FindPWViewController.swift */,
+				DBB820B92A5E47BA0016CB63 /* FindPWViewModel.swift */,
+			);
+			path = FindPW;
+			sourceTree = "<group>";
+		};
 		DBFF258B2A5B925E00CF6DD4 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +217,7 @@
 			children = (
 				DBFF25942A5B951200CF6DD4 /* SignUp */,
 				DBFF258D2A5B938900CF6DD4 /* SignIn */,
+				DBB820B62A5E455B0016CB63 /* FindPW */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -355,6 +371,7 @@
 			children = (
 				DBFF259F2A5B991A00CF6DD4 /* OAuthLoginUseCase.swift */,
 				DBB820B42A5D67CA0016CB63 /* RegistInfoUseCase.swift */,
+				DBB820BB2A5E4D990016CB63 /* FindPWUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -563,6 +580,7 @@
 				DB7559E12A548C6800B88B96 /* ProfileSettingViewModel.swift in Sources */,
 				DB71348F2A5BEFB70006EAAB /* AuthRepository.swift in Sources */,
 				DB97F8352A527BCF009C09A1 /* StandardNotificationAlertView.swift in Sources */,
+				DBB820BC2A5E4D990016CB63 /* FindPWUseCase.swift in Sources */,
 				DB51D2532A4B36A5002415B0 /* AgreementView.swift in Sources */,
 				DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */,
 				DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */,
@@ -577,6 +595,8 @@
 				DB6D93CF2A4D596D0011F9BC /* TelecomProviderType.swift in Sources */,
 				DB668AF92A4F06D000D702A1 /* RegistUserInfo.swift in Sources */,
 				DBFFDA422A499BC00008C2B5 /* StandardTextFieldView.swift in Sources */,
+				DBB820B82A5E45940016CB63 /* FindPWViewController.swift in Sources */,
+				DBB820BA2A5E47BA0016CB63 /* FindPWViewModel.swift in Sources */,
 				DB97F83C2A52B36E009C09A1 /* NotificationName+.swift in Sources */,
 				DBFFDA292A47F1570008C2B5 /* UIColor+.swift in Sources */,
 				DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */,
