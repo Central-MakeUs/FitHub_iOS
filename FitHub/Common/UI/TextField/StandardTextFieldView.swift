@@ -19,7 +19,7 @@ final class StandardTextFieldView: UIView {
     private let frameView = UIView().then {
         $0.layer.cornerRadius = 5
         $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.iconDisabled.cgColor
+        $0.layer.borderColor = UIColor.iconEnabled.cgColor
     }
     
     private let titleLabel = UILabel().then {
@@ -149,11 +149,15 @@ final class StandardTextFieldView: UIView {
             .disposed(by: disposeBag)
     
         self.textField.rx.controlEvent(.editingDidEnd)
-            .bind(onNext: { [weak self] in
+            .withLatestFrom(self.textField.rx.text.orEmpty)
+            .map { String($0) }
+            .bind(onNext: { [weak self] text in
                 self?.clearButton.isHidden = true
+                
                 if self?.status == .ok || self?.status == .passwordOK {
-                    self?.currentBorderColor = UIColor.iconDisabled.cgColor
-                    self?.frameView.layer.borderColor = UIColor.iconDisabled.cgColor
+                    let color = text.isEmpty ? UIColor.iconEnabled.cgColor : UIColor.iconDisabled.cgColor
+                    self?.currentBorderColor = color
+                    self?.frameView.layer.borderColor = color
                 }
             })
             .disposed(by: disposeBag)
@@ -162,6 +166,11 @@ final class StandardTextFieldView: UIView {
             .map { "" }
             .bind(to: textField.rx.text)
             .disposed(by: disposeBag)
+    }
+    
+    //MARK: - Method
+    func borderColorWillChange(_ color: CGColor) {
+        self.frameView.layer.borderColor = color
     }
     
     //MARK: - AddSubView
@@ -194,6 +203,7 @@ final class StandardTextFieldView: UIView {
             $0.bottom.equalToSuperview().offset(-10)
         }
         
+        self.textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         self.stackView.setContentHuggingPriority(.required, for: .horizontal)
         self.stackView.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-10)

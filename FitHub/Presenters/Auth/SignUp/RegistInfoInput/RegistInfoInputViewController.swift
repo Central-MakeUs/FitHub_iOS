@@ -153,7 +153,7 @@ final class RegistInfoInputViewController: BaseViewController {
             .drive(onNext: { [weak self] telecomType in
                 guard let self else { return }
                 self.telecomProviderView.text = telecomType.rawValue
-                
+                self.telecomProviderView.borderColorWillChange(UIColor.iconDisabled.cgColor)
                 if self.stackView.subviews.count == 2 {
                     UIView.animate(withDuration: 0.3, animations: {
                         self.stackView.insertArrangedSubview(self.dateOfBirthInputTextFieldView, at: 0)
