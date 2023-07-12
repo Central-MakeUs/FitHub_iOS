@@ -198,7 +198,7 @@ final class StandardTextFieldView: UIView {
         self.textField.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         self.textField.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(10)
-            $0.trailing.equalTo(self.stackView.snp.leading).offset(-10)
+            $0.trailing.equalToSuperview().offset(-80)
             $0.top.equalTo(self.titleLabel.snp.bottom)
             $0.bottom.equalToSuperview().offset(-10)
         }
