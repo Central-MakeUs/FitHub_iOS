@@ -37,7 +37,7 @@ final class ProfileSettingViewController: BaseViewController {
         $0.image = UIImage(named: "ProfileCamera")?.withRenderingMode(.alwaysOriginal)
     }
     
-    private let nickNameTextFieldView = StandardTextFieldView("닉네임").then {
+    private let nickNameTextFieldView = NickNameTextFieldView("닉네임").then {
         $0.placeholder = "닉네임 입력"
     }
     
@@ -59,7 +59,8 @@ final class ProfileSettingViewController: BaseViewController {
     //MARK: - SetupBinding
     override func setupBinding() {
         let input = ProfileSettingViewModel.Input(nickNameText: self.nickNameTextFieldView.textField.rx.text.orEmpty.asObservable(),
-                                                  nextTap: self.nextButton.rx.tap.asSignal())
+                                                  nextTap: self.nextButton.rx.tap.asSignal(),
+                                                  duplicationCheckTap: self.nickNameTextFieldView.duplicationCheckButton.rx.tap.asObservable())
         
         let output = self.viewModel.transform(input: input)
         
@@ -73,11 +74,6 @@ final class ProfileSettingViewController: BaseViewController {
             .asDriver(onErrorJustReturn: .nickNameOK)
             .drive(onNext: { [weak self] status in
                 self?.nickNameTextFieldView.verifyFormat(status)
-                if status == .nickNameSuccess {
-                    self?.nextButton.isEnabled = true
-                } else {
-                    self?.nextButton.isEnabled = false
-                }
             })
             .disposed(by: disposeBag)
         
@@ -86,6 +82,15 @@ final class ProfileSettingViewController: BaseViewController {
                 guard let self else { return }
                 self.navigationController?.pushViewController(SportsSelectingViewController(SportsSelectingViewModel(self.viewModel.userInfo)), animated: true)
             })
+            .disposed(by: disposeBag)
+        
+        output.nextButtonEnable
+            .bind(to: self.nextButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        output.duplicatedButtonIsHidden
+            .asDriver(onErrorJustReturn: false)
+            .drive(self.nickNameTextFieldView.duplicationCheckButton.rx.isHidden)
             .disposed(by: disposeBag)
         
         self.profileImageEditButton.rx.tap

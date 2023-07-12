@@ -1,20 +1,18 @@
 //
-//  PasswordSettingViewModel.swift
+//  ResetPasswordViewModel.swift
 //  FitHub
 //
-//  Created by 신상우 on 2023/07/05.
+//  Created by 신상우 on 2023/07/12.
 //
 
 import Foundation
 import RxSwift
 import RxCocoa
 
-class PasswordSettingViewModel: ViewModelType {
+class ResetPasswordViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
-    private let usecase: PasswordUseCase
-    
-    let userInfo: BehaviorRelay<RegistUserInfo>
+    let usecase: PasswordUseCase
     
     struct Input {
         let passwordInput: Observable<String>
@@ -29,9 +27,8 @@ class PasswordSettingViewModel: ViewModelType {
         let nextTap: Signal<Void>
     }
     
-    init(_ userInfo: BehaviorRelay<RegistUserInfo>, usecase: PasswordUseCase = PasswordInteractor()) {
+    init(_ usecase: PasswordUseCase = PasswordInteractor()) {
         self.usecase = usecase
-        self.userInfo = userInfo
     }
     
     func transform(input: Input) -> Output {

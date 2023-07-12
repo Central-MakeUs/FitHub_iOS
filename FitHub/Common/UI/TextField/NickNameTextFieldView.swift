@@ -1,15 +1,15 @@
 //
-//  StandardTextFieldView.swift
+//  NickNameTextFieldView.swift
 //  FitHub
 //
-//  Created by 신상우 on 2023/06/26.
+//  Created by 신상우 on 2023/07/12.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
 
-final class StandardTextFieldView: UIView {
+final class NickNameTextFieldView: UIView {
     //MARK: - Properties
     private let disposeBag = DisposeBag()
     
@@ -27,10 +27,8 @@ final class StandardTextFieldView: UIView {
         $0.textColor = .textDisabled
     }
     
-    private let timeLabel = UILabel().then {
-        $0.font = .pretendard(.labelMedium)
-        $0.textColor = .secondary
-        $0.text = "3:00"
+    let duplicationCheckButton = UIButton(type: .system).then {
+        $0.setImage(UIImage(named: "DuplicateButton")?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
     let textField = UITextField().then {
@@ -54,7 +52,7 @@ final class StandardTextFieldView: UIView {
         }
     }
     
-    private lazy var stackView = UIStackView(arrangedSubviews: [clearButton, statusImageView]).then {
+    private lazy var stackView = UIStackView(arrangedSubviews: [clearButton, duplicationCheckButton, statusImageView]).then {
         $0.distribution = .fillProportionally
         $0.spacing = 10
     }
@@ -114,7 +112,6 @@ final class StandardTextFieldView: UIView {
             self.statusImageView.image = UIImage(named: "Warning")
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .error
-            self.stackView.spacing = 10
         case .nickNameOK: fallthrough
         case .passwordOK: fallthrough
         case .ok:
@@ -123,7 +120,6 @@ final class StandardTextFieldView: UIView {
             self.guideLabel.textColor = .textSub02
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .textDisabled
-            self.stackView.spacing = 0
         case .nickNameSuccess: fallthrough
         case .passwordSuccess: fallthrough
         case .matchPassword:
@@ -132,7 +128,6 @@ final class StandardTextFieldView: UIView {
             self.guideLabel.textColor = .info
             self.guideLabel.text = status.message
             self.titleLabel.textColor = .info
-            self.stackView.spacing = 10
         }
     }
     
@@ -180,7 +175,6 @@ final class StandardTextFieldView: UIView {
         
         self.frameView.addSubview(self.titleLabel)
         self.frameView.addSubview(self.textField)
-        self.frameView.addSubview(self.timeLabel)
         self.frameView.addSubview(self.stackView)
     }
     

@@ -25,11 +25,13 @@ extension UIColor {
     // BagkGround
     static var bgSub01: UIColor { return UIColor(named: "Bg_sub01") ?? UIColor() }
     static var bgSub02: UIColor { return UIColor(named: "Bg_sub02") ?? UIColor() }
+    static var bgSub03: UIColor { return UIColor(named: "Bg_sub03") ?? UIColor() }
     static var bgDefault: UIColor { return UIColor(named: "Bg_default") ?? UIColor() }
     
     // Icon
     static var iconDefault: UIColor { return UIColor(named: "Icon_default") ?? UIColor() }
     static var iconDisabled: UIColor { return UIColor(named: "Icon_disabled") ?? UIColor() }
+    static var iconEnabled: UIColor { return UIColor(named: "Icon_enabled") ?? UIColor() }
     static var iconSub: UIColor { return UIColor(named: "Icon_sub") ?? UIColor() }
     
     // Neon
