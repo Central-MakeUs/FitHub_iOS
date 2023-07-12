@@ -161,7 +161,7 @@ final class VerificationNumberTextFieldView: UIView {
             $0.bottom.equalToSuperview().offset(-10)
         }
         
-        self.textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        self.stackView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         self.stackView.setContentHuggingPriority(.required, for: .horizontal)
         self.stackView.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-10)
