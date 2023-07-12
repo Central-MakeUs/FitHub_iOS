@@ -48,6 +48,10 @@
 		DBF125DF2A5E7DED004DA4B9 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125DE2A5E7DED004DA4B9 /* ResetPasswordViewModel.swift */; };
 		DBF125E12A5E7DFD004DA4B9 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125E02A5E7DFD004DA4B9 /* ResetPasswordViewController.swift */; };
 		DBF125E32A5E885D004DA4B9 /* PasswordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125E22A5E885C004DA4B9 /* PasswordUseCase.swift */; };
+		DBF125E52A5E8DFB004DA4B9 /* NickNameTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125E42A5E8DFB004DA4B9 /* NickNameTextFieldView.swift */; };
+		DBF125E72A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125E62A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift */; };
+		DBF125E92A5EA0D7004DA4B9 /* DefaultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125E82A5EA0D7004DA4B9 /* DefaultModel.swift */; };
+		DBF125ED2A5EB5FC004DA4B9 /* ProfileSettingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125EC2A5EB5FC004DA4B9 /* ProfileSettingRepository.swift */; };
 		DBFF25A02A5B991A00CF6DD4 /* OAuthLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF259F2A5B991A00CF6DD4 /* OAuthLoginUseCase.swift */; };
 		DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */; };
 		DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */; };
@@ -122,6 +126,10 @@
 		DBF125DE2A5E7DED004DA4B9 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		DBF125E02A5E7DFD004DA4B9 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		DBF125E22A5E885C004DA4B9 /* PasswordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordUseCase.swift; sourceTree = "<group>"; };
+		DBF125E42A5E8DFB004DA4B9 /* NickNameTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameTextFieldView.swift; sourceTree = "<group>"; };
+		DBF125E62A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingUseCase.swift; sourceTree = "<group>"; };
+		DBF125E82A5EA0D7004DA4B9 /* DefaultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultModel.swift; sourceTree = "<group>"; };
+		DBF125EC2A5EB5FC004DA4B9 /* ProfileSettingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingRepository.swift; sourceTree = "<group>"; };
 		DBFF259F2A5B991A00CF6DD4 /* OAuthLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthLoginUseCase.swift; sourceTree = "<group>"; };
 		DBFFD9E62A47E2E20008C2B5 /* FitHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -190,6 +198,7 @@
 				DBFFDA412A499BC00008C2B5 /* StandardTextFieldView.swift */,
 				DBF125DA2A5E7C14004DA4B9 /* VerificationNumberTextFieldView.swift */,
 				DB6D93DA2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift */,
+				DBF125E42A5E8DFB004DA4B9 /* NickNameTextFieldView.swift */,
 			);
 			path = TextField;
 			sourceTree = "<group>";
@@ -229,6 +238,23 @@
 				DBF125E02A5E7DFD004DA4B9 /* ResetPasswordViewController.swift */,
 			);
 			path = ResetPassword;
+			sourceTree = "<group>";
+		};
+		DBF125EA2A5EA0DA004DA4B9 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				DBF125E82A5EA0D7004DA4B9 /* DefaultModel.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		DBF125EB2A5EB5E9004DA4B9 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				DB71348E2A5BEFB70006EAAB /* AuthRepository.swift */,
+				DBF125EC2A5EB5FC004DA4B9 /* ProfileSettingRepository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		DBFF258B2A5B925E00CF6DD4 /* Presenters */ = {
@@ -400,6 +426,7 @@
 				DBB820B42A5D67CA0016CB63 /* RegistInfoUseCase.swift */,
 				DBB820BB2A5E4D990016CB63 /* FindPWUseCase.swift */,
 				DBF125E22A5E885C004DA4B9 /* PasswordUseCase.swift */,
+				DBF125E62A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -407,8 +434,9 @@
 		DBFF25A12A5B99E200CF6DD4 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				DBF125EB2A5EB5E9004DA4B9 /* Repository */,
+				DBF125EA2A5EA0DA004DA4B9 /* DTO */,
 				DBFFDA202A47F0EF0008C2B5 /* Network */,
-				DB71348E2A5BEFB70006EAAB /* AuthRepository.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -614,11 +642,13 @@
 				DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */,
 				DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */,
 				DB7134912A5BF46C0006EAAB /* AuthError.swift in Sources */,
+				DBF125E92A5EA0D7004DA4B9 /* DefaultModel.swift in Sources */,
 				DB668AFC2A50017700D702A1 /* UserInfoStatus.swift in Sources */,
 				DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */,
 				DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */,
 				DBFFDA262A47F13C0008C2B5 /* TempService.swift in Sources */,
 				DB6D93E42A4EDCE20011F9BC /* PasswordSettingViewController.swift in Sources */,
+				DBF125E52A5E8DFB004DA4B9 /* NickNameTextFieldView.swift in Sources */,
 				DB51D2572A4BB8B5002415B0 /* AgreementViewModel.swift in Sources */,
 				DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */,
 				DB6D93CF2A4D596D0011F9BC /* TelecomProviderType.swift in Sources */,
@@ -638,7 +668,9 @@
 				DBB820B52A5D67CA0016CB63 /* RegistInfoUseCase.swift in Sources */,
 				DBFFDA352A492A4E0008C2B5 /* OAuthLoginViewModel.swift in Sources */,
 				DB97F8382A52B2F2009C09A1 /* StandardAlertController.swift in Sources */,
+				DBF125E72A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift in Sources */,
 				DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */,
+				DBF125ED2A5EB5FC004DA4B9 /* ProfileSettingRepository.swift in Sources */,
 				DB668AF72A4F041100D702A1 /* ViewModelType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -775,6 +807,7 @@
 		};
 		DBFFD9FB2A47E2E40008C2B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB5F84BE2A5CF72100E16C14 /* AppInfo.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -809,6 +842,7 @@
 		};
 		DBFFD9FC2A47E2E40008C2B5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB5F84BE2A5CF72100E16C14 /* AppInfo.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
