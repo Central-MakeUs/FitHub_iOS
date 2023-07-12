@@ -14,7 +14,7 @@ final class StandardAlertController: UIViewController{
         $0.isLayoutMarginsRelativeArrangement = true
         $0.axis = .vertical
         $0.layer.masksToBounds = true
-        $0.backgroundColor = .bgSub02
+        $0.backgroundColor = .bgSub03
         $0.layer.cornerRadius = 5
         
     }
@@ -30,7 +30,7 @@ final class StandardAlertController: UIViewController{
         $0.textAlignment = .center
         $0.font = .pretendard(.bodyMedium01)
         $0.numberOfLines = 0
-        $0.textColor = .textSub02
+        $0.textColor = .textSub01
     }
     
     private lazy var contentStackView = UIStackView(arrangedSubviews: [titleLabel, messageLabel]).then {
