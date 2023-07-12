@@ -12,7 +12,7 @@ final class StandardNotificationAlertView: UIStackView {
     
     private let contentLabel = UILabel().then {
         $0.font = .pretendard(.labelLarge)
-        $0.textColor = .white
+        $0.textColor = .textDefault
         $0.numberOfLines = 0
         $0.textAlignment = .center
     }
@@ -26,7 +26,7 @@ final class StandardNotificationAlertView: UIStackView {
         }
         
         self.contentLabel.text = content
-        self.backgroundColor = .black.withAlphaComponent(0.75)
+        self.backgroundColor = .bgSub03
         self.layer.cornerRadius = 5
         
         delayedExecutionWorkItem?.cancel()
