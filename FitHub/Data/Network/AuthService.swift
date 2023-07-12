@@ -13,7 +13,7 @@ class AuthService {
     func signInAppleLogin(_ token: String)->Single<String> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
         
-        let urlString = baseURL + "users/login/social/Apple"
+        let urlString = baseURL + "users/login/social/apple"
         let paramter: Parameters = ["identityToken" : token]
         
         return Single<String>.create { observer in
