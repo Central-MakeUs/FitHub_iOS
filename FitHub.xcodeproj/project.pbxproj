@@ -44,6 +44,10 @@
 		DBB820B82A5E45940016CB63 /* FindPWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB820B72A5E45940016CB63 /* FindPWViewController.swift */; };
 		DBB820BA2A5E47BA0016CB63 /* FindPWViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB820B92A5E47BA0016CB63 /* FindPWViewModel.swift */; };
 		DBB820BC2A5E4D990016CB63 /* FindPWUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB820BB2A5E4D990016CB63 /* FindPWUseCase.swift */; };
+		DBF125DB2A5E7C14004DA4B9 /* VerificationNumberTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125DA2A5E7C14004DA4B9 /* VerificationNumberTextFieldView.swift */; };
+		DBF125DF2A5E7DED004DA4B9 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125DE2A5E7DED004DA4B9 /* ResetPasswordViewModel.swift */; };
+		DBF125E12A5E7DFD004DA4B9 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125E02A5E7DFD004DA4B9 /* ResetPasswordViewController.swift */; };
+		DBF125E32A5E885D004DA4B9 /* PasswordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125E22A5E885C004DA4B9 /* PasswordUseCase.swift */; };
 		DBFF25A02A5B991A00CF6DD4 /* OAuthLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF259F2A5B991A00CF6DD4 /* OAuthLoginUseCase.swift */; };
 		DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */; };
 		DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */; };
@@ -114,6 +118,10 @@
 		DBB820B92A5E47BA0016CB63 /* FindPWViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPWViewModel.swift; sourceTree = "<group>"; };
 		DBB820BB2A5E4D990016CB63 /* FindPWUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPWUseCase.swift; sourceTree = "<group>"; };
 		DBD8526B2A5C4BB400588BF4 /* FitHub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FitHub.entitlements; sourceTree = "<group>"; };
+		DBF125DA2A5E7C14004DA4B9 /* VerificationNumberTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationNumberTextFieldView.swift; sourceTree = "<group>"; };
+		DBF125DE2A5E7DED004DA4B9 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
+		DBF125E02A5E7DFD004DA4B9 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		DBF125E22A5E885C004DA4B9 /* PasswordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordUseCase.swift; sourceTree = "<group>"; };
 		DBFF259F2A5B991A00CF6DD4 /* OAuthLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthLoginUseCase.swift; sourceTree = "<group>"; };
 		DBFFD9E62A47E2E20008C2B5 /* FitHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -180,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				DBFFDA412A499BC00008C2B5 /* StandardTextFieldView.swift */,
+				DBF125DA2A5E7C14004DA4B9 /* VerificationNumberTextFieldView.swift */,
 				DB6D93DA2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift */,
 			);
 			path = TextField;
@@ -198,10 +207,28 @@
 		DBB820B62A5E455B0016CB63 /* FindPW */ = {
 			isa = PBXGroup;
 			children = (
+				DBF125DD2A5E7DAC004DA4B9 /* ResetPassword */,
+				DBF125DC2A5E7D95004DA4B9 /* InputPhoneNumber */,
+			);
+			path = FindPW;
+			sourceTree = "<group>";
+		};
+		DBF125DC2A5E7D95004DA4B9 /* InputPhoneNumber */ = {
+			isa = PBXGroup;
+			children = (
 				DBB820B72A5E45940016CB63 /* FindPWViewController.swift */,
 				DBB820B92A5E47BA0016CB63 /* FindPWViewModel.swift */,
 			);
-			path = FindPW;
+			path = InputPhoneNumber;
+			sourceTree = "<group>";
+		};
+		DBF125DD2A5E7DAC004DA4B9 /* ResetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				DBF125DE2A5E7DED004DA4B9 /* ResetPasswordViewModel.swift */,
+				DBF125E02A5E7DFD004DA4B9 /* ResetPasswordViewController.swift */,
+			);
+			path = ResetPassword;
 			sourceTree = "<group>";
 		};
 		DBFF258B2A5B925E00CF6DD4 /* Presenters */ = {
@@ -372,6 +399,7 @@
 				DBFF259F2A5B991A00CF6DD4 /* OAuthLoginUseCase.swift */,
 				DBB820B42A5D67CA0016CB63 /* RegistInfoUseCase.swift */,
 				DBB820BB2A5E4D990016CB63 /* FindPWUseCase.swift */,
+				DBF125E22A5E885C004DA4B9 /* PasswordUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -563,6 +591,7 @@
 				DB7559E32A55030400B88B96 /* SportsSelectingViewController.swift in Sources */,
 				DB6D93D42A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift in Sources */,
 				DB6D93D92A4DB2340011F9BC /* RegisterInfoModel.swift in Sources */,
+				DBF125DB2A5E7C14004DA4B9 /* VerificationNumberTextFieldView.swift in Sources */,
 				DBFFDA2B2A47F1600008C2B5 /* UIFont+.swift in Sources */,
 				DB6D93E22A4EC8C10011F9BC /* PhoneVerificationViewController.swift in Sources */,
 				DB7559E52A55035800B88B96 /* SportsSelectingViewModel.swift in Sources */,
@@ -593,14 +622,17 @@
 				DB51D2572A4BB8B5002415B0 /* AgreementViewModel.swift in Sources */,
 				DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */,
 				DB6D93CF2A4D596D0011F9BC /* TelecomProviderType.swift in Sources */,
+				DBF125E12A5E7DFD004DA4B9 /* ResetPasswordViewController.swift in Sources */,
 				DB668AF92A4F06D000D702A1 /* RegistUserInfo.swift in Sources */,
 				DBFFDA422A499BC00008C2B5 /* StandardTextFieldView.swift in Sources */,
 				DBB820B82A5E45940016CB63 /* FindPWViewController.swift in Sources */,
 				DBB820BA2A5E47BA0016CB63 /* FindPWViewModel.swift in Sources */,
 				DB97F83C2A52B36E009C09A1 /* NotificationName+.swift in Sources */,
 				DBFFDA292A47F1570008C2B5 /* UIColor+.swift in Sources */,
+				DBF125DF2A5E7DED004DA4B9 /* ResetPasswordViewModel.swift in Sources */,
 				DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */,
 				DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */,
+				DBF125E32A5E885D004DA4B9 /* PasswordUseCase.swift in Sources */,
 				DB97F83E2A52C1E3009C09A1 /* PaddingLabel.swift in Sources */,
 				DB97F83A2A52B2F7009C09A1 /* StandardAlertAction.swift in Sources */,
 				DBB820B52A5D67CA0016CB63 /* RegistInfoUseCase.swift in Sources */,
