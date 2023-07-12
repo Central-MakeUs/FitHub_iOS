@@ -21,7 +21,7 @@ class StandardAlertAction: UIButton {
 
         switch style {
         case .cancel:
-            self.backgroundColor = .iconDisabled
+            self.backgroundColor = .bgSub01
         case .basic:
             self.backgroundColor = .primary
         }
