@@ -11,6 +11,9 @@ import RxSwift
 
 class ProfileSettingViewModel: ViewModelType {
     var disposeBag = DisposeBag()
+    
+    private let usecase: ProfileSettingUseCase
+    
     let userInfo: BehaviorRelay<RegistUserInfo>
     
     let profileImage = BehaviorRelay(value: UIImage(named: "DefaultProfile"))
@@ -18,6 +21,7 @@ class ProfileSettingViewModel: ViewModelType {
     struct Input {
         let nickNameText: Observable<String>
         let nextTap: Signal<Void>
+        let duplicationCheckTap: Observable<Void>
     }
     
     struct Output {
@@ -25,10 +29,12 @@ class ProfileSettingViewModel: ViewModelType {
         let nextTap: Signal<Void>
         let nickNameText: Observable<String>
         let nickNameStatus: Observable<UserInfoStatus>
+        let duplicatedButtonIsHidden: Observable<Bool>
     }
     
-    init(_ userInfo: BehaviorRelay<RegistUserInfo>) {
+    init(_ userInfo: BehaviorRelay<RegistUserInfo>, usecase: ProfileSettingUseCase = ProfileSettingRepository()) {
         self.userInfo = userInfo
+        self.usecase = usecase
     }
     
     func transform(input: Input) -> Output {
@@ -36,27 +42,18 @@ class ProfileSettingViewModel: ViewModelType {
             .map { $0.filter { $0.isLetter } }
             .map { String($0.prefix(10)) }
         
-        let nextButtonEnable = nickNameText
-            .map { $0.count > 0 }
+        let duplicate = input.duplicationCheckTap.withLatestFrom(nickNameText.distinctUntilChanged())
+            .flatMap { self.usecase.duplicationNickNameCheck($0).asObservable() }
         
-        let nickNameStatus = nickNameText
-            .distinctUntilChanged()
-            .map { self.verifyNickName($0) }
+        let nickNameStatus = Observable.of(duplicate,nickNameText.distinctUntilChanged().map { _ in .nickNameOK }).merge()
         
-        return Output(nextButtonEnable: nextButtonEnable,
+        let duplicatedButtonIsHidden = Observable.combineLatest(nickNameText, nickNameStatus)
+            .map { !($0.count > 0 && $1 == .nickNameOK) }
+        
+        return Output(nextButtonEnable: nickNameStatus.map { $0 == .nickNameSuccess },
                       nextTap: input.nextTap,
                       nickNameText: nickNameText,
-                      nickNameStatus: nickNameStatus)
-    }
-}
-
-extension ProfileSettingViewModel {
-    //TODO: 닉네임 중복여부 체크
-    private func verifyNickName(_ nickName: String) -> UserInfoStatus {
-        if nickName.count <= 0 || nickName.count > 10 {
-            return .nickNameOK
-        }
-        
-        return .nickNameSuccess
+                      nickNameStatus: nickNameStatus,
+                      duplicatedButtonIsHidden: duplicatedButtonIsHidden)
     }
 }
