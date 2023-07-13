@@ -251,10 +251,30 @@
 		DBF125EB2A5EB5E9004DA4B9 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				DBF125F02A600BAA004DA4B9 /* Auth */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		DBF125EE2A600B04004DA4B9 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				DBFF259F2A5B991A00CF6DD4 /* OAuthLoginUseCase.swift */,
+				DBB820B42A5D67CA0016CB63 /* RegistInfoUseCase.swift */,
+				DBB820BB2A5E4D990016CB63 /* FindPWUseCase.swift */,
+				DBF125E22A5E885C004DA4B9 /* PasswordUseCase.swift */,
+				DBF125E62A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		DBF125F02A600BAA004DA4B9 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
 				DB71348E2A5BEFB70006EAAB /* AuthRepository.swift */,
 				DBF125EC2A5EB5FC004DA4B9 /* ProfileSettingRepository.swift */,
 			);
-			path = Repository;
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		DBFF258B2A5B925E00CF6DD4 /* Presenters */ = {
@@ -422,11 +442,7 @@
 		DBFF259E2A5B990200CF6DD4 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
-				DBFF259F2A5B991A00CF6DD4 /* OAuthLoginUseCase.swift */,
-				DBB820B42A5D67CA0016CB63 /* RegistInfoUseCase.swift */,
-				DBB820BB2A5E4D990016CB63 /* FindPWUseCase.swift */,
-				DBF125E22A5E885C004DA4B9 /* PasswordUseCase.swift */,
-				DBF125E62A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift */,
+				DBF125EE2A600B04004DA4B9 /* Auth */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";

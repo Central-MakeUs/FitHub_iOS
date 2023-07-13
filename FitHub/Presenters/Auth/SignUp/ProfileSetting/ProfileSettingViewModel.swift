@@ -32,7 +32,7 @@ class ProfileSettingViewModel: ViewModelType {
         let duplicatedButtonIsHidden: Observable<Bool>
     }
     
-    init(_ userInfo: BehaviorRelay<RegistUserInfo>, usecase: ProfileSettingUseCase = ProfileSettingRepository()) {
+    init(_ userInfo: BehaviorRelay<RegistUserInfo>, usecase: ProfileSettingUseCase) {
         self.userInfo = userInfo
         self.usecase = usecase
     }
