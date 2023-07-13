@@ -8,18 +8,21 @@
 import Foundation
 import RxSwift
 
-class ProfileSettingRepository: ProfileSettingUseCase {
+protocol ProfileSettingRepositoryInterface {
+    func duplicationNickNameCheck(_ nickName: String) -> Single<UserInfoStatus>
+}
+
+class ProfileSettingRepository: ProfileSettingRepositoryInterface {
     private let disposeBag = DisposeBag()
     
     private let service: AuthService
     
-    init(_ service: AuthService = AuthService()) {
+    init(_ service: AuthService) {
         self.service = service
     }
     
     func duplicationNickNameCheck(_ nickName: String) -> Single<UserInfoStatus> {
         return self.service.duplicationNickNameCheck(nickName)
             .map { $0.code == 2011 ? .nickNameSuccess : .duplicateNickName }
-
     }
 }

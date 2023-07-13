@@ -77,10 +77,17 @@ final class PasswordSettingViewController: BaseViewController {
         
         output.nextTap
             .emit(onNext: { [weak self] in
-                guard let self else { return }
-                self.navigationController?.pushViewController(ProfileSettingViewController(ProfileSettingViewModel(self.viewModel.userInfo)), animated: true)
+                self?.pushProfileSettingViewController()
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func pushProfileSettingViewController() {
+        let profileSettingVM = ProfileSettingViewModel(self.viewModel.userInfo,
+                                                       usecase: ProfileSettingUseCase(repository: ProfileSettingRepository(AuthService())))
+        let profileSettingVC = ProfileSettingViewController(profileSettingVM)
+        
+        self.navigationController?.pushViewController(profileSettingVC, animated: true)
     }
     
     //MARK: - AddSubView
