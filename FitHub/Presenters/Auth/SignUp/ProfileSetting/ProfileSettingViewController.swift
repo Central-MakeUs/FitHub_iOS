@@ -43,6 +43,7 @@ final class ProfileSettingViewController: BaseViewController {
     
     private let nextButton = StandardButton().then {
         $0.setTitle("다음", for: .normal)
+        $0.layer.cornerRadius = 0
         $0.isEnabled = false
     }
     
@@ -54,6 +55,11 @@ final class ProfileSettingViewController: BaseViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.responseToKeyboardHegiht(self.nextButton)
     }
     
     //MARK: - SetupBinding

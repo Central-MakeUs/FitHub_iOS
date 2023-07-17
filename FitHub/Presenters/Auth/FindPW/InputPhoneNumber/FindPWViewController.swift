@@ -32,6 +32,7 @@ final class FindPWViewController: BaseViewController {
     
     private let sendButton = StandardButton().then {
         $0.setTitle("인증번호 전송", for: .normal)
+        $0.layer.cornerRadius = 0
         $0.isEnabled = true
     }
     
@@ -42,6 +43,11 @@ final class FindPWViewController: BaseViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.responseToKeyboardHegiht(self.sendButton)
     }
     
     //MARK: - Binding
