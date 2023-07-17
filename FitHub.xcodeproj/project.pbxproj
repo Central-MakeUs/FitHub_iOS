@@ -44,6 +44,7 @@
 		DBB820B82A5E45940016CB63 /* FindPWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB820B72A5E45940016CB63 /* FindPWViewController.swift */; };
 		DBB820BA2A5E47BA0016CB63 /* FindPWViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB820B92A5E47BA0016CB63 /* FindPWViewModel.swift */; };
 		DBB820BC2A5E4D990016CB63 /* FindPWUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB820BB2A5E4D990016CB63 /* FindPWUseCase.swift */; };
+		DBDBA30C2A64D2B700F1CDA5 /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = DBDBA30B2A64D2B700F1CDA5 /* RxKeyboard */; };
 		DBF125DB2A5E7C14004DA4B9 /* VerificationNumberTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125DA2A5E7C14004DA4B9 /* VerificationNumberTextFieldView.swift */; };
 		DBF125DF2A5E7DED004DA4B9 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125DE2A5E7DED004DA4B9 /* ResetPasswordViewModel.swift */; };
 		DBF125E12A5E7DFD004DA4B9 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125E02A5E7DFD004DA4B9 /* ResetPasswordViewController.swift */; };
@@ -160,6 +161,7 @@
 				DBFFDA1A2A47E8A70008C2B5 /* RxKakaoSDKUser in Frameworks */,
 				DBFFDA0E2A47E6E60008C2B5 /* Alamofire in Frameworks */,
 				DBFFDA0B2A47E64C0008C2B5 /* Then in Frameworks */,
+				DBDBA30C2A64D2B700F1CDA5 /* RxKeyboard in Frameworks */,
 				DBFFDA182A47E8A70008C2B5 /* RxKakaoSDKShare in Frameworks */,
 				DBFFDA042A47E4A50008C2B5 /* RxRelay in Frameworks */,
 				DBFFDA112A47E71C0008C2B5 /* Kingfisher in Frameworks */,
@@ -564,6 +566,7 @@
 				DBFFDA172A47E8A70008C2B5 /* RxKakaoSDKShare */,
 				DBFFDA192A47E8A70008C2B5 /* RxKakaoSDKUser */,
 				DB98D4E52A56E7970096D88F /* RxGesture */,
+				DBDBA30B2A64D2B700F1CDA5 /* RxKeyboard */,
 			);
 			productName = FitHub;
 			productReference = DBFFD9E62A47E2E20008C2B5 /* FitHub.app */;
@@ -601,6 +604,7 @@
 				DBFFDA0F2A47E71C0008C2B5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				DBFFDA122A47E8A70008C2B5 /* XCRemoteSwiftPackageReference "kakao-ios-sdk-rx" */,
 				DB98D4E42A56E7970096D88F /* XCRemoteSwiftPackageReference "RxGesture" */,
+				DBDBA30A2A64D2B700F1CDA5 /* XCRemoteSwiftPackageReference "RxKeyboard" */,
 			);
 			productRefGroup = DBFFD9E72A47E2E20008C2B5 /* Products */;
 			projectDirPath = "";
@@ -923,6 +927,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		DBDBA30A2A64D2B700F1CDA5 /* XCRemoteSwiftPackageReference "RxKeyboard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxKeyboard";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		DBFFD9FD2A47E4640008C2B5 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -978,6 +990,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DB98D4E42A56E7970096D88F /* XCRemoteSwiftPackageReference "RxGesture" */;
 			productName = RxGesture;
+		};
+		DBDBA30B2A64D2B700F1CDA5 /* RxKeyboard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DBDBA30A2A64D2B700F1CDA5 /* XCRemoteSwiftPackageReference "RxKeyboard" */;
+			productName = RxKeyboard;
 		};
 		DBFFD9FE2A47E4650008C2B5 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
