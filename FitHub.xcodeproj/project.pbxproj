@@ -45,13 +45,15 @@
 		DBB820BA2A5E47BA0016CB63 /* FindPWViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB820B92A5E47BA0016CB63 /* FindPWViewModel.swift */; };
 		DBB820BC2A5E4D990016CB63 /* FindPWUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB820BB2A5E4D990016CB63 /* FindPWUseCase.swift */; };
 		DBDBA30C2A64D2B700F1CDA5 /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = DBDBA30B2A64D2B700F1CDA5 /* RxKeyboard */; };
+		DBDBA30E2A64EC8200F1CDA5 /* NickNameDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDBA30D2A64EC8200F1CDA5 /* NickNameDTO.swift */; };
+		DBDBA3112A65324C00F1CDA5 /* OAuthLoginDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDBA3102A65324C00F1CDA5 /* OAuthLoginDTO.swift */; };
 		DBF125DB2A5E7C14004DA4B9 /* VerificationNumberTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125DA2A5E7C14004DA4B9 /* VerificationNumberTextFieldView.swift */; };
 		DBF125DF2A5E7DED004DA4B9 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125DE2A5E7DED004DA4B9 /* ResetPasswordViewModel.swift */; };
 		DBF125E12A5E7DFD004DA4B9 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125E02A5E7DFD004DA4B9 /* ResetPasswordViewController.swift */; };
 		DBF125E32A5E885D004DA4B9 /* PasswordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125E22A5E885C004DA4B9 /* PasswordUseCase.swift */; };
 		DBF125E52A5E8DFB004DA4B9 /* NickNameTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125E42A5E8DFB004DA4B9 /* NickNameTextFieldView.swift */; };
 		DBF125E72A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125E62A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift */; };
-		DBF125E92A5EA0D7004DA4B9 /* DefaultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125E82A5EA0D7004DA4B9 /* DefaultModel.swift */; };
+		DBF125E92A5EA0D7004DA4B9 /* DefaultDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125E82A5EA0D7004DA4B9 /* DefaultDTO.swift */; };
 		DBF125ED2A5EB5FC004DA4B9 /* ProfileSettingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF125EC2A5EB5FC004DA4B9 /* ProfileSettingRepository.swift */; };
 		DBFF25A02A5B991A00CF6DD4 /* OAuthLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFF259F2A5B991A00CF6DD4 /* OAuthLoginUseCase.swift */; };
 		DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFD9E92A47E2E20008C2B5 /* AppDelegate.swift */; };
@@ -70,7 +72,6 @@
 		DBFFDA162A47E8A70008C2B5 /* RxKakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = DBFFDA152A47E8A70008C2B5 /* RxKakaoSDKCommon */; };
 		DBFFDA182A47E8A70008C2B5 /* RxKakaoSDKShare in Frameworks */ = {isa = PBXBuildFile; productRef = DBFFDA172A47E8A70008C2B5 /* RxKakaoSDKShare */; };
 		DBFFDA1A2A47E8A70008C2B5 /* RxKakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = DBFFDA192A47E8A70008C2B5 /* RxKakaoSDKUser */; };
-		DBFFDA262A47F13C0008C2B5 /* TempService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFDA252A47F13C0008C2B5 /* TempService.swift */; };
 		DBFFDA292A47F1570008C2B5 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFDA282A47F1570008C2B5 /* UIColor+.swift */; };
 		DBFFDA2B2A47F1600008C2B5 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFFDA2A2A47F1600008C2B5 /* UIFont+.swift */; };
 		DBFFDA302A4860330008C2B5 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DBFFDA2D2A4860330008C2B5 /* Pretendard-Medium.otf */; };
@@ -123,13 +124,15 @@
 		DBB820B92A5E47BA0016CB63 /* FindPWViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPWViewModel.swift; sourceTree = "<group>"; };
 		DBB820BB2A5E4D990016CB63 /* FindPWUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPWUseCase.swift; sourceTree = "<group>"; };
 		DBD8526B2A5C4BB400588BF4 /* FitHub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FitHub.entitlements; sourceTree = "<group>"; };
+		DBDBA30D2A64EC8200F1CDA5 /* NickNameDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameDTO.swift; sourceTree = "<group>"; };
+		DBDBA3102A65324C00F1CDA5 /* OAuthLoginDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthLoginDTO.swift; sourceTree = "<group>"; };
 		DBF125DA2A5E7C14004DA4B9 /* VerificationNumberTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationNumberTextFieldView.swift; sourceTree = "<group>"; };
 		DBF125DE2A5E7DED004DA4B9 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		DBF125E02A5E7DFD004DA4B9 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		DBF125E22A5E885C004DA4B9 /* PasswordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordUseCase.swift; sourceTree = "<group>"; };
 		DBF125E42A5E8DFB004DA4B9 /* NickNameTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameTextFieldView.swift; sourceTree = "<group>"; };
 		DBF125E62A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingUseCase.swift; sourceTree = "<group>"; };
-		DBF125E82A5EA0D7004DA4B9 /* DefaultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultModel.swift; sourceTree = "<group>"; };
+		DBF125E82A5EA0D7004DA4B9 /* DefaultDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDTO.swift; sourceTree = "<group>"; };
 		DBF125EC2A5EB5FC004DA4B9 /* ProfileSettingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingRepository.swift; sourceTree = "<group>"; };
 		DBFF259F2A5B991A00CF6DD4 /* OAuthLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthLoginUseCase.swift; sourceTree = "<group>"; };
 		DBFFD9E62A47E2E20008C2B5 /* FitHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,7 +142,6 @@
 		DBFFD9F22A47E2E40008C2B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DBFFD9F52A47E2E40008C2B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DBFFD9F72A47E2E40008C2B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DBFFDA252A47F13C0008C2B5 /* TempService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempService.swift; sourceTree = "<group>"; };
 		DBFFDA282A47F1570008C2B5 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		DBFFDA2A2A47F1600008C2B5 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		DBFFDA2D2A4860330008C2B5 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
@@ -224,6 +226,14 @@
 			path = FindPW;
 			sourceTree = "<group>";
 		};
+		DBDBA30F2A65323D00F1CDA5 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				DBDBA3102A65324C00F1CDA5 /* OAuthLoginDTO.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		DBF125DC2A5E7D95004DA4B9 /* InputPhoneNumber */ = {
 			isa = PBXGroup;
 			children = (
@@ -245,7 +255,9 @@
 		DBF125EA2A5EA0DA004DA4B9 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
-				DBF125E82A5EA0D7004DA4B9 /* DefaultModel.swift */,
+				DBDBA30F2A65323D00F1CDA5 /* Auth */,
+				DBF125E82A5EA0D7004DA4B9 /* DefaultDTO.swift */,
+				DBDBA30D2A64EC8200F1CDA5 /* NickNameDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -510,7 +522,6 @@
 		DBFFDA202A47F0EF0008C2B5 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				DBFFDA252A47F13C0008C2B5 /* TempService.swift */,
 				DB71348C2A5BDBF90006EAAB /* AuthService.swift */,
 			);
 			path = Network;
@@ -652,6 +663,7 @@
 				DB6D93DB2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift in Sources */,
 				DBFFDA3E2A4988200008C2B5 /* PhoneAuthViewModel.swift in Sources */,
 				DB5D22322A5470A800B32485 /* PasswordSettingViewModel.swift in Sources */,
+				DBDBA3112A65324C00F1CDA5 /* OAuthLoginDTO.swift in Sources */,
 				DB51D2592A4C2719002415B0 /* AgreementModel.swift in Sources */,
 				DB7559E72A55062C00B88B96 /* SportsCell.swift in Sources */,
 				DB7559E12A548C6800B88B96 /* ProfileSettingViewModel.swift in Sources */,
@@ -662,11 +674,10 @@
 				DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */,
 				DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */,
 				DB7134912A5BF46C0006EAAB /* AuthError.swift in Sources */,
-				DBF125E92A5EA0D7004DA4B9 /* DefaultModel.swift in Sources */,
+				DBF125E92A5EA0D7004DA4B9 /* DefaultDTO.swift in Sources */,
 				DB668AFC2A50017700D702A1 /* UserInfoStatus.swift in Sources */,
 				DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */,
 				DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */,
-				DBFFDA262A47F13C0008C2B5 /* TempService.swift in Sources */,
 				DB6D93E42A4EDCE20011F9BC /* PasswordSettingViewController.swift in Sources */,
 				DBF125E52A5E8DFB004DA4B9 /* NickNameTextFieldView.swift in Sources */,
 				DB51D2572A4BB8B5002415B0 /* AgreementViewModel.swift in Sources */,
@@ -688,6 +699,7 @@
 				DBB820B52A5D67CA0016CB63 /* RegistInfoUseCase.swift in Sources */,
 				DBFFDA352A492A4E0008C2B5 /* OAuthLoginViewModel.swift in Sources */,
 				DB97F8382A52B2F2009C09A1 /* StandardAlertController.swift in Sources */,
+				DBDBA30E2A64EC8200F1CDA5 /* NickNameDTO.swift in Sources */,
 				DBF125E72A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift in Sources */,
 				DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */,
 				DBF125ED2A5EB5FC004DA4B9 /* ProfileSettingRepository.swift in Sources */,
@@ -838,6 +850,7 @@
 				DEVELOPMENT_TEAM = V2YNV9QV27;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FitHub/App/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "프로필 사진 선택을 위해 앨범 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -873,6 +886,7 @@
 				DEVELOPMENT_TEAM = V2YNV9QV27;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FitHub/App/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "프로필 사진 선택을 위해 앨범 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
