@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxKakaoSDKAuth
+import KakaoSDKAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -18,7 +20,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = UINavigationController(rootViewController: OAuthLoginViewController(OAuthLoginViewModel()))
+        let authRepository = AuthRepository(AuthService())
+        window?.rootViewController = UINavigationController(rootViewController: OAuthLoginViewController(
+            OAuthLoginViewModel(OAuthLoginUseCase(authRepository))))
         window?.makeKeyAndVisible()
         
         UITextField.appearance().overrideUserInterfaceStyle = .dark
@@ -52,6 +56,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        if let url = URLContexts.first?.url {
+            if (AuthApi.isKakaoTalkLoginUrl(url)) {
+                _ = AuthController.rx.handleOpenUrl(url: url)
+            }
+        }
+    }
 }
 

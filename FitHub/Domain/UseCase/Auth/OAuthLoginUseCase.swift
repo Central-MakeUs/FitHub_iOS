@@ -8,6 +8,23 @@
 import RxSwift
 import Foundation
 
-protocol OAuthLoginUseCase {
-    func signInWithApple(_ token: String) -> Single<String>
+protocol OAuthLoginUseCaseProtocol {
+    func signInWithApple(_ token: String) -> Single<OAuthLoginDTO>
+    func signInWithKakao(_ socialId: String) -> Single<OAuthLoginDTO>
+}
+
+class OAuthLoginUseCase: OAuthLoginUseCaseProtocol {
+    private let repository: AuthRepositoryInterface
+    
+    func signInWithApple(_ token: String) -> Single<OAuthLoginDTO> {
+        return repository.signInWithApple(token)
+    }
+    
+    func signInWithKakao(_ socialId: String) -> RxSwift.Single<OAuthLoginDTO> {
+        return repository.signInWithKakao(socialId)
+    }
+    
+    init(_ authRepository: AuthRepositoryInterface) {
+        self.repository = authRepository
+    }
 }

@@ -11,6 +11,8 @@ import RxCocoa
 import SnapKit
 import Then
 import AuthenticationServices
+import KakaoSDKUser
+import RxKakaoSDKUser
 
 final class OAuthLoginViewController: BaseViewController {
     //MARK: - Properties
@@ -75,6 +77,20 @@ final class OAuthLoginViewController: BaseViewController {
         self.navigationItem.leftBarButtonItem = nil
     }
     
+    private func signInWithKakao() {
+        UserApi.shared.logout() { _ in }
+        if (UserApi.isKakaoTalkLoginAvailable()) {
+            UserApi.shared.rx.loginWithKakaoTalk()
+                .subscribe(onNext: { [weak self] _ in
+                    self?.viewModel.requestLogin()
+                },
+                onError: { [weak self] error in
+                    self?.viewModel.loginPublisher.onError(error)
+                })
+            .disposed(by: disposeBag)
+        }
+    }
+    
     //MARK: - Bind
     override func setupBinding() {
         self.otherLoginButton.rx.tap
@@ -91,14 +107,47 @@ final class OAuthLoginViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        // TODO: 타입 정해지면 스트림 안끊기게 catch 처리
-        self.viewModel.loginPublisher
-            .asDriver(onErrorJustReturn: "")
-            .drive(onNext: { str in
-                print(str)
-                // TODO: 로그인 처리 분기
+        self.kakaoLoginButton.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                self?.signInWithKakao()
             })
             .disposed(by: disposeBag)
+        
+        // TODO: 타입 정해지면 스트림 안끊기게 catch 처리
+        self.viewModel.loginPublisher
+            .bind(onNext: { [weak self] res in
+                guard let self else { return }
+                switch res.code {
+                case 2004: fallthrough
+                case 2006:
+                    print("로그인")
+                    // TODO: 로그인 프로세스
+                case 2005: fallthrough
+                case 2007:
+                    // TODO: 회원가입 프로세스
+                    self.showUserInfoNotFoundAlert()
+                default:
+                    // TODO: 외 에러
+                    print("에러")
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func showUserInfoNotFoundAlert() {
+        let alert = StandardAlertController(title: "회원 정보가 없습니다.", message: "입력하신 회원 정보는 존재하지 않아요.\n회원가입을 진행할까요?")
+        let cancel = StandardAlertAction(title: "닫기", style: .cancel) { _ in
+            UserApi.shared.logout {_ in} // 카카오 로그아웃
+        }
+        let regist = StandardAlertAction(title: "회원가입 하기", style: .basic) { _ in
+            // TODO: OAuth 회원가입 화면 이동
+            print("regist")
+        }
+        alert.addAction(cancel)
+        alert.addAction(regist)
+        
+        self.present(alert, animated: false)
     }
     
     //MARK: - AddSubView

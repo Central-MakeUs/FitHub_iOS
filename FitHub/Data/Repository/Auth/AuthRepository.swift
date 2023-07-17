@@ -8,15 +8,23 @@
 import Foundation
 import RxSwift
 
-class AuthRepository: OAuthLoginUseCase {
+protocol AuthRepositoryInterface {
+    func signInWithApple(_ token: String) -> Single<OAuthLoginDTO>
+    func signInWithKakao(_ socialId: String) -> Single<OAuthLoginDTO>
+}
+
+class AuthRepository: AuthRepositoryInterface {
     private let authService: AuthService
     
-    func signInWithApple(_ token: String) -> RxSwift.Single<String> {
-        return authService.signInAppleLogin(token)
-            
+    func signInWithApple(_ token: String) -> Single<OAuthLoginDTO> {
+        return self.authService.signInAppleLogin(token)
     }
     
-    init(_ service: AuthService = AuthService()) {
+    func signInWithKakao(_ socialId: String) -> Single<OAuthLoginDTO> {
+        return self.authService.signInKakaoLogin(socialId)
+    }
+    
+    init(_ service: AuthService) {
         self.authService = service
     }
 }

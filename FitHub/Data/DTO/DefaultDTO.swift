@@ -7,7 +7,8 @@
 
 import Foundation
 
-class DefaultResponseModel: Codable {
+class DefaultResponseDTO: Codable {
+    let isSuccess: Bool
     let code: Int
     let message: String?
     let result: [String]?
