@@ -114,9 +114,9 @@ final class OAuthLoginViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        // TODO: 타입 정해지면 스트림 안끊기게 catch 처리
+        // TODO: 에러던져도 스트림 안끊기게 catch 처리
         self.viewModel.loginPublisher
-            .bind(onNext: { [weak self] res in
+            .subscribe(onNext: { [weak self] res in
                 guard let self else { return }
                 switch res.code {
                 case 2004: fallthrough
@@ -129,8 +129,10 @@ final class OAuthLoginViewController: BaseViewController {
                     self.showUserInfoNotFoundAlert()
                 default:
                     // TODO: 외 에러
-                    print("에러")
+                    self.notiAlert("로그인 실패")
                 }
+            },onError: { error in
+                print(error)
             })
             .disposed(by: disposeBag)
     }
@@ -201,6 +203,6 @@ extension OAuthLoginViewController: ASAuthorizationControllerDelegate {
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        self.viewModel.loginPublisher.onError(AuthError.oauthFailed)
+//        self.viewModel.loginPublisher.onError(error)
     }
 }

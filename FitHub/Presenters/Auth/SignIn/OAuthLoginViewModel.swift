@@ -52,9 +52,7 @@ class OAuthLoginViewModel: ViewModelType {
             }, onError: { [weak self] error in
                 self?.loginPublisher.onError(error)
             })
-            .disposed(by: disposeBag)
-            
-            
+            .disposed(by: disposeBag) 
     }
     
     func transform(input: Input) -> Output {
