@@ -43,6 +43,7 @@ final class TelecomProviderSelectorViewController: BaseViewController {
         super.init(nibName: nil, bundle: nil)
         self.view.backgroundColor = .darkText.withAlphaComponent(0.8)
         self.modalPresentationStyle = .overCurrentContext
+        self.view.gestureRecognizers = []
     }
     
     required init?(coder: NSCoder) {
