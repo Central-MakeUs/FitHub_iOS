@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB02A67C273001B5672 /* HomeViewController.swift */; };
+		DB002BB42A67C332001B5672 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB32A67C332001B5672 /* CommunityViewController.swift */; };
+		DB002BB82A67C36F001B5672 /* LookUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB72A67C36F001B5672 /* LookUpViewController.swift */; };
+		DB002BBB2A67C3C7001B5672 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BBA2A67C3C7001B5672 /* MyPageViewController.swift */; };
 		DB51D2532A4B36A5002415B0 /* AgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51D2522A4B36A5002415B0 /* AgreementView.swift */; };
 		DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51D2542A4B3DC0002415B0 /* AgreementViewController.swift */; };
 		DB51D2572A4BB8B5002415B0 /* AgreementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51D2562A4BB8B5002415B0 /* AgreementViewModel.swift */; };
@@ -86,6 +90,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DB002BB02A67C273001B5672 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		DB002BB32A67C332001B5672 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
+		DB002BB72A67C36F001B5672 /* LookUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpViewController.swift; sourceTree = "<group>"; };
+		DB002BBA2A67C3C7001B5672 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		DB51D2522A4B36A5002415B0 /* AgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementView.swift; sourceTree = "<group>"; };
 		DB51D2542A4B3DC0002415B0 /* AgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewController.swift; sourceTree = "<group>"; };
 		DB51D2562A4BB8B5002415B0 /* AgreementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewModel.swift; sourceTree = "<group>"; };
@@ -179,6 +187,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB002BAF2A67C262001B5672 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				DB002BB02A67C273001B5672 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		DB002BB22A67C2D5001B5672 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				DB002BB32A67C332001B5672 /* CommunityViewController.swift */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
+		DB002BB52A67C350001B5672 /* LookUp */ = {
+			isa = PBXGroup;
+			children = (
+				DB002BB72A67C36F001B5672 /* LookUpViewController.swift */,
+			);
+			path = LookUp;
+			sourceTree = "<group>";
+		};
+		DB002BB92A67C3BA001B5672 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				DB002BBA2A67C3C7001B5672 /* MyPageViewController.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
 		DB668AF52A4F040300D702A1 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,6 +334,10 @@
 		DBFF258B2A5B925E00CF6DD4 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				DB002BB92A67C3BA001B5672 /* MyPage */,
+				DB002BB52A67C350001B5672 /* LookUp */,
+				DB002BB22A67C2D5001B5672 /* Community */,
+				DB002BAF2A67C262001B5672 /* Home */,
 				DBFF258C2A5B937E00CF6DD4 /* Auth */,
 			);
 			path = Presenters;
@@ -654,6 +698,7 @@
 				DBFFDA2B2A47F1600008C2B5 /* UIFont+.swift in Sources */,
 				DB6D93E22A4EC8C10011F9BC /* PhoneVerificationViewController.swift in Sources */,
 				DB7559E52A55035800B88B96 /* SportsSelectingViewModel.swift in Sources */,
+				DB002BB42A67C332001B5672 /* CommunityViewController.swift in Sources */,
 				DBFFDA392A497A460008C2B5 /* PhoneAuthViewController.swift in Sources */,
 				DB7559DF2A548BC000B88B96 /* ProfileSettingViewController.swift in Sources */,
 				DB5D22302A546AB400B32485 /* PhoneVerificationViewModel.swift in Sources */,
@@ -662,6 +707,7 @@
 				DBFF25A02A5B991A00CF6DD4 /* OAuthLoginUseCase.swift in Sources */,
 				DB6D93DB2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift in Sources */,
 				DBFFDA3E2A4988200008C2B5 /* PhoneAuthViewModel.swift in Sources */,
+				DB002BBB2A67C3C7001B5672 /* MyPageViewController.swift in Sources */,
 				DB5D22322A5470A800B32485 /* PasswordSettingViewModel.swift in Sources */,
 				DBDBA3112A65324C00F1CDA5 /* OAuthLoginDTO.swift in Sources */,
 				DB51D2592A4C2719002415B0 /* AgreementModel.swift in Sources */,
@@ -700,7 +746,9 @@
 				DBFFDA352A492A4E0008C2B5 /* OAuthLoginViewModel.swift in Sources */,
 				DB97F8382A52B2F2009C09A1 /* StandardAlertController.swift in Sources */,
 				DBDBA30E2A64EC8200F1CDA5 /* NickNameDTO.swift in Sources */,
+				DB002BB82A67C36F001B5672 /* LookUpViewController.swift in Sources */,
 				DBF125E72A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift in Sources */,
+				DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */,
 				DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */,
 				DBF125ED2A5EB5FC004DA4B9 /* ProfileSettingRepository.swift in Sources */,
 				DB668AF72A4F041100D702A1 /* ViewModelType.swift in Sources */,
