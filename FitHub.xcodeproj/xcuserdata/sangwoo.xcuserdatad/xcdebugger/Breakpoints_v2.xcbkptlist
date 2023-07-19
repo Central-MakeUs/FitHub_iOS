@@ -20,53 +20,5 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6B1F3AC6-13FD-4D88-AC20-BE4303D95D95"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FitHub/App/SceneDelegate.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "sceneDidEnterBackground(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "6B1F3AC6-13FD-4D88-AC20-BE4303D95D95 - c2944e0eda848fdf"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FitHub.SceneDelegate.sceneDidEnterBackground(__C.UIScene) -&gt; ()"
-                  moduleName = "FitHub"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sangwoo/Documents/Developments/iOS/Projects/FitHub/FitHub/App/SceneDelegate.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57"
-                  offsetFromSymbolStart = "20">
-               </Location>
-               <Location
-                  uuid = "6B1F3AC6-13FD-4D88-AC20-BE4303D95D95 - c2944e0eda848ffe"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FitHub.SceneDelegate.sceneDidEnterBackground(__C.UIScene) -&gt; ()"
-                  moduleName = "FitHub"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sangwoo/Documents/Developments/iOS/Projects/FitHub/FitHub/App/SceneDelegate.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
