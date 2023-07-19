@@ -73,7 +73,7 @@ final class OAuthLoginViewController: BaseViewController {
     
     //MARK: - ConfigureUI
     override func configureUI() {
-        self.view.backgroundColor = .black
+        self.view.backgroundColor = .bgDefault
         self.navigationItem.leftBarButtonItem = nil
     }
     
