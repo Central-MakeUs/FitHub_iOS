@@ -37,6 +37,7 @@ final class ResetPasswordViewController: BaseViewController {
     
     private let nextButton = StandardButton(type: .system).then {
         $0.setTitle("다음", for: .normal)
+        $0.layer.cornerRadius = 0
     }
     
     init(_ viewModel: ResetPasswordViewModel) {
@@ -46,6 +47,10 @@ final class ResetPasswordViewController: BaseViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.responseToKeyboardHegiht(self.nextButton)
     }
     
     override func setupBinding() {

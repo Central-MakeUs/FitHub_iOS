@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxGesture
+import RxKeyboard
 
 final class RegistInfoInputViewController: BaseViewController {
     //MARK: - Properties
@@ -54,6 +55,7 @@ final class RegistInfoInputViewController: BaseViewController {
     
     private let sendButton = StandardButton(type: .system).then {
         $0.setTitle("인증번호 전송", for: .normal)
+        $0.layer.cornerRadius = 0
         $0.isEnabled = false
     }
     
@@ -65,6 +67,16 @@ final class RegistInfoInputViewController: BaseViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.responseToKeyboardHegiht(self.sendButton)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
     }
     
     override func setupBinding() {
@@ -172,6 +184,8 @@ final class RegistInfoInputViewController: BaseViewController {
             self?.willPresentTelecomProviderSelectorViewController()
         })
         .disposed(by: disposeBag)
+        
+        
     }
     
     private func willPresentTelecomProviderSelectorViewController() {

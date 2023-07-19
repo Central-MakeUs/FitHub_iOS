@@ -37,6 +37,7 @@ final class PasswordSettingViewController: BaseViewController {
     
     private let nextButton = StandardButton(type: .system).then {
         $0.setTitle("다음", for: .normal)
+        $0.layer.cornerRadius = 0
     }
     
     init(_ viewModel: PasswordSettingViewModel) {
@@ -46,6 +47,11 @@ final class PasswordSettingViewController: BaseViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.responseToKeyboardHegiht(self.nextButton)
     }
     
     override func setupBinding() {
@@ -77,10 +83,17 @@ final class PasswordSettingViewController: BaseViewController {
         
         output.nextTap
             .emit(onNext: { [weak self] in
-                guard let self else { return }
-                self.navigationController?.pushViewController(ProfileSettingViewController(ProfileSettingViewModel(self.viewModel.userInfo)), animated: true)
+                self?.pushProfileSettingViewController()
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func pushProfileSettingViewController() {
+        let profileSettingVM = ProfileSettingViewModel(self.viewModel.userInfo,
+                                                       usecase: ProfileSettingUseCase(repository: ProfileSettingRepository(AuthService())))
+        let profileSettingVC = ProfileSettingViewController(profileSettingVM)
+        
+        self.navigationController?.pushViewController(profileSettingVC, animated: true)
     }
     
     //MARK: - AddSubView

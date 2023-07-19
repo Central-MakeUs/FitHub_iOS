@@ -10,34 +10,53 @@ import Alamofire
 import RxSwift
 
 class AuthService {
-    func signInAppleLogin(_ token: String)->Single<String> {
+    func signInAppleLogin(_ token: String)->Single<OAuthLoginDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
         
         let urlString = baseURL + "users/login/social/apple"
         let paramter: Parameters = ["identityToken" : token]
         
-        return Single<String>.create { observer in
+        return Single<OAuthLoginDTO>.create { observer in
             AF.request(urlString, method: .post, parameters: paramter, encoding: JSONEncoding.default)
-                .responseString(completionHandler: { res in
+                .responseDecodable(of: OAuthLoginDTO.self){ res in
                     switch res.result {
-                    case .success(let str):
-                        observer(.success(str))
+                    case .success(let data):
+                        observer(.success(data))
                     case .failure(let error):
                         observer(.failure(error))
                     }
-                })
+                }
             return Disposables.create()
         }
     }
     
-    func duplicationNickNameCheck(_ nickName: String) -> Single<DefaultResponseModel> {
+    func signInKakaoLogin(_ socialId: String)->Single<OAuthLoginDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        
+        let urlString = baseURL + "users/login/social/kakao"
+        let paramter: Parameters = ["socialId" : socialId]
+        return Single<OAuthLoginDTO>.create { observer in
+            AF.request(urlString, method: .post, parameters: paramter, encoding: JSONEncoding.default)
+                .responseDecodable(of: OAuthLoginDTO.self) { res in
+                    switch res.result {
+                    case .success(let data):
+                        observer(.success(data))
+                    case .failure(let error):
+                        observer(.failure(error))
+                    }
+                }
+            return Disposables.create()
+        }
+    }
+    
+    func duplicationNickNameCheck(_ nickName: String) -> Single<NickNameDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
         let urlString = baseURL + "users/exist-nickname"
         let paramter: Parameters = ["nickname" : nickName]
         
-        return Single<DefaultResponseModel>.create { observer in
+        return Single<NickNameDTO>.create { observer in
             AF.request(urlString, parameters: paramter, encoding: URLEncoding.queryString)
-                .responseDecodable(of: DefaultResponseModel.self) { res in
+                .responseDecodable(of: NickNameDTO.self) { res in
                     switch res.result {
                     case .success(let response):
                         observer(.success(response))
