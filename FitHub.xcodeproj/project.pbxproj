@@ -16,6 +16,8 @@
 		DB51D2572A4BB8B5002415B0 /* AgreementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51D2562A4BB8B5002415B0 /* AgreementViewModel.swift */; };
 		DB51D2592A4C2719002415B0 /* AgreementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51D2582A4C2719002415B0 /* AgreementModel.swift */; };
 		DB51ECBA2A68488C009F4690 /* FitHubSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51ECB92A68488C009F4690 /* FitHubSearchBar.swift */; };
+		DB51ECBD2A68E846009F4690 /* FitHubTopTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51ECBC2A68E846009F4690 /* FitHubTopTabbar.swift */; };
+		DB51ECC02A692EFC009F4690 /* TopTabbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51ECBF2A692EFC009F4690 /* TopTabbarItem.swift */; };
 		DB5D22302A546AB400B32485 /* PhoneVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */; };
 		DB5D22322A5470A800B32485 /* PasswordSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D22312A5470A800B32485 /* PasswordSettingViewModel.swift */; };
 		DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF32A4EECB300D702A1 /* UIViewController+.swift */; };
@@ -100,6 +102,8 @@
 		DB51D2562A4BB8B5002415B0 /* AgreementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewModel.swift; sourceTree = "<group>"; };
 		DB51D2582A4C2719002415B0 /* AgreementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementModel.swift; sourceTree = "<group>"; };
 		DB51ECB92A68488C009F4690 /* FitHubSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitHubSearchBar.swift; sourceTree = "<group>"; usesTabs = 0; };
+		DB51ECBC2A68E846009F4690 /* FitHubTopTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitHubTopTabbar.swift; sourceTree = "<group>"; };
+		DB51ECBF2A692EFC009F4690 /* TopTabbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabbarItem.swift; sourceTree = "<group>"; };
 		DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewModel.swift; sourceTree = "<group>"; };
 		DB5D22312A5470A800B32485 /* PasswordSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingViewModel.swift; sourceTree = "<group>"; };
 		DB5F84BE2A5CF72100E16C14 /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
@@ -200,6 +204,7 @@
 		DB002BB22A67C2D5001B5672 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				DB51ECBB2A68E838009F4690 /* View */,
 				DB002BB32A67C332001B5672 /* CommunityViewController.swift */,
 			);
 			path = Community;
@@ -219,6 +224,23 @@
 				DB002BBA2A67C3C7001B5672 /* MyPageViewController.swift */,
 			);
 			path = MyPage;
+			sourceTree = "<group>";
+		};
+		DB51ECBB2A68E838009F4690 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DB51ECBE2A692270009F4690 /* TopTabBar */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DB51ECBE2A692270009F4690 /* TopTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				DB51ECBC2A68E846009F4690 /* FitHubTopTabbar.swift */,
+				DB51ECBF2A692EFC009F4690 /* TopTabbarItem.swift */,
+			);
+			path = TopTabBar;
 			sourceTree = "<group>";
 		};
 		DB668AF52A4F040300D702A1 /* Protocols */ = {
@@ -726,6 +748,7 @@
 				DBF125E92A5EA0D7004DA4B9 /* DefaultDTO.swift in Sources */,
 				DB668AFC2A50017700D702A1 /* UserInfoStatus.swift in Sources */,
 				DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */,
+				DB51ECC02A692EFC009F4690 /* TopTabbarItem.swift in Sources */,
 				DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */,
 				DB6D93E42A4EDCE20011F9BC /* PasswordSettingViewController.swift in Sources */,
 				DBF125E52A5E8DFB004DA4B9 /* NickNameTextFieldView.swift in Sources */,
@@ -742,6 +765,7 @@
 				DBFFDA292A47F1570008C2B5 /* UIColor+.swift in Sources */,
 				DBF125DF2A5E7DED004DA4B9 /* ResetPasswordViewModel.swift in Sources */,
 				DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */,
+				DB51ECBD2A68E846009F4690 /* FitHubTopTabbar.swift in Sources */,
 				DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */,
 				DBF125E32A5E885D004DA4B9 /* PasswordUseCase.swift in Sources */,
 				DB97F83E2A52C1E3009C09A1 /* PaddingLabel.swift in Sources */,

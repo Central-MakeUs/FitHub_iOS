@@ -10,6 +10,13 @@ import UIKit
 final class CommunityViewController: BaseViewController {
     private let searchBar = FitHubSearchBar()
     
+    private lazy var topTabbar: FitHubTopTabbar = {
+        let tabbar = FitHubTopTabbar([TopTabbarItem("운동인증"),
+                                      TopTabbarItem("핏사이트")])
+        
+        return tabbar
+    }()
+    
     override func configureUI() {
         self.navigationItem.leftBarButtonItem = nil
     }
@@ -33,11 +40,18 @@ final class CommunityViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print(navigationItem.titleView?.frame.height)
-        print(searchBar.frame.height)
-        print(searchBar.searchTextField.frame.height)
+    //MARK: - AddSubView
+    override func addSubView() {
+        self.view.addSubview(topTabbar)
+    }
+    
+    //MARK: - layout
+    override func layout() {
+        self.topTabbar.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(6)
+            $0.height.equalTo(50)
+        }
     }
 }
 
