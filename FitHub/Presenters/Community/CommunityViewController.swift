@@ -8,28 +8,36 @@
 import UIKit
 
 final class CommunityViewController: BaseViewController {
-    let searchBar = UISearchBar().then {
-        
-        $0.searchTextField.layer.masksToBounds = true
-        $0.searchTextField.backgroundColor = .bgSub01
-        $0.searchTextField.layer.cornerRadius = 20
-    }
+    private let searchBar = FitHubSearchBar()
     
     override func configureUI() {
         self.navigationItem.leftBarButtonItem = nil
     }
     
     override func configureNavigation() {
-        let noti = UIBarButtonItem(image: UIImage(named: "BackButton"), style: .plain, target: nil, action: nil)
-        let bookmark = UIBarButtonItem(image: UIImage(named: "BackButton"), style: .plain, target: nil, action: nil)
+        let noti = UIBarButtonItem(image: UIImage(named: "Alert")?.withRenderingMode(.alwaysOriginal),
+                                   style: .plain, target: nil, action: nil)
+        let bookmark = UIBarButtonItem(image: UIImage(named: "BookMark")?.withRenderingMode(.alwaysOriginal),
+                                       style: .plain, target: nil, action: nil)
         
-        self.navigationItem.rightBarButtonItems = [bookmark,noti]
+        self.navigationItem.rightBarButtonItems = [noti,bookmark]
         
         self.navigationItem.titleView = searchBar
     }
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        print(navigationItem.titleView?.frame.height)
+        print(searchBar.frame.height)
+        print(searchBar.searchTextField.frame.height)
     }
 }
 
