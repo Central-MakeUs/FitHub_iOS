@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol PhoneNumLoginUseCaseProtocol {
-    func signInWithPhoneNumber(_ phoneNum: String,_ password: String) -> Single<Int>
+    func signInWithPhoneNumber(_ phoneNum: String,_ password: String) -> Single<PhoneNumLoginDTO>
     func verifyPhoneNumber(_ numberStr: String) -> UserInfoStatus
 }
 
@@ -27,7 +27,7 @@ class PhoneNumLoginUseCase: PhoneNumLoginUseCaseProtocol {
         return isValid ? .ok : .notValidPhoneNumber
     }
     
-    func signInWithPhoneNumber(_ phoneNum: String,_ password: String) -> Single<Int> {
+    func signInWithPhoneNumber(_ phoneNum: String,_ password: String) -> Single<PhoneNumLoginDTO> {
         return repository.signInWithPhoneNumber(password, password)
     }
 }

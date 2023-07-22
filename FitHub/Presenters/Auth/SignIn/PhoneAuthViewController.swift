@@ -98,10 +98,9 @@ final class PhoneAuthViewController: BaseViewController {
         output.loginPublisher
             .bind(onNext: { [weak self] res in
                 switch res {
-                case .success(let code):
-                    if code == 2000 {
-                        //TODO: 로그인 성공
-                    }
+                case .success:
+                    print("로그인")
+                    //TODO: 로그인 성공
                 case .failure(let error):
                     self?.responseAuthError(error)
                 }

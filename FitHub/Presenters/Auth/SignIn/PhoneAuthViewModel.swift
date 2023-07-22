@@ -14,7 +14,7 @@ class PhoneAuthViewModel: ViewModelType {
     
     private let usecase: PhoneNumLoginUseCase
     
-    private let loginPublisher = PublishSubject<Result<Int,AuthError>>()
+    private let loginPublisher = PublishSubject<Result<Void,AuthError>>()
     
     struct Input {
         let phoneNumberText: Observable<String>
@@ -25,7 +25,7 @@ class PhoneAuthViewModel: ViewModelType {
     }
     
     struct Output {
-        let loginPublisher: PublishSubject<Result<Int,AuthError>>
+        let loginPublisher: PublishSubject<Result<Void,AuthError>>
         let loginEnable: Observable<Bool>
         let registTap: Signal<Void>
         let findPasswordTap: Signal<Void>
@@ -63,8 +63,9 @@ class PhoneAuthViewModel: ViewModelType {
     
     private func signInWithPhoneNumber(_ phoneNum: String, _ password: String) {
         self.usecase.signInWithPhoneNumber(phoneNum, password)
-            .subscribe(onSuccess: { code in
-                self.loginPublisher.onNext(.success(code))
+            .subscribe(onSuccess: { response in
+                //TODO: JWT 및 id 저장해두기
+                self.loginPublisher.onNext(.success(()))
             }, onFailure: { error in
                 self.loginPublisher.onNext(.failure(error as! AuthError))
             })
