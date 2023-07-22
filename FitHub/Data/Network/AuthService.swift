@@ -111,4 +111,67 @@ class AuthService {
             return Disposables.create()
         }
     }
+    
+    //MARK: - 핸드폰 인증번호
+    func checkUserInfo(_ phoneNum: String) -> Single<Int> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/password"
+        let parameter: Parameters = ["targetPhoneNum" : phoneNum]
+        
+        return Single<Int>.create { emitter in
+            AF.request(urlString, method: .post, parameters: parameter, encoding: JSONEncoding.default)
+                .responseDecodable(of: BaseResponse<Int>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        emitter(.success(response.code))
+                    case .failure(_):
+                        emitter(.failure(AuthError.invalidURL))
+                    }
+                }
+            return Disposables.create()
+        }
+    }
+    
+    func sendAuthenticationNumber(_ phoneNum: String) -> Single<Int> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/sms"
+        let parameter: Parameters = ["targetPhoneNum" : phoneNum]
+        
+        return Single<Int>.create { emitter in
+            AF.request(urlString, method: .post, parameters: parameter, encoding: JSONEncoding.default)
+                .responseDecodable(of: BaseResponse<Int>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if let code = response.result {
+                            emitter(.success(code))
+                        } else {
+                            emitter(.failure(AuthError.invalidURL))
+                        }
+                    case .failure(_):
+                        emitter(.failure(AuthError.invalidURL))
+                    }
+                }
+            return Disposables.create()
+        }
+    }
+    
+    func verifyAuthenticationNumber(_ phoneNum: String, _ authNum: Int) -> Single<Int> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/sms/auth"
+        let parameter: Parameters = ["phoneNum" : phoneNum,
+                                     "authNum" : authNum]
+        
+        return Single<Int>.create { emitter in
+            AF.request(urlString, method: .post, parameters: parameter, encoding: JSONEncoding.default)
+                .responseDecodable(of:BaseResponse<PhoneAuthNumberDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        emitter(.success(response.code))
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            return Disposables.create()
+        }
+    }
 }

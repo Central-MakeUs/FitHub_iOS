@@ -28,7 +28,7 @@ final class VerificationNumberTextFieldView: UIView {
         $0.textColor = .textDisabled
     }
     
-    private let timeLabel = UILabel().then {
+    let timeLabel = UILabel().then {
         $0.font = .pretendard(.labelMedium)
         $0.textColor = .secondary
         $0.text = "3:00"

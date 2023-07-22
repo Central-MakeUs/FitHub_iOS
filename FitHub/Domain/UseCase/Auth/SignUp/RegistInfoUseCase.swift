@@ -6,13 +6,25 @@
 //
 
 import Foundation
+import RxSwift
 
-protocol RegistInfoUseCase {
+protocol RegistInfoUseCaseProtocol {
     func verifyPhoneNumber(_ numberStr: String) -> UserInfoStatus 
     func verifyDateOfBirth(_ dateStr: String, sexNumStr: String) -> UserInfoStatus
+    func sendAuthenticationNumber(_ phoneNum: String) -> Single<Int>
 }
 
-class RegistInfoUseCaseInteractor: RegistInfoUseCase {
+class RegistInfoUseCase: RegistInfoUseCaseProtocol {
+    private let repository: AuthRepositoryInterface
+    
+    init(_ repository: AuthRepositoryInterface) {
+        self.repository = repository
+    }
+    
+    func sendAuthenticationNumber(_ phoneNum: String) -> Single<Int> {
+        return repository.sendAuthenticationNumber(phoneNum)
+    }
+    
     func verifyPhoneNumber(_ numberStr: String) -> UserInfoStatus {
         let phoneNumberRegex = "^010\\d{8}$"
         let isValid = NSPredicate(format: "SELF MATCHES %@", phoneNumberRegex).evaluate(with: numberStr)

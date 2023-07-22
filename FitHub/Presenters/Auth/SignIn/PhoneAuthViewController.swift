@@ -136,7 +136,8 @@ final class PhoneAuthViewController: BaseViewController {
     
     //MARK: - 화면 이동
     private func pushFindPasswordViewController() {
-        let findPasswordVC = FindPWViewController(FindPWViewModel())
+        let usecase = FindPWUseCase(AuthRepository(AuthService()))
+        let findPasswordVC = FindPWViewController(FindPWViewModel(usecase))
         self.navigationController?.pushViewController(findPasswordVC, animated: true)
     }
     

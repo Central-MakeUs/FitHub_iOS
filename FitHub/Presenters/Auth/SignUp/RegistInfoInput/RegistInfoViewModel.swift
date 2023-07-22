@@ -12,7 +12,9 @@ import RxCocoa
 class RegistInfoViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
-    private let usecase: RegistInfoUseCase
+    private let usecase: RegistInfoUseCaseProtocol
+    
+    private let sendCodePublisher = PublishSubject<Result<Int,AuthError>>()
     
     var userInfo = BehaviorRelay<RegistUserInfo>(value: RegistUserInfo())
     
@@ -36,12 +38,12 @@ class RegistInfoViewModel: ViewModelType {
         let dateOfBirthStatus: Observable<(UserInfoStatus,Bool)>
         let telecom: Observable<TelecomProviderType>
         let name: Observable<String>
-        let sendButtonTapEvent: Observable<Int>
+        let sendCodePublisher: PublishSubject<Result<Int,AuthError>>
         let phoneNumber: Observable<(String,UserInfoStatus)>
         let sendButtonEnable: Observable<Bool>
     }
     
-    init(_ usecase: RegistInfoUseCase = RegistInfoUseCaseInteractor()) {
+    init(_ usecase: RegistInfoUseCaseProtocol) {
         self.usecase = usecase
     }
     
@@ -77,6 +79,15 @@ class RegistInfoViewModel: ViewModelType {
             .map { RegistUserInfo(phoneNumber: $3.0, dateOfBirth: $1.0, sexNumber: $2.0, name: $0, telecom: $4) }
             .bind(to: self.userInfo)
             .disposed(by: disposeBag)
+        
+        input.sendButtonTapEvent
+            .withLatestFrom(phoneNumber)
+            .flatMap { self.usecase.sendAuthenticationNumber($0.0).asObservable() }
+            .subscribe(onNext: { [weak self] code in
+                self?.sendCodePublisher.onNext(.success(code))
+            }, onError: { [weak self] error in
+                self?.sendCodePublisher.onNext(.failure(error as! AuthError))
+            })
             
         
         return Output(dateOfBirth: dateOfBirth,
@@ -84,7 +95,7 @@ class RegistInfoViewModel: ViewModelType {
                       dateOfBirthStatus: dateOfBirthStatus,
                       telecom: telecom,
                       name: name,
-                      sendButtonTapEvent: input.sendButtonTapEvent,
+                      sendCodePublisher: sendCodePublisher,
                       phoneNumber: phoneNumber,
                       sendButtonEnable: sendButtonEnable
         )

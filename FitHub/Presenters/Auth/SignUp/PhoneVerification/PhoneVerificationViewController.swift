@@ -89,24 +89,55 @@ final class PhoneVerificationViewController: BaseViewController {
             .bind(to: self.verificationNumberTextField.textField.rx.text)
             .disposed(by: disposeBag)
         
-        output.nextTap
-            .emit(onNext: { [weak self] in
-                guard let self else { return }
-                if let userInfo = self.viewModel.userInfo {
-                    self.navigationController?.pushViewController(PasswordSettingViewController(PasswordSettingViewModel(userInfo)), animated: true)
-                } else {
-                    //TODO: 비밀번호 재설정 페이지 이동
-                    self.navigationController?.pushViewController(ResetPasswordViewController(ResetPasswordViewModel()), animated: true)
+        output.time
+            .map { remainingTime in
+                let minutes = remainingTime / 60
+                let seconds = remainingTime % 60
+                return String(format: "%2d:%02d", minutes, seconds)
+            }
+            .bind(to: self.verificationNumberTextField.timeLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.resendPublisher
+            .bind(onNext: { res in
+                switch res {
+                case .success(_):
+                    self.notiAlert("인증번호 재전송")
+                case .failure(_):
+                    print("에러")
                 }
-                
             })
             .disposed(by: disposeBag)
         
-        output.resendTap
-            .emit (onNext:{
-                self.notiAlert("인증번호 재발송")
+        output.authNumberPublisher
+            .bind(onNext: { [weak self] res in
+                switch res {
+                case .success(let code):
+                    if code == 2000 {
+                        self?.pushPasswordSettingViewController()
+                    } else if code == 4014 {
+                        self?.notiAlert("인증번호 불일치")
+                    } else if code == 4015 {
+                        self?.notiAlert("유효시간 초과")
+                    } else {
+                        self?.notiAlert("알 수 없는 오류\n다시 시도해주세요.")
+                    }
+                case .failure(let error):
+                    print(error)
+                }
             })
             .disposed(by: disposeBag)
+    }
+    
+    
+    //MARK: - 화면이동
+    private func pushPasswordSettingViewController() {
+        if let userInfo = self.viewModel.registUserInfo {
+            self.navigationController?.pushViewController(PasswordSettingViewController(PasswordSettingViewModel(userInfo)), animated: true)
+        } else {
+            //TODO: 비밀번호 재설정 페이지 이동
+            self.navigationController?.pushViewController(ResetPasswordViewController(ResetPasswordViewModel()), animated: true)
+        }
     }
     
     //MARK: - AddSubView
