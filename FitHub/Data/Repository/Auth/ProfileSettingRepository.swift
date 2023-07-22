@@ -23,6 +23,6 @@ class ProfileSettingRepository: ProfileSettingRepositoryInterface {
     
     func duplicationNickNameCheck(_ nickName: String) -> Single<UserInfoStatus> {
         return self.service.duplicationNickNameCheck(nickName)
-            .map { $0.code == 2011 ? .nickNameSuccess : .duplicateNickName }
+            .map { $0 ? .duplicateNickName : .nickNameSuccess }
     }
 }

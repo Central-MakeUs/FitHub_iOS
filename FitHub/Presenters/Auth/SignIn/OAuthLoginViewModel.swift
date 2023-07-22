@@ -15,7 +15,7 @@ class OAuthLoginViewModel: ViewModelType {
     
     private let usecase: OAuthLoginUseCase
     
-    var loginPublisher = PublishSubject<OAuthLoginDTO>()
+    var loginPublisher = PublishSubject<Result<OAuthLoginDTO,AuthError>>()
     
     struct Input {
         
@@ -34,10 +34,10 @@ class OAuthLoginViewModel: ViewModelType {
               let tokenString = String(data: token, encoding: .utf8) else { return }
         
         self.usecase.signInWithApple(tokenString)
-            .subscribe(onSuccess: { [weak self] str in
-                self?.loginPublisher.onNext(str)
+            .subscribe(onSuccess: { [weak self] res in
+                self?.loginPublisher.onNext(.success(res))
             }, onFailure: { [weak self] error in
-                self?.loginPublisher.onError(error)
+                self?.loginPublisher.onNext(.failure(error as! AuthError))
             })
             .disposed(by: disposeBag)
     }
@@ -47,12 +47,12 @@ class OAuthLoginViewModel: ViewModelType {
             .compactMap { $0.id }
             .map { String($0) }
             .flatMap { self.usecase.signInWithKakao($0).asMaybe() }
-            .subscribe (onSuccess: { [weak self] str in
-                self?.loginPublisher.onNext(str)
+            .subscribe(onSuccess: { [weak self] res in
+                self?.loginPublisher.onNext(.success(res))
             }, onError: { [weak self] error in
-                self?.loginPublisher.onError(error)
+                self?.loginPublisher.onNext(.failure(error as! AuthError))
             })
-            .disposed(by: disposeBag) 
+            .disposed(by: disposeBag)
     }
     
     func transform(input: Input) -> Output {

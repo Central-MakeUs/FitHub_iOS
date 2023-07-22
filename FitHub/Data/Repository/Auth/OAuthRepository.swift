@@ -8,12 +8,12 @@
 import Foundation
 import RxSwift
 
-protocol AuthRepositoryInterface {
+protocol OAuthRepositoryInterface {
     func signInWithApple(_ token: String) -> Single<OAuthLoginDTO>
     func signInWithKakao(_ socialId: String) -> Single<OAuthLoginDTO>
 }
 
-class AuthRepository: AuthRepositoryInterface {
+class OAuthRepository: OAuthRepositoryInterface {
     private let authService: AuthService
     
     func signInWithApple(_ token: String) -> Single<OAuthLoginDTO> {
