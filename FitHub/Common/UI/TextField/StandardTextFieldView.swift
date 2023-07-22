@@ -14,7 +14,7 @@ final class StandardTextFieldView: UIView {
     private let disposeBag = DisposeBag()
     
     private var status = UserInfoStatus.ok
-    private var currentBorderColor = UIColor.iconDisabled.cgColor
+    private var currentBorderColor = UIColor.iconEnabled.cgColor
     
     private let frameView = UIView().then {
         $0.layer.cornerRadius = 5
