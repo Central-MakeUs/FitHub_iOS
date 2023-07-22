@@ -13,9 +13,9 @@ protocol ProfileSettingUseCaseProtocol {
 }
 
 class ProfileSettingUseCase: ProfileSettingUseCaseProtocol {
-    let repository: ProfileSettingRepositoryInterface
+    let repository: AuthRepositoryInterface
     
-    init(repository: ProfileSettingRepositoryInterface) {
+    init(repository: AuthRepositoryInterface) {
         self.repository = repository
     }
     

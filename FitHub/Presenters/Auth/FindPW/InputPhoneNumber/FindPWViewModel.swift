@@ -9,21 +9,25 @@ import Foundation
 import RxSwift
 
 class FindPWViewModel: ViewModelType {
-    private let usecase: FindPWUseCase
+    private let usecase: FindPWUseCaseProtocol
     
     var disposeBag = DisposeBag()
     
+    private let checkUserInfo = PublishSubject<Result<Int,AuthError>>()
+    
     struct Input {
         let phoneNumber: Observable<String>
+        let sendButtonTap: Observable<Void>
     }
     
     struct Output {
         let phoneNumber: Observable<String>
         let phoneStatus: Observable<(String, UserInfoStatus)>
         let sendButtonEnabled: Observable<Bool>
+        let checkUserInfo: PublishSubject<Result<Int,AuthError>>
     }
     
-    init(_ usecase: FindPWUseCase = FindPWInteractor()) {
+    init(_ usecase: FindPWUseCaseProtocol) {
         self.usecase = usecase
     }
     
@@ -37,9 +41,20 @@ class FindPWViewModel: ViewModelType {
         let sendButtonEnabled = phoneStatus
             .map { $0.count == 11 && $1 == .ok }
         
+        input.sendButtonTap
+            .withLatestFrom(phoneNumber)
+            .flatMap { self.usecase.checkUserInfo($0).asObservable() }
+            .subscribe(onNext: { [weak self] code in
+                self?.checkUserInfo.onNext(.success(code))
+            }, onError: { [weak self] error in
+                self?.checkUserInfo.onNext(.failure(error as! AuthError))
+            })
+            .disposed(by: disposeBag)
+        
         return Output(phoneNumber: phoneNumber,
                       phoneStatus: phoneStatus,
-                      sendButtonEnabled: sendButtonEnabled)
+                      sendButtonEnabled: sendButtonEnabled,
+                      checkUserInfo: checkUserInfo)
     }
     
 }

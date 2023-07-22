@@ -147,11 +147,14 @@ final class RegistInfoInputViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
 
-        output.sendButtonTapEvent
-            .asDriver(onErrorJustReturn: 1)
-            .drive(onNext: { [weak self] stackCnt in
-                guard let self else { return }
-                self.navigationController?.pushViewController(PhoneVerificationViewController(PhoneVerificationViewModel(userInfo: self.viewModel.userInfo)), animated: true)
+        output.sendCodePublisher
+            .bind(onNext: { [weak self] res in
+                switch res {
+                case .success(let code):
+                    self?.pushPhoneVerifactionViewController(code)
+                case .failure(let error):
+                    print(error)
+                }
             })
             .disposed(by: disposeBag)
         
@@ -184,8 +187,14 @@ final class RegistInfoInputViewController: BaseViewController {
             self?.willPresentTelecomProviderSelectorViewController()
         })
         .disposed(by: disposeBag)
-        
-        
+    }
+    
+    //MARK: - 화면 이동
+    private func pushPhoneVerifactionViewController(_ code: Int) {
+        let usecase = PhoneVerificationUseCase(repository: AuthRepository(AuthService()))
+        let phoneVerificationVC = PhoneVerificationViewController(PhoneVerificationViewModel(usecase,
+                                                                                             userInfo: self.viewModel.userInfo))
+        self.navigationController?.pushViewController(phoneVerificationVC, animated: true)
     }
     
     private func willPresentTelecomProviderSelectorViewController() {

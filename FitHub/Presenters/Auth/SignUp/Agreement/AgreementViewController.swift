@@ -164,9 +164,15 @@ final class AgreementViewController: BaseViewController {
         
         self.nextButton.rx.tap
             .bind {
-                self.navigationController?.pushViewController(RegistInfoInputViewController(RegistInfoViewModel()), animated: true)
+                self.pushRegistInfoViewController()
             }
             .disposed(by: disposeBag)
+    }
+    
+    //MARK: - 화면 이동
+    private func pushRegistInfoViewController() {
+        let usecase = RegistInfoUseCase(AuthRepository(AuthService()))
+        self.navigationController?.pushViewController(RegistInfoInputViewController(RegistInfoViewModel(usecase)), animated: true)
     }
     
     override func addSubView() {

@@ -52,7 +52,8 @@ final class FindPWViewController: BaseViewController {
     
     //MARK: - Binding
     override func setupBinding() {
-        let input = FindPWViewModel.Input(phoneNumber: self.phoneNumberTextField.textField.rx.text.orEmpty.asObservable())
+        let input = FindPWViewModel.Input(phoneNumber: self.phoneNumberTextField.textField.rx.text.orEmpty.asObservable(),
+                                          sendButtonTap: self.sendButton.rx.tap.asObservable())
         
         let output = self.viewModel.transform(input: input)
         
@@ -79,17 +80,47 @@ final class FindPWViewController: BaseViewController {
             .drive(self.sendButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        self.sendButton.rx.tap
-            .asDriver()
-            .drive(onNext: { [weak self] in
-                self?.pushPhoneVerificationViewController()
+        output.checkUserInfo
+            .bind(onNext: { [weak self] res in
+                switch res {
+                case .success(let code):
+                    if code == 2000 {
+                        self?.pushPhoneVerificationViewController(code)
+                    } else if code == 4019 {
+                        self?.checkUserInfoAlert()
+                    }
+                case .failure(let error):
+                    print(error)
+                }
             })
             .disposed(by: disposeBag)
     }
     
-    func pushPhoneVerificationViewController() {
-        let PhoneVerificationVC = PhoneVerificationViewController(PhoneVerificationViewModel())
-        self.navigationController?.pushViewController(PhoneVerificationVC, animated: true)
+    private func pushPhoneVerificationViewController(_ code: Int) {
+        guard let phonNum = self.phoneNumberTextField.text else { return }
+        let usecase = PhoneVerificationUseCase(repository: AuthRepository(AuthService()))
+        let phoneVerificationVC = PhoneVerificationViewController(PhoneVerificationViewModel(usecase,
+                                                                                             phoneNumber: phonNum))
+        self.navigationController?.pushViewController(phoneVerificationVC, animated: true)
+    }
+    
+    private func checkUserInfoAlert() {
+        let alert = StandardAlertController(title: "미가입 계정", message: "해당 번호로 가입된 계정이 없습니다.")
+        
+        let cancel = StandardAlertAction(title: "닫기", style: .cancel)
+        let regist = StandardAlertAction(title: "회원가입 하기", style: .basic) { _ in
+            let agreementVC = AgreementViewController(AgreementViewModel())
+            if let idx = self.navigationController?.viewControllers.lastIndex(of: self) {
+                self.navigationController?.viewControllers[idx - 1] = agreementVC
+            }
+            
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(regist)
+        
+        self.present(alert, animated: false)
     }
     
     //MARK: - addSubView

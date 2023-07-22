@@ -14,9 +14,9 @@ protocol PhoneNumLoginUseCaseProtocol {
 }
 
 class PhoneNumLoginUseCase: PhoneNumLoginUseCaseProtocol {
-    private let repository: PhoneAuthRepositoryInterface
+    private let repository: AuthRepositoryInterface
     
-    init(_ repository: PhoneAuthRepositoryInterface) {
+    init(_ repository: AuthRepositoryInterface) {
         self.repository = repository
     }
     
