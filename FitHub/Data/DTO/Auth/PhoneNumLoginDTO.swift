@@ -8,6 +8,6 @@
 import Foundation
 
 struct PhoneNumLoginDTO: Codable {
-    let targetPhoneNum: String
-    let password: String
+    let accessToken: String
+    let userId: Int
 }
