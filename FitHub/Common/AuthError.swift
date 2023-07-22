@@ -9,5 +9,7 @@ import Foundation
 
 enum AuthError: Error {
     case invalidURL
+    case serverError
     case oauthFailed
+    case unknownUser
 }

@@ -12,6 +12,10 @@ import RxCocoa
 class PhoneAuthViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
+    private let usecase: PhoneNumLoginUseCase
+    
+    private let loginPublisher = PublishSubject<Result<Int,AuthError>>()
+    
     struct Input {
         let phoneNumberText: Observable<String>
         let passwordText: Observable<String>
@@ -21,31 +25,49 @@ class PhoneAuthViewModel: ViewModelType {
     }
     
     struct Output {
-        let loginTap: Signal<Void>
+        let loginPublisher: PublishSubject<Result<Int,AuthError>>
         let loginEnable: Observable<Bool>
         let registTap: Signal<Void>
         let findPasswordTap: Signal<Void>
+        let phoneNumberText: Observable<(String,UserInfoStatus)>
     }
     
     func transform(input: Input) -> Output {
-        let loginEnable = Observable.combineLatest(input.phoneNumberText,
+        let phoneNum = input.phoneNumberText
+            .map { String($0.prefix(11)) }
+            .map { ($0, self.usecase.verifyPhoneNumber($0)) }
+        
+        let loginEnable = Observable.combineLatest(phoneNum,
                                                    input.passwordText)
-            .map { self.verifyPhoneNumber($0) && $1.count > 0 }
+            .map { $0.1 == .ok && $1.count > 0 }
         
+        input.loginButtonTap.asObservable()
+            .withLatestFrom(phoneNum)
+            .withLatestFrom(input.passwordText, resultSelector: { ($0.0,$1) })
+            .subscribe(onNext: { [weak self] (phoneNum, password) in
+                self?.signInWithPhoneNumber(phoneNum, password)
+            })
+            .disposed(by: disposeBag)
         
-        return Output(loginTap: input.loginButtonTap,
+        return Output(loginPublisher: loginPublisher,
                       loginEnable: loginEnable,
                       registTap: input.registButtonTap,
-                      findPasswordTap: input.findPasswordButtonTap)
+                      findPasswordTap: input.findPasswordButtonTap,
+                      phoneNumberText: phoneNum
+        )
     }
     
-    init() {
-        
+    init(_ usecase: PhoneNumLoginUseCase) {
+        self.usecase = usecase
     }
     
-    private func verifyPhoneNumber(_ numberStr: String) -> Bool {
-        let phoneNumberRegex = "^010\\d{8}$"
-        let isValid = NSPredicate(format: "SELF MATCHES %@", phoneNumberRegex).evaluate(with: numberStr)
-        return isValid
+    private func signInWithPhoneNumber(_ phoneNum: String, _ password: String) {
+        self.usecase.signInWithPhoneNumber(phoneNum, password)
+            .subscribe(onSuccess: { code in
+                self.loginPublisher.onNext(.success(code))
+            }, onFailure: { error in
+                self.loginPublisher.onNext(.failure(error as! AuthError))
+            })
+            .disposed(by: disposeBag)
     }
 }

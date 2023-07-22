@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 final class PhoneAuthViewController: BaseViewController {
     //MARK: - Properties
@@ -73,37 +75,87 @@ final class PhoneAuthViewController: BaseViewController {
         
         let output = self.viewModel.transform(input: input)
         
+        output.phoneNumberText
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(onNext: { [weak self] (text, status) in
+                guard let self else { return }
+                self.phoneNumberTextFieldView.textField.text = text
+                
+                if text.count == 11 {
+                    self.phoneNumberTextFieldView.verifyFormat(status)
+                } else {
+                    self.phoneNumberTextFieldView.verifyFormat(.ok)
+                }
+            })
+            .disposed(by: disposeBag)
+        
         output.loginEnable
             .asDriver(onErrorJustReturn: false)
             .drive(self.loginButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
         
-        output.loginTap
-            .emit(onNext: { [weak self] in
-                // TODO: 로그인 api 호출
-                self?.notiAlert("아직 api안나왔지요")
+        output.loginPublisher
+            .bind(onNext: { [weak self] res in
+                switch res {
+                case .success(let code):
+                    if code == 2000 {
+                        //TODO: 로그인 성공
+                    }
+                case .failure(let error):
+                    self?.responseAuthError(error)
+                }
             })
             .disposed(by: disposeBag)
         
         output.registTap
             .emit(onNext: { [weak self] in
-                let agreementVC = AgreementViewController(AgreementViewModel())
-                self?.navigationController?.pushViewController(agreementVC, animated: true)
+                self?.pushRegistViewController()
             })
             .disposed(by: disposeBag)
         
         output.findPasswordTap
             .emit(onNext: { [weak self] in
-                // TODO: 비밀번호 찾기 이동
                 self?.pushFindPasswordViewController()
             })
             .disposed(by: disposeBag)
     }
     
+    
+    private func responseAuthError(_ error: AuthError) {
+        switch error {
+        case .invalidURL:
+            print("주소 오류")
+        case .serverError:
+            self.notiAlert("서버 오류")
+        case .oauthFailed:
+            print("소셜로그인 실패")
+        case .unknownUser:
+            self.didNotFoundUserInfoAlert()
+        }
+    }
+    
+    //MARK: - 화면 이동
     private func pushFindPasswordViewController() {
         let findPasswordVC = FindPWViewController(FindPWViewModel())
         self.navigationController?.pushViewController(findPasswordVC, animated: true)
+    }
+    
+    private func pushRegistViewController() {
+        let agreementVC = AgreementViewController(AgreementViewModel())
+        self.navigationController?.pushViewController(agreementVC, animated: true)
+    }
+    
+    private func didNotFoundUserInfoAlert() {
+        let alert = StandardAlertController(title: "회원 정보가 없습니다.", message: "입력하신 회원 정보는 존재하지 않아요.\n회원가입을 진행할까요?")
+        let cancel = StandardAlertAction(title: "닫기", style: .cancel)
+        let regist = StandardAlertAction(title: "회원가입 하기", style: .basic) { _ in
+            self.pushRegistViewController()
+        }
+        alert.addAction(cancel)
+        alert.addAction(regist)
+        
+        self.present(alert, animated: false)
     }
     
     //MARK: - AddSubView

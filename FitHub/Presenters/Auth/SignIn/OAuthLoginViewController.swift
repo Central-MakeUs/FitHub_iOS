@@ -96,7 +96,8 @@ final class OAuthLoginViewController: BaseViewController {
         self.otherLoginButton.rx.tap
             .asDriver()
             .drive(onNext: {
-                self.navigationController?.pushViewController(PhoneAuthViewController(PhoneAuthViewModel()), animated: true)
+                let usecase = PhoneNumLoginUseCase(PhoneAuthRepository(AuthService()))
+                self.navigationController?.pushViewController(PhoneAuthViewController(PhoneAuthViewModel(usecase)), animated: true)
             })
             .disposed(by: self.disposeBag)
         
@@ -114,25 +115,22 @@ final class OAuthLoginViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        // TODO: 에러던져도 스트림 안끊기게 catch 처리
         self.viewModel.loginPublisher
-            .subscribe(onNext: { [weak self] res in
+            .subscribe( onNext: { [weak self] res in
                 guard let self else { return }
-                switch res.code {
-                case 2004: fallthrough
-                case 2006:
-                    print("로그인")
-                    // TODO: 로그인 프로세스
-                case 2005: fallthrough
-                case 2007:
-                    // TODO: 회원가입 프로세스
-                    self.showUserInfoNotFoundAlert()
-                default:
+                switch res {
+                case .success(let response):
+                    if response.isLogin {
+                        print("로그인")
+                        // TODO: 로그인 프로세스
+                    } else {
+                        // TODO: 회원가입 프로세스
+                        self.showUserInfoNotFoundAlert()
+                    }
+                case .failure(let error):
                     // TODO: 외 에러
-                    self.notiAlert("로그인 실패")
+                    self.responseAuthError(error)
                 }
-            },onError: { error in
-                print(error)
             })
             .disposed(by: disposeBag)
     }
@@ -150,6 +148,19 @@ final class OAuthLoginViewController: BaseViewController {
         alert.addAction(regist)
         
         self.present(alert, animated: false)
+    }
+    
+    private func responseAuthError(_ error: AuthError) {
+        switch error {
+        case .invalidURL:
+            print("주소 오류")
+        case .serverError:
+            self.notiAlert("서버 오류")
+        case .oauthFailed:
+            print("소셜로그인 실패")
+        case .unknownUser:
+            print("회원정보 없음")
+        }
     }
     
     //MARK: - AddSubView
@@ -203,6 +214,6 @@ extension OAuthLoginViewController: ASAuthorizationControllerDelegate {
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-//        self.viewModel.loginPublisher.onError(error)
+        self.viewModel.loginPublisher.onNext(.failure(AuthError.oauthFailed))
     }
 }

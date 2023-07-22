@@ -7,14 +7,8 @@
 
 import Foundation
 
-struct OAuthLoginDTO: Codable {
-    let isSuccess: Bool
-    let code: Int
-    let message: String?
-    let result: OAuthLoginResult?
-}
-
-class OAuthLoginResult: Codable {
+class OAuthLoginDTO: Codable {
     let isLogin: Bool
     let jwt: String
+    let userId: Int
 }
