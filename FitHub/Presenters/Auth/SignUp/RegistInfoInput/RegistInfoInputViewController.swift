@@ -84,7 +84,7 @@ final class RegistInfoInputViewController: BaseViewController {
                                               dateOfBirthTextFieldDidEditEvent: self.dateOfBirthInputTextFieldView.dateOfBirthTextField.rx.text.orEmpty.asObservable(),
                                               sexNumberTextFieldDidEditEvent: self.dateOfBirthInputTextFieldView.sexNumberTextField.rx.text.orEmpty.asObservable(),
                                               nameTextFieldDidEditEvent: self.nameInputTextFieldView.textField.rx.text.orEmpty.asObservable(),
-                                              sendButtonTapEvent: self.sendButton.rx.tap.map { [unowned self] in self.stackView.subviews.count })
+                                              sendButtonTapEvent: self.sendButton.rx.tap.asObservable())
         
         let output = self.viewModel.transform(input: input)
   
@@ -147,14 +147,9 @@ final class RegistInfoInputViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
 
-        output.sendCodePublisher
-            .bind(onNext: { [weak self] res in
-                switch res {
-                case .success(let code):
-                    self?.pushPhoneVerifactionViewController(code)
-                case .failure(let error):
-                    print(error)
-                }
+        output.sendButtonTapEvent
+            .bind(onNext: { [weak self] in
+                self?.pushPhoneVerifactionViewController()
             })
             .disposed(by: disposeBag)
         
@@ -190,7 +185,7 @@ final class RegistInfoInputViewController: BaseViewController {
     }
     
     //MARK: - 화면 이동
-    private func pushPhoneVerifactionViewController(_ code: Int) {
+    private func pushPhoneVerifactionViewController() {
         let usecase = PhoneVerificationUseCase(repository: AuthRepository(AuthService()))
         let phoneVerificationVC = PhoneVerificationViewController(PhoneVerificationViewModel(usecase,
                                                                                              userInfo: self.viewModel.userInfo))
