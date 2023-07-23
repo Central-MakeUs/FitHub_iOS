@@ -22,14 +22,12 @@ class RegistInfoViewModel: ViewModelType {
     
     let selectedTelecomProvider: BehaviorRelay<TelecomProviderType?> = BehaviorRelay(value: nil)
     
-    let stackViewCount = BehaviorRelay(value: 1)
-    
     struct Input {
         let phoneTextFieldDidEditEvent: Observable<String>
         let dateOfBirthTextFieldDidEditEvent: Observable<String>
         let sexNumberTextFieldDidEditEvent: Observable<String>
         let nameTextFieldDidEditEvent: Observable<String>
-        let sendButtonTapEvent: Observable<Int>
+        let sendButtonTapEvent: Observable<Void>
     }
     
     struct Output {
@@ -38,7 +36,7 @@ class RegistInfoViewModel: ViewModelType {
         let dateOfBirthStatus: Observable<(UserInfoStatus,Bool)>
         let telecom: Observable<TelecomProviderType>
         let name: Observable<String>
-        let sendCodePublisher: PublishSubject<Result<Int,AuthError>>
+        let sendButtonTapEvent: Observable<Void>
         let phoneNumber: Observable<(String,UserInfoStatus)>
         let sendButtonEnable: Observable<Bool>
     }
@@ -63,10 +61,6 @@ class RegistInfoViewModel: ViewModelType {
         let telecom = self.selectedTelecomProvider
             .compactMap { $0 }
         
-        input.sendButtonTapEvent
-            .bind(to: stackViewCount)
-            .disposed(by: disposeBag)
-        
         let phoneNumber = input.phoneTextFieldDidEditEvent
             .map { (String($0.prefix(11)), self.usecase.verifyPhoneNumber($0)) }
         
@@ -81,22 +75,13 @@ class RegistInfoViewModel: ViewModelType {
             .bind(to: self.userInfo)
             .disposed(by: disposeBag)
         
-        input.sendButtonTapEvent
-            .withLatestFrom(phoneNumber)
-            .flatMap { self.usecase.sendAuthenticationNumber($0.0).asObservable() }
-            .subscribe(onNext: { [weak self] code in
-                self?.sendCodePublisher.onNext(.success(code))
-            }, onError: { [weak self] error in
-                self?.sendCodePublisher.onNext(.failure(error as! AuthError))
-            })
-            
         
         return Output(dateOfBirth: dateOfBirth,
                       sexNumber: sexNumber,
                       dateOfBirthStatus: dateOfBirthStatus,
                       telecom: telecom,
                       name: name,
-                      sendCodePublisher: sendCodePublisher,
+                      sendButtonTapEvent: input.sendButtonTapEvent,
                       phoneNumber: phoneNumber,
                       sendButtonEnable: sendButtonEnable
         )
