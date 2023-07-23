@@ -16,4 +16,5 @@ struct RegistUserInfo {
     var telecom: TelecomProviderType?
     var nickName: String?
     var profileImage: UIImage?
+    var marketingAgree = false
 }

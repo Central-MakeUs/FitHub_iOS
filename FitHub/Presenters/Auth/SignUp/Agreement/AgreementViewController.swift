@@ -71,91 +71,55 @@ final class AgreementViewController: BaseViewController {
     }
     
     override func setupBinding() {
-        //Input
-        self.agreeAllButton.rx.tap
-            .asDriver()
-            .drive(onNext: {
-                let isChecked = self.viewModel.allAgreementObserver.value
-                self.viewModel.toggleAllCheck(!isChecked)
-            })
-            .disposed(by: disposeBag)
+        let input = AgreementViewModel.Input(privateTap: self.privateAgreementView.checkButton.rx.tap.asObservable(),
+                                             useTap: self.useAgreementView.checkButton.rx.tap.asObservable(),
+                                             locationTap: self.locationAgreementView.checkButton.rx.tap.asObservable(),
+                                             ageTap: self.ageAgreementView.checkButton.rx.tap.asObservable(),
+                                             marketingTap: self.marketingAgreementView.checkButton.rx.tap.asObservable(),
+                                             allAgreementTap: self.agreeAllButton.rx.tap.asObservable())
         
-        self.privateAgreementView.checkButton.rx.tap
-            .bind(onNext: {
-                let newValue = !self.viewModel.privateAgreementObserver.value
-                self.viewModel.privateAgreementObserver.accept(newValue)
-            })
-            .disposed(by: disposeBag)
+        let output = self.viewModel.transform(input: input)
         
-        self.useAgreementView.checkButton.rx.tap
-            .bind(onNext: {
-                let newValue = !self.viewModel.useAgreementObserver.value
-                self.viewModel.useAgreementObserver.accept(newValue)
-            })
-            .disposed(by: disposeBag)
-        
-        self.locationAgreementView.checkButton.rx.tap
-            .bind(onNext: {
-                let newValue = !self.viewModel.locationAgreementObserver.value
-                self.viewModel.locationAgreementObserver.accept(newValue)
-            })
-            .disposed(by: disposeBag)
-        
-        self.ageAgreementView.checkButton.rx.tap
-            .bind(onNext: {
-                let newValue = !self.viewModel.ageAgreementObserver.value
-                self.viewModel.ageAgreementObserver.accept(newValue)
-            })
-            .disposed(by: disposeBag)
-        
-        self.marketingAgreementView.checkButton.rx.tap
-            .bind(onNext: {
-                let newValue = !self.viewModel.marketingAgreementOberver.value
-                self.viewModel.marketingAgreementOberver.accept(newValue)
-            })
-            .disposed(by: disposeBag)
-        
-        //Output
-        self.viewModel.isEnableNextButton
+        output.isEnableNextButton
             .bind(to: self.nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        self.viewModel.privateAgreementObserver
+        output.privateAgreement
             .bind(onNext: { isChecked in
                 let img = isChecked ? UIImage(named: "CheckOn")?.withRenderingMode(.alwaysOriginal) : UIImage(named: "CheckOff")?.withRenderingMode(.alwaysOriginal)
                 self.privateAgreementView.checkButton.setImage(img, for: .normal)
             })
             .disposed(by: disposeBag)
         
-        self.viewModel.useAgreementObserver
+        output.useAgreement
             .bind(onNext: { isChecked in
                 let img = isChecked ? UIImage(named: "CheckOn")?.withRenderingMode(.alwaysOriginal) : UIImage(named: "CheckOff")?.withRenderingMode(.alwaysOriginal)
                 self.useAgreementView.checkButton.setImage(img, for: .normal)
             })
             .disposed(by: disposeBag)
         
-        self.viewModel.locationAgreementObserver
+        output.locationAgreement
             .bind(onNext: { isChecked in
                 let img = isChecked ? UIImage(named: "CheckOn")?.withRenderingMode(.alwaysOriginal) : UIImage(named: "CheckOff")?.withRenderingMode(.alwaysOriginal)
                 self.locationAgreementView.checkButton.setImage(img, for: .normal)
             })
             .disposed(by: disposeBag)
         
-        self.viewModel.ageAgreementObserver
+        output.ageAgreement
             .bind(onNext: { isChecked in
                 let img = isChecked ? UIImage(named: "CheckOn")?.withRenderingMode(.alwaysOriginal) : UIImage(named: "CheckOff")?.withRenderingMode(.alwaysOriginal)
                 self.ageAgreementView.checkButton.setImage(img, for: .normal)
             })
             .disposed(by: disposeBag)
         
-        self.viewModel.marketingAgreementOberver
+        output.marketingAgreement
             .bind(onNext: { isChecked in
                 let img = isChecked ? UIImage(named: "CheckOn")?.withRenderingMode(.alwaysOriginal) : UIImage(named: "CheckOff")?.withRenderingMode(.alwaysOriginal)
                 self.marketingAgreementView.checkButton.setImage(img, for: .normal)
             })
             .disposed(by: disposeBag)
         
-        self.viewModel.allAgreementObserver
+        output.allAgreement
             .bind(onNext: { isChecked in
                 let img = isChecked ? UIImage(named: "CheckOn")?.withRenderingMode(.alwaysOriginal) : UIImage(named: "CheckOff")?.withRenderingMode(.alwaysOriginal)
                 self.agreeAllButton.setImage(img, for: .normal)
@@ -172,7 +136,9 @@ final class AgreementViewController: BaseViewController {
     //MARK: - 화면 이동
     private func pushRegistInfoViewController() {
         let usecase = RegistInfoUseCase(AuthRepository(AuthService()))
-        self.navigationController?.pushViewController(RegistInfoInputViewController(RegistInfoViewModel(usecase)), animated: true)
+        let userInfo = self.viewModel.registUserInfo
+        self.navigationController?.pushViewController(RegistInfoInputViewController(RegistInfoViewModel(usecase,
+                                                                                                        userInfo: userInfo)), animated: true)
     }
     
     override func addSubView() {
