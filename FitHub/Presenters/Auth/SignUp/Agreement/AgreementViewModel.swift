@@ -9,40 +9,108 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class AgreementViewModel {
-    let disposeBag = DisposeBag()
+class AgreementViewModel: ViewModelType {
+
+    var disposeBag = DisposeBag()
     
-    let privateAgreementObserver = BehaviorRelay(value: false)
-
-    let useAgreementObserver = BehaviorRelay(value: false)
-
-    let locationAgreementObserver = BehaviorRelay(value: false)
-
-    let ageAgreementObserver = BehaviorRelay(value: false)
-
-    let marketingAgreementOberver = BehaviorRelay(value: false)
-
-    let allAgreementObserver = BehaviorRelay(value: false)
-
-    let isEnableNextButton = BehaviorRelay(value: false)
+    let registUserInfo = BehaviorRelay(value: RegistUserInfo())
     
-    init() {
-        Observable.combineLatest(privateAgreementObserver, useAgreementObserver, locationAgreementObserver, ageAgreementObserver, marketingAgreementOberver)
-            .map { $0.0 && $0.1 && $0.2 && $0.3}
-            .bind(to: isEnableNextButton)
-            .disposed(by: disposeBag)
-        
-        Observable.combineLatest(privateAgreementObserver, useAgreementObserver, locationAgreementObserver, ageAgreementObserver, marketingAgreementOberver)
-            .map { $0.0 && $0.1 && $0.2 && $0.3 && $0.4}
-            .bind(to: allAgreementObserver)
-            .disposed(by: disposeBag)
+    struct Input {
+        let privateTap: Observable<Void>
+        let useTap: Observable<Void>
+        let locationTap: Observable<Void>
+        let ageTap: Observable<Void>
+        let marketingTap: Observable<Void>
+        let allAgreementTap: Observable<Void>
     }
     
-    func toggleAllCheck(_ shouldCheck: Bool) {
-        self.privateAgreementObserver.accept(shouldCheck)
-        self.useAgreementObserver.accept(shouldCheck)
-        self.locationAgreementObserver.accept(shouldCheck)
-        self.ageAgreementObserver.accept(shouldCheck)
-        self.marketingAgreementOberver.accept(shouldCheck)
+    struct Output {
+        let privateAgreement = BehaviorRelay(value: false)
+
+        let useAgreement = BehaviorRelay(value: false)
+
+        let locationAgreement = BehaviorRelay(value: false)
+
+        let ageAgreement = BehaviorRelay(value: false)
+
+        let marketingAgreement = BehaviorRelay(value: false)
+
+        let allAgreement = BehaviorRelay(value: false)
+
+        let isEnableNextButton = BehaviorRelay(value: false)
+    }
+    
+    init() {
+        
+    }
+    
+    func transform(input: Input) -> Output {
+        let output = Output()
+        
+        input.ageTap
+            .withLatestFrom(output.ageAgreement)
+            .map { !$0 }
+            .bind(to: output.ageAgreement)
+            .disposed(by: disposeBag)
+        
+        input.useTap
+            .withLatestFrom(output.useAgreement)
+            .map { !$0 }
+            .bind(to: output.useAgreement)
+            .disposed(by: disposeBag)
+        
+        input.locationTap
+            .withLatestFrom(output.locationAgreement)
+            .map { !$0 }
+            .bind(to: output.locationAgreement)
+            .disposed(by: disposeBag)
+        
+        input.privateTap
+            .withLatestFrom(output.privateAgreement)
+            .map { !$0 }
+            .bind(to: output.privateAgreement)
+            .disposed(by: disposeBag)
+        
+        input.marketingTap
+            .withLatestFrom(output.marketingAgreement)
+            .map { !$0 }
+            .bind(to: output.marketingAgreement)
+            .disposed(by: disposeBag)
+        
+        input.allAgreementTap
+            .withLatestFrom(output.allAgreement)
+            .map { !$0 }
+            .subscribe(onNext: {
+                output.privateAgreement.accept($0)
+                output.useAgreement.accept($0)
+                output.locationAgreement.accept($0)
+                output.ageAgreement.accept($0)
+                output.marketingAgreement.accept($0)
+            })
+            .disposed(by: disposeBag)
+        
+        output.marketingAgreement
+            .map { RegistUserInfo(marketingAgree: $0) }
+            .bind(to: self.registUserInfo)
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(output.privateAgreement,
+                                 output.useAgreement,
+                                 output.locationAgreement,
+                                 output.ageAgreement)
+            .map { $0.0 && $0.1 && $0.2 && $0.3}
+            .bind(to: output.isEnableNextButton)
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(output.privateAgreement,
+                                 output.useAgreement,
+                                 output.locationAgreement,
+                                 output.ageAgreement,
+                                 output.marketingAgreement)
+            .map { $0.0 && $0.1 && $0.2 && $0.3 && $0.4}
+            .bind(to: output.allAgreement)
+            .disposed(by: disposeBag)
+        
+        return output
     }
 }

@@ -16,7 +16,7 @@ class RegistInfoViewModel: ViewModelType {
     
     private let sendCodePublisher = PublishSubject<Result<Int,AuthError>>()
     
-    var userInfo = BehaviorRelay<RegistUserInfo>(value: RegistUserInfo())
+    let userInfo: BehaviorRelay<RegistUserInfo>
     
     let telecomProviders = Observable.of(TelecomProviderType.allCases)
     
@@ -43,8 +43,9 @@ class RegistInfoViewModel: ViewModelType {
         let sendButtonEnable: Observable<Bool>
     }
     
-    init(_ usecase: RegistInfoUseCaseProtocol) {
+    init(_ usecase: RegistInfoUseCaseProtocol, userInfo: BehaviorRelay<RegistUserInfo>) {
         self.usecase = usecase
+        self.userInfo = userInfo
     }
     
     func transform(input: Input) -> Output {
