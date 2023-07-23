@@ -64,7 +64,8 @@ final class FitHubTopTabbar: UIView {
                 self.layer.addSublayer($0)
                 self.indicatorLayer = $0
                 
-                guard let item = self.itemStackView.subviews.first as? UIButton else { return }
+                guard let item = self.itemStackView.subviews.first as? TopTabbarItem else { return }
+                item.isSelected = true
                 
                 guard let x = item.titleLabel?.frame.origin.x,
                       let width = item.titleLabel?.frame.width else { return }
@@ -100,7 +101,7 @@ final class FitHubTopTabbar: UIView {
             guard let item = $0 as? TopTabbarItem else { return }
             item.isSelected = false
         }
-        
+
         item.isSelected = true
     }
     
