@@ -21,7 +21,6 @@
 		DB55B6C32A6B9B55006FEA7F /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB55B6C22A6B9B55006FEA7F /* BaseResponse.swift */; };
 		DB55B6C52A6BAF38006FEA7F /* PhoneNumLoginDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB55B6C42A6BAF38006FEA7F /* PhoneNumLoginDTO.swift */; };
 		DB55B6C92A6BB28A006FEA7F /* PhoneNumLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB55B6C82A6BB28A006FEA7F /* PhoneNumLoginUseCase.swift */; };
-		DB55B6D12A6C062C006FEA7F /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB55B6D02A6C062C006FEA7F /* AuthRepository.swift */; };
 		DB55B6D32A6C0855006FEA7F /* PhoneVerificationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB55B6D22A6C0855006FEA7F /* PhoneVerificationUseCase.swift */; };
 		DB55B6D62A6C2339006FEA7F /* PhoneAuthNumberDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB55B6D52A6C2339006FEA7F /* PhoneAuthNumberDTO.swift */; };
 		DB5D22302A546AB400B32485 /* PhoneVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */; };
@@ -45,6 +44,12 @@
 		DB7559E32A55030400B88B96 /* SportsSelectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7559E22A55030400B88B96 /* SportsSelectingViewController.swift */; };
 		DB7559E52A55035800B88B96 /* SportsSelectingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7559E42A55035800B88B96 /* SportsSelectingViewModel.swift */; };
 		DB7559E72A55062C00B88B96 /* SportsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7559E62A55062C00B88B96 /* SportsCell.swift */; };
+		DB8CD6FF2A6D0B7C004735C8 /* ProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD6FE2A6D0B7C004735C8 /* ProfileRepository.swift */; };
+		DB8CD7012A6D0BFE004735C8 /* PhoneVerificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7002A6D0BFE004735C8 /* PhoneVerificationRepository.swift */; };
+		DB8CD7042A6D0C5E004735C8 /* RegistInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7032A6D0C5E004735C8 /* RegistInfoRepository.swift */; };
+		DB8CD7062A6D0CF2004735C8 /* PhoneNumLoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7052A6D0CF2004735C8 /* PhoneNumLoginRepository.swift */; };
+		DB8CD7082A6D0D38004735C8 /* OAuthLoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7072A6D0D38004735C8 /* OAuthLoginRepository.swift */; };
+		DB8CD70B2A6D0E07004735C8 /* FindPWRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD70A2A6D0E07004735C8 /* FindPWRepository.swift */; };
 		DB97F8352A527BCF009C09A1 /* StandardNotificationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F8342A527BCF009C09A1 /* StandardNotificationAlertView.swift */; };
 		DB97F8382A52B2F2009C09A1 /* StandardAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F8372A52B2F2009C09A1 /* StandardAlertController.swift */; };
 		DB97F83A2A52B2F7009C09A1 /* StandardAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F8392A52B2F7009C09A1 /* StandardAlertAction.swift */; };
@@ -109,7 +114,6 @@
 		DB55B6C22A6B9B55006FEA7F /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		DB55B6C42A6BAF38006FEA7F /* PhoneNumLoginDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumLoginDTO.swift; sourceTree = "<group>"; };
 		DB55B6C82A6BB28A006FEA7F /* PhoneNumLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumLoginUseCase.swift; sourceTree = "<group>"; };
-		DB55B6D02A6C062C006FEA7F /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		DB55B6D22A6C0855006FEA7F /* PhoneVerificationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationUseCase.swift; sourceTree = "<group>"; };
 		DB55B6D52A6C2339006FEA7F /* PhoneAuthNumberDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAuthNumberDTO.swift; sourceTree = "<group>"; };
 		DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewModel.swift; sourceTree = "<group>"; };
@@ -134,6 +138,12 @@
 		DB7559E22A55030400B88B96 /* SportsSelectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsSelectingViewController.swift; sourceTree = "<group>"; };
 		DB7559E42A55035800B88B96 /* SportsSelectingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsSelectingViewModel.swift; sourceTree = "<group>"; };
 		DB7559E62A55062C00B88B96 /* SportsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsCell.swift; sourceTree = "<group>"; };
+		DB8CD6FE2A6D0B7C004735C8 /* ProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepository.swift; sourceTree = "<group>"; };
+		DB8CD7002A6D0BFE004735C8 /* PhoneVerificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationRepository.swift; sourceTree = "<group>"; };
+		DB8CD7032A6D0C5E004735C8 /* RegistInfoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistInfoRepository.swift; sourceTree = "<group>"; };
+		DB8CD7052A6D0CF2004735C8 /* PhoneNumLoginRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumLoginRepository.swift; sourceTree = "<group>"; };
+		DB8CD7072A6D0D38004735C8 /* OAuthLoginRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthLoginRepository.swift; sourceTree = "<group>"; };
+		DB8CD70A2A6D0E07004735C8 /* FindPWRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPWRepository.swift; sourceTree = "<group>"; };
 		DB97F8342A527BCF009C09A1 /* StandardNotificationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNotificationAlertView.swift; sourceTree = "<group>"; };
 		DB97F8372A52B2F2009C09A1 /* StandardAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardAlertController.swift; sourceTree = "<group>"; };
 		DB97F8392A52B2F7009C09A1 /* StandardAlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardAlertAction.swift; sourceTree = "<group>"; };
@@ -295,6 +305,43 @@
 			path = TextField;
 			sourceTree = "<group>";
 		};
+		DB8CD6FC2A6D0B5C004735C8 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				DB8CD7092A6D0DF7004735C8 /* FindPW */,
+				DB8CD7022A6D0C43004735C8 /* SignIn */,
+				DB8CD6FD2A6D0B66004735C8 /* SignUp */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		DB8CD6FD2A6D0B66004735C8 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				DB8CD6FE2A6D0B7C004735C8 /* ProfileRepository.swift */,
+				DB8CD7002A6D0BFE004735C8 /* PhoneVerificationRepository.swift */,
+				DB8CD7032A6D0C5E004735C8 /* RegistInfoRepository.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		DB8CD7022A6D0C43004735C8 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				DB8CD7052A6D0CF2004735C8 /* PhoneNumLoginRepository.swift */,
+				DB8CD7072A6D0D38004735C8 /* OAuthLoginRepository.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		DB8CD7092A6D0DF7004735C8 /* FindPW */ = {
+			isa = PBXGroup;
+			children = (
+				DB8CD70A2A6D0E07004735C8 /* FindPWRepository.swift */,
+			);
+			path = FindPW;
+			sourceTree = "<group>";
+		};
 		DB97F8332A527B9F009C09A1 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,7 +402,7 @@
 		DBF125EB2A5EB5E9004DA4B9 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				DB55B6D02A6C062C006FEA7F /* AuthRepository.swift */,
+				DB8CD6FC2A6D0B5C004735C8 /* Auth */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -736,6 +783,7 @@
 				DBFFDA2B2A47F1600008C2B5 /* UIFont+.swift in Sources */,
 				DB6D93E22A4EC8C10011F9BC /* PhoneVerificationViewController.swift in Sources */,
 				DB7559E52A55035800B88B96 /* SportsSelectingViewModel.swift in Sources */,
+				DB8CD7012A6D0BFE004735C8 /* PhoneVerificationRepository.swift in Sources */,
 				DB002BB42A67C332001B5672 /* CommunityViewController.swift in Sources */,
 				DB55B6C32A6B9B55006FEA7F /* BaseResponse.swift in Sources */,
 				DBFFDA392A497A460008C2B5 /* PhoneAuthViewController.swift in Sources */,
@@ -759,10 +807,12 @@
 				DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */,
 				DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */,
 				DB55B6D32A6C0855006FEA7F /* PhoneVerificationUseCase.swift in Sources */,
+				DB8CD7082A6D0D38004735C8 /* OAuthLoginRepository.swift in Sources */,
 				DB7134912A5BF46C0006EAAB /* AuthError.swift in Sources */,
 				DB668AFC2A50017700D702A1 /* UserInfoStatus.swift in Sources */,
 				DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */,
 				DB51ECC02A692EFC009F4690 /* TopTabbarItem.swift in Sources */,
+				DB8CD7042A6D0C5E004735C8 /* RegistInfoRepository.swift in Sources */,
 				DB55B6D62A6C2339006FEA7F /* PhoneAuthNumberDTO.swift in Sources */,
 				DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */,
 				DB6D93E42A4EDCE20011F9BC /* PasswordSettingViewController.swift in Sources */,
@@ -780,18 +830,20 @@
 				DB97F83C2A52B36E009C09A1 /* NotificationName+.swift in Sources */,
 				DBFFDA292A47F1570008C2B5 /* UIColor+.swift in Sources */,
 				DBF125DF2A5E7DED004DA4B9 /* ResetPasswordViewModel.swift in Sources */,
-				DB55B6D12A6C062C006FEA7F /* AuthRepository.swift in Sources */,
 				DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */,
 				DB51ECBD2A68E846009F4690 /* FitHubTopTabbar.swift in Sources */,
 				DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */,
 				DBF125E32A5E885D004DA4B9 /* PasswordUseCase.swift in Sources */,
+				DB8CD70B2A6D0E07004735C8 /* FindPWRepository.swift in Sources */,
 				DB97F83E2A52C1E3009C09A1 /* PaddingLabel.swift in Sources */,
 				DB97F83A2A52B2F7009C09A1 /* StandardAlertAction.swift in Sources */,
+				DB8CD7062A6D0CF2004735C8 /* PhoneNumLoginRepository.swift in Sources */,
 				DBB820B52A5D67CA0016CB63 /* RegistInfoUseCase.swift in Sources */,
 				DBFFDA352A492A4E0008C2B5 /* OAuthLoginViewModel.swift in Sources */,
 				DB97F8382A52B2F2009C09A1 /* StandardAlertController.swift in Sources */,
 				DBDBA30E2A64EC8200F1CDA5 /* NickNameDTO.swift in Sources */,
 				DB002BB82A67C36F001B5672 /* LookUpViewController.swift in Sources */,
+				DB8CD6FF2A6D0B7C004735C8 /* ProfileRepository.swift in Sources */,
 				DBF125E72A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift in Sources */,
 				DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */,
 				DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */,

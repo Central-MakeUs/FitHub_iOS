@@ -12,7 +12,7 @@ import RxCocoa
 class ResetPasswordViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
-    let usecase: PasswordUseCase
+    private let usecase: PasswordUseCaseProtocol
     
     struct Input {
         let passwordInput: Observable<String>
@@ -27,7 +27,7 @@ class ResetPasswordViewModel: ViewModelType {
         let nextTap: Signal<Void>
     }
     
-    init(_ usecase: PasswordUseCase = PasswordInteractor()) {
+    init(_ usecase: PasswordUseCaseProtocol) {
         self.usecase = usecase
     }
     

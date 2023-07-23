@@ -14,7 +14,7 @@ protocol OAuthLoginUseCaseProtocol {
 }
 
 class OAuthLoginUseCase: OAuthLoginUseCaseProtocol {
-    private let repository: AuthRepositoryInterface
+    private let repository: OAuthLoginRepositoryInterface
     
     func signInWithApple(_ token: String) -> Single<OAuthLoginDTO> {
         return repository.signInWithApple(token)
@@ -24,7 +24,7 @@ class OAuthLoginUseCase: OAuthLoginUseCaseProtocol {
         return repository.signInWithKakao(socialId)
     }
     
-    init(_ repository: AuthRepositoryInterface) {
+    init(_ repository: OAuthLoginRepositoryInterface) {
         self.repository = repository
     }
 }

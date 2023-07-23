@@ -10,19 +10,14 @@ import RxSwift
 
 protocol FindPWUseCaseProtocol {
     func verifyPhoneNumber(_ numberStr: String) -> UserInfoStatus
-    func sendAuthenticationNumber(_ phoneNum: String) -> Single<Int>
     func checkUserInfo(_ phoneNum: String) -> Single<Int>
 }
 
 class FindPWUseCase: FindPWUseCaseProtocol {
-    private let repository: AuthRepositoryInterface
+    private let repository: FindPWRepositoryInterface
     
-    init(_ repository: AuthRepositoryInterface) {
+    init(_ repository: FindPWRepositoryInterface) {
         self.repository = repository
-    }
-    
-    func sendAuthenticationNumber(_ phoneNum: String) -> Single<Int> {
-        return repository.sendAuthenticationNumber(phoneNum)
     }
     
     func verifyPhoneNumber(_ numberStr: String) -> UserInfoStatus {

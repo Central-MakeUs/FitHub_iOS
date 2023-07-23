@@ -186,7 +186,7 @@ final class RegistInfoInputViewController: BaseViewController {
     
     //MARK: - 화면 이동
     private func pushPhoneVerifactionViewController() {
-        let usecase = PhoneVerificationUseCase(repository: AuthRepository(AuthService()))
+        let usecase = PhoneVerificationUseCase(repository: PhoneVerificationRepository(AuthService()))
         let phoneVerificationVC = PhoneVerificationViewController(PhoneVerificationViewModel(usecase,
                                                                                              userInfo: self.viewModel.userInfo))
         self.navigationController?.pushViewController(phoneVerificationVC, animated: true)

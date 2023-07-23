@@ -12,7 +12,7 @@ import RxCocoa
 class PasswordSettingViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
-    private let usecase: PasswordUseCase
+    private let usecase: PasswordUseCaseProtocol
     
     let userInfo: BehaviorRelay<RegistUserInfo>
     
@@ -29,7 +29,7 @@ class PasswordSettingViewModel: ViewModelType {
         let nextTap: Signal<Void>
     }
     
-    init(_ userInfo: BehaviorRelay<RegistUserInfo>, usecase: PasswordUseCase = PasswordInteractor()) {
+    init(_ userInfo: BehaviorRelay<RegistUserInfo>, usecase: PasswordUseCaseProtocol) {
         self.usecase = usecase
         self.userInfo = userInfo
     }

@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol PasswordUseCase {
+protocol PasswordUseCaseProtocol {
     func verifyPassword(_ password: String) -> UserInfoStatus
     func verifyPasswordVerification(_ passwordVerification: String, _ password: String) -> UserInfoStatus
 }
 
 
-class PasswordInteractor: PasswordUseCase {
+class PasswordUseCase: PasswordUseCaseProtocol {
     func verifyPassword(_ password: String) -> UserInfoStatus {
         let regex = "^(?=.*[A-Za-z])(?=.*\\d|.*[^A-Za-z0-9]).+$"
         
