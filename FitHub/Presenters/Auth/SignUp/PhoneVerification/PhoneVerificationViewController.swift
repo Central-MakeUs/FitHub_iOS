@@ -133,10 +133,13 @@ final class PhoneVerificationViewController: BaseViewController {
     //MARK: - 화면이동
     private func pushPasswordSettingViewController() {
         if let userInfo = self.viewModel.registUserInfo {
-            self.navigationController?.pushViewController(PasswordSettingViewController(PasswordSettingViewModel(userInfo)), animated: true)
+            let passwordSettingVC = PasswordSettingViewController(PasswordSettingViewModel(userInfo,
+                                                                                           usecase: PasswordUseCase()))
+            self.navigationController?.pushViewController(passwordSettingVC, animated: true)
         } else {
             //TODO: 비밀번호 재설정 페이지 이동
-            self.navigationController?.pushViewController(ResetPasswordViewController(ResetPasswordViewModel()), animated: true)
+            let passwordResetVC = ResetPasswordViewController(ResetPasswordViewModel(PasswordUseCase()))
+            self.navigationController?.pushViewController(passwordResetVC, animated: true)
         }
     }
     

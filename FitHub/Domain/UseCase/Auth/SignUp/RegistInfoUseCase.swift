@@ -11,18 +11,13 @@ import RxSwift
 protocol RegistInfoUseCaseProtocol {
     func verifyPhoneNumber(_ numberStr: String) -> UserInfoStatus 
     func verifyDateOfBirth(_ dateStr: String, sexNumStr: String) -> UserInfoStatus
-    func sendAuthenticationNumber(_ phoneNum: String) -> Single<Int>
 }
 
 class RegistInfoUseCase: RegistInfoUseCaseProtocol {
-    private let repository: AuthRepositoryInterface
+    private let repository: RegistInfoRepositoryInterface
     
-    init(_ repository: AuthRepositoryInterface) {
+    init(_ repository: RegistInfoRepositoryInterface) {
         self.repository = repository
-    }
-    
-    func sendAuthenticationNumber(_ phoneNum: String) -> Single<Int> {
-        return repository.sendAuthenticationNumber(phoneNum)
     }
     
     func verifyPhoneNumber(_ numberStr: String) -> UserInfoStatus {

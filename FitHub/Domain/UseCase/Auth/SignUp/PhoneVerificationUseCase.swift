@@ -14,9 +14,9 @@ protocol PhoneVerificationUseCaseProtocol {
 }
 
 final class PhoneVerificationUseCase: PhoneVerificationUseCaseProtocol {
-    private let repository: AuthRepository
+    private let repository: PhoneVerificationRepositoryInterface
     
-    init(repository: AuthRepository) {
+    init(repository: PhoneVerificationRepositoryInterface) {
         self.repository = repository
     }
     
