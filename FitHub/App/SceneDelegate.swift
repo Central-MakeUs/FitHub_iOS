@@ -76,7 +76,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         homeVC.tabBarItem.image = UIImage(named: "HomeIcon")
         homeVC.tabBarItem.title = "홈"
         
-        let communityVC = UINavigationController(rootViewController: CommunityViewController())
+        let communityVCUsecase = CommunityUseCase(CommunityRepository(AuthService()))
+        let communityVC = UINavigationController(rootViewController: CommunityViewController(CommunityViewModel(communityVCUsecase)))
         communityVC.tabBarItem.image = UIImage(named: "CommunityIcon")
         communityVC.tabBarItem.title = "커뮤니티"
         
