@@ -50,6 +50,17 @@
 		DB8CD7062A6D0CF2004735C8 /* PhoneNumLoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7052A6D0CF2004735C8 /* PhoneNumLoginRepository.swift */; };
 		DB8CD7082A6D0D38004735C8 /* OAuthLoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7072A6D0D38004735C8 /* OAuthLoginRepository.swift */; };
 		DB8CD70B2A6D0E07004735C8 /* FindPWRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD70A2A6D0E07004735C8 /* FindPWRepository.swift */; };
+		DB8CD70D2A6D14C5004735C8 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD70C2A6D14C5004735C8 /* CategoryCell.swift */; };
+		DB8CD7102A6D2385004735C8 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = DB8CD70F2A6D2385004735C8 /* RxDataSources */; };
+		DB8CD7132A6D2855004735C8 /* SortSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7122A6D2855004735C8 /* SortSwitchView.swift */; };
+		DB8CD7152A6D2C9F004735C8 /* CertificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7142A6D2C9F004735C8 /* CertificationCell.swift */; };
+		DB8CD7172A6D3995004735C8 /* CreateActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7162A6D3995004735C8 /* CreateActionSheet.swift */; };
+		DB8CD7192A6E0B7D004735C8 /* CommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7182A6E0B7D004735C8 /* CommunityViewModel.swift */; };
+		DB8CD71B2A6E0C93004735C8 /* CategoryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD71A2A6E0C93004735C8 /* CategoryDTO.swift */; };
+		DB8CD71F2A6E164A004735C8 /* CommunityUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD71E2A6E164A004735C8 /* CommunityUseCase.swift */; };
+		DB8CD7222A6E16FA004735C8 /* CommunityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7212A6E16FA004735C8 /* CommunityRepository.swift */; };
+		DB8CD7252A6E58A1004735C8 /* CommunityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7242A6E58A1004735C8 /* CommunityType.swift */; };
+		DB8CD7272A6E5A27004735C8 /* OrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7262A6E5A27004735C8 /* OrderType.swift */; };
 		DB97F8352A527BCF009C09A1 /* StandardNotificationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F8342A527BCF009C09A1 /* StandardNotificationAlertView.swift */; };
 		DB97F8382A52B2F2009C09A1 /* StandardAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F8372A52B2F2009C09A1 /* StandardAlertController.swift */; };
 		DB97F83A2A52B2F7009C09A1 /* StandardAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F8392A52B2F7009C09A1 /* StandardAlertAction.swift */; };
@@ -144,6 +155,16 @@
 		DB8CD7052A6D0CF2004735C8 /* PhoneNumLoginRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumLoginRepository.swift; sourceTree = "<group>"; };
 		DB8CD7072A6D0D38004735C8 /* OAuthLoginRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthLoginRepository.swift; sourceTree = "<group>"; };
 		DB8CD70A2A6D0E07004735C8 /* FindPWRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPWRepository.swift; sourceTree = "<group>"; };
+		DB8CD70C2A6D14C5004735C8 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		DB8CD7122A6D2855004735C8 /* SortSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortSwitchView.swift; sourceTree = "<group>"; };
+		DB8CD7142A6D2C9F004735C8 /* CertificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationCell.swift; sourceTree = "<group>"; };
+		DB8CD7162A6D3995004735C8 /* CreateActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateActionSheet.swift; sourceTree = "<group>"; };
+		DB8CD7182A6E0B7D004735C8 /* CommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewModel.swift; sourceTree = "<group>"; };
+		DB8CD71A2A6E0C93004735C8 /* CategoryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDTO.swift; sourceTree = "<group>"; };
+		DB8CD71E2A6E164A004735C8 /* CommunityUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityUseCase.swift; sourceTree = "<group>"; };
+		DB8CD7212A6E16FA004735C8 /* CommunityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityRepository.swift; sourceTree = "<group>"; };
+		DB8CD7242A6E58A1004735C8 /* CommunityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityType.swift; sourceTree = "<group>"; };
+		DB8CD7262A6E5A27004735C8 /* OrderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderType.swift; sourceTree = "<group>"; };
 		DB97F8342A527BCF009C09A1 /* StandardNotificationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNotificationAlertView.swift; sourceTree = "<group>"; };
 		DB97F8372A52B2F2009C09A1 /* StandardAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardAlertController.swift; sourceTree = "<group>"; };
 		DB97F8392A52B2F7009C09A1 /* StandardAlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardAlertAction.swift; sourceTree = "<group>"; };
@@ -199,6 +220,7 @@
 				DBFFDA162A47E8A70008C2B5 /* RxKakaoSDKCommon in Frameworks */,
 				DBFFDA142A47E8A70008C2B5 /* RxKakaoSDKAuth in Frameworks */,
 				DBFFDA062A47E4A50008C2B5 /* RxSwift in Frameworks */,
+				DB8CD7102A6D2385004735C8 /* RxDataSources in Frameworks */,
 				DB98D4E62A56E7970096D88F /* RxGesture in Frameworks */,
 				DBFFD9FF2A47E4650008C2B5 /* SnapKit in Frameworks */,
 			);
@@ -220,6 +242,7 @@
 			children = (
 				DB51ECBB2A68E838009F4690 /* View */,
 				DB002BB32A67C332001B5672 /* CommunityViewController.swift */,
+				DB8CD7182A6E0B7D004735C8 /* CommunityViewModel.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -243,7 +266,10 @@
 		DB51ECBB2A68E838009F4690 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DB8CD7112A6D2829004735C8 /* Cell */,
 				DB51ECBE2A692270009F4690 /* TopTabBar */,
+				DB8CD7122A6D2855004735C8 /* SortSwitchView.swift */,
+				DB8CD7162A6D3995004735C8 /* CreateActionSheet.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -288,6 +314,7 @@
 		DB668AFA2A50016400D702A1 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				DB8CD7232A6E5893004735C8 /* Community */,
 				DB6D93CE2A4D596D0011F9BC /* TelecomProviderType.swift */,
 				DB668AFB2A50017700D702A1 /* UserInfoStatus.swift */,
 			);
@@ -342,6 +369,48 @@
 			path = FindPW;
 			sourceTree = "<group>";
 		};
+		DB8CD7112A6D2829004735C8 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DB8CD70C2A6D14C5004735C8 /* CategoryCell.swift */,
+				DB8CD7142A6D2C9F004735C8 /* CertificationCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		DB8CD71C2A6E1632004735C8 /* FindPW */ = {
+			isa = PBXGroup;
+			children = (
+				DBB820BB2A5E4D990016CB63 /* FindPWUseCase.swift */,
+			);
+			path = FindPW;
+			sourceTree = "<group>";
+		};
+		DB8CD71D2A6E163C004735C8 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				DB8CD71E2A6E164A004735C8 /* CommunityUseCase.swift */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
+		DB8CD7202A6E16EA004735C8 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				DB8CD7212A6E16FA004735C8 /* CommunityRepository.swift */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
+		DB8CD7232A6E5893004735C8 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				DB8CD7242A6E58A1004735C8 /* CommunityType.swift */,
+				DB8CD7262A6E5A27004735C8 /* OrderType.swift */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
 		DB97F8332A527B9F009C09A1 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +437,7 @@
 				DBDBA3102A65324C00F1CDA5 /* OAuthLoginDTO.swift */,
 				DB55B6C42A6BAF38006FEA7F /* PhoneNumLoginDTO.swift */,
 				DB55B6D52A6C2339006FEA7F /* PhoneAuthNumberDTO.swift */,
+				DB8CD71A2A6E0C93004735C8 /* CategoryDTO.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -402,6 +472,7 @@
 		DBF125EB2A5EB5E9004DA4B9 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				DB8CD7202A6E16EA004735C8 /* Community */,
 				DB8CD6FC2A6D0B5C004735C8 /* Auth */,
 			);
 			path = Repository;
@@ -410,9 +481,9 @@
 		DBF125EE2A600B04004DA4B9 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				DB8CD71C2A6E1632004735C8 /* FindPW */,
 				DB55B6D42A6C08A7006FEA7F /* SignUp */,
 				DB55B6CA2A6BB297006FEA7F /* SignIn */,
-				DBB820BB2A5E4D990016CB63 /* FindPWUseCase.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -587,6 +658,7 @@
 		DBFF259E2A5B990200CF6DD4 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				DB8CD71D2A6E163C004735C8 /* Community */,
 				DBF125EE2A600B04004DA4B9 /* Auth */,
 			);
 			path = UseCase;
@@ -708,6 +780,7 @@
 				DBFFDA192A47E8A70008C2B5 /* RxKakaoSDKUser */,
 				DB98D4E52A56E7970096D88F /* RxGesture */,
 				DBDBA30B2A64D2B700F1CDA5 /* RxKeyboard */,
+				DB8CD70F2A6D2385004735C8 /* RxDataSources */,
 			);
 			productName = FitHub;
 			productReference = DBFFD9E62A47E2E20008C2B5 /* FitHub.app */;
@@ -746,6 +819,7 @@
 				DBFFDA122A47E8A70008C2B5 /* XCRemoteSwiftPackageReference "kakao-ios-sdk-rx" */,
 				DB98D4E42A56E7970096D88F /* XCRemoteSwiftPackageReference "RxGesture" */,
 				DBDBA30A2A64D2B700F1CDA5 /* XCRemoteSwiftPackageReference "RxKeyboard" */,
+				DB8CD70E2A6D2385004735C8 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = DBFFD9E72A47E2E20008C2B5 /* Products */;
 			projectDirPath = "";
@@ -777,6 +851,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB6D93DE2A4E7E340011F9BC /* RegistInfoInputViewController.swift in Sources */,
+				DB8CD7152A6D2C9F004735C8 /* CertificationCell.swift in Sources */,
 				DB7559E32A55030400B88B96 /* SportsSelectingViewController.swift in Sources */,
 				DB6D93D42A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift in Sources */,
 				DBF125DB2A5E7C14004DA4B9 /* VerificationNumberTextFieldView.swift in Sources */,
@@ -784,19 +859,24 @@
 				DB6D93E22A4EC8C10011F9BC /* PhoneVerificationViewController.swift in Sources */,
 				DB7559E52A55035800B88B96 /* SportsSelectingViewModel.swift in Sources */,
 				DB8CD7012A6D0BFE004735C8 /* PhoneVerificationRepository.swift in Sources */,
+				DB8CD7132A6D2855004735C8 /* SortSwitchView.swift in Sources */,
 				DB002BB42A67C332001B5672 /* CommunityViewController.swift in Sources */,
 				DB55B6C32A6B9B55006FEA7F /* BaseResponse.swift in Sources */,
 				DBFFDA392A497A460008C2B5 /* PhoneAuthViewController.swift in Sources */,
 				DB7559DF2A548BC000B88B96 /* ProfileSettingViewController.swift in Sources */,
 				DB5D22302A546AB400B32485 /* PhoneVerificationViewModel.swift in Sources */,
+				DB8CD71F2A6E164A004735C8 /* CommunityUseCase.swift in Sources */,
 				DB55B6C92A6BB28A006FEA7F /* PhoneNumLoginUseCase.swift in Sources */,
 				DB71348D2A5BDBF90006EAAB /* AuthService.swift in Sources */,
 				DBFFDA3B2A4983F90008C2B5 /* BaseViewController.swift in Sources */,
+				DB8CD7252A6E58A1004735C8 /* CommunityType.swift in Sources */,
 				DBFF25A02A5B991A00CF6DD4 /* OAuthLoginUseCase.swift in Sources */,
+				DB8CD70D2A6D14C5004735C8 /* CategoryCell.swift in Sources */,
 				DB6D93DB2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift in Sources */,
 				DBFFDA3E2A4988200008C2B5 /* PhoneAuthViewModel.swift in Sources */,
 				DB002BBB2A67C3C7001B5672 /* MyPageViewController.swift in Sources */,
 				DB5D22322A5470A800B32485 /* PasswordSettingViewModel.swift in Sources */,
+				DB8CD7222A6E16FA004735C8 /* CommunityRepository.swift in Sources */,
 				DBDBA3112A65324C00F1CDA5 /* OAuthLoginDTO.swift in Sources */,
 				DB51D2592A4C2719002415B0 /* AgreementModel.swift in Sources */,
 				DB7559E72A55062C00B88B96 /* SportsCell.swift in Sources */,
@@ -805,13 +885,16 @@
 				DBB820BC2A5E4D990016CB63 /* FindPWUseCase.swift in Sources */,
 				DB51D2532A4B36A5002415B0 /* AgreementView.swift in Sources */,
 				DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */,
+				DB8CD7192A6E0B7D004735C8 /* CommunityViewModel.swift in Sources */,
 				DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */,
 				DB55B6D32A6C0855006FEA7F /* PhoneVerificationUseCase.swift in Sources */,
 				DB8CD7082A6D0D38004735C8 /* OAuthLoginRepository.swift in Sources */,
 				DB7134912A5BF46C0006EAAB /* AuthError.swift in Sources */,
 				DB668AFC2A50017700D702A1 /* UserInfoStatus.swift in Sources */,
+				DB8CD7172A6D3995004735C8 /* CreateActionSheet.swift in Sources */,
 				DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */,
 				DB51ECC02A692EFC009F4690 /* TopTabbarItem.swift in Sources */,
+				DB8CD71B2A6E0C93004735C8 /* CategoryDTO.swift in Sources */,
 				DB8CD7042A6D0C5E004735C8 /* RegistInfoRepository.swift in Sources */,
 				DB55B6D62A6C2339006FEA7F /* PhoneAuthNumberDTO.swift in Sources */,
 				DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */,
@@ -839,6 +922,7 @@
 				DB97F83A2A52B2F7009C09A1 /* StandardAlertAction.swift in Sources */,
 				DB8CD7062A6D0CF2004735C8 /* PhoneNumLoginRepository.swift in Sources */,
 				DBB820B52A5D67CA0016CB63 /* RegistInfoUseCase.swift in Sources */,
+				DB8CD7272A6E5A27004735C8 /* OrderType.swift in Sources */,
 				DBFFDA352A492A4E0008C2B5 /* OAuthLoginViewModel.swift in Sources */,
 				DB97F8382A52B2F2009C09A1 /* StandardAlertController.swift in Sources */,
 				DBDBA30E2A64EC8200F1CDA5 /* NickNameDTO.swift in Sources */,
@@ -1077,6 +1161,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DB8CD70E2A6D2385004735C8 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		DB98D4E42A56E7970096D88F /* XCRemoteSwiftPackageReference "RxGesture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture";
@@ -1144,6 +1236,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DB8CD70F2A6D2385004735C8 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB8CD70E2A6D2385004735C8 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
+		};
 		DB98D4E52A56E7970096D88F /* RxGesture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DB98D4E42A56E7970096D88F /* XCRemoteSwiftPackageReference "RxGesture" */;

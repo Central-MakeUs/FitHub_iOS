@@ -174,4 +174,25 @@ class AuthService {
             return Disposables.create()
         }
     }
+    
+    //MARK: - 카테고리
+    func fetchCategory() -> Single<[CategoryDTO]> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/exercise-category"
+        
+        return Single<[CategoryDTO]>.create { emitter in
+            AF.request(urlString)
+                .responseDecodable(of: BaseArrayResponse<CategoryDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        guard let result = response.result else { return }
+                        emitter(.success(result))
+                    case .failure(let error):
+                        emitter(.failure(error))
+                    }
+                }
+            
+            return Disposables.create()
+        }
+    }
 }

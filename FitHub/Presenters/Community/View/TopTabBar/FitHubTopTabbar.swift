@@ -8,16 +8,9 @@
 import UIKit
 import RxSwift
 
-enum topTabBarItem {
-    case exploration
-    case following
-}
-
 final class FitHubTopTabbar: UIView {
     //MARK: - Properties
     private let disposeBag = DisposeBag()
-    var selectedItem: topTabBarItem = .exploration
-    //    weak var delegate: TopTapBarDelegate?
     
     private let itemStackView: UIStackView
     
@@ -64,7 +57,8 @@ final class FitHubTopTabbar: UIView {
                 self.layer.addSublayer($0)
                 self.indicatorLayer = $0
                 
-                guard let item = self.itemStackView.subviews.first as? UIButton else { return }
+                guard let item = self.itemStackView.subviews.first as? TopTabbarItem else { return }
+                item.isSelected = true
                 
                 guard let x = item.titleLabel?.frame.origin.x,
                       let width = item.titleLabel?.frame.width else { return }
@@ -100,7 +94,7 @@ final class FitHubTopTabbar: UIView {
             guard let item = $0 as? TopTabbarItem else { return }
             item.isSelected = false
         }
-        
+
         item.isSelected = true
     }
     

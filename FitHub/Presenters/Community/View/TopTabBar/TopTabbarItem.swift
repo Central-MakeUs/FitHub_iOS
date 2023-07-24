@@ -8,7 +8,7 @@
 import UIKit
 
 final class TopTabbarItem: UIButton {
-    override var isEnabled: Bool {
+    override var isSelected: Bool {
         didSet {
             if isSelected {
                 self.setTitleColor(.textDefault, for: .normal)
@@ -27,6 +27,7 @@ final class TopTabbarItem: UIButton {
     init(_ title: String) {
         super.init(frame: .zero)
         self.setTitle(title, for: .normal)
+        self.setTitleColor(.textSub02, for: .normal)
     }
     
     required init?(coder: NSCoder) {
