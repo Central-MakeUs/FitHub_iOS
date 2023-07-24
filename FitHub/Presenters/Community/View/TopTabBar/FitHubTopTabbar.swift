@@ -8,16 +8,9 @@
 import UIKit
 import RxSwift
 
-enum topTabBarItem {
-    case exploration
-    case following
-}
-
 final class FitHubTopTabbar: UIView {
     //MARK: - Properties
     private let disposeBag = DisposeBag()
-    var selectedItem: topTabBarItem = .exploration
-    //    weak var delegate: TopTapBarDelegate?
     
     private let itemStackView: UIStackView
     
