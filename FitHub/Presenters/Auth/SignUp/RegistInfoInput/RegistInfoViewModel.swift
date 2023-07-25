@@ -12,11 +12,9 @@ import RxCocoa
 class RegistInfoViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
-    private let usecase: RegistInfoUseCaseProtocol
+    var usecase: RegistInfoUseCaseProtocol
     
     private let sendCodePublisher = PublishSubject<Result<Int,AuthError>>()
-    
-    let userInfo: BehaviorRelay<RegistUserInfo>
     
     let telecomProviders = Observable.of(TelecomProviderType.allCases)
     
@@ -41,9 +39,8 @@ class RegistInfoViewModel: ViewModelType {
         let sendButtonEnable: Observable<Bool>
     }
     
-    init(_ usecase: RegistInfoUseCaseProtocol, userInfo: BehaviorRelay<RegistUserInfo>) {
+    init(_ usecase: RegistInfoUseCaseProtocol) {
         self.usecase = usecase
-        self.userInfo = userInfo
     }
     
     func transform(input: Input) -> Output {
@@ -71,10 +68,11 @@ class RegistInfoViewModel: ViewModelType {
             .map { $0 && $1 && $2 && $3 }
         
         Observable.combineLatest(name, dateOfBirth, sexNumber, phoneNumber, telecom)
-            .map { RegistUserInfo(phoneNumber: $3.0, dateOfBirth: $1.0, sexNumber: $2.0, name: $0, telecom: $4) }
-            .bind(to: self.userInfo)
+            .map { AuthUserInfo(phoneNumber: $3.0, dateOfBirth: $1.0, sexNumber: $2.0, name: $0, telecom: $4) }
+            .subscribe(onNext: { [weak self] info in
+                self?.usecase.updateRegistUserInfo(info)
+            })
             .disposed(by: disposeBag)
-        
         
         return Output(dateOfBirth: dateOfBirth,
                       sexNumber: sexNumber,

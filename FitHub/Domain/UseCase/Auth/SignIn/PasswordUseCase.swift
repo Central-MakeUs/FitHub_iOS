@@ -8,12 +8,20 @@
 import Foundation
 
 protocol PasswordUseCaseProtocol {
+    var registUserInfo: AuthUserInfo { get set }
+    
     func verifyPassword(_ password: String) -> UserInfoStatus
     func verifyPasswordVerification(_ passwordVerification: String, _ password: String) -> UserInfoStatus
 }
 
 
 class PasswordUseCase: PasswordUseCaseProtocol {
+    var registUserInfo: AuthUserInfo
+    
+    init(_ authUserInfo: AuthUserInfo) {
+        self.registUserInfo = authUserInfo
+    }
+    
     func verifyPassword(_ password: String) -> UserInfoStatus {
         let regex = "^(?=.*[A-Za-z])(?=.*\\d|.*[^A-Za-z0-9]).+$"
         

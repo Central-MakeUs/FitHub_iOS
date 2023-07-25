@@ -85,8 +85,7 @@ final class ProfileSettingViewController: BaseViewController {
         
         output.nextTap
             .emit(onNext: { [weak self] in
-                guard let self else { return }
-                self.navigationController?.pushViewController(SportsSelectingViewController(SportsSelectingViewModel(self.viewModel.userInfo)), animated: true)
+                self?.pushSprotsSelectingViewController()
             })
             .disposed(by: disposeBag)
         
@@ -110,6 +109,13 @@ final class ProfileSettingViewController: BaseViewController {
             .asDriver()
             .drive(self.profileImageEditButton.rx.image())
             .disposed(by: disposeBag)
+    }
+    
+    private func pushSprotsSelectingViewController() {
+        let usecase = SportsSelectingUseCase(self.viewModel.usecase.registUserInfo)
+        let sportSelectingVC = SportsSelectingViewController(SportsSelectingViewModel(usecase))
+        
+        self.navigationController?.pushViewController(sportSelectingVC, animated: true)
     }
     
     //MARK: - 사진첩 권한 체크

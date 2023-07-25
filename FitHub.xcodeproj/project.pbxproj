@@ -27,8 +27,9 @@
 		DB5D22322A5470A800B32485 /* PasswordSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D22312A5470A800B32485 /* PasswordSettingViewModel.swift */; };
 		DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF32A4EECB300D702A1 /* UIViewController+.swift */; };
 		DB668AF72A4F041100D702A1 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF62A4F041100D702A1 /* ViewModelType.swift */; };
-		DB668AF92A4F06D000D702A1 /* RegistUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF82A4F06D000D702A1 /* RegistUserInfo.swift */; };
+		DB668AF92A4F06D000D702A1 /* AuthUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF82A4F06D000D702A1 /* AuthUserInfo.swift */; };
 		DB668AFC2A50017700D702A1 /* UserInfoStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AFB2A50017700D702A1 /* UserInfoStatus.swift */; };
+		DB6CC3ED2A7016E700C4C2BC /* SportsSelectingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CC3EC2A7016E700C4C2BC /* SportsSelectingUseCase.swift */; };
 		DB6D93CF2A4D596D0011F9BC /* TelecomProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93CE2A4D596D0011F9BC /* TelecomProviderType.swift */; };
 		DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93D02A4D5D2F0011F9BC /* SimpleLabelCell.swift */; };
 		DB6D93D42A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93D32A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift */; };
@@ -61,6 +62,7 @@
 		DB8CD7222A6E16FA004735C8 /* CommunityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7212A6E16FA004735C8 /* CommunityRepository.swift */; };
 		DB8CD7252A6E58A1004735C8 /* CommunityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7242A6E58A1004735C8 /* CommunityType.swift */; };
 		DB8CD7272A6E5A27004735C8 /* OrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7262A6E5A27004735C8 /* OrderType.swift */; };
+		DB8CD7292A6E72C0004735C8 /* AgreementUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7282A6E72C0004735C8 /* AgreementUseCase.swift */; };
 		DB97F8352A527BCF009C09A1 /* StandardNotificationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F8342A527BCF009C09A1 /* StandardNotificationAlertView.swift */; };
 		DB97F8382A52B2F2009C09A1 /* StandardAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F8372A52B2F2009C09A1 /* StandardAlertController.swift */; };
 		DB97F83A2A52B2F7009C09A1 /* StandardAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97F8392A52B2F7009C09A1 /* StandardAlertAction.swift */; };
@@ -132,8 +134,9 @@
 		DB5F84BE2A5CF72100E16C14 /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
 		DB668AF32A4EECB300D702A1 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		DB668AF62A4F041100D702A1 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
-		DB668AF82A4F06D000D702A1 /* RegistUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistUserInfo.swift; sourceTree = "<group>"; };
+		DB668AF82A4F06D000D702A1 /* AuthUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUserInfo.swift; sourceTree = "<group>"; };
 		DB668AFB2A50017700D702A1 /* UserInfoStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoStatus.swift; sourceTree = "<group>"; };
+		DB6CC3EC2A7016E700C4C2BC /* SportsSelectingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsSelectingUseCase.swift; sourceTree = "<group>"; };
 		DB6D93CE2A4D596D0011F9BC /* TelecomProviderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelecomProviderType.swift; sourceTree = "<group>"; };
 		DB6D93D02A4D5D2F0011F9BC /* SimpleLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleLabelCell.swift; sourceTree = "<group>"; };
 		DB6D93D32A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelecomProviderSelectorViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +168,7 @@
 		DB8CD7212A6E16FA004735C8 /* CommunityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityRepository.swift; sourceTree = "<group>"; };
 		DB8CD7242A6E58A1004735C8 /* CommunityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityType.swift; sourceTree = "<group>"; };
 		DB8CD7262A6E5A27004735C8 /* OrderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderType.swift; sourceTree = "<group>"; };
+		DB8CD7282A6E72C0004735C8 /* AgreementUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementUseCase.swift; sourceTree = "<group>"; };
 		DB97F8342A527BCF009C09A1 /* StandardNotificationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNotificationAlertView.swift; sourceTree = "<group>"; };
 		DB97F8372A52B2F2009C09A1 /* StandardAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardAlertController.swift; sourceTree = "<group>"; };
 		DB97F8392A52B2F7009C09A1 /* StandardAlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardAlertAction.swift; sourceTree = "<group>"; };
@@ -299,6 +303,8 @@
 				DBF125E62A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift */,
 				DB55B6D22A6C0855006FEA7F /* PhoneVerificationUseCase.swift */,
 				DBB820B42A5D67CA0016CB63 /* RegistInfoUseCase.swift */,
+				DB8CD7282A6E72C0004735C8 /* AgreementUseCase.swift */,
+				DB6CC3EC2A7016E700C4C2BC /* SportsSelectingUseCase.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -707,7 +713,7 @@
 			isa = PBXGroup;
 			children = (
 				DB51D2582A4C2719002415B0 /* AgreementModel.swift */,
-				DB668AF82A4F06D000D702A1 /* RegistUserInfo.swift */,
+				DB668AF82A4F06D000D702A1 /* AuthUserInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -871,6 +877,7 @@
 				DBFFDA3B2A4983F90008C2B5 /* BaseViewController.swift in Sources */,
 				DB8CD7252A6E58A1004735C8 /* CommunityType.swift in Sources */,
 				DBFF25A02A5B991A00CF6DD4 /* OAuthLoginUseCase.swift in Sources */,
+				DB6CC3ED2A7016E700C4C2BC /* SportsSelectingUseCase.swift in Sources */,
 				DB8CD70D2A6D14C5004735C8 /* CategoryCell.swift in Sources */,
 				DB6D93DB2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift in Sources */,
 				DBFFDA3E2A4988200008C2B5 /* PhoneAuthViewModel.swift in Sources */,
@@ -905,7 +912,7 @@
 				DB6D93CF2A4D596D0011F9BC /* TelecomProviderType.swift in Sources */,
 				DBF125E12A5E7DFD004DA4B9 /* ResetPasswordViewController.swift in Sources */,
 				DB55B6C52A6BAF38006FEA7F /* PhoneNumLoginDTO.swift in Sources */,
-				DB668AF92A4F06D000D702A1 /* RegistUserInfo.swift in Sources */,
+				DB668AF92A4F06D000D702A1 /* AuthUserInfo.swift in Sources */,
 				DB51ECBA2A68488C009F4690 /* FitHubSearchBar.swift in Sources */,
 				DBFFDA422A499BC00008C2B5 /* StandardTextFieldView.swift in Sources */,
 				DBB820B82A5E45940016CB63 /* FindPWViewController.swift in Sources */,
@@ -916,6 +923,7 @@
 				DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */,
 				DB51ECBD2A68E846009F4690 /* FitHubTopTabbar.swift in Sources */,
 				DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */,
+				DB8CD7292A6E72C0004735C8 /* AgreementUseCase.swift in Sources */,
 				DBF125E32A5E885D004DA4B9 /* PasswordUseCase.swift in Sources */,
 				DB8CD70B2A6D0E07004735C8 /* FindPWRepository.swift in Sources */,
 				DB97F83E2A52C1E3009C09A1 /* PaddingLabel.swift in Sources */,

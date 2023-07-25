@@ -187,8 +187,9 @@ final class RegistInfoInputViewController: BaseViewController {
     //MARK: - 화면 이동
     private func pushPhoneVerifactionViewController() {
         let usecase = PhoneVerificationUseCase(repository: PhoneVerificationRepository(AuthService()))
-        let phoneVerificationVC = PhoneVerificationViewController(PhoneVerificationViewModel(usecase,
-                                                                                             userInfo: self.viewModel.userInfo))
+        usecase.registUserInfo = self.viewModel.usecase.registUserInfo
+        let phoneVerificationVC = PhoneVerificationViewController(PhoneVerificationViewModel(usecase))
+        
         self.navigationController?.pushViewController(phoneVerificationVC, animated: true)
     }
     
@@ -224,7 +225,6 @@ final class RegistInfoInputViewController: BaseViewController {
         self.stackView.snp.makeConstraints {
             $0.top.equalTo(self.subTitleLabel.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview().inset(20)
-            
         }
         
         self.sendButton.snp.makeConstraints {
