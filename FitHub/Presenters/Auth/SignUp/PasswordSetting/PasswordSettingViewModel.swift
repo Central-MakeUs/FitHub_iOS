@@ -12,7 +12,7 @@ import RxCocoa
 class PasswordSettingViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
-    let usecase: PasswordUseCaseProtocol
+    var usecase: PasswordUseCaseProtocol
     
     struct Input {
         let passwordInput: Observable<String>
@@ -41,9 +41,18 @@ class PasswordSettingViewModel: ViewModelType {
             .distinctUntilChanged { $0.1 == $1.1 }
             .map { self.usecase.verifyPasswordVerification($0,$1) }
         
+        
         let nextButtonEnable = Observable.combineLatest(passwordStatus,
                                                         passwordVerificationStatus)
             .map { $0.0 == .passwordSuccess && $0.1 == .matchPassword }
+        
+        nextButtonEnable
+            .filter { $0 }
+            .withLatestFrom(input.passwordVerificationInput)
+            .subscribe(onNext: { [weak self] password in
+                self?.usecase.registUserInfo.password = password
+            })
+            .disposed(by: disposeBag)
         
         return Output(passwordStatus: passwordStatus,
                       passwordVerificationStatus: passwordVerificationStatus,
