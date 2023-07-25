@@ -9,14 +9,21 @@ import Foundation
 import RxSwift
 
 protocol RegistInfoUseCaseProtocol {
+    var registUserInfo: AuthUserInfo { get set }
+    
     func verifyPhoneNumber(_ numberStr: String) -> UserInfoStatus 
     func verifyDateOfBirth(_ dateStr: String, sexNumStr: String) -> UserInfoStatus
+    func updateRegistUserInfo(_ userInfo: AuthUserInfo)
 }
 
 class RegistInfoUseCase: RegistInfoUseCaseProtocol {
     private let repository: RegistInfoRepositoryInterface
     
-    init(_ repository: RegistInfoRepositoryInterface) {
+    var registUserInfo: AuthUserInfo
+    
+    init(_ repository: RegistInfoRepositoryInterface,
+         registUserInfo: AuthUserInfo) {
+        self.registUserInfo = registUserInfo
         self.repository = repository
     }
     
@@ -53,5 +60,12 @@ class RegistInfoUseCase: RegistInfoUseCaseProtocol {
         }
         
         return .ok
+    }
+    
+    func updateRegistUserInfo(_ userInfo: AuthUserInfo) {
+        self.registUserInfo.dateOfBirth = userInfo.dateOfBirth
+        self.registUserInfo.sexNumber = userInfo.sexNumber
+        self.registUserInfo.name = userInfo.name
+        self.registUserInfo.phoneNumber = userInfo.phoneNumber
     }
 }

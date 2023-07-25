@@ -11,7 +11,8 @@ import RxCocoa
 
 class SportsSelectingViewModel: ViewModelType {
     var disposeBag = DisposeBag()
-    private let userInfo: BehaviorRelay<RegistUserInfo>
+    var usecase: SportsSelectingUseCaseProtocol
+    
     let sports = Observable.of(["테니스","크로스핏","폴댄스","수영","스케이트","클라이밍"])
     let selectedSports: BehaviorRelay<[String]> = BehaviorRelay(value: [])
     
@@ -27,8 +28,8 @@ class SportsSelectingViewModel: ViewModelType {
         let registTap: Signal<Void>
     }
     
-    init(_ userInfo: BehaviorRelay<RegistUserInfo>) {
-        self.userInfo = userInfo
+    init(_ usecase: SportsSelectingUseCase) {
+        self.usecase = usecase
     }
     
     func transform(input: Input) -> Output {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct RegistUserInfo {
+struct AuthUserInfo {
     var phoneNumber: String?
     var dateOfBirth: String?
     var sexNumber: String?
