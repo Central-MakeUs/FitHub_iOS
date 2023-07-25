@@ -67,5 +67,6 @@ class RegistInfoUseCase: RegistInfoUseCaseProtocol {
         self.registUserInfo.sexNumber = userInfo.sexNumber
         self.registUserInfo.name = userInfo.name
         self.registUserInfo.phoneNumber = userInfo.phoneNumber
+        self.registUserInfo.telecom = userInfo.telecom
     }
 }
