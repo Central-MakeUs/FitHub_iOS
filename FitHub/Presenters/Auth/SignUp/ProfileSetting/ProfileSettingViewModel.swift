@@ -47,6 +47,20 @@ class ProfileSettingViewModel: ViewModelType {
         let duplicatedButtonIsHidden = Observable.combineLatest(nickNameText, nickNameStatus)
             .map { !($0.count > 0 && $1 == .nickNameOK) }
         
+        self.profileImage
+            .subscribe(onNext: { [weak self] image in
+                self?.usecase.registUserInfo.profileImage = image
+            })
+            .disposed(by: disposeBag)
+
+        nickNameStatus
+            .filter { $0 == .nickNameSuccess }
+            .withLatestFrom(nickNameText)
+            .subscribe(onNext: { [weak self] nickName in
+                self?.usecase.registUserInfo.nickName = nickName
+            })
+            .disposed(by: disposeBag)
+        
         return Output(nextButtonEnable: nickNameStatus.map { $0 == .nickNameSuccess },
                       nextTap: input.nextTap,
                       nickNameText: nickNameText,
