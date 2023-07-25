@@ -45,7 +45,7 @@
 		DB7559E32A55030400B88B96 /* SportsSelectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7559E22A55030400B88B96 /* SportsSelectingViewController.swift */; };
 		DB7559E52A55035800B88B96 /* SportsSelectingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7559E42A55035800B88B96 /* SportsSelectingViewModel.swift */; };
 		DB7559E72A55062C00B88B96 /* SportsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7559E62A55062C00B88B96 /* SportsCell.swift */; };
-		DB8CD6FF2A6D0B7C004735C8 /* ProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD6FE2A6D0B7C004735C8 /* ProfileRepository.swift */; };
+		DB8CD6FF2A6D0B7C004735C8 /* ProfileSettingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD6FE2A6D0B7C004735C8 /* ProfileSettingRepository.swift */; };
 		DB8CD7012A6D0BFE004735C8 /* PhoneVerificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7002A6D0BFE004735C8 /* PhoneVerificationRepository.swift */; };
 		DB8CD7042A6D0C5E004735C8 /* RegistInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7032A6D0C5E004735C8 /* RegistInfoRepository.swift */; };
 		DB8CD7062A6D0CF2004735C8 /* PhoneNumLoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7052A6D0CF2004735C8 /* PhoneNumLoginRepository.swift */; };
@@ -152,7 +152,7 @@
 		DB7559E22A55030400B88B96 /* SportsSelectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsSelectingViewController.swift; sourceTree = "<group>"; };
 		DB7559E42A55035800B88B96 /* SportsSelectingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsSelectingViewModel.swift; sourceTree = "<group>"; };
 		DB7559E62A55062C00B88B96 /* SportsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsCell.swift; sourceTree = "<group>"; };
-		DB8CD6FE2A6D0B7C004735C8 /* ProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepository.swift; sourceTree = "<group>"; };
+		DB8CD6FE2A6D0B7C004735C8 /* ProfileSettingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingRepository.swift; sourceTree = "<group>"; };
 		DB8CD7002A6D0BFE004735C8 /* PhoneVerificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationRepository.swift; sourceTree = "<group>"; };
 		DB8CD7032A6D0C5E004735C8 /* RegistInfoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistInfoRepository.swift; sourceTree = "<group>"; };
 		DB8CD7052A6D0CF2004735C8 /* PhoneNumLoginRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumLoginRepository.swift; sourceTree = "<group>"; };
@@ -292,7 +292,6 @@
 			children = (
 				DB55B6C82A6BB28A006FEA7F /* PhoneNumLoginUseCase.swift */,
 				DBFF259F2A5B991A00CF6DD4 /* OAuthLoginUseCase.swift */,
-				DBF125E22A5E885C004DA4B9 /* PasswordUseCase.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -302,6 +301,7 @@
 			children = (
 				DBF125E62A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift */,
 				DB55B6D22A6C0855006FEA7F /* PhoneVerificationUseCase.swift */,
+				DBF125E22A5E885C004DA4B9 /* PasswordUseCase.swift */,
 				DBB820B42A5D67CA0016CB63 /* RegistInfoUseCase.swift */,
 				DB8CD7282A6E72C0004735C8 /* AgreementUseCase.swift */,
 				DB6CC3EC2A7016E700C4C2BC /* SportsSelectingUseCase.swift */,
@@ -351,7 +351,7 @@
 		DB8CD6FD2A6D0B66004735C8 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				DB8CD6FE2A6D0B7C004735C8 /* ProfileRepository.swift */,
+				DB8CD6FE2A6D0B7C004735C8 /* ProfileSettingRepository.swift */,
 				DB8CD7002A6D0BFE004735C8 /* PhoneVerificationRepository.swift */,
 				DB8CD7032A6D0C5E004735C8 /* RegistInfoRepository.swift */,
 			);
@@ -935,7 +935,7 @@
 				DB97F8382A52B2F2009C09A1 /* StandardAlertController.swift in Sources */,
 				DBDBA30E2A64EC8200F1CDA5 /* NickNameDTO.swift in Sources */,
 				DB002BB82A67C36F001B5672 /* LookUpViewController.swift in Sources */,
-				DB8CD6FF2A6D0B7C004735C8 /* ProfileRepository.swift in Sources */,
+				DB8CD6FF2A6D0B7C004735C8 /* ProfileSettingRepository.swift in Sources */,
 				DBF125E72A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift in Sources */,
 				DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */,
 				DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */,

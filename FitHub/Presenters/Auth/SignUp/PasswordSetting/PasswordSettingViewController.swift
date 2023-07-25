@@ -89,7 +89,7 @@ final class PasswordSettingViewController: BaseViewController {
     }
     
     private func pushProfileSettingViewController() {
-        let usecase = ProfileSettingUseCase(repository: ProfileRepository(AuthService()),
+        let usecase = ProfileSettingUseCase(repository: ProfileSettingRepository(AuthService()),
                                             userInfo: self.viewModel.usecase.registUserInfo)
         
         let profileSettingVC = ProfileSettingViewController(ProfileSettingViewModel(usecase))
