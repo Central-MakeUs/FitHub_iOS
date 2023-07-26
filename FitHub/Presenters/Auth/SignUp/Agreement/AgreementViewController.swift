@@ -136,8 +136,7 @@ final class AgreementViewController: BaseViewController {
     //MARK: - 화면 이동
     private func pushRegistInfoViewController() {
         let userInfo = self.viewModel.usecase.registUserInfo
-        let usecase = RegistInfoUseCase(RegistInfoRepository(AuthService()),
-                                        registUserInfo: userInfo)
+        let usecase = RegistInfoUseCase(userInfo)
         self.navigationController?.pushViewController(RegistInfoInputViewController(RegistInfoViewModel(usecase)), animated: true)
     }
     
