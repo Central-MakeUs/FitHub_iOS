@@ -38,7 +38,7 @@ class PasswordSettingViewModel: ViewModelType {
         
         let passwordVerificationStatus = Observable.combineLatest(input.passwordInput,
                                                                   input.passwordVerificationInput)
-            .distinctUntilChanged { $0.1 == $1.1 }
+            .filter { !$1.isEmpty }
             .map { self.usecase.verifyPasswordVerification($0,$1) }
         
         
