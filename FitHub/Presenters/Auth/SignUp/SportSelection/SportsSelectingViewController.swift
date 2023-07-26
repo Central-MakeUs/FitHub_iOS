@@ -78,6 +78,10 @@ final class SportsSelectingViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
+        output.registButtonEnable
+            .bind(to: self.registButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
         output.registTap
             .emit(onNext: {
                 self.notiAlert("이 부분은 API 내려오는거 보고 모델링한 뒤 마무리 할게요!")

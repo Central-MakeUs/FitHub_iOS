@@ -21,6 +21,7 @@ class SportsSelectingViewModel: ViewModelType {
     
     struct Output {
         let registTap: Signal<Void>
+        let registButtonEnable: Observable<Bool>
         let sports: BehaviorSubject<[CategoryDTO]>
     }
     
@@ -41,7 +42,18 @@ class SportsSelectingViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
         
+        input.registTap.asObservable()
+            .flatMap { self.usecase.signUpWithPhoneNumber() }
+            .subscribe(onNext: { res in
+                print(res.accessToken)
+                print(res.userId)
+                //TODO: Token/UserId 저장
+            })
+            .disposed(by: disposeBag)
+        
         return Output(registTap: input.registTap,
+                      registButtonEnable: self.usecase.selectedIds.map { !$0.isEmpty },
                       sports: self.usecase.sports)
     }
 }
+
