@@ -31,6 +31,7 @@
 		DB668AFC2A50017700D702A1 /* UserInfoStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AFB2A50017700D702A1 /* UserInfoStatus.swift */; };
 		DB6CC3ED2A7016E700C4C2BC /* SportsSelectingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CC3EC2A7016E700C4C2BC /* SportsSelectingUseCase.swift */; };
 		DB6CC3F12A70BF5600C4C2BC /* SportsSelectingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CC3F02A70BF5600C4C2BC /* SportsSelectingRepository.swift */; };
+		DB6CC3F32A70E59700C4C2BC /* RegistResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CC3F22A70E59700C4C2BC /* RegistResponseDTO.swift */; };
 		DB6D93CF2A4D596D0011F9BC /* TelecomProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93CE2A4D596D0011F9BC /* TelecomProviderType.swift */; };
 		DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93D02A4D5D2F0011F9BC /* SimpleLabelCell.swift */; };
 		DB6D93D42A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93D32A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift */; };
@@ -138,6 +139,7 @@
 		DB668AFB2A50017700D702A1 /* UserInfoStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoStatus.swift; sourceTree = "<group>"; };
 		DB6CC3EC2A7016E700C4C2BC /* SportsSelectingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsSelectingUseCase.swift; sourceTree = "<group>"; };
 		DB6CC3F02A70BF5600C4C2BC /* SportsSelectingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsSelectingRepository.swift; sourceTree = "<group>"; };
+		DB6CC3F22A70E59700C4C2BC /* RegistResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistResponseDTO.swift; sourceTree = "<group>"; };
 		DB6D93CE2A4D596D0011F9BC /* TelecomProviderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelecomProviderType.swift; sourceTree = "<group>"; };
 		DB6D93D02A4D5D2F0011F9BC /* SimpleLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleLabelCell.swift; sourceTree = "<group>"; };
 		DB6D93D32A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelecomProviderSelectorViewController.swift; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 				DB55B6C42A6BAF38006FEA7F /* PhoneNumLoginDTO.swift */,
 				DB55B6D52A6C2339006FEA7F /* PhoneAuthNumberDTO.swift */,
 				DB8CD71A2A6E0C93004735C8 /* CategoryDTO.swift */,
+				DB6CC3F22A70E59700C4C2BC /* RegistResponseDTO.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -933,6 +936,7 @@
 				DB8CD7272A6E5A27004735C8 /* OrderType.swift in Sources */,
 				DBFFDA352A492A4E0008C2B5 /* OAuthLoginViewModel.swift in Sources */,
 				DB97F8382A52B2F2009C09A1 /* StandardAlertController.swift in Sources */,
+				DB6CC3F32A70E59700C4C2BC /* RegistResponseDTO.swift in Sources */,
 				DBDBA30E2A64EC8200F1CDA5 /* NickNameDTO.swift in Sources */,
 				DB002BB82A67C36F001B5672 /* LookUpViewController.swift in Sources */,
 				DB8CD6FF2A6D0B7C004735C8 /* ProfileSettingRepository.swift in Sources */,

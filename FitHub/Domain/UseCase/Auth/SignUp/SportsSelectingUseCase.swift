@@ -11,13 +11,23 @@ import RxSwift
 protocol SportsSelectingUseCaseProtocol {
     var registUserInfo: AuthUserInfo { get set }
     var sports: BehaviorSubject<[CategoryDTO]> { get set }
+    var selectedIds: BehaviorSubject<[Int]> { get set }
+    
+    func signUpWithPhoneNumber() -> Single<RegistResponseDTO>
 }
 
 final class SportsSelectingUseCase: SportsSelectingUseCaseProtocol {
     private let repository: SportsSelectingRepositoryInterface
     private let disposeBag = DisposeBag()
     
-    var registUserInfo: AuthUserInfo
+    var registUserInfo: AuthUserInfo {
+        didSet {
+            self.selectedIds.onNext(self.registUserInfo.preferExercise.map { $0.id })
+        }
+    }
+    
+    var selectedIds: BehaviorSubject<[Int]> = BehaviorSubject(value: [])
+    
     var sports = BehaviorSubject<[CategoryDTO]>(value: [])
     
     init(_ userInfo: AuthUserInfo,
@@ -30,5 +40,9 @@ final class SportsSelectingUseCase: SportsSelectingUseCaseProtocol {
                 self.sports.onNext(categories)
             })
             .disposed(by: disposeBag)
+    }
+    
+    func signUpWithPhoneNumber() -> Single<RegistResponseDTO> {
+        return self.repository.signUpWithPhoneNumber(self.registUserInfo)
     }
 }

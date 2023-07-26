@@ -85,6 +85,54 @@ class AuthService {
         }
     }
     
+    func signUpWithPhoneNumber(_ registUserInfo: AuthUserInfo)-> Single<RegistResponseDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL) }
+        let urlString = baseURL + "users/sign-up"
+        let headers: HTTPHeaders = ["Content-Type" : "multipart/form-data"]
+
+        let marketingAgree = registUserInfo.marketingAgree
+        let preferExercises = registUserInfo.preferExercise.map { $0.id }
+        guard let birth = registUserInfo.dateOfBirth,
+              let gender = registUserInfo.sexNumber,
+              let password = registUserInfo.password,
+              let nicknae = registUserInfo.nickName,
+              let name = registUserInfo.name,
+              let phoneNumber = registUserInfo.phoneNumber,
+              let profileImage = registUserInfo.profileImage?.pngData() else { return Single.error(AuthError.invalidURL) }
+        
+        let parameters: Parameters = ["birth" : birth,
+                                      "gender" : gender,
+                                      "marketingAgree" : marketingAgree,
+                                      "password" : password,
+                                      "nickname" : nicknae,
+                                      "name" : name,
+                                      "phoneNumber" : phoneNumber,
+                                      "preferExercises" : preferExercises]
+        
+        return Single<RegistResponseDTO>.create { emitter in
+            AF.upload(multipartFormData: { multipartFormData in
+                multipartFormData.append(profileImage, withName: "profileImage")
+                for (key,value) in parameters {
+                    multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
+                }
+            }, to: urlString, method: .post, headers: headers)
+            .responseDecodable(of: BaseResponse<RegistResponseDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if let result = response.result {
+                        emitter(.success(result))
+                    } else {
+                        emitter(.failure(AuthError.serverError))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+
+            return Disposables.create()
+        }
+    }
+    
     
     //MARK: - 닉네임 중복 체크
     func duplicationNickNameCheck(_ nickName: String) -> Single<Bool> {

@@ -10,6 +10,7 @@ import RxSwift
 
 protocol SportsSelectingRepositoryInterface {
     func fetchCategory() -> Single<[CategoryDTO]>
+    func signUpWithPhoneNumber(_ registUserInfo: AuthUserInfo) -> Single<RegistResponseDTO>
 }
 
 final class SportsSelectingRepository: SportsSelectingRepositoryInterface {
@@ -21,5 +22,9 @@ final class SportsSelectingRepository: SportsSelectingRepositoryInterface {
     
     func fetchCategory() -> Single<[CategoryDTO]> {
         return self.service.fetchCategory()
+    }
+    
+    func signUpWithPhoneNumber(_ registUserInfo: AuthUserInfo) -> Single<RegistResponseDTO> {
+        return self.service.signUpWithPhoneNumber(registUserInfo)
     }
 }
