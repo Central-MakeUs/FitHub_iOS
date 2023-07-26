@@ -6,15 +6,29 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol SportsSelectingUseCaseProtocol {
     var registUserInfo: AuthUserInfo { get set }
+    var sports: BehaviorSubject<[CategoryDTO]> { get set }
 }
 
 final class SportsSelectingUseCase: SportsSelectingUseCaseProtocol {
-    var registUserInfo: AuthUserInfo
+    private let repository: SportsSelectingRepositoryInterface
+    private let disposeBag = DisposeBag()
     
-    init(_ userInfo: AuthUserInfo) {
+    var registUserInfo: AuthUserInfo
+    var sports = BehaviorSubject<[CategoryDTO]>(value: [])
+    
+    init(_ userInfo: AuthUserInfo,
+         repository: SportsSelectingRepositoryInterface) {
         self.registUserInfo = userInfo
+        self.repository = repository
+        
+        repository.fetchCategory()
+            .subscribe(onSuccess: { categories in
+                self.sports.onNext(categories)
+            })
+            .disposed(by: disposeBag)
     }
 }

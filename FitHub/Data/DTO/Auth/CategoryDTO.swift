@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CategoryDTO: Decodable {
+struct CategoryDTO: Decodable, Equatable {
     let createdAt: String?
     let updatedAt: String?
     let imageUrl: String?

@@ -30,6 +30,7 @@
 		DB668AF92A4F06D000D702A1 /* AuthUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF82A4F06D000D702A1 /* AuthUserInfo.swift */; };
 		DB668AFC2A50017700D702A1 /* UserInfoStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AFB2A50017700D702A1 /* UserInfoStatus.swift */; };
 		DB6CC3ED2A7016E700C4C2BC /* SportsSelectingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CC3EC2A7016E700C4C2BC /* SportsSelectingUseCase.swift */; };
+		DB6CC3F12A70BF5600C4C2BC /* SportsSelectingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CC3F02A70BF5600C4C2BC /* SportsSelectingRepository.swift */; };
 		DB6D93CF2A4D596D0011F9BC /* TelecomProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93CE2A4D596D0011F9BC /* TelecomProviderType.swift */; };
 		DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93D02A4D5D2F0011F9BC /* SimpleLabelCell.swift */; };
 		DB6D93D42A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93D32A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift */; };
@@ -137,6 +138,7 @@
 		DB668AF82A4F06D000D702A1 /* AuthUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUserInfo.swift; sourceTree = "<group>"; };
 		DB668AFB2A50017700D702A1 /* UserInfoStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoStatus.swift; sourceTree = "<group>"; };
 		DB6CC3EC2A7016E700C4C2BC /* SportsSelectingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsSelectingUseCase.swift; sourceTree = "<group>"; };
+		DB6CC3F02A70BF5600C4C2BC /* SportsSelectingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsSelectingRepository.swift; sourceTree = "<group>"; };
 		DB6D93CE2A4D596D0011F9BC /* TelecomProviderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelecomProviderType.swift; sourceTree = "<group>"; };
 		DB6D93D02A4D5D2F0011F9BC /* SimpleLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleLabelCell.swift; sourceTree = "<group>"; };
 		DB6D93D32A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelecomProviderSelectorViewController.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 				DB8CD6FE2A6D0B7C004735C8 /* ProfileSettingRepository.swift */,
 				DB8CD7002A6D0BFE004735C8 /* PhoneVerificationRepository.swift */,
 				DB8CD7032A6D0C5E004735C8 /* RegistInfoRepository.swift */,
+				DB6CC3F02A70BF5600C4C2BC /* SportsSelectingRepository.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -912,6 +915,7 @@
 				DB6D93CF2A4D596D0011F9BC /* TelecomProviderType.swift in Sources */,
 				DBF125E12A5E7DFD004DA4B9 /* ResetPasswordViewController.swift in Sources */,
 				DB55B6C52A6BAF38006FEA7F /* PhoneNumLoginDTO.swift in Sources */,
+				DB6CC3F12A70BF5600C4C2BC /* SportsSelectingRepository.swift in Sources */,
 				DB668AF92A4F06D000D702A1 /* AuthUserInfo.swift in Sources */,
 				DB51ECBA2A68488C009F4690 /* FitHubSearchBar.swift in Sources */,
 				DBFFDA422A499BC00008C2B5 /* StandardTextFieldView.swift in Sources */,

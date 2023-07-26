@@ -112,7 +112,8 @@ final class ProfileSettingViewController: BaseViewController {
     }
     
     private func pushSprotsSelectingViewController() {
-        let usecase = SportsSelectingUseCase(self.viewModel.usecase.registUserInfo)
+        let usecase = SportsSelectingUseCase(self.viewModel.usecase.registUserInfo,
+                                             repository: SportsSelectingRepository(AuthService()))
         let sportSelectingVC = SportsSelectingViewController(SportsSelectingViewModel(usecase))
         
         self.navigationController?.pushViewController(sportSelectingVC, animated: true)
