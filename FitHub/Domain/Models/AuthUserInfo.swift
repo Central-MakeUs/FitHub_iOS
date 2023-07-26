@@ -17,4 +17,5 @@ struct AuthUserInfo {
     var nickName: String?
     var profileImage: UIImage?
     var marketingAgree = false
+    var preferExercise: [CategoryDTO] = []
 }

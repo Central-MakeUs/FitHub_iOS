@@ -12,8 +12,14 @@ final class SportsCell: UICollectionViewCell {
     static let itemWidth = (UIScreen.main.bounds.width - 40 - 16) / 3
     
     //MARK: - Properties
+    override var isSelected: Bool {
+        didSet {
+            self.updateSelection(isSelected)
+        }
+    }
     private let frameView = UIView().then {
         $0.layer.cornerRadius = itemWidth / 2
+        $0.layer.borderColor = UIColor.primary.cgColor
         $0.backgroundColor = .bgSub01
     }
     
@@ -31,15 +37,35 @@ final class SportsCell: UICollectionViewCell {
         super.init(frame: frame)
         self.addSubView()
         self.layout()
-        self.backgroundColor = .white
+        self.backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(item: String) {
-        self.titleLabel.text = item
+    func configureCell(item: CategoryDTO) {
+        do {
+            if let urlString = item.imageUrl,
+               let url = URL(string: urlString) {
+                let data = try Data(contentsOf: url)
+                self.imageView.image = UIImage(data: data)
+            }
+        } catch {
+            print(error)
+        }
+        
+        self.titleLabel.text = item.name
+    }
+    
+    private func updateSelection(_ isSelected: Bool) {
+        if isSelected {
+            self.frameView.backgroundColor = .bgSub02
+            self.frameView.layer.borderWidth = 1
+        } else {
+            self.frameView.backgroundColor = .bgSub01
+            self.frameView.layer.borderWidth = 0
+        }
     }
     
     //MARK: - AddSubView
@@ -54,7 +80,7 @@ final class SportsCell: UICollectionViewCell {
     private func layout() {
         self.frameView.snp.makeConstraints {
             $0.leading.trailing.top.equalToSuperview().inset(1)
-            $0.height.equalTo(106)
+            $0.height.equalTo(SportsCell.itemWidth)
         }
         
         self.imageView.snp.makeConstraints {
