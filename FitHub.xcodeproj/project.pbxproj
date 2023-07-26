@@ -48,7 +48,6 @@
 		DB7559E72A55062C00B88B96 /* SportsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7559E62A55062C00B88B96 /* SportsCell.swift */; };
 		DB8CD6FF2A6D0B7C004735C8 /* ProfileSettingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD6FE2A6D0B7C004735C8 /* ProfileSettingRepository.swift */; };
 		DB8CD7012A6D0BFE004735C8 /* PhoneVerificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7002A6D0BFE004735C8 /* PhoneVerificationRepository.swift */; };
-		DB8CD7042A6D0C5E004735C8 /* RegistInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7032A6D0C5E004735C8 /* RegistInfoRepository.swift */; };
 		DB8CD7062A6D0CF2004735C8 /* PhoneNumLoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7052A6D0CF2004735C8 /* PhoneNumLoginRepository.swift */; };
 		DB8CD7082A6D0D38004735C8 /* OAuthLoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD7072A6D0D38004735C8 /* OAuthLoginRepository.swift */; };
 		DB8CD70B2A6D0E07004735C8 /* FindPWRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CD70A2A6D0E07004735C8 /* FindPWRepository.swift */; };
@@ -156,7 +155,6 @@
 		DB7559E62A55062C00B88B96 /* SportsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsCell.swift; sourceTree = "<group>"; };
 		DB8CD6FE2A6D0B7C004735C8 /* ProfileSettingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingRepository.swift; sourceTree = "<group>"; };
 		DB8CD7002A6D0BFE004735C8 /* PhoneVerificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationRepository.swift; sourceTree = "<group>"; };
-		DB8CD7032A6D0C5E004735C8 /* RegistInfoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistInfoRepository.swift; sourceTree = "<group>"; };
 		DB8CD7052A6D0CF2004735C8 /* PhoneNumLoginRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumLoginRepository.swift; sourceTree = "<group>"; };
 		DB8CD7072A6D0D38004735C8 /* OAuthLoginRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthLoginRepository.swift; sourceTree = "<group>"; };
 		DB8CD70A2A6D0E07004735C8 /* FindPWRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPWRepository.swift; sourceTree = "<group>"; };
@@ -355,7 +353,6 @@
 			children = (
 				DB8CD6FE2A6D0B7C004735C8 /* ProfileSettingRepository.swift */,
 				DB8CD7002A6D0BFE004735C8 /* PhoneVerificationRepository.swift */,
-				DB8CD7032A6D0C5E004735C8 /* RegistInfoRepository.swift */,
 				DB6CC3F02A70BF5600C4C2BC /* SportsSelectingRepository.swift */,
 			);
 			path = SignUp;
@@ -905,7 +902,6 @@
 				DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */,
 				DB51ECC02A692EFC009F4690 /* TopTabbarItem.swift in Sources */,
 				DB8CD71B2A6E0C93004735C8 /* CategoryDTO.swift in Sources */,
-				DB8CD7042A6D0C5E004735C8 /* RegistInfoRepository.swift in Sources */,
 				DB55B6D62A6C2339006FEA7F /* PhoneAuthNumberDTO.swift in Sources */,
 				DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */,
 				DB6D93E42A4EDCE20011F9BC /* PasswordSettingViewController.swift in Sources */,

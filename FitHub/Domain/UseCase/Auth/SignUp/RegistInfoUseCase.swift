@@ -16,15 +16,11 @@ protocol RegistInfoUseCaseProtocol {
     func updateRegistUserInfo(_ userInfo: AuthUserInfo)
 }
 
-class RegistInfoUseCase: RegistInfoUseCaseProtocol {
-    private let repository: RegistInfoRepositoryInterface
-    
+final class RegistInfoUseCase: RegistInfoUseCaseProtocol {
     var registUserInfo: AuthUserInfo
     
-    init(_ repository: RegistInfoRepositoryInterface,
-         registUserInfo: AuthUserInfo) {
+    init(_ registUserInfo: AuthUserInfo) {
         self.registUserInfo = registUserInfo
-        self.repository = repository
     }
     
     func verifyPhoneNumber(_ numberStr: String) -> UserInfoStatus {
