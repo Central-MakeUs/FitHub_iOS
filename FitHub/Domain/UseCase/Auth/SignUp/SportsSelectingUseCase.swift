@@ -14,6 +14,7 @@ protocol SportsSelectingUseCaseProtocol {
     var selectedIds: BehaviorSubject<[Int]> { get set }
     
     func signUpWithPhoneNumber() -> Single<RegistResponseDTO>
+    func signUpWithOAuth() -> Single<RegistResponseDTO>
 }
 
 final class SportsSelectingUseCase: SportsSelectingUseCaseProtocol {
@@ -45,4 +46,9 @@ final class SportsSelectingUseCase: SportsSelectingUseCaseProtocol {
     func signUpWithPhoneNumber() -> Single<RegistResponseDTO> {
         return self.repository.signUpWithPhoneNumber(self.registUserInfo)
     }
+    
+    //소셜회원가입 api 모호함. 추후 변경예정
+//    func signUpWithOAuth() -> Single<RegistResponseDTO> {
+//        return self.repositor
+//    }
 }

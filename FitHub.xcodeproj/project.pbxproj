@@ -28,6 +28,10 @@
 		DB57122F2A7205DA00DCAD9C /* ResetPasswordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57122E2A7205DA00DCAD9C /* ResetPasswordRepository.swift */; };
 		DB5712332A7235D200DCAD9C /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5712322A7235D200DCAD9C /* KeychainManager.swift */; };
 		DB5712352A723C1500DCAD9C /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5712342A723C1500DCAD9C /* AuthManager.swift */; };
+		DB5712382A724D7B00DCAD9C /* OAuthRegistInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5712372A724D7B00DCAD9C /* OAuthRegistInputViewController.swift */; };
+		DB57123A2A72590B00DCAD9C /* OAuthRegistInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5712392A72590B00DCAD9C /* OAuthRegistInputViewModel.swift */; };
+		DB57123C2A7259B700DCAD9C /* OAuthRegistInputUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57123B2A7259B700DCAD9C /* OAuthRegistInputUseCase.swift */; };
+		DB57123E2A72651500DCAD9C /* RegistType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57123D2A72651500DCAD9C /* RegistType.swift */; };
 		DB5D22302A546AB400B32485 /* PhoneVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */; };
 		DB5D22322A5470A800B32485 /* PasswordSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D22312A5470A800B32485 /* PasswordSettingViewModel.swift */; };
 		DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF32A4EECB300D702A1 /* UIViewController+.swift */; };
@@ -141,6 +145,10 @@
 		DB57122E2A7205DA00DCAD9C /* ResetPasswordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordRepository.swift; sourceTree = "<group>"; };
 		DB5712322A7235D200DCAD9C /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		DB5712342A723C1500DCAD9C /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		DB5712372A724D7B00DCAD9C /* OAuthRegistInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthRegistInputViewController.swift; sourceTree = "<group>"; };
+		DB5712392A72590B00DCAD9C /* OAuthRegistInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthRegistInputViewModel.swift; sourceTree = "<group>"; };
+		DB57123B2A7259B700DCAD9C /* OAuthRegistInputUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthRegistInputUseCase.swift; sourceTree = "<group>"; };
+		DB57123D2A72651500DCAD9C /* RegistType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistType.swift; sourceTree = "<group>"; };
 		DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewModel.swift; sourceTree = "<group>"; };
 		DB5D22312A5470A800B32485 /* PasswordSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingViewModel.swift; sourceTree = "<group>"; };
 		DB5F84BE2A5CF72100E16C14 /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
@@ -319,6 +327,7 @@
 				DBB820B42A5D67CA0016CB63 /* RegistInfoUseCase.swift */,
 				DB8CD7282A6E72C0004735C8 /* AgreementUseCase.swift */,
 				DB6CC3EC2A7016E700C4C2BC /* SportsSelectingUseCase.swift */,
+				DB57123B2A7259B700DCAD9C /* OAuthRegistInputUseCase.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -366,6 +375,15 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		DB5712362A724D5900DCAD9C /* OAuthRegistInput */ = {
+			isa = PBXGroup;
+			children = (
+				DB5712372A724D7B00DCAD9C /* OAuthRegistInputViewController.swift */,
+				DB5712392A72590B00DCAD9C /* OAuthRegistInputViewModel.swift */,
+			);
+			path = OAuthRegistInput;
+			sourceTree = "<group>";
+		};
 		DB668AF52A4F040300D702A1 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -380,6 +398,7 @@
 				DB8CD7232A6E5893004735C8 /* Community */,
 				DB6D93CE2A4D596D0011F9BC /* TelecomProviderType.swift */,
 				DB668AFB2A50017700D702A1 /* UserInfoStatus.swift */,
+				DB57123D2A72651500DCAD9C /* RegistType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -651,6 +670,7 @@
 		DBFF25942A5B951200CF6DD4 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				DB5712362A724D5900DCAD9C /* OAuthRegistInput */,
 				DB746F712A71306F00FBA8D4 /* RegistCompletion */,
 				DBFF25952A5B956A00CF6DD4 /* SportSelection */,
 				DBFF25932A5B94FE00CF6DD4 /* ProfileSetting */,
@@ -951,6 +971,7 @@
 				DB6CC3ED2A7016E700C4C2BC /* SportsSelectingUseCase.swift in Sources */,
 				DB8CD70D2A6D14C5004735C8 /* CategoryCell.swift in Sources */,
 				DB6D93DB2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift in Sources */,
+				DB5712382A724D7B00DCAD9C /* OAuthRegistInputViewController.swift in Sources */,
 				DBFFDA3E2A4988200008C2B5 /* PhoneAuthViewModel.swift in Sources */,
 				DB002BBB2A67C3C7001B5672 /* MyPageViewController.swift in Sources */,
 				DB5D22322A5470A800B32485 /* PasswordSettingViewModel.swift in Sources */,
@@ -972,6 +993,7 @@
 				DB7134912A5BF46C0006EAAB /* AuthError.swift in Sources */,
 				DB668AFC2A50017700D702A1 /* UserInfoStatus.swift in Sources */,
 				DB8CD7172A6D3995004735C8 /* CreateActionSheet.swift in Sources */,
+				DB57123E2A72651500DCAD9C /* RegistType.swift in Sources */,
 				DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */,
 				DB51ECC02A692EFC009F4690 /* TopTabbarItem.swift in Sources */,
 				DB8CD71B2A6E0C93004735C8 /* CategoryDTO.swift in Sources */,
@@ -983,6 +1005,8 @@
 				DBF125E52A5E8DFB004DA4B9 /* NickNameTextFieldView.swift in Sources */,
 				DB51D2572A4BB8B5002415B0 /* AgreementViewModel.swift in Sources */,
 				DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */,
+				DB57123A2A72590B00DCAD9C /* OAuthRegistInputViewModel.swift in Sources */,
+				DB57123C2A7259B700DCAD9C /* OAuthRegistInputUseCase.swift in Sources */,
 				DB6D93CF2A4D596D0011F9BC /* TelecomProviderType.swift in Sources */,
 				DBF125E12A5E7DFD004DA4B9 /* ResetPasswordViewController.swift in Sources */,
 				DB55B6C52A6BAF38006FEA7F /* PhoneNumLoginDTO.swift in Sources */,
