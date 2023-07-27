@@ -35,6 +35,8 @@ class OAuthLoginViewModel: ViewModelType {
         
         self.usecase.signInWithApple(tokenString)
             .subscribe(onSuccess: { [weak self] res in
+                KeychainManager.create(key: "accessToken", value: res.accessToken)
+                KeychainManager.create(key: "userId", value: String(res.userId))
                 self?.loginPublisher.onNext(.success(res))
             }, onFailure: { [weak self] error in
                 self?.loginPublisher.onNext(.failure(error as! AuthError))

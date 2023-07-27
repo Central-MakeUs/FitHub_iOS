@@ -64,7 +64,8 @@ class PhoneAuthViewModel: ViewModelType {
     private func signInWithPhoneNumber(_ phoneNum: String, _ password: String) {
         self.usecase.signInWithPhoneNumber(phoneNum, password)
             .subscribe(onSuccess: { response in
-                //TODO: JWT 및 id 저장해두기
+                KeychainManager.create(key: "accessToken", value: response.accessToken)
+                KeychainManager.create(key: "userId", value: String(response.userId))
                 self.loginPublisher.onNext(.success(()))
             }, onFailure: { error in
                 self.loginPublisher.onNext(.failure(error as! AuthError))

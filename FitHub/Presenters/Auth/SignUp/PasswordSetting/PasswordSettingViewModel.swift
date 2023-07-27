@@ -12,9 +12,7 @@ import RxCocoa
 class PasswordSettingViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
-    private let usecase: PasswordUseCaseProtocol
-    
-    let userInfo: BehaviorRelay<RegistUserInfo>
+    var usecase: PasswordUseCaseProtocol
     
     struct Input {
         let passwordInput: Observable<String>
@@ -29,9 +27,8 @@ class PasswordSettingViewModel: ViewModelType {
         let nextTap: Signal<Void>
     }
     
-    init(_ userInfo: BehaviorRelay<RegistUserInfo>, usecase: PasswordUseCaseProtocol) {
+    init(usecase: PasswordUseCaseProtocol) {
         self.usecase = usecase
-        self.userInfo = userInfo
     }
     
     func transform(input: Input) -> Output {
@@ -41,12 +38,21 @@ class PasswordSettingViewModel: ViewModelType {
         
         let passwordVerificationStatus = Observable.combineLatest(input.passwordInput,
                                                                   input.passwordVerificationInput)
-            .distinctUntilChanged { $0.1 == $1.1 }
+            .filter { !$1.isEmpty }
             .map { self.usecase.verifyPasswordVerification($0,$1) }
+        
         
         let nextButtonEnable = Observable.combineLatest(passwordStatus,
                                                         passwordVerificationStatus)
             .map { $0.0 == .passwordSuccess && $0.1 == .matchPassword }
+        
+        nextButtonEnable
+            .filter { $0 }
+            .withLatestFrom(input.passwordVerificationInput)
+            .subscribe(onNext: { [weak self] password in
+                self?.usecase.registUserInfo.password = password
+            })
+            .disposed(by: disposeBag)
         
         return Output(passwordStatus: passwordStatus,
                       passwordVerificationStatus: passwordVerificationStatus,

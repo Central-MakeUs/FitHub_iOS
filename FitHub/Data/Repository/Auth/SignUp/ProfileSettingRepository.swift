@@ -1,5 +1,5 @@
 //
-//  ProfileRepository.swift
+//  ProfileSettingRepository.swift
 //  FitHub
 //
 //  Created by 신상우 on 2023/07/23.
@@ -12,7 +12,7 @@ protocol ProfileRepositoryInterface {
     func duplicationNickNameCheck(_ nickName: String) -> Single<UserInfoStatus>
 }
 
-final class ProfileRepository: ProfileRepositoryInterface {
+final class ProfileSettingRepository: ProfileRepositoryInterface {
     private let service: AuthService
     
     init(_ service: AuthService) {

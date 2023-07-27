@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct RegistUserInfo {
+struct AuthUserInfo {
     var phoneNumber: String?
     var dateOfBirth: String?
     var sexNumber: String?
@@ -15,6 +15,7 @@ struct RegistUserInfo {
     var name: String?
     var telecom: TelecomProviderType?
     var nickName: String?
-    var profileImage: UIImage?
+    var profileImage = UIImage(named: "DefaultProfile")?.withRenderingMode(.alwaysOriginal)
     var marketingAgree = false
+    var preferExercise: [CategoryDTO] = []
 }

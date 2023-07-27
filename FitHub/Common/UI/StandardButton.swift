@@ -30,7 +30,7 @@ final class StandardButton: UIButton {
         super.init(frame: frame)
         self.layer.cornerRadius = 5
         self.backgroundColor = .primary
-        self.setTitleColor(.textDefault, for: .normal)
+        self.setTitleColor(.bgDefault, for: .normal)
     }
     
     required init?(coder: NSCoder) {

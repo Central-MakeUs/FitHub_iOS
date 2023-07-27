@@ -10,10 +10,10 @@ import RxSwift
 import RxCocoa
 
 class AgreementViewModel: ViewModelType {
-
     var disposeBag = DisposeBag()
+    var usecase: AgreementUseCaseProtocol
     
-    let registUserInfo = BehaviorRelay(value: RegistUserInfo())
+    var registType: RegistType
     
     struct Input {
         let privateTap: Observable<Void>
@@ -40,8 +40,10 @@ class AgreementViewModel: ViewModelType {
         let isEnableNextButton = BehaviorRelay(value: false)
     }
     
-    init() {
-        
+    init(_ usecase: AgreementUseCaseProtocol,
+         registType: RegistType) {
+        self.registType = registType
+        self.usecase = usecase
     }
     
     func transform(input: Input) -> Output {
@@ -90,8 +92,10 @@ class AgreementViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         output.marketingAgreement
-            .map { RegistUserInfo(marketingAgree: $0) }
-            .bind(to: self.registUserInfo)
+            .map { AuthUserInfo(marketingAgree: $0) }
+            .bind(onNext: { [weak self] in
+                self?.usecase.registUserInfo = $0
+            })
             .disposed(by: disposeBag)
         
         Observable.combineLatest(output.privateAgreement,

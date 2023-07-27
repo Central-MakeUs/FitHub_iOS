@@ -85,7 +85,7 @@ final class FindPWViewController: BaseViewController {
                 switch res {
                 case .success(let code):
                     if code == 2000 {
-                        self?.pushPhoneVerificationViewController(code)
+                        self?.pushPhoneVerificationViewController()
                     } else if code == 4019 {
                         self?.checkUserInfoAlert()
                     }
@@ -96,11 +96,12 @@ final class FindPWViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
-    private func pushPhoneVerificationViewController(_ code: Int) {
-        guard let phonNum = self.phoneNumberTextField.text else { return }
+    private func pushPhoneVerificationViewController() {
         let usecase = PhoneVerificationUseCase(repository: PhoneVerificationRepository(AuthService()))
-        let phoneVerificationVC = PhoneVerificationViewController(PhoneVerificationViewModel(usecase,
-                                                                                             phoneNumber: phonNum))
+        usecase.registUserInfo = self.viewModel.usecase.userInfo
+        
+        let phoneVerificationVC = PhoneVerificationViewController(PhoneVerificationViewModel(usecase))
+        
         self.navigationController?.pushViewController(phoneVerificationVC, animated: true)
     }
     
@@ -109,7 +110,8 @@ final class FindPWViewController: BaseViewController {
         
         let cancel = StandardAlertAction(title: "닫기", style: .cancel)
         let regist = StandardAlertAction(title: "회원가입 하기", style: .basic) { _ in
-            let agreementVC = AgreementViewController(AgreementViewModel())
+            let agreementVC = AgreementViewController(AgreementViewModel(AgreementUseCase(),
+                                                                         registType: .Phone))
             if let idx = self.navigationController?.viewControllers.lastIndex(of: self) {
                 self.navigationController?.viewControllers[idx - 1] = agreementVC
             }

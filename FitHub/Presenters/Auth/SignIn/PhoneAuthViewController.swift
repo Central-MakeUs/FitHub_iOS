@@ -28,7 +28,6 @@ final class PhoneAuthViewController: BaseViewController {
     private let passwordTextFieldView = StandardTextFieldView("비밀번호").then {
         $0.textField.isSecureTextEntry = true
         $0.placeholder = "비밀번호 입력"
-        $0.keyboardType = .numberPad
     }
     
     private let loginButton = StandardButton(type: .system).then {
@@ -99,9 +98,9 @@ final class PhoneAuthViewController: BaseViewController {
             .bind(onNext: { [weak self] res in
                 switch res {
                 case .success:
-                    print("로그인")
-                    //TODO: 로그인 성공
+                    self?.navigationController?.dismiss(animated: true)
                 case .failure(let error):
+                    print("실패")
                     self?.responseAuthError(error)
                 }
             })
@@ -120,7 +119,6 @@ final class PhoneAuthViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
-    
     private func responseAuthError(_ error: AuthError) {
         switch error {
         case .invalidURL:
@@ -131,6 +129,10 @@ final class PhoneAuthViewController: BaseViewController {
             print("소셜로그인 실패")
         case .unknownUser:
             self.didNotFoundUserInfoAlert()
+        case .passwordFaild:
+            self.notiAlert("잘못된 비밀번호 입니다.")
+        default:
+            print("기타오류")
         }
     }
     
@@ -142,7 +144,8 @@ final class PhoneAuthViewController: BaseViewController {
     }
     
     private func pushRegistViewController() {
-        let agreementVC = AgreementViewController(AgreementViewModel())
+        let agreementVC = AgreementViewController(AgreementViewModel(AgreementUseCase(),
+                                                                     registType: .Phone))
         self.navigationController?.pushViewController(agreementVC, animated: true)
     }
     

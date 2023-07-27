@@ -88,6 +88,15 @@ final class OAuthLoginViewController: BaseViewController {
                     self?.viewModel.loginPublisher.onError(error)
                 })
             .disposed(by: disposeBag)
+        } else {
+            UserApi.shared.rx.loginWithKakaoAccount()
+                .subscribe(onNext: { [weak self] _ in
+                    self?.viewModel.requestLogin()
+                },
+                onError: { [weak self] error in
+                    self?.viewModel.loginPublisher.onError(error)
+                })
+            .disposed(by: disposeBag)
         }
     }
     
@@ -121,10 +130,8 @@ final class OAuthLoginViewController: BaseViewController {
                 switch res {
                 case .success(let response):
                     if response.isLogin {
-                        print("로그인")
-                        // TODO: 로그인 프로세스
+                        self.navigationController?.dismiss(animated: true)
                     } else {
-                        // TODO: 회원가입 프로세스
                         self.showUserInfoNotFoundAlert()
                     }
                 case .failure(let error):
@@ -140,9 +147,11 @@ final class OAuthLoginViewController: BaseViewController {
         let cancel = StandardAlertAction(title: "닫기", style: .cancel) { _ in
             UserApi.shared.logout {_ in} // 카카오 로그아웃
         }
-        let regist = StandardAlertAction(title: "회원가입 하기", style: .basic) { _ in
-            // TODO: OAuth 회원가입 화면 이동
-            print("regist")
+        let regist = StandardAlertAction(title: "회원가입 하기", style: .basic) { [weak self] _ in
+            let usecase = AgreementUseCase()
+            let agreementVC = AgreementViewController(AgreementViewModel(usecase,
+                                                                         registType: .OAuth))
+            self?.navigationController?.pushViewController(agreementVC, animated: true)
         }
         alert.addAction(cancel)
         alert.addAction(regist)
@@ -160,6 +169,8 @@ final class OAuthLoginViewController: BaseViewController {
             print("소셜로그인 실패")
         case .unknownUser:
             print("회원정보 없음")
+        default:
+            print("기타오류")
         }
     }
     

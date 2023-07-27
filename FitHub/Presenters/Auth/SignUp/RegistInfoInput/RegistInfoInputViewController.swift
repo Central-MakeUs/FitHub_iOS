@@ -48,7 +48,8 @@ final class RegistInfoInputViewController: BaseViewController {
         $0.isHidden = true
     }
     
-    private lazy var stackView = UIStackView(arrangedSubviews: [phoneNumberInputTextFieldView]).then {
+    private lazy var stackView = UIStackView(arrangedSubviews: [UIView(frame: .init(x: 0, y: 0, width: 100, height: 100))]).then {
+        $0.backgroundColor = .blue
         $0.spacing = 10
         $0.axis = .vertical
     }
@@ -72,11 +73,6 @@ final class RegistInfoInputViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.responseToKeyboardHegiht(self.sendButton)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
     }
     
     override func setupBinding() {
@@ -187,8 +183,9 @@ final class RegistInfoInputViewController: BaseViewController {
     //MARK: - 화면 이동
     private func pushPhoneVerifactionViewController() {
         let usecase = PhoneVerificationUseCase(repository: PhoneVerificationRepository(AuthService()))
-        let phoneVerificationVC = PhoneVerificationViewController(PhoneVerificationViewModel(usecase,
-                                                                                             userInfo: self.viewModel.userInfo))
+        usecase.registUserInfo = self.viewModel.usecase.registUserInfo
+        let phoneVerificationVC = PhoneVerificationViewController(PhoneVerificationViewModel(usecase))
+        
         self.navigationController?.pushViewController(phoneVerificationVC, animated: true)
     }
     
@@ -224,7 +221,6 @@ final class RegistInfoInputViewController: BaseViewController {
         self.stackView.snp.makeConstraints {
             $0.top.equalTo(self.subTitleLabel.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview().inset(20)
-            
         }
         
         self.sendButton.snp.makeConstraints {
