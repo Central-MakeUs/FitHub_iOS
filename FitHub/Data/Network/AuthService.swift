@@ -37,7 +37,7 @@ class AuthService {
     }
     
     func signInKakaoLogin(_ socialId: String)->Single<OAuthLoginDTO> {
-        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL) }
         
         let urlString = baseURL + "users/login/social/kakao"
         let paramter: Parameters = ["socialId" : socialId]
