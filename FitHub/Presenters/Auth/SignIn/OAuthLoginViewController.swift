@@ -160,6 +160,8 @@ final class OAuthLoginViewController: BaseViewController {
             print("소셜로그인 실패")
         case .unknownUser:
             print("회원정보 없음")
+        default:
+            print("기타오류")
         }
     }
     
