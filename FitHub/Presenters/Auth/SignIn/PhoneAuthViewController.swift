@@ -98,10 +98,9 @@ final class PhoneAuthViewController: BaseViewController {
             .bind(onNext: { [weak self] res in
                 switch res {
                 case .success:
-                    print("로그인")
-                    //TODO: 로그인 성공
+                    self?.navigationController?.dismiss(animated: true)
                 case .failure(let error):
-                    print("실패?")
+                    print("실패")
                     self?.responseAuthError(error)
                 }
             })

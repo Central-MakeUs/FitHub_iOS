@@ -54,9 +54,8 @@ class SportsSelectingViewModel: ViewModelType {
             }
             .subscribe(onNext: { res in
                 self.registPublisher.onNext(res.nickname)
-                print(res.accessToken)
-                print(res.userId)
-                //TODO: Token/UserId 저장
+                KeychainManager.create(key: "accessToken", value: res.accessToken)
+                KeychainManager.create(key: "userId", value: String(res.userId))
             })
             .disposed(by: disposeBag)
 
