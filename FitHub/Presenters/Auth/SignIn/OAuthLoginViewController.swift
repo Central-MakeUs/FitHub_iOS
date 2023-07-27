@@ -88,6 +88,15 @@ final class OAuthLoginViewController: BaseViewController {
                     self?.viewModel.loginPublisher.onError(error)
                 })
             .disposed(by: disposeBag)
+        } else {
+            UserApi.shared.rx.loginWithKakaoAccount()
+                .subscribe(onNext: { [weak self] _ in
+                    self?.viewModel.requestLogin()
+                },
+                onError: { [weak self] error in
+                    self?.viewModel.loginPublisher.onError(error)
+                })
+            .disposed(by: disposeBag)
         }
     }
     
