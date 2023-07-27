@@ -65,8 +65,11 @@ class PhoneAuthViewModel: ViewModelType {
         self.usecase.signInWithPhoneNumber(phoneNum, password)
             .subscribe(onSuccess: { response in
                 //TODO: JWT 및 id 저장해두기
+                print(response.accessToken)
+                print(response.userId)
                 self.loginPublisher.onNext(.success(()))
             }, onFailure: { error in
+                print("이거?")
                 self.loginPublisher.onNext(.failure(error as! AuthError))
             })
             .disposed(by: disposeBag)

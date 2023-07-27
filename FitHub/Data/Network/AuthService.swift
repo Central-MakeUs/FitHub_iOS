@@ -64,10 +64,11 @@ class AuthService {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
         
         let urlString = baseURL + "users/sign-in"
-        let paramter: Parameters = ["targetPhoneNum" : phoneNum,
+        let parameter: Parameters = ["targetPhoneNum" : phoneNum,
                                     "password" : password]
+        
         return Single<PhoneNumLoginDTO>.create { observer in
-            AF.request(urlString, method: .post, parameters: paramter, encoding: JSONEncoding.default)
+            AF.request(urlString, method: .post, parameters: parameter, encoding: JSONEncoding.default)
                 .responseDecodable(of: BaseResponse<PhoneNumLoginDTO>.self) { res in
                     switch res.result {
                     case .success(let response):
@@ -76,7 +77,10 @@ class AuthService {
                             observer(.success(result))
                         } else if response.code == 4019 {
                             observer(.failure(AuthError.unknownUser))
+                        } else if response.code == 4020 {
+                            observer(.failure(AuthError.passwordFaild))
                         }
+                        print(response.code)
                     case .failure:
                         observer(.failure(AuthError.serverError))
                     }
