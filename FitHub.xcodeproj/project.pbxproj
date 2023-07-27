@@ -23,6 +23,9 @@
 		DB55B6C92A6BB28A006FEA7F /* PhoneNumLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB55B6C82A6BB28A006FEA7F /* PhoneNumLoginUseCase.swift */; };
 		DB55B6D32A6C0855006FEA7F /* PhoneVerificationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB55B6D22A6C0855006FEA7F /* PhoneVerificationUseCase.swift */; };
 		DB55B6D62A6C2339006FEA7F /* PhoneAuthNumberDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB55B6D52A6C2339006FEA7F /* PhoneAuthNumberDTO.swift */; };
+		DB57122B2A71F29600DCAD9C /* ChangePasswordDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57122A2A71F29600DCAD9C /* ChangePasswordDTO.swift */; };
+		DB57122D2A72059300DCAD9C /* ResetPasswordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57122C2A72059300DCAD9C /* ResetPasswordUseCase.swift */; };
+		DB57122F2A7205DA00DCAD9C /* ResetPasswordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57122E2A7205DA00DCAD9C /* ResetPasswordRepository.swift */; };
 		DB5D22302A546AB400B32485 /* PhoneVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */; };
 		DB5D22322A5470A800B32485 /* PasswordSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D22312A5470A800B32485 /* PasswordSettingViewModel.swift */; };
 		DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF32A4EECB300D702A1 /* UIViewController+.swift */; };
@@ -42,6 +45,7 @@
 		DB6D93E42A4EDCE20011F9BC /* PasswordSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93E32A4EDCE20011F9BC /* PasswordSettingViewController.swift */; };
 		DB71348D2A5BDBF90006EAAB /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB71348C2A5BDBF90006EAAB /* AuthService.swift */; };
 		DB7134912A5BF46C0006EAAB /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7134902A5BF46C0006EAAB /* AuthError.swift */; };
+		DB746F732A71308400FBA8D4 /* RegistCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB746F722A71308400FBA8D4 /* RegistCompletionViewController.swift */; };
 		DB7559DF2A548BC000B88B96 /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7559DE2A548BC000B88B96 /* ProfileSettingViewController.swift */; };
 		DB7559E12A548C6800B88B96 /* ProfileSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7559E02A548C6800B88B96 /* ProfileSettingViewModel.swift */; };
 		DB7559E32A55030400B88B96 /* SportsSelectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7559E22A55030400B88B96 /* SportsSelectingViewController.swift */; };
@@ -130,6 +134,9 @@
 		DB55B6C82A6BB28A006FEA7F /* PhoneNumLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumLoginUseCase.swift; sourceTree = "<group>"; };
 		DB55B6D22A6C0855006FEA7F /* PhoneVerificationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationUseCase.swift; sourceTree = "<group>"; };
 		DB55B6D52A6C2339006FEA7F /* PhoneAuthNumberDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAuthNumberDTO.swift; sourceTree = "<group>"; };
+		DB57122A2A71F29600DCAD9C /* ChangePasswordDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordDTO.swift; sourceTree = "<group>"; };
+		DB57122C2A72059300DCAD9C /* ResetPasswordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordUseCase.swift; sourceTree = "<group>"; };
+		DB57122E2A7205DA00DCAD9C /* ResetPasswordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordRepository.swift; sourceTree = "<group>"; };
 		DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewModel.swift; sourceTree = "<group>"; };
 		DB5D22312A5470A800B32485 /* PasswordSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingViewModel.swift; sourceTree = "<group>"; };
 		DB5F84BE2A5CF72100E16C14 /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
@@ -150,6 +157,7 @@
 		DB6D93E32A4EDCE20011F9BC /* PasswordSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingViewController.swift; sourceTree = "<group>"; };
 		DB71348C2A5BDBF90006EAAB /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		DB7134902A5BF46C0006EAAB /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
+		DB746F722A71308400FBA8D4 /* RegistCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCompletionViewController.swift; sourceTree = "<group>"; };
 		DB7559DE2A548BC000B88B96 /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
 		DB7559E02A548C6800B88B96 /* ProfileSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewModel.swift; sourceTree = "<group>"; };
 		DB7559E22A55030400B88B96 /* SportsSelectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsSelectingViewController.swift; sourceTree = "<group>"; };
@@ -311,6 +319,32 @@
 			path = SignUp;
 			sourceTree = "<group>";
 		};
+		DB5712272A71F21200DCAD9C /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				DB55B6D52A6C2339006FEA7F /* PhoneAuthNumberDTO.swift */,
+				DB6CC3F22A70E59700C4C2BC /* RegistResponseDTO.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		DB5712282A71F23600DCAD9C /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				DBDBA3102A65324C00F1CDA5 /* OAuthLoginDTO.swift */,
+				DB55B6C42A6BAF38006FEA7F /* PhoneNumLoginDTO.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		DB5712292A71F26900DCAD9C /* FindPW */ = {
+			isa = PBXGroup;
+			children = (
+				DB57122A2A71F29600DCAD9C /* ChangePasswordDTO.swift */,
+			);
+			path = FindPW;
+			sourceTree = "<group>";
+		};
 		DB668AF52A4F040300D702A1 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +372,14 @@
 				DBF125E42A5E8DFB004DA4B9 /* NickNameTextFieldView.swift */,
 			);
 			path = TextField;
+			sourceTree = "<group>";
+		};
+		DB746F712A71306F00FBA8D4 /* RegistCompletion */ = {
+			isa = PBXGroup;
+			children = (
+				DB746F722A71308400FBA8D4 /* RegistCompletionViewController.swift */,
+			);
+			path = RegistCompletion;
 			sourceTree = "<group>";
 		};
 		DB8CD6FC2A6D0B5C004735C8 /* Auth */ = {
@@ -373,6 +415,7 @@
 			isa = PBXGroup;
 			children = (
 				DB8CD70A2A6D0E07004735C8 /* FindPWRepository.swift */,
+				DB57122E2A7205DA00DCAD9C /* ResetPasswordRepository.swift */,
 			);
 			path = FindPW;
 			sourceTree = "<group>";
@@ -390,6 +433,7 @@
 			isa = PBXGroup;
 			children = (
 				DBB820BB2A5E4D990016CB63 /* FindPWUseCase.swift */,
+				DB57122C2A72059300DCAD9C /* ResetPasswordUseCase.swift */,
 			);
 			path = FindPW;
 			sourceTree = "<group>";
@@ -441,12 +485,11 @@
 		DBDBA30F2A65323D00F1CDA5 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				DB5712292A71F26900DCAD9C /* FindPW */,
+				DB5712282A71F23600DCAD9C /* SignIn */,
+				DB5712272A71F21200DCAD9C /* SignUp */,
 				DBDBA30D2A64EC8200F1CDA5 /* NickNameDTO.swift */,
-				DBDBA3102A65324C00F1CDA5 /* OAuthLoginDTO.swift */,
-				DB55B6C42A6BAF38006FEA7F /* PhoneNumLoginDTO.swift */,
-				DB55B6D52A6C2339006FEA7F /* PhoneAuthNumberDTO.swift */,
 				DB8CD71A2A6E0C93004735C8 /* CategoryDTO.swift */,
-				DB6CC3F22A70E59700C4C2BC /* RegistResponseDTO.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -587,6 +630,7 @@
 		DBFF25942A5B951200CF6DD4 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				DB746F712A71306F00FBA8D4 /* RegistCompletion */,
 				DBFF25952A5B956A00CF6DD4 /* SportSelection */,
 				DBFF25932A5B94FE00CF6DD4 /* ProfileSetting */,
 				DBFF25922A5B94E200CF6DD4 /* PasswordSetting */,
@@ -875,10 +919,12 @@
 				DB7559DF2A548BC000B88B96 /* ProfileSettingViewController.swift in Sources */,
 				DB5D22302A546AB400B32485 /* PhoneVerificationViewModel.swift in Sources */,
 				DB8CD71F2A6E164A004735C8 /* CommunityUseCase.swift in Sources */,
+				DB57122F2A7205DA00DCAD9C /* ResetPasswordRepository.swift in Sources */,
 				DB55B6C92A6BB28A006FEA7F /* PhoneNumLoginUseCase.swift in Sources */,
 				DB71348D2A5BDBF90006EAAB /* AuthService.swift in Sources */,
 				DBFFDA3B2A4983F90008C2B5 /* BaseViewController.swift in Sources */,
 				DB8CD7252A6E58A1004735C8 /* CommunityType.swift in Sources */,
+				DB57122D2A72059300DCAD9C /* ResetPasswordUseCase.swift in Sources */,
 				DBFF25A02A5B991A00CF6DD4 /* OAuthLoginUseCase.swift in Sources */,
 				DB6CC3ED2A7016E700C4C2BC /* SportsSelectingUseCase.swift in Sources */,
 				DB8CD70D2A6D14C5004735C8 /* CategoryCell.swift in Sources */,
@@ -887,6 +933,7 @@
 				DB002BBB2A67C3C7001B5672 /* MyPageViewController.swift in Sources */,
 				DB5D22322A5470A800B32485 /* PasswordSettingViewModel.swift in Sources */,
 				DB8CD7222A6E16FA004735C8 /* CommunityRepository.swift in Sources */,
+				DB57122B2A71F29600DCAD9C /* ChangePasswordDTO.swift in Sources */,
 				DBDBA3112A65324C00F1CDA5 /* OAuthLoginDTO.swift in Sources */,
 				DB51D2592A4C2719002415B0 /* AgreementModel.swift in Sources */,
 				DB7559E72A55062C00B88B96 /* SportsCell.swift in Sources */,
@@ -905,6 +952,7 @@
 				DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */,
 				DB51ECC02A692EFC009F4690 /* TopTabbarItem.swift in Sources */,
 				DB8CD71B2A6E0C93004735C8 /* CategoryDTO.swift in Sources */,
+				DB746F732A71308400FBA8D4 /* RegistCompletionViewController.swift in Sources */,
 				DB55B6D62A6C2339006FEA7F /* PhoneAuthNumberDTO.swift in Sources */,
 				DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */,
 				DB6D93E42A4EDCE20011F9BC /* PasswordSettingViewController.swift in Sources */,

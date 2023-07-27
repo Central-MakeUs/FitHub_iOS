@@ -85,7 +85,7 @@ final class FindPWViewController: BaseViewController {
                 switch res {
                 case .success(let code):
                     if code == 2000 {
-                        self?.pushPhoneVerificationViewController(code)
+                        self?.pushPhoneVerificationViewController()
                     } else if code == 4019 {
                         self?.checkUserInfoAlert()
                     }
@@ -96,10 +96,11 @@ final class FindPWViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
-    private func pushPhoneVerificationViewController(_ code: Int) {
-        guard let phonNum = self.phoneNumberTextField.text else { return }
-        var usecase = PhoneVerificationUseCase(repository: PhoneVerificationRepository(AuthService()))
-        usecase.registUserInfo?.phoneNumber = phonNum
+    private func pushPhoneVerificationViewController() {
+        guard let phoneNum = self.phoneNumberTextField.text else { return }
+        let usecase = PhoneVerificationUseCase(repository: PhoneVerificationRepository(AuthService()))
+        usecase.registUserInfo = self.viewModel.usecase.userInfo
+        
         let phoneVerificationVC = PhoneVerificationViewController(PhoneVerificationViewModel(usecase))
         
         self.navigationController?.pushViewController(phoneVerificationVC, animated: true)

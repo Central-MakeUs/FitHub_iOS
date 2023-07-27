@@ -13,6 +13,8 @@ class SportsSelectingViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     var usecase: SportsSelectingUseCaseProtocol
 
+    private let registPublisher = PublishSubject<String?>()
+    
     struct Input {
         let didSelectItemEvent: Observable<CategoryDTO>
         let didDeSelectItemEvent: Observable<CategoryDTO>
@@ -20,7 +22,7 @@ class SportsSelectingViewModel: ViewModelType {
     }
     
     struct Output {
-        let registTap: Signal<Void>
+        let registPublisher: PublishSubject<String?>
         let registButtonEnable: Observable<Bool>
         let sports: BehaviorSubject<[CategoryDTO]>
     }
@@ -43,15 +45,22 @@ class SportsSelectingViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         input.registTap.asObservable()
-            .flatMap { self.usecase.signUpWithPhoneNumber() }
+            .flatMap { _ in
+                self.usecase.signUpWithPhoneNumber().asObservable()
+                    .catch { error in
+                        self.registPublisher.onNext(nil)
+                        return Observable.empty() // 에러를 무시하고 빈 Observable을 반환
+                    }
+            }
             .subscribe(onNext: { res in
+                self.registPublisher.onNext(res.nickname)
                 print(res.accessToken)
                 print(res.userId)
                 //TODO: Token/UserId 저장
             })
             .disposed(by: disposeBag)
-        
-        return Output(registTap: input.registTap,
+
+        return Output(registPublisher: registPublisher.asObserver(),
                       registButtonEnable: self.usecase.selectedIds.map { !$0.isEmpty },
                       sports: self.usecase.sports)
     }

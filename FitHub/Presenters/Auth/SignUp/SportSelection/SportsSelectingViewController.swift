@@ -82,12 +82,15 @@ final class SportsSelectingViewController: BaseViewController {
             .bind(to: self.registButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        output.registTap
-            .emit(onNext: {
-                self.notiAlert("이 부분은 API 내려오는거 보고 모델링한 뒤 마무리 할게요!")
+        output.registPublisher
+            .bind(onNext: { nickName in
+                if let nickName {
+                    self.navigationController?.pushViewController(RegistCompletionViewController(name: nickName), animated: true)
+                } else {
+                    self.notiAlert("회원가입 실패. 다시 시도해주세요.")
+                }
             })
             .disposed(by: disposeBag)
-        
     }
     
     //MARK: - AddSubView
