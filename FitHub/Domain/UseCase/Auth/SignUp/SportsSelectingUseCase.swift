@@ -14,7 +14,7 @@ protocol SportsSelectingUseCaseProtocol {
     var selectedIds: BehaviorSubject<[Int]> { get set }
     
     func signUpWithPhoneNumber() -> Single<RegistResponseDTO>
-    func signUpWithOAuth() -> Single<RegistResponseDTO>
+//    func signUpWithOAuth() -> Single<RegistResponseDTO>
 }
 
 final class SportsSelectingUseCase: SportsSelectingUseCaseProtocol {
