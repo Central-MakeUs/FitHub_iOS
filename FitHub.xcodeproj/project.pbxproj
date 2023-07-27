@@ -32,6 +32,10 @@
 		DB57123A2A72590B00DCAD9C /* OAuthRegistInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5712392A72590B00DCAD9C /* OAuthRegistInputViewModel.swift */; };
 		DB57123C2A7259B700DCAD9C /* OAuthRegistInputUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57123B2A7259B700DCAD9C /* OAuthRegistInputUseCase.swift */; };
 		DB57123E2A72651500DCAD9C /* RegistType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57123D2A72651500DCAD9C /* RegistType.swift */; };
+		DB5712422A7295E400DCAD9C /* EditCertifiactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5712412A7295E400DCAD9C /* EditCertifiactionViewController.swift */; };
+		DB5712462A72985D00DCAD9C /* EditCertificationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5712452A72985D00DCAD9C /* EditCertificationUseCase.swift */; };
+		DB5712492A729B4000DCAD9C /* EditCertificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5712482A729B4000DCAD9C /* EditCertificationRepository.swift */; };
+		DB57124B2A729BC200DCAD9C /* CertificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57124A2A729BC200DCAD9C /* CertificationService.swift */; };
 		DB5D22302A546AB400B32485 /* PhoneVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */; };
 		DB5D22322A5470A800B32485 /* PasswordSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D22312A5470A800B32485 /* PasswordSettingViewModel.swift */; };
 		DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF32A4EECB300D702A1 /* UIViewController+.swift */; };
@@ -149,6 +153,10 @@
 		DB5712392A72590B00DCAD9C /* OAuthRegistInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthRegistInputViewModel.swift; sourceTree = "<group>"; };
 		DB57123B2A7259B700DCAD9C /* OAuthRegistInputUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthRegistInputUseCase.swift; sourceTree = "<group>"; };
 		DB57123D2A72651500DCAD9C /* RegistType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistType.swift; sourceTree = "<group>"; };
+		DB5712412A7295E400DCAD9C /* EditCertifiactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCertifiactionViewController.swift; sourceTree = "<group>"; };
+		DB5712452A72985D00DCAD9C /* EditCertificationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCertificationUseCase.swift; sourceTree = "<group>"; };
+		DB5712482A729B4000DCAD9C /* EditCertificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCertificationRepository.swift; sourceTree = "<group>"; };
+		DB57124A2A729BC200DCAD9C /* CertificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationService.swift; sourceTree = "<group>"; };
 		DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewModel.swift; sourceTree = "<group>"; };
 		DB5D22312A5470A800B32485 /* PasswordSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingViewModel.swift; sourceTree = "<group>"; };
 		DB5F84BE2A5CF72100E16C14 /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
@@ -266,9 +274,8 @@
 		DB002BB22A67C2D5001B5672 /* Community */ = {
 			isa = PBXGroup;
 			children = (
-				DB51ECBB2A68E838009F4690 /* View */,
-				DB002BB32A67C332001B5672 /* CommunityViewController.swift */,
-				DB8CD7182A6E0B7D004735C8 /* CommunityViewModel.swift */,
+				DB5712402A72916D00DCAD9C /* Create */,
+				DB57123F2A72915C00DCAD9C /* Main */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -384,6 +391,40 @@
 			path = OAuthRegistInput;
 			sourceTree = "<group>";
 		};
+		DB57123F2A72915C00DCAD9C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				DB51ECBB2A68E838009F4690 /* View */,
+				DB002BB32A67C332001B5672 /* CommunityViewController.swift */,
+				DB8CD7182A6E0B7D004735C8 /* CommunityViewModel.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		DB5712402A72916D00DCAD9C /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				DB5712432A7296BB00DCAD9C /* Certification */,
+			);
+			path = Create;
+			sourceTree = "<group>";
+		};
+		DB5712432A7296BB00DCAD9C /* Certification */ = {
+			isa = PBXGroup;
+			children = (
+				DB5712412A7295E400DCAD9C /* EditCertifiactionViewController.swift */,
+			);
+			path = Certification;
+			sourceTree = "<group>";
+		};
+		DB5712442A72983100DCAD9C /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				DB5712452A72985D00DCAD9C /* EditCertificationUseCase.swift */,
+			);
+			path = Create;
+			sourceTree = "<group>";
+		};
 		DB668AF52A4F040300D702A1 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -481,6 +522,7 @@
 		DB8CD71D2A6E163C004735C8 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				DB5712442A72983100DCAD9C /* Create */,
 				DB8CD71E2A6E164A004735C8 /* CommunityUseCase.swift */,
 			);
 			path = Community;
@@ -490,6 +532,7 @@
 			isa = PBXGroup;
 			children = (
 				DB8CD7212A6E16FA004735C8 /* CommunityRepository.swift */,
+				DB5712482A729B4000DCAD9C /* EditCertificationRepository.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -820,6 +863,7 @@
 			isa = PBXGroup;
 			children = (
 				DB71348C2A5BDBF90006EAAB /* AuthService.swift */,
+				DB57124A2A729BC200DCAD9C /* CertificationService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -957,12 +1001,14 @@
 				DB8CD7132A6D2855004735C8 /* SortSwitchView.swift in Sources */,
 				DB002BB42A67C332001B5672 /* CommunityViewController.swift in Sources */,
 				DB55B6C32A6B9B55006FEA7F /* BaseResponse.swift in Sources */,
+				DB57124B2A729BC200DCAD9C /* CertificationService.swift in Sources */,
 				DBFFDA392A497A460008C2B5 /* PhoneAuthViewController.swift in Sources */,
 				DB7559DF2A548BC000B88B96 /* ProfileSettingViewController.swift in Sources */,
 				DB5D22302A546AB400B32485 /* PhoneVerificationViewModel.swift in Sources */,
 				DB8CD71F2A6E164A004735C8 /* CommunityUseCase.swift in Sources */,
 				DB57122F2A7205DA00DCAD9C /* ResetPasswordRepository.swift in Sources */,
 				DB55B6C92A6BB28A006FEA7F /* PhoneNumLoginUseCase.swift in Sources */,
+				DB5712492A729B4000DCAD9C /* EditCertificationRepository.swift in Sources */,
 				DB71348D2A5BDBF90006EAAB /* AuthService.swift in Sources */,
 				DBFFDA3B2A4983F90008C2B5 /* BaseViewController.swift in Sources */,
 				DB8CD7252A6E58A1004735C8 /* CommunityType.swift in Sources */,
@@ -986,6 +1032,7 @@
 				DBB820BC2A5E4D990016CB63 /* FindPWUseCase.swift in Sources */,
 				DB51D2532A4B36A5002415B0 /* AgreementView.swift in Sources */,
 				DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */,
+				DB5712422A7295E400DCAD9C /* EditCertifiactionViewController.swift in Sources */,
 				DB8CD7192A6E0B7D004735C8 /* CommunityViewModel.swift in Sources */,
 				DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */,
 				DB55B6D32A6C0855006FEA7F /* PhoneVerificationUseCase.swift in Sources */,
@@ -1023,6 +1070,7 @@
 				DB51ECBD2A68E846009F4690 /* FitHubTopTabbar.swift in Sources */,
 				DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */,
 				DB8CD7292A6E72C0004735C8 /* AgreementUseCase.swift in Sources */,
+				DB5712462A72985D00DCAD9C /* EditCertificationUseCase.swift in Sources */,
 				DBF125E32A5E885D004DA4B9 /* PasswordUseCase.swift in Sources */,
 				DB8CD70B2A6D0E07004735C8 /* FindPWRepository.swift in Sources */,
 				DB97F83E2A52C1E3009C09A1 /* PaddingLabel.swift in Sources */,

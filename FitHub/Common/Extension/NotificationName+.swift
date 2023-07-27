@@ -9,4 +9,5 @@ import Foundation
 
 extension Notification.Name {
     static let dismissStandardAlert = Notification.Name("dismissStandardAlert")
+    static let presentAlert = Notification.Name("presentAlert")
 }
