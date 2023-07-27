@@ -12,6 +12,8 @@ import RxSwift
 class ProfileSettingViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
+    var registType: RegistType
+    
     var usecase: ProfileSettingUseCaseProtocol
     
     let profileImage = BehaviorRelay(value: UIImage(named: "DefaultProfile"))
@@ -30,7 +32,9 @@ class ProfileSettingViewModel: ViewModelType {
         let duplicatedButtonIsHidden: Observable<Bool>
     }
     
-    init(_ usecase: ProfileSettingUseCaseProtocol) {
+    init(_ usecase: ProfileSettingUseCaseProtocol,
+         registType: RegistType) {
+        self.registType = registType
         self.usecase = usecase
     }
     

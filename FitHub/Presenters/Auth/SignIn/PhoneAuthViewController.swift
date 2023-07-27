@@ -144,7 +144,8 @@ final class PhoneAuthViewController: BaseViewController {
     }
     
     private func pushRegistViewController() {
-        let agreementVC = AgreementViewController(AgreementViewModel(AgreementUseCase()))
+        let agreementVC = AgreementViewController(AgreementViewModel(AgreementUseCase(),
+                                                                     registType: .Phone))
         self.navigationController?.pushViewController(agreementVC, animated: true)
     }
     

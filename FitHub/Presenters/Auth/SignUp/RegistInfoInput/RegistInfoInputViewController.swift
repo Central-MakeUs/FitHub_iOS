@@ -48,7 +48,8 @@ final class RegistInfoInputViewController: BaseViewController {
         $0.isHidden = true
     }
     
-    private lazy var stackView = UIStackView(arrangedSubviews: [phoneNumberInputTextFieldView]).then {
+    private lazy var stackView = UIStackView(arrangedSubviews: [UIView(frame: .init(x: 0, y: 0, width: 100, height: 100))]).then {
+        $0.backgroundColor = .blue
         $0.spacing = 10
         $0.axis = .vertical
     }
@@ -72,11 +73,6 @@ final class RegistInfoInputViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.responseToKeyboardHegiht(self.sendButton)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
     }
     
     override func setupBinding() {

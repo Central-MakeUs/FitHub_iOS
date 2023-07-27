@@ -147,9 +147,11 @@ final class OAuthLoginViewController: BaseViewController {
         let cancel = StandardAlertAction(title: "닫기", style: .cancel) { _ in
             UserApi.shared.logout {_ in} // 카카오 로그아웃
         }
-        let regist = StandardAlertAction(title: "회원가입 하기", style: .basic) { _ in
-            // TODO: OAuth 회원가입 화면 이동
-            print("regist")
+        let regist = StandardAlertAction(title: "회원가입 하기", style: .basic) { [weak self] _ in
+            let usecase = AgreementUseCase()
+            let agreementVC = AgreementViewController(AgreementViewModel(usecase,
+                                                                         registType: .OAuth))
+            self?.navigationController?.pushViewController(agreementVC, animated: true)
         }
         alert.addAction(cancel)
         alert.addAction(regist)

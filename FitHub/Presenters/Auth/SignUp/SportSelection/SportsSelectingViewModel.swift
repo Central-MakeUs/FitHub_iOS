@@ -9,10 +9,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SportsSelectingViewModel: ViewModelType {
+final class SportsSelectingViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     var usecase: SportsSelectingUseCaseProtocol
 
+    var registType: RegistType
+    
     private let registPublisher = PublishSubject<String?>()
     
     struct Input {
@@ -27,7 +29,9 @@ class SportsSelectingViewModel: ViewModelType {
         let sports: BehaviorSubject<[CategoryDTO]>
     }
     
-    init(_ usecase: SportsSelectingUseCase) {
+    init(_ usecase: SportsSelectingUseCase,
+         registType: RegistType) {
+        self.registType = registType
         self.usecase = usecase
     }
     

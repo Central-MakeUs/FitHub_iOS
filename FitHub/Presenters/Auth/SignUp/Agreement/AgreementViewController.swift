@@ -136,8 +136,14 @@ final class AgreementViewController: BaseViewController {
     //MARK: - 화면 이동
     private func pushRegistInfoViewController() {
         let userInfo = self.viewModel.usecase.registUserInfo
-        let usecase = RegistInfoUseCase(userInfo)
-        self.navigationController?.pushViewController(RegistInfoInputViewController(RegistInfoViewModel(usecase)), animated: true)
+        if self.viewModel.registType == .OAuth {
+            let usecase = OAuthRegistInputUseCase(registUserInfo: userInfo)
+            let oAuthRegistInputVC = OAuthRegistInputViewController(OAuthRegistInputViewModel(usecase))
+            self.navigationController?.pushViewController(oAuthRegistInputVC, animated: true)
+        } else {
+            let usecase = RegistInfoUseCase(userInfo)
+            self.navigationController?.pushViewController(RegistInfoInputViewController(RegistInfoViewModel(usecase)), animated: true)
+        }
     }
     
     override func addSubView() {

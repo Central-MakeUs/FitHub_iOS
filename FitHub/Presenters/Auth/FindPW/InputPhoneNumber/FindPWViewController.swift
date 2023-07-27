@@ -97,7 +97,6 @@ final class FindPWViewController: BaseViewController {
     }
     
     private func pushPhoneVerificationViewController() {
-        guard let phoneNum = self.phoneNumberTextField.text else { return }
         let usecase = PhoneVerificationUseCase(repository: PhoneVerificationRepository(AuthService()))
         usecase.registUserInfo = self.viewModel.usecase.userInfo
         
@@ -111,7 +110,8 @@ final class FindPWViewController: BaseViewController {
         
         let cancel = StandardAlertAction(title: "닫기", style: .cancel)
         let regist = StandardAlertAction(title: "회원가입 하기", style: .basic) { _ in
-            let agreementVC = AgreementViewController(AgreementViewModel(AgreementUseCase()))
+            let agreementVC = AgreementViewController(AgreementViewModel(AgreementUseCase(),
+                                                                         registType: .Phone))
             if let idx = self.navigationController?.viewControllers.lastIndex(of: self) {
                 self.navigationController?.viewControllers[idx - 1] = agreementVC
             }
