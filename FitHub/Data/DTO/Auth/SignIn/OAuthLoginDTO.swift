@@ -9,6 +9,6 @@ import Foundation
 
 class OAuthLoginDTO: Codable {
     let isLogin: Bool
-    let jwt: String
+    let accessToken: String
     let userId: Int
 }

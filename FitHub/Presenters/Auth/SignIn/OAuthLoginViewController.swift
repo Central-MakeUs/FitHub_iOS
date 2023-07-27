@@ -121,10 +121,8 @@ final class OAuthLoginViewController: BaseViewController {
                 switch res {
                 case .success(let response):
                     if response.isLogin {
-                        print("로그인")
-                        // TODO: 로그인 프로세스
+                        self.navigationController?.dismiss(animated: true)
                     } else {
-                        // TODO: 회원가입 프로세스
                         self.showUserInfoNotFoundAlert()
                     }
                 case .failure(let error):

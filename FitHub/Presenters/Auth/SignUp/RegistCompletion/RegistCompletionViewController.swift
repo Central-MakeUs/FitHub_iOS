@@ -44,8 +44,8 @@ final class RegistCompletionViewController: BaseViewController {
     //MARK: - SetupBinding
     override func setupBinding() {
         self.goHomeButton.rx.tap
-            .bind(onNext: {
-                //TODO: Home으로 이동
+            .bind(onNext: { [weak self] in
+                self?.navigationController?.dismiss(animated: true)
             })
             .disposed(by: disposeBag)
     }
