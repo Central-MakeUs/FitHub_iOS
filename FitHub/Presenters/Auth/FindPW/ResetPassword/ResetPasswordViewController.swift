@@ -80,16 +80,19 @@ final class ResetPasswordViewController: BaseViewController {
             .drive(self.nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        output.nextTap
-            .emit(onNext: { [weak self] in
+        output.changePasswordPublisher
+            .bind(onNext: { [weak self] isSuccess in
                 guard let self else { return }
-                //TODO: ViewModel에서 tap했을때 api 결과에 따라 분기.
-                self.resetCompleteNotificationWillShow()
+                if isSuccess {
+                    self.showCompletionAlert()
+                } else {
+                    self.notiAlert("변경 실패\n 서버 오류")
+                }
             })
             .disposed(by: disposeBag)
     }
     
-    func resetCompleteNotificationWillShow() {
+    func showCompletionAlert() {
         let alert = StandardAlertController(title: "비밀번호 설정 완료", message: "비밀번호가 재설정되었습니다\n로그인을 진행할까요?")
         let moveLogin = StandardAlertAction(title: "로그인 하기", style: .basic) { _ in
             self.navigationController?.popToRootViewController(animated: true)
@@ -98,6 +101,7 @@ final class ResetPasswordViewController: BaseViewController {
         
         self.present(alert, animated: false)
     }
+    
     
     //MARK: - AddSubView
     override func addSubView() {
