@@ -98,15 +98,8 @@ final class PhoneVerificationViewController: BaseViewController {
             .bind(to: self.verificationNumberTextField.timeLabel.rx.text)
             .disposed(by: disposeBag)
         
-        output.resendPublisher
-            .bind(onNext: { res in
-                switch res {
-                case .success(_):
-                    self.notiAlert("인증번호 재전송")
-                case .failure(_):
-                    print("에러")
-                }
-            })
+        output.resendTap
+            .emit(onNext: { [weak self] in self?.notiAlert("인증번호 재전송")})
             .disposed(by: disposeBag)
         
         output.authNumberPublisher
@@ -132,13 +125,18 @@ final class PhoneVerificationViewController: BaseViewController {
     
     //MARK: - 화면이동
     private func pushPasswordSettingViewController() {
-        if let userInfo = self.viewModel.registUserInfo {
-            let passwordSettingVC = PasswordSettingViewController(PasswordSettingViewModel(userInfo,
-                                                                                           usecase: PasswordUseCase()))
+        guard let userInfo = self.viewModel.usecase.registUserInfo else { return }
+        
+        if let _ = userInfo.name {
+            let usecase = PasswordUseCase(userInfo)
+            let passwordSettingVC = PasswordSettingViewController(PasswordSettingViewModel(usecase: usecase))
+            
             self.navigationController?.pushViewController(passwordSettingVC, animated: true)
         } else {
             //TODO: 비밀번호 재설정 페이지 이동
-            let passwordResetVC = ResetPasswordViewController(ResetPasswordViewModel(PasswordUseCase()))
+            let usecase = ResetPasswordUseCase(ResetPasswordRepository(service: AuthService()),
+                                               userInfo: userInfo)
+            let passwordResetVC = ResetPasswordViewController(ResetPasswordViewModel(usecase))
             self.navigationController?.pushViewController(passwordResetVC, animated: true)
         }
     }

@@ -29,17 +29,18 @@ final class SportsSelectingViewController: BaseViewController {
     private lazy var sportsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout()).then {
         $0.register(SportsCell.self, forCellWithReuseIdentifier: SportsCell.identifier)
         $0.allowsMultipleSelection = true
-        $0.backgroundColor = .white
+        $0.backgroundColor = .clear
     }
     
     private let registButton = StandardButton(type: .system).then {
-        $0.setTitle("회원가입 하기", for: .normal)
+        $0.setTitle("핏허브 입장하기", for: .normal)
     }
     
     //MARK: - Init
     init(_ viewModel: SportsSelectingViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        self.view.gestureRecognizers = nil
     }
     
     required init?(coder: NSCoder) {
@@ -52,30 +53,44 @@ final class SportsSelectingViewController: BaseViewController {
     
     //MARK: - SetupBinding
     override func setupBinding() {
-        self.viewModel.sports
-            .bind(to: self.sportsCollectionView.rx.items(cellIdentifier: SportsCell.identifier, cellType: SportsCell.self)) {index,title,cell in
-                cell.configureCell(item: title)
-            }
-            .disposed(by: disposeBag)
-        
-        let selectItem = Observable.zip(self.sportsCollectionView.rx.itemSelected.asObservable(), self.sportsCollectionView.rx.modelSelected(String.self).asObservable()
-        )
-        
-        let deSelectItem = Observable.zip(self.sportsCollectionView.rx.itemDeselected.asObservable(), self.sportsCollectionView.rx.modelDeselected(String.self).asObservable()
-        )
-        
-        let input = SportsSelectingViewModel.Input(didSelectItemEvent: selectItem,
-                                                   didDeSelectItemEvent: deSelectItem,
+        let input = SportsSelectingViewModel.Input(didSelectItemEvent: self.sportsCollectionView.rx.modelSelected(CategoryDTO.self).asObservable(),
+                                                   didDeSelectItemEvent: self.sportsCollectionView.rx.modelDeselected(CategoryDTO.self).asObservable(),
                                                    registTap: self.registButton.rx.tap.asSignal())
         
         let output = self.viewModel.transform(input: input)
         
-        output.registTap
-            .emit(onNext: {
-                self.notiAlert("이 부분은 API 내려오는거 보고 모델링한 뒤 마무리 할게요!")
+        output.sports
+            .bind(to: self.sportsCollectionView.rx.items(cellIdentifier: SportsCell.identifier,
+                                                         cellType: SportsCell.self)) {index,category,cell in
+                cell.configureCell(item: category)
+            }
+            .disposed(by: disposeBag)
+        
+        self.sportsCollectionView.rx.itemSelected
+            .bind(onNext: { [weak self] indexPath in
+                self?.sportsCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
             })
             .disposed(by: disposeBag)
         
+        self.sportsCollectionView.rx.itemDeselected
+            .bind(onNext: { [weak self] indexPath in
+                self?.sportsCollectionView.deselectItem(at: indexPath, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        output.registButtonEnable
+            .bind(to: self.registButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        output.registPublisher
+            .bind(onNext: { nickName in
+                if let nickName {
+                    self.navigationController?.pushViewController(RegistCompletionViewController(name: nickName), animated: true)
+                } else {
+                    self.notiAlert("회원가입 실패. 다시 시도해주세요.")
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     //MARK: - AddSubView

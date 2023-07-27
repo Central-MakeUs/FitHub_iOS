@@ -37,7 +37,7 @@ class AuthService {
     }
     
     func signInKakaoLogin(_ socialId: String)->Single<OAuthLoginDTO> {
-        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL) }
         
         let urlString = baseURL + "users/login/social/kakao"
         let paramter: Parameters = ["socialId" : socialId]
@@ -64,10 +64,11 @@ class AuthService {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
         
         let urlString = baseURL + "users/sign-in"
-        let paramter: Parameters = ["targetPhoneNum" : phoneNum,
+        let parameter: Parameters = ["targetPhoneNum" : phoneNum,
                                     "password" : password]
+        
         return Single<PhoneNumLoginDTO>.create { observer in
-            AF.request(urlString, method: .post, parameters: paramter, encoding: JSONEncoding.default)
+            AF.request(urlString, method: .post, parameters: parameter, encoding: JSONEncoding.default)
                 .responseDecodable(of: BaseResponse<PhoneNumLoginDTO>.self) { res in
                     switch res.result {
                     case .success(let response):
@@ -76,7 +77,10 @@ class AuthService {
                             observer(.success(result))
                         } else if response.code == 4019 {
                             observer(.failure(AuthError.unknownUser))
+                        } else if response.code == 4020 {
+                            observer(.failure(AuthError.passwordFaild))
                         }
+                        print(response.code)
                     case .failure:
                         observer(.failure(AuthError.serverError))
                     }
@@ -85,6 +89,57 @@ class AuthService {
         }
     }
     
+    //MARK: 회원가입
+    func signUpWithPhoneNumber(_ registUserInfo: AuthUserInfo)-> Single<RegistResponseDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL) }
+        let urlString = baseURL + "users/sign-up"
+        let headers: HTTPHeaders = ["Content-Type" : "multipart/form-data"]
+        
+        let marketingAgree = registUserInfo.marketingAgree
+        let preferExercises = registUserInfo.preferExercise.map { $0.id }
+        guard let birth = registUserInfo.dateOfBirth,
+              let gender = registUserInfo.sexNumber,
+              let password = registUserInfo.password,
+              let nickname = registUserInfo.nickName,
+              let name = registUserInfo.name,
+              let phoneNumber = registUserInfo.phoneNumber,
+              let profileImage = registUserInfo.profileImage?.pngData() else { return Single.error(AuthError.invalidURL) }
+        
+        let parameters: Parameters = [
+            "gender" : gender,
+            "marketingAgree" : marketingAgree,
+            "birth" : birth,
+            "name" : name,
+            "nickname" : nickname,
+            "phoneNumber" : phoneNumber,
+            "password" : password]
+        
+        return Single<RegistResponseDTO>.create { emitter in
+            AF.upload(multipartFormData: { multipartFormData in
+                multipartFormData.append(profileImage, withName: "profileImage", fileName: "\(profileImage).png", mimeType: "image/png")
+                let preferExercises = preferExercises.map { String($0) }.joined(separator: ",")
+                multipartFormData.append(preferExercises.data(using: .utf8)!, withName: "preferExercises")
+                
+                for (key,value) in parameters {
+                    multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
+                }
+            }, to: urlString, method: .post, headers: headers)
+            .responseDecodable(of: BaseResponse<RegistResponseDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if let result = response.result {
+                        emitter(.success(result))
+                    } else {
+                        emitter(.failure(AuthError.serverError))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            
+            return Disposables.create()
+        }
+    }
     
     //MARK: - 닉네임 중복 체크
     func duplicationNickNameCheck(_ nickName: String) -> Single<Bool> {
@@ -194,5 +249,35 @@ class AuthService {
             
             return Disposables.create()
         }
+    }
+    
+    //MARK: - 비밀번호 변경
+    func changePassword(_ registUser: AuthUserInfo)-> Single<Bool> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/password"
+        guard let newPassword = registUser.password,
+              let targetPhoneNum = registUser.phoneNumber else { return Single.error(AuthError.invalidURL) }
+        
+        let parameters: Parameters = ["targetPhoneNum" : targetPhoneNum,
+                                      "newPassword" : newPassword]
+        
+        return Single<Bool>.create { emitter in
+            AF.request(urlString, method: .patch, parameters: parameters, encoding: JSONEncoding.default)
+                .responseDecodable(of: BaseResponse<ChangePasswordDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            emitter(.success(true))
+                        } else {
+                            emitter(.success(false))
+                        }
+                    case .failure(let error):
+                        emitter(.failure(error))
+                    }
+                    
+                }
+            return Disposables.create()
+        }
+        
     }
 }

@@ -12,7 +12,8 @@ import RxCocoa
 class ResetPasswordViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
-    private let usecase: PasswordUseCaseProtocol
+    private var usecase: ResetPasswordUseCaseProtocol
+    private let changePasswordPublisher = PublishSubject<Bool>()
     
     struct Input {
         let passwordInput: Observable<String>
@@ -24,10 +25,10 @@ class ResetPasswordViewModel: ViewModelType {
         let passwordStatus: Observable<UserInfoStatus>
         let passwordVerificationStatus: Observable<UserInfoStatus>
         let nextButtonEnable: Observable<Bool>
-        let nextTap: Signal<Void>
+        let changePasswordPublisher: PublishSubject<Bool>
     }
     
-    init(_ usecase: PasswordUseCaseProtocol) {
+    init(_ usecase: ResetPasswordUseCaseProtocol) {
         self.usecase = usecase
     }
     
@@ -38,16 +39,36 @@ class ResetPasswordViewModel: ViewModelType {
         
         let passwordVerificationStatus = Observable.combineLatest(input.passwordInput,
                                                                   input.passwordVerificationInput)
-            .distinctUntilChanged { $0.1 == $1.1 }
+            .filter { !$1.isEmpty }
             .map { self.usecase.verifyPasswordVerification($0,$1) }
         
         let nextButtonEnable = Observable.combineLatest(passwordStatus,
                                                         passwordVerificationStatus)
             .map { $0.0 == .passwordSuccess && $0.1 == .matchPassword }
         
+        nextButtonEnable
+            .filter { $0 }
+            .withLatestFrom(input.passwordVerificationInput)
+            .subscribe(onNext: { [weak self] password in
+                self?.usecase.userInfo.password = password
+            })
+            .disposed(by: disposeBag)
+        
+        input.nextTap.asObservable()
+            .flatMap { self.usecase.changePassword().asObservable() }
+            .catch { [weak self] _ in
+                self?.changePasswordPublisher.onNext(false)
+                return Observable.empty()
+            }
+            .subscribe(onNext: { [weak self] isSuccess in
+                self?.changePasswordPublisher.onNext(isSuccess)
+            })
+            .disposed(by: disposeBag)
+        
+        
         return Output(passwordStatus: passwordStatus,
                       passwordVerificationStatus: passwordVerificationStatus,
                       nextButtonEnable: nextButtonEnable,
-                      nextTap: input.nextTap)
+                      changePasswordPublisher: changePasswordPublisher)
     }
 }

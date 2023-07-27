@@ -12,4 +12,5 @@ enum AuthError: Error {
     case serverError
     case oauthFailed
     case unknownUser
+    case passwordFaild
 }

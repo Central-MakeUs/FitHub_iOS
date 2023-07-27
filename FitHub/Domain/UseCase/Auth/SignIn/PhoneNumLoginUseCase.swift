@@ -28,6 +28,6 @@ class PhoneNumLoginUseCase: PhoneNumLoginUseCaseProtocol {
     }
     
     func signInWithPhoneNumber(_ phoneNum: String,_ password: String) -> Single<PhoneNumLoginDTO> {
-        return repository.signInWithPhoneNumber(password, password)
+        return repository.signInWithPhoneNumber(phoneNum, password)
     }
 }

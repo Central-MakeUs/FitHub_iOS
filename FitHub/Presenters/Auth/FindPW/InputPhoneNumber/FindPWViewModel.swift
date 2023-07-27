@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 class FindPWViewModel: ViewModelType {
-    private let usecase: FindPWUseCaseProtocol
+    var usecase: FindPWUseCaseProtocol
     
     var disposeBag = DisposeBag()
     
@@ -41,10 +41,17 @@ class FindPWViewModel: ViewModelType {
         let sendButtonEnabled = phoneStatus
             .map { $0.count == 11 && $1 == .ok }
         
+        phoneNumber
+            .subscribe(onNext: { [weak self] in
+                self?.usecase.userInfo.phoneNumber = $0
+            })
+            .disposed(by: disposeBag)
+        
         input.sendButtonTap
             .withLatestFrom(phoneNumber)
             .flatMap { self.usecase.checkUserInfo($0).asObservable() }
             .subscribe(onNext: { [weak self] code in
+                
                 self?.checkUserInfo.onNext(.success(code))
             }, onError: { [weak self] error in
                 self?.checkUserInfo.onNext(.failure(error as! AuthError))

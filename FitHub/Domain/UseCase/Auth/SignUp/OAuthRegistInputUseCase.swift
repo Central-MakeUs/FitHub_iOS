@@ -1,33 +1,23 @@
 //
-//  RegistInfoUseCase.swift
+//  OAuthRegistInputUseCase.swift
 //  FitHub
 //
-//  Created by 신상우 on 2023/07/11.
+//  Created by 신상우 on 2023/07/27.
 //
 
 import Foundation
-import RxSwift
 
-protocol RegistInfoUseCaseProtocol {
+protocol OAuthRegistInputUseCaseProtocol {
     var registUserInfo: AuthUserInfo { get set }
     
-    func verifyPhoneNumber(_ numberStr: String) -> UserInfoStatus 
     func verifyDateOfBirth(_ dateStr: String, sexNumStr: String) -> UserInfoStatus
-    func updateRegistUserInfo(_ userInfo: AuthUserInfo)
 }
 
-final class RegistInfoUseCase: RegistInfoUseCaseProtocol {
+final class OAuthRegistInputUseCase: OAuthRegistInputUseCaseProtocol {
     var registUserInfo: AuthUserInfo
     
-    init(_ registUserInfo: AuthUserInfo) {
+    init(registUserInfo: AuthUserInfo) {
         self.registUserInfo = registUserInfo
-    }
-    
-    func verifyPhoneNumber(_ numberStr: String) -> UserInfoStatus {
-        let phoneNumberRegex = "^010\\d{8}$"
-        let isValid = NSPredicate(format: "SELF MATCHES %@", phoneNumberRegex).evaluate(with: numberStr)
-        
-        return isValid ? .ok : .notValidPhoneNumber
     }
     
     func verifyDateOfBirth(_ dateStr: String, sexNumStr: String) -> UserInfoStatus {
@@ -56,13 +46,5 @@ final class RegistInfoUseCase: RegistInfoUseCaseProtocol {
         }
         
         return .ok
-    }
-    
-    func updateRegistUserInfo(_ userInfo: AuthUserInfo) {
-        self.registUserInfo.dateOfBirth = userInfo.dateOfBirth
-        self.registUserInfo.sexNumber = userInfo.sexNumber
-        self.registUserInfo.name = userInfo.name
-        self.registUserInfo.phoneNumber = userInfo.phoneNumber
-        self.registUserInfo.telecom = userInfo.telecom
     }
 }
