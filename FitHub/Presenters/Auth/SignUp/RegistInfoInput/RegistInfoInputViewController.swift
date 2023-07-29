@@ -48,8 +48,7 @@ final class RegistInfoInputViewController: BaseViewController {
         $0.isHidden = true
     }
     
-    private lazy var stackView = UIStackView(arrangedSubviews: [UIView(frame: .init(x: 0, y: 0, width: 100, height: 100))]).then {
-        $0.backgroundColor = .blue
+    private lazy var stackView = UIStackView(arrangedSubviews: [phoneNumberInputTextFieldView]).then {
         $0.spacing = 10
         $0.axis = .vertical
     }

@@ -80,7 +80,6 @@ class AuthService {
                         } else if response.code == 4020 {
                             observer(.failure(AuthError.passwordFaild))
                         }
-                        print(response.code)
                     case .failure:
                         observer(.failure(AuthError.serverError))
                     }

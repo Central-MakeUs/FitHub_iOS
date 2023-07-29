@@ -7,27 +7,33 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 protocol CommunityUseCaseProtocol {
-    var category: BehaviorSubject<[CategoryDTO]> { get set }
     var currentOrder: OrderType { get set }
     var currentCommunityType: CommunityType { get set }
     
-    func fetchCategory()
+    var category: BehaviorSubject<[CategoryDTO]> { get set }
+    var recordList: BehaviorSubject<[CertificationItem]> { get set }
+    var selectedId: BehaviorRelay<Int> { get set }
+    
+    func fetchCertificationFeed()
 }
 
 final class CommunityUseCase: CommunityUseCaseProtocol {
     private let disposeBag = DisposeBag()
     private let repository: CommunityRepositoryInterface
     
+    var selectedId = BehaviorRelay<Int>(value: 0)
+    var recordList = BehaviorSubject<[CertificationItem]>(value: [])
+    var category = BehaviorSubject<[CategoryDTO]>(value: [])
+    
     var currentOrder: OrderType = .recent
     var currentCommunityType: CommunityType = .certification
     
-    var category = BehaviorSubject<[CategoryDTO]>(value: [])
-    
     init(_ repository: CommunityRepositoryInterface) {
         self.repository = repository
-        
+
         self.fetchCategory()
     }
     
@@ -37,5 +43,15 @@ final class CommunityUseCase: CommunityUseCaseProtocol {
                 self?.category.onNext(response)
             })
             .disposed(by: disposeBag)
+    }
+    
+    func fetchCertificationFeed() {
+        self.repository
+            .fetchCertificationFeed(self.selectedId.value)
+            .subscribe(onSuccess: { [weak self] response in
+                self?.recordList.onNext(response.recordList)
+            })
+            .disposed(by: disposeBag)
+            
     }
 }
