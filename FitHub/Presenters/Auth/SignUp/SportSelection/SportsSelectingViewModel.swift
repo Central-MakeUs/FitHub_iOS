@@ -68,4 +68,3 @@ final class SportsSelectingViewModel: ViewModelType {
                       sports: self.usecase.sports)
     }
 }
-

@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class CertificationCell: UICollectionViewCell {
     static let identifier = "CertificationCell"
     
     private let imageView = UIImageView().then {
         $0.backgroundColor = .iconDisabled
+        $0.layer.masksToBounds = true
         $0.layer.cornerRadius = 5
     }
     
@@ -34,6 +36,14 @@ final class CertificationCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureCell(_ item: CertificationItem) {
+        self.imageView.kf.setImage(with: URL(string: item.pictureUrl))
+        self.likeCntLabel.text = "\(item.likes)"
+        
+        let likeImage = item.isLiked ? UIImage(named: "ic_heart_pressed") : UIImage(named: "ic_heart_default")
+        self.likeButton.setImage(likeImage?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
     //MARK: - AddSubView

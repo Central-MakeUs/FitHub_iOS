@@ -20,6 +20,7 @@ final class RegistCompletionViewController: BaseViewController {
     }
     
     private let subTitleLabel = UILabel().then {
+        $0.textAlignment = .center
         $0.numberOfLines = 0
         $0.text = "그럼 특별한 운동과 사람들이 있는\n핏허브로 떠나 보실까요?"
         $0.font = .pretendard(.bodyLarge01)

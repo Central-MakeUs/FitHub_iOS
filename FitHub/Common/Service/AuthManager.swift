@@ -14,7 +14,10 @@ final class AuthManager: RequestInterceptor {
     /// request 전에 특정 작업을 하고 싶은 경우
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         guard let accessToken = KeychainManager.read("accessToken") else {
-            NotificationCenter.default.post(name: .presentAlert, object: nil)
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: .presentAlert, object: nil)
+            }
+            
             return
         }
    
