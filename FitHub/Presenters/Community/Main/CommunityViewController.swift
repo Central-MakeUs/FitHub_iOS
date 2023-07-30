@@ -128,8 +128,9 @@ final class CommunityViewController: BaseViewController {
     
     //MARK: - 화면이동
     private func pushCreateCertificationVC() {
-        let usecase = EditCertificationUseCase()
-        let editCertificationVC = EditCertifiactionViewController(EditCertifiactionViewModel(usecase: usecase))
+        let usecase = EditCertificationUseCase(repository: EditCertificationRepository(certificationService: CertificationService(),
+                                                                                       authService: AuthService()))
+        let editCertificationVC = EditCertificationViewController(EditCertificationViewModel(usecase: usecase))
         self.navigationController?.pushViewController(editCertificationVC, animated: true)
     }
     

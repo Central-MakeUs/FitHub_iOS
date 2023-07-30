@@ -9,18 +9,33 @@ import UIKit
 import RxSwift
 
 protocol EditCertificationUseCaseProtocol {
-    var profileImage: UIImage { get set }
-    var hashtags: [String] { get set }
-    var content: String { get set }
-    var selectedCategoryId: Int { get set }
+    var certifiactionInfo: EditCertificationModel { get set }
+    
+    var sports: BehaviorSubject<[CategoryDTO]> { get set }
+    
+    func createCertification() -> Single<CreateCertificationDTO>
 }
 
 final class EditCertificationUseCase: EditCertificationUseCaseProtocol {
-    var profileImage = UIImage()
+    private let repository: EditCertificationRepositoryInterface
     
-    var hashtags = [String]()
+    var disposeBag = DisposeBag()
     
-    var content = String()
+    var certifiactionInfo = EditCertificationModel()
     
-    var selectedCategoryId = Int()
+    var sports = BehaviorSubject<[CategoryDTO]>(value: [])
+    
+    init(repository: EditCertificationRepositoryInterface) {
+        self.repository = repository
+        
+        repository.fetchCategory()
+            .subscribe(onSuccess: { categories in
+                self.sports.onNext(categories)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func createCertification() -> Single<CreateCertificationDTO> {
+        return self.repository.createCertification(certifiactionInfo)
+    }
 }
