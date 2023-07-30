@@ -6,9 +6,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import PhotosUI
 
 final class ImageCell: UICollectionViewCell {
     static let identifier = "ImageCell"
+    let disposeBag = DisposeBag()
+    
+    var tapButton: (()->Void)?
     
     private let imageView = UIImageView().then {
         $0.backgroundColor = .bgSub01
@@ -43,11 +49,22 @@ final class ImageCell: UICollectionViewCell {
             $0.bottom.trailing.equalToSuperview().offset(-20)
         }
         
-        var configure = UIButton.Configuration.plain()
-
+        self.setupBinding()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureCell(image: UIImage?) {
+        self.imageView.image = image
+    }
+    
+    private func setupBinding() {
+        self.changeImageButton.rx.tap
+            .bind(onNext: { [weak self] in
+                self?.tapButton?()
+            })
+            .disposed(by: disposeBag)
     }
 }
