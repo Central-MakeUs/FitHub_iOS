@@ -85,7 +85,8 @@ final class EditCertificationViewController: BaseViewController {
             .subscribe(onNext: { [weak self] model in
                 switch model {
                 case .sport(item: let item):
-                    self?.viewModel.selectedSportSource.onNext(item)
+                    self?.viewModel.selectedSportSource.accept(item)
+                    self?.collectionView.reloadSections(.init(integer: 3))
                 default: print("예외")
                 }
             })
@@ -98,7 +99,6 @@ final class EditCertificationViewController: BaseViewController {
                     print("성공")
                     self.navigationController?.popViewController(animated: true)
                 } else {
-                    print("실패")
                     self.notiAlert("작성 실패: 서버 오류")
                 }
             })
@@ -162,7 +162,8 @@ extension EditCertificationViewController {
                 return cell
             case .sport(item: let item):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SportCell.identifier, for: indexPath) as! SportCell
-                cell.configureCell(item: item)
+                let selectedItem = self.viewModel.selectedSportSource.value
+                cell.configureCell(item: item, selectedItem: selectedItem)
                 
                 return cell
             }

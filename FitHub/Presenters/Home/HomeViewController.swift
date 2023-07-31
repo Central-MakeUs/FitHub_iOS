@@ -17,10 +17,6 @@ final class HomeViewController: BaseViewController {
     override func configureUI() {
         self.navigationItem.leftBarButtonItem = nil
     }
-    
-    func ee() {
-        
-    }
 }
 
 extension HomeViewController {
