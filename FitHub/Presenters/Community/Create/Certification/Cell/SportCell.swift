@@ -9,12 +9,6 @@ import UIKit
 
 final class SportCell: UICollectionViewCell {
     static let identifier = "SportCell"
-        
-    override var isSelected: Bool {
-        didSet {
-            self.updateSelection(isSelected)
-        }
-    }
     
     private let frameView = UIView().then {
         $0.layer.borderColor = UIColor.primary.cgColor
@@ -48,7 +42,7 @@ final class SportCell: UICollectionViewCell {
         self.frameView.layer.cornerRadius = self.frame.width/2
     }
     
-    func configureCell(item: CategoryDTO) {
+    func configureCell(item: CategoryDTO, selectedItem: CategoryDTO?) {
         do {
             if let urlString = item.imageUrl,
                let url = URL(string: urlString) {
@@ -59,6 +53,13 @@ final class SportCell: UICollectionViewCell {
             print(error)
         }
         self.titleLabel.text = item.name
+        
+        if let selectedItem,
+           selectedItem == item {
+            self.updateSelection(true)
+        } else {
+            self.updateSelection(false)
+        }
     }
     
     private func updateSelection(_ isSelected: Bool) {

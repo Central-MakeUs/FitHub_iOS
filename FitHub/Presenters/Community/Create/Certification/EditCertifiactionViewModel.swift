@@ -20,7 +20,7 @@ final class EditCertificationViewModel: ViewModelType {
     
     var hashTagSource = BehaviorRelay<[String]>(value: [""])
     
-    var selectedSportSource: BehaviorSubject<CategoryDTO?> = BehaviorSubject(value: nil)
+    var selectedSportSource: BehaviorRelay<CategoryDTO?> = BehaviorRelay(value: nil)
     
     var addHashTagEnable = BehaviorRelay<Bool>(value: true)
     
