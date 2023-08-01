@@ -50,6 +50,7 @@
 		DB57124B2A729BC200DCAD9C /* CertificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57124A2A729BC200DCAD9C /* CertificationService.swift */; };
 		DB57124D2A72ABF700DCAD9C /* CertificationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57124C2A72ABF700DCAD9C /* CertificationError.swift */; };
 		DB5712502A72ACDB00DCAD9C /* CertificationFeedDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57124F2A72ACDB00DCAD9C /* CertificationFeedDTO.swift */; };
+		DB5A7C6F2A79545200931DA0 /* CertifyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5A7C6E2A79545200931DA0 /* CertifyCardView.swift */; };
 		DB5D22302A546AB400B32485 /* PhoneVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */; };
 		DB5D22322A5470A800B32485 /* PasswordSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D22312A5470A800B32485 /* PasswordSettingViewModel.swift */; };
 		DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF32A4EECB300D702A1 /* UIViewController+.swift */; };
@@ -185,6 +186,7 @@
 		DB57124A2A729BC200DCAD9C /* CertificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationService.swift; sourceTree = "<group>"; };
 		DB57124C2A72ABF700DCAD9C /* CertificationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationError.swift; sourceTree = "<group>"; };
 		DB57124F2A72ACDB00DCAD9C /* CertificationFeedDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationFeedDTO.swift; sourceTree = "<group>"; };
+		DB5A7C6E2A79545200931DA0 /* CertifyCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyCardView.swift; sourceTree = "<group>"; };
 		DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewModel.swift; sourceTree = "<group>"; };
 		DB5D22312A5470A800B32485 /* PasswordSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingViewModel.swift; sourceTree = "<group>"; };
 		DB5F84BE2A5CF72100E16C14 /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				DB002BB02A67C273001B5672 /* HomeViewController.swift */,
+				DB5A7C6E2A79545200931DA0 /* CertifyCardView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1080,6 +1083,7 @@
 				DB8CD7252A6E58A1004735C8 /* CommunityType.swift in Sources */,
 				DB57122D2A72059300DCAD9C /* ResetPasswordUseCase.swift in Sources */,
 				DB0D220C2A769DD100ABF6A2 /* UICollectionView+.swift in Sources */,
+				DB5A7C6F2A79545200931DA0 /* CertifyCardView.swift in Sources */,
 				DBFF25A02A5B991A00CF6DD4 /* OAuthLoginUseCase.swift in Sources */,
 				DB57124D2A72ABF700DCAD9C /* CertificationError.swift in Sources */,
 				DB6CC3ED2A7016E700C4C2BC /* SportsSelectingUseCase.swift in Sources */,
