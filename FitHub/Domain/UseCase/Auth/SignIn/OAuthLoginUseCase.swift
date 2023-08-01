@@ -20,7 +20,7 @@ class OAuthLoginUseCase: OAuthLoginUseCaseProtocol {
         return repository.signInWithApple(token)
     }
     
-    func signInWithKakao(_ socialId: String) -> RxSwift.Single<OAuthLoginDTO> {
+    func signInWithKakao(_ socialId: String) -> Single<OAuthLoginDTO> {
         return repository.signInWithKakao(socialId)
     }
     
