@@ -63,7 +63,7 @@ final class HashTagCell: UICollectionViewCell {
         super.prepareForReuse()
         tagTextField.placeholder = ""
         tagTextField.isEnabled = false
-        deleteButton.configuration?.image = UIImage(named: "CancelIcon")?.withRenderingMode(.alwaysOriginal)
+        deleteButton.configuration?.image = UIImage(named: "ic_cancel_20")?.withRenderingMode(.alwaysOriginal)
     }
     
     private func setUpBinding() {

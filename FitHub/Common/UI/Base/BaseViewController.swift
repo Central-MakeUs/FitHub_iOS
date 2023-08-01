@@ -49,7 +49,6 @@ class BaseViewController: UIViewController {
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor : UIColor.textDefault,
                                                             .font : UIFont.pretendard(.titleMedium)]
         
-        self.navigationController?.navigationBar.topItem?.titleView?.tintColor = .red
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "BackButton")?.withRenderingMode(.alwaysOriginal),
                                                                 style: .plain,
                                                                 target: self,

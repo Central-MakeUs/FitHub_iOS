@@ -23,6 +23,8 @@ final class ImageCell: UICollectionViewCell {
     
     private let changeImageButton = UIButton(type: .system).then {
         var configure = UIButton.Configuration.plain()
+        configure.image = UIImage(named: "ic_change")?.withRenderingMode(.alwaysOriginal)
+        configure.titlePadding = 4
         configure.contentInsets = .init(top: 8, leading: 12, bottom: 8, trailing: 12)
         configure.background.backgroundColor = .black.withAlphaComponent(0.8)
         configure.background.cornerRadius = 20
