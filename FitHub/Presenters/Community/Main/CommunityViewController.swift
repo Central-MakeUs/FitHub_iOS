@@ -62,6 +62,11 @@ final class CommunityViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.viewModel.usecase.fetchCertificationFeed()
+    }
+    
     //MARK: - ConfigureUI
     override func configureUI() {
         self.navigationItem.leftBarButtonItem = nil
@@ -93,13 +98,15 @@ final class CommunityViewController: BaseViewController {
             }
                        .disposed(by: disposeBag)
         
-        Observable.of(["전체","전체","테니스","배드민턴용","전체","전체","전체"])
+        output.certificationFeedList
             .bind(to: self.certificationCollectionView.rx
                 .items(cellIdentifier: CertificationCell.identifier,
-                       cellType: CertificationCell.self)) { index, name, cell in
-                //TODO: 게시글 클릭시
+                       cellType: CertificationCell.self)) { index, item, cell in
+                cell.configureCell(item)
             }
                        .disposed(by: disposeBag)
+        
+        //TODO: 게시글 클릭시처리도 해줘야함.
         
         self.floatingButton.rx.tap
             .map { !self.actionSheetBackView.isHidden }
@@ -111,7 +118,20 @@ final class CommunityViewController: BaseViewController {
                                               for: .normal)
             })
             .disposed(by: disposeBag)
-            
+        
+        self.createActionSheet.certificationButton.rx.tap
+            .bind(onNext: { [weak self] in
+                self?.pushCreateCertificationVC()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    //MARK: - 화면이동
+    private func pushCreateCertificationVC() {
+        let usecase = EditCertificationUseCase(repository: EditCertificationRepository(certificationService: CertificationService(),
+                                                                                       authService: AuthService()))
+        let editCertificationVC = EditCertificationViewController(EditCertificationViewModel(usecase: usecase))
+        self.navigationController?.pushViewController(editCertificationVC, animated: true)
     }
     
     //MARK: - AddSubView

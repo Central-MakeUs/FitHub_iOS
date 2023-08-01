@@ -11,7 +11,7 @@ import RxSwift
 class CommunityViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
-    private let usecase: CommunityUseCaseProtocol
+    let usecase: CommunityUseCaseProtocol
     
     struct Input {
         
@@ -19,6 +19,7 @@ class CommunityViewModel: ViewModelType {
     
     struct Output {
         let category: BehaviorSubject<[CategoryDTO]>
+        let certificationFeedList: BehaviorSubject<[CertificationItem]>
     }
     
     init(_ usecase: CommunityUseCaseProtocol) {
@@ -26,8 +27,9 @@ class CommunityViewModel: ViewModelType {
     }
     
     func transform(input: Input) -> Output {
-        let output = Output(category: usecase.category)
         
-        return output
+        
+        return Output(category: usecase.category,
+                      certificationFeedList: usecase.recordList)
     }
 }

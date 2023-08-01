@@ -20,10 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let authRepository = OAuthLoginRepository(AuthService())
-                window?.rootViewController = UINavigationController(rootViewController: OAuthLoginViewController(
-                    OAuthLoginViewModel(OAuthLoginUseCase(authRepository))))
-//        window?.rootViewController = setTapbar()
+
+        window?.rootViewController = setTapbar()
         window?.makeKeyAndVisible()
         
         UITextField.appearance().overrideUserInterfaceStyle = .dark
@@ -76,7 +74,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         homeVC.tabBarItem.image = UIImage(named: "HomeIcon")
         homeVC.tabBarItem.title = "홈"
         
-        let communityVCUsecase = CommunityUseCase(CommunityRepository(AuthService()))
+        let communityVCUsecase = CommunityUseCase(CommunityRepository(AuthService(),
+                                                                     certificationService: CertificationService()))
         let communityVC = UINavigationController(rootViewController: CommunityViewController(CommunityViewModel(communityVCUsecase)))
         communityVC.tabBarItem.image = UIImage(named: "CommunityIcon")
         communityVC.tabBarItem.title = "커뮤니티"

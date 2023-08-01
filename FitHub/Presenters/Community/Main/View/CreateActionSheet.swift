@@ -8,7 +8,7 @@
 import UIKit
 
 final class CreateActionSheet: UIStackView {
-    private let certificationButton = UIButton(type: .system).then {
+    let certificationButton = UIButton(type: .system).then {
         var configure = UIButton.Configuration.filled()
         configure.title = "운동 인증하기"
         configure.image = UIImage(named: "Certify")?.withRenderingMode(.alwaysOriginal)
@@ -22,7 +22,7 @@ final class CreateActionSheet: UIStackView {
         $0.backgroundColor = .bgSub02
     }
     
-    private let createFeedButton = UIButton(type: .system).then {
+    let createFeedButton = UIButton(type: .system).then {
         var configure = UIButton.Configuration.filled()
         configure.title = "게시글 작성하기"
         configure.image = UIImage(named: "Write")?.withRenderingMode(.alwaysOriginal)

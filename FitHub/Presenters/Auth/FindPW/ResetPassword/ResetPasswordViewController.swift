@@ -50,6 +50,7 @@ final class ResetPasswordViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.responseToKeyboardHegiht(self.nextButton)
     }
     
