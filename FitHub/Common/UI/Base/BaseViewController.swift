@@ -46,6 +46,9 @@ class BaseViewController: UIViewController {
     }
     
     func configureNavigation() {
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor : UIColor.textDefault,
+                                                            .font : UIFont.pretendard(.titleMedium)]
+        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "BackButton")?.withRenderingMode(.alwaysOriginal),
                                                                 style: .plain,
                                                                 target: self,
@@ -83,5 +86,7 @@ class BaseViewController: UIViewController {
         return alert
     }
 }
+
+
 
 

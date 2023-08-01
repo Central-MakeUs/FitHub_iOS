@@ -14,7 +14,10 @@ final class AuthManager: RequestInterceptor {
     /// request 전에 특정 작업을 하고 싶은 경우
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         guard let accessToken = KeychainManager.read("accessToken") else {
-            // TODO: KeyChain에 토큰이 없는 경우
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: .presentAlert, object: nil)
+            }
+            
             return
         }
    
@@ -29,4 +32,3 @@ final class AuthManager: RequestInterceptor {
         //TODO: 토큰 유효시간 문제시 재발급 후 재시도
     }
 }
-
