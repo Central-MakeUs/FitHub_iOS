@@ -53,6 +53,10 @@
 		DB5A7C6F2A79545200931DA0 /* CertifyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5A7C6E2A79545200931DA0 /* CertifyCardView.swift */; };
 		DB5D22302A546AB400B32485 /* PhoneVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */; };
 		DB5D22322A5470A800B32485 /* PasswordSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D22312A5470A800B32485 /* PasswordSettingViewModel.swift */; };
+		DB62F1D22A7A8E120045E8DC /* HomeUserInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB62F1D12A7A8E120045E8DC /* HomeUserInfoDTO.swift */; };
+		DB62F1D42A7A8EB80045E8DC /* BestRecorderDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB62F1D32A7A8EB80045E8DC /* BestRecorderDTO.swift */; };
+		DB62F1D62A7A8F5C0045E8DC /* HomeInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB62F1D52A7A8F5C0045E8DC /* HomeInfoDTO.swift */; };
+		DB62F1D82A7AAF1E0045E8DC /* RankInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB62F1D72A7AAF1E0045E8DC /* RankInfoCell.swift */; };
 		DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF32A4EECB300D702A1 /* UIViewController+.swift */; };
 		DB668AF72A4F041100D702A1 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF62A4F041100D702A1 /* ViewModelType.swift */; };
 		DB668AF92A4F06D000D702A1 /* AuthUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF82A4F06D000D702A1 /* AuthUserInfo.swift */; };
@@ -190,6 +194,10 @@
 		DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewModel.swift; sourceTree = "<group>"; };
 		DB5D22312A5470A800B32485 /* PasswordSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingViewModel.swift; sourceTree = "<group>"; };
 		DB5F84BE2A5CF72100E16C14 /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
+		DB62F1D12A7A8E120045E8DC /* HomeUserInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUserInfoDTO.swift; sourceTree = "<group>"; };
+		DB62F1D32A7A8EB80045E8DC /* BestRecorderDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestRecorderDTO.swift; sourceTree = "<group>"; };
+		DB62F1D52A7A8F5C0045E8DC /* HomeInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInfoDTO.swift; sourceTree = "<group>"; };
+		DB62F1D72A7AAF1E0045E8DC /* RankInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankInfoCell.swift; sourceTree = "<group>"; };
 		DB668AF32A4EECB300D702A1 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		DB668AF62A4F041100D702A1 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		DB668AF82A4F06D000D702A1 /* AuthUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUserInfo.swift; sourceTree = "<group>"; };
@@ -298,6 +306,7 @@
 			children = (
 				DB002BB02A67C273001B5672 /* HomeViewController.swift */,
 				DB5A7C6E2A79545200931DA0 /* CertifyCardView.swift */,
+				DB62F1D72A7AAF1E0045E8DC /* RankInfoCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -487,6 +496,9 @@
 			children = (
 				DB57124F2A72ACDB00DCAD9C /* CertificationFeedDTO.swift */,
 				DB0D22122A76DAF600ABF6A2 /* CreateCertificationDTO.swift */,
+				DB62F1D12A7A8E120045E8DC /* HomeUserInfoDTO.swift */,
+				DB62F1D32A7A8EB80045E8DC /* BestRecorderDTO.swift */,
+				DB62F1D52A7A8F5C0045E8DC /* HomeInfoDTO.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -1062,6 +1074,7 @@
 				DB8CD7152A6D2C9F004735C8 /* CertificationCell.swift in Sources */,
 				DB7559E32A55030400B88B96 /* SportsSelectingViewController.swift in Sources */,
 				DB6D93D42A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift in Sources */,
+				DB62F1D22A7A8E120045E8DC /* HomeUserInfoDTO.swift in Sources */,
 				DBF125DB2A5E7C14004DA4B9 /* VerificationNumberTextFieldView.swift in Sources */,
 				DBFFDA2B2A47F1600008C2B5 /* UIFont+.swift in Sources */,
 				DB6D93E22A4EC8C10011F9BC /* PhoneVerificationViewController.swift in Sources */,
@@ -1116,6 +1129,7 @@
 				DB0D21F92A73E40700ABF6A2 /* EditCertifiactionViewModel.swift in Sources */,
 				DB57123E2A72651500DCAD9C /* RegistType.swift in Sources */,
 				DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */,
+				DB62F1D42A7A8EB80045E8DC /* BestRecorderDTO.swift in Sources */,
 				DB51ECC02A692EFC009F4690 /* TopTabbarItem.swift in Sources */,
 				DB8CD71B2A6E0C93004735C8 /* CategoryDTO.swift in Sources */,
 				DB0D220A2A7698D200ABF6A2 /* SportHeaderView.swift in Sources */,
@@ -1145,11 +1159,13 @@
 				DBB820B82A5E45940016CB63 /* FindPWViewController.swift in Sources */,
 				DB0D22062A7666B600ABF6A2 /* HashTagFooterView.swift in Sources */,
 				DB0D21FD2A73F78800ABF6A2 /* ImageCell.swift in Sources */,
+				DB62F1D82A7AAF1E0045E8DC /* RankInfoCell.swift in Sources */,
 				DBB820BA2A5E47BA0016CB63 /* FindPWViewModel.swift in Sources */,
 				DB97F83C2A52B36E009C09A1 /* NotificationName+.swift in Sources */,
 				DBFFDA292A47F1570008C2B5 /* UIColor+.swift in Sources */,
 				DBF125DF2A5E7DED004DA4B9 /* ResetPasswordViewModel.swift in Sources */,
 				DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */,
+				DB62F1D62A7A8F5C0045E8DC /* HomeInfoDTO.swift in Sources */,
 				DB0D22022A73FB0B00ABF6A2 /* HashTagCell.swift in Sources */,
 				DB51ECBD2A68E846009F4690 /* FitHubTopTabbar.swift in Sources */,
 				DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */,

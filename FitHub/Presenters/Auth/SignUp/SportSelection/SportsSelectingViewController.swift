@@ -120,7 +120,7 @@ final class SportsSelectingViewController: BaseViewController {
         }
         
         self.registButton.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide)
             $0.height.equalTo(56)
         }
@@ -136,6 +136,7 @@ extension SportsSelectingViewController {
             $0.minimumInteritemSpacing = 8
             $0.minimumLineSpacing = 25
             $0.itemSize = .init(width: itemWidth, height: itemWidth + 30)
+            $0.sectionInset = .init(top: 0, left: 20, bottom: 0, right: 0)
         }
     }
 }
