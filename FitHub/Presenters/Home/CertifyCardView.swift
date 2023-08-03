@@ -94,6 +94,16 @@ final class CertifyCardView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configureInfo(_ userInfo: HomeUserInfoDTO) {
+        self.categoryLabel.text = userInfo.category
+        self.currentMonthCertificationCount.text = "\(userInfo.monthRecordCount)"
+        self.continueCertificationDay.text = "\(userInfo.contiguousRecordCount)"
+        self.expLabel.text = "\(userInfo.exp) "
+        self.maxExPLabel.text = "/ \(userInfo.maxExp)"
+        let value = Float(userInfo.exp) / Float(userInfo.maxExp)
+        self.progressView.progress = value
+    }
+    
     private func addSubView() {
         [titleLabel, categoryLabel, progressView, maxExPLabel, expLabel, infoButton,
          currentMonthCertificationTitle, currentMonthCertificationCount,
