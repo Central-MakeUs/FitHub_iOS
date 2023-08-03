@@ -57,7 +57,7 @@ final class RankInfoCell: UITableViewCell {
     }
     
     private let certifyImage = UIImageView().then {
-        $0.image = UIImage(named: "Certify")?.withRenderingMode(.alwaysOriginal)
+        $0.image = UIImage(named: "Certify")?.withTintColor(.iconEnabled)
     }
     
     private let certifyCount = UILabel().then {
@@ -70,6 +70,9 @@ final class RankInfoCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubView()
         layout()
+        
+        self.backgroundColor = .clear
+        self.selectionStyle = .none
     }
     
     required init?(coder: NSCoder) {
@@ -82,7 +85,7 @@ final class RankInfoCell: UITableViewCell {
             self.addSubview($0)
         }
         
-        [crownImageView,profileImageView,nameLabel,sportLabel,
+        [profileImageView,crownImageView,nameLabel,sportLabel,
          levelLabel,certifyImage,certifyCount].forEach {
             self.frameView.addSubview($0)
         }
@@ -101,7 +104,8 @@ final class RankInfoCell: UITableViewCell {
         
         frameView.snp.makeConstraints {
             $0.leading.equalTo(rankLabel.snp.trailing).offset(11)
-            $0.top.bottom.trailing.equalToSuperview()
+            $0.top.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-10)
         }
         
         nameLabel.snp.makeConstraints {
@@ -121,9 +125,13 @@ final class RankInfoCell: UITableViewCell {
             $0.leading.equalTo(sportLabel.snp.trailing).offset(4)
         }
         
+        crownImageView.snp.makeConstraints {
+            $0.bottom.equalTo(profileImageView.snp.top).offset(4)
+            $0.centerX.equalTo(profileImageView.snp.centerX)
+        }
+        
         profileImageView.snp.makeConstraints {
             $0.top.equalTo(nameLabel)
-//            $0.bottom.equalTo(levelLabel)
             $0.width.height.equalTo(40)
             $0.leading.equalToSuperview().offset(15)
         }
@@ -135,6 +143,7 @@ final class RankInfoCell: UITableViewCell {
         
         certifyImage.snp.makeConstraints {
             $0.trailing.equalTo(self.certifyCount.snp.leading).offset(-2)
+            $0.width.height.equalTo(24)
             $0.centerY.equalTo(certifyCount.snp.centerY)
         }
     }

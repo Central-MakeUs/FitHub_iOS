@@ -10,8 +10,11 @@ import RxSwift
 import RxCocoa
 
 final class HomeViewController: BaseViewController {
+    private let viewModel: HomeViewModel
     
-    private let scrollView = UIScrollView()
+    private let scrollView = UIScrollView().then {
+        $0.isScrollEnabled = true
+    }
     
     private let titleLabel = UILabel().then {
         $0.numberOfLines = 0
@@ -52,14 +55,35 @@ final class HomeViewController: BaseViewController {
     }
     
     private let rankerTableView = UITableView().then {
+        $0.separatorStyle = .none
+        $0.isScrollEnabled = false
         $0.register(RankInfoCell.self, forCellReuseIdentifier: RankInfoCell.identifier)
-        $0.backgroundColor = .blue
+        $0.backgroundColor = .clear
     }
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout()).then {
         $0.showsHorizontalScrollIndicator = false
         $0.backgroundColor = .clear
         $0.register(SportCell.self, forCellWithReuseIdentifier: SportCell.identifier)
+    }
+    
+    init(_ viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.gestureRecognizers = nil
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.viewModel.updateHomeInfo()
     }
     
     override func setupAttributes() {
@@ -75,23 +99,40 @@ final class HomeViewController: BaseViewController {
                                        style: .plain, target: nil, action: nil)
         
         self.navigationItem.rightBarButtonItems = [noti,bookmark]
-        
     }
+
     
     override func setupBinding() {
-        Observable.of(["테니스","수영","스케이트","클라이밍","테니스","수영","스케이트","클라이밍"])
+        let input = HomeViewModel.Input()
+        
+        let output = self.viewModel.transform(input: input)
+        
+        output.category
             .bind(to: self.collectionView.rx.items(cellIdentifier: SportCell.identifier, cellType: SportCell.self)) { index, item, cell in
-                cell.configureCell(item: CategoryDTO.init(createdAt: "", updatedAt: "", imageUrl: "", name: item, id: 0), selectedItem: nil)
-                
+                cell.configureCell(item: item, selectedItem: nil)
             }
             .disposed(by: disposeBag)
         
-        Observable.of(["더미1","더미2","더미3","더미4","더미5"])
+        
+        output.rankerList
             .bind(to: self.rankerTableView.rx.items(cellIdentifier: RankInfoCell.identifier, cellType: RankInfoCell.self)) { index, item, cell in
-                print("왜..")
+                print(item.recorderNickName)
             }
             .disposed(by: disposeBag)
         
+        output.userInfo
+            .withUnretained(self)
+            .bind(onNext: { (homeVC,userInfo) in
+                homeVC.setTitleContent(userInfo)
+                homeVC.certifyCardView.configureInfo(userInfo)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func setTitleContent(_ userInfo: HomeUserInfoDTO) {
+        let text = "\(userInfo.gradeName) \(userInfo.userNickname)님,\n오늘도 힘내서 운동 해봐요!"
+        self.titleLabel.text = text
+        self.levelImageView.kf.setImage(with: URL(string: userInfo.gradeImageUrl))
     }
     
     override func addSubView() {
@@ -111,7 +152,7 @@ final class HomeViewController: BaseViewController {
         
         self.titleLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(20)
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(15)
+            $0.top.equalToSuperview().offset(15)
         }
         
         self.certificationButton.snp.makeConstraints {
@@ -121,7 +162,7 @@ final class HomeViewController: BaseViewController {
         
         self.levelImageView.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-20)
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(20)
+            $0.top.equalToSuperview().offset(20)
             $0.width.height.equalTo(80)
         }
         
@@ -153,10 +194,11 @@ final class HomeViewController: BaseViewController {
             $0.leading.equalToSuperview().offset(20)
             $0.top.equalTo(self.certificationRankerLabel.snp.bottom).offset(6)
         }
-        
+
         self.rankerTableView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.top.equalTo(self.updateTimeLabel.snp.bottom).offset(20)
+            $0.height.equalTo(400)
             $0.bottom.equalToSuperview()
         }
     }
