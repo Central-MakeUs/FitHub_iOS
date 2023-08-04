@@ -70,7 +70,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabBarController.tabBar.unselectedItemTintColor = .iconDisabled
         tabBarController.tabBar.tintColor = .white
         
-        let homeVC = UINavigationController(rootViewController: HomeViewController())
+        let homeUsecase = HomeUseCase(repository: HomeRepository(homeService: HomeService(),
+                                                                 authService: AuthService()))
+        let homeVC = UINavigationController(rootViewController: HomeViewController(HomeViewModel(usecase: homeUsecase)))
         homeVC.tabBarItem.image = UIImage(named: "HomeIcon")
         homeVC.tabBarItem.title = "홈"
         

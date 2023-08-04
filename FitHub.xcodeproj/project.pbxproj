@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B5B2C3942A7D097E004FC66C /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3932A7D097E004FC66C /* UILabel+.swift */; };
+		B5B2C3972A7D0F37004FC66C /* RankStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3962A7D0F37004FC66C /* RankStatus.swift */; };
+		B5B2C3992A7D2CEB004FC66C /* GradeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3982A7D2CEB004FC66C /* GradeType.swift */; };
 		DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB02A67C273001B5672 /* HomeViewController.swift */; };
 		DB002BB42A67C332001B5672 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB32A67C332001B5672 /* CommunityViewController.swift */; };
 		DB002BB82A67C36F001B5672 /* LookUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB72A67C36F001B5672 /* LookUpViewController.swift */; };
@@ -50,8 +53,17 @@
 		DB57124B2A729BC200DCAD9C /* CertificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57124A2A729BC200DCAD9C /* CertificationService.swift */; };
 		DB57124D2A72ABF700DCAD9C /* CertificationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57124C2A72ABF700DCAD9C /* CertificationError.swift */; };
 		DB5712502A72ACDB00DCAD9C /* CertificationFeedDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57124F2A72ACDB00DCAD9C /* CertificationFeedDTO.swift */; };
+		DB5A7C6F2A79545200931DA0 /* CertifyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5A7C6E2A79545200931DA0 /* CertifyCardView.swift */; };
 		DB5D22302A546AB400B32485 /* PhoneVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */; };
 		DB5D22322A5470A800B32485 /* PasswordSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D22312A5470A800B32485 /* PasswordSettingViewModel.swift */; };
+		DB5DAB3D2A7BF2F8009AA427 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5DAB3C2A7BF2F8009AA427 /* HomeViewModel.swift */; };
+		DB5DAB402A7BF331009AA427 /* HomeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5DAB3F2A7BF331009AA427 /* HomeUseCase.swift */; };
+		DB5DAB432A7BF65B009AA427 /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5DAB422A7BF65B009AA427 /* HomeRepository.swift */; };
+		DB5DAB452A7BF6C2009AA427 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5DAB442A7BF6C2009AA427 /* HomeService.swift */; };
+		DB62F1D22A7A8E120045E8DC /* HomeUserInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB62F1D12A7A8E120045E8DC /* HomeUserInfoDTO.swift */; };
+		DB62F1D42A7A8EB80045E8DC /* BestRecorderDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB62F1D32A7A8EB80045E8DC /* BestRecorderDTO.swift */; };
+		DB62F1D62A7A8F5C0045E8DC /* HomeInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB62F1D52A7A8F5C0045E8DC /* HomeInfoDTO.swift */; };
+		DB62F1D82A7AAF1E0045E8DC /* RankInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB62F1D72A7AAF1E0045E8DC /* RankInfoCell.swift */; };
 		DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF32A4EECB300D702A1 /* UIViewController+.swift */; };
 		DB668AF72A4F041100D702A1 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF62A4F041100D702A1 /* ViewModelType.swift */; };
 		DB668AF92A4F06D000D702A1 /* AuthUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB668AF82A4F06D000D702A1 /* AuthUserInfo.swift */; };
@@ -142,6 +154,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
+		B5B2C3932A7D097E004FC66C /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
+		B5B2C3962A7D0F37004FC66C /* RankStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankStatus.swift; sourceTree = "<group>"; };
+		B5B2C3982A7D2CEB004FC66C /* GradeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeType.swift; sourceTree = "<group>"; };
 		DB002BB02A67C273001B5672 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DB002BB32A67C332001B5672 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		DB002BB72A67C36F001B5672 /* LookUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpViewController.swift; sourceTree = "<group>"; };
@@ -185,9 +201,17 @@
 		DB57124A2A729BC200DCAD9C /* CertificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationService.swift; sourceTree = "<group>"; };
 		DB57124C2A72ABF700DCAD9C /* CertificationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationError.swift; sourceTree = "<group>"; };
 		DB57124F2A72ACDB00DCAD9C /* CertificationFeedDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationFeedDTO.swift; sourceTree = "<group>"; };
+		DB5A7C6E2A79545200931DA0 /* CertifyCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyCardView.swift; sourceTree = "<group>"; };
 		DB5D222F2A546AB400B32485 /* PhoneVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewModel.swift; sourceTree = "<group>"; };
 		DB5D22312A5470A800B32485 /* PasswordSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingViewModel.swift; sourceTree = "<group>"; };
-		DB5F84BE2A5CF72100E16C14 /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
+		DB5DAB3C2A7BF2F8009AA427 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		DB5DAB3F2A7BF331009AA427 /* HomeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUseCase.swift; sourceTree = "<group>"; };
+		DB5DAB422A7BF65B009AA427 /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
+		DB5DAB442A7BF6C2009AA427 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
+		DB62F1D12A7A8E120045E8DC /* HomeUserInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUserInfoDTO.swift; sourceTree = "<group>"; };
+		DB62F1D32A7A8EB80045E8DC /* BestRecorderDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestRecorderDTO.swift; sourceTree = "<group>"; };
+		DB62F1D52A7A8F5C0045E8DC /* HomeInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInfoDTO.swift; sourceTree = "<group>"; };
+		DB62F1D72A7AAF1E0045E8DC /* RankInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankInfoCell.swift; sourceTree = "<group>"; };
 		DB668AF32A4EECB300D702A1 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		DB668AF62A4F041100D702A1 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		DB668AF82A4F06D000D702A1 /* AuthUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUserInfo.swift; sourceTree = "<group>"; };
@@ -291,10 +315,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B5B2C3952A7D0F23004FC66C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B5B2C3962A7D0F37004FC66C /* RankStatus.swift */,
+				B5B2C3982A7D2CEB004FC66C /* GradeType.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		DB002BAF2A67C262001B5672 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				DB002BB02A67C273001B5672 /* HomeViewController.swift */,
+				DB5A7C6E2A79545200931DA0 /* CertifyCardView.swift */,
+				DB62F1D72A7AAF1E0045E8DC /* RankInfoCell.swift */,
+				DB5DAB3C2A7BF2F8009AA427 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -488,6 +524,32 @@
 			path = Community;
 			sourceTree = "<group>";
 		};
+		DB5DAB3E2A7BF326009AA427 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				DB5DAB3F2A7BF331009AA427 /* HomeUseCase.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		DB5DAB412A7BF643009AA427 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				DB5DAB422A7BF65B009AA427 /* HomeRepository.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		DB5DAB462A7BF9C6009AA427 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				DB62F1D12A7A8E120045E8DC /* HomeUserInfoDTO.swift */,
+				DB62F1D32A7A8EB80045E8DC /* BestRecorderDTO.swift */,
+				DB62F1D52A7A8F5C0045E8DC /* HomeInfoDTO.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		DB668AF52A4F040300D702A1 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -499,6 +561,7 @@
 		DB668AFA2A50016400D702A1 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				B5B2C3952A7D0F23004FC66C /* Home */,
 				DB8CD7232A6E5893004735C8 /* Community */,
 				DB6D93CE2A4D596D0011F9BC /* TelecomProviderType.swift */,
 				DB668AFB2A50017700D702A1 /* UserInfoStatus.swift */,
@@ -661,6 +724,7 @@
 		DBF125EA2A5EA0DA004DA4B9 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				DB5DAB462A7BF9C6009AA427 /* Home */,
 				DB57124E2A72ACC400DCAD9C /* Community */,
 				DBDBA30F2A65323D00F1CDA5 /* Auth */,
 				DB55B6C22A6B9B55006FEA7F /* BaseResponse.swift */,
@@ -671,6 +735,7 @@
 		DBF125EB2A5EB5E9004DA4B9 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				DB5DAB412A7BF643009AA427 /* Home */,
 				DB8CD7202A6E16EA004735C8 /* Community */,
 				DB8CD6FC2A6D0B5C004735C8 /* Auth */,
 			);
@@ -852,7 +917,7 @@
 				DBFFD9EB2A47E2E20008C2B5 /* SceneDelegate.swift */,
 				DBFFD9F42A47E2E40008C2B5 /* LaunchScreen.storyboard */,
 				DBFFD9F72A47E2E40008C2B5 /* Info.plist */,
-				DB5F84BE2A5CF72100E16C14 /* AppInfo.xcconfig */,
+				B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -860,6 +925,7 @@
 		DBFF259E2A5B990200CF6DD4 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				DB5DAB3E2A7BF326009AA427 /* Home */,
 				DB8CD71D2A6E163C004735C8 /* Community */,
 				DBF125EE2A600B04004DA4B9 /* Auth */,
 			);
@@ -929,6 +995,7 @@
 			children = (
 				DB71348C2A5BDBF90006EAAB /* AuthService.swift */,
 				DB57124A2A729BC200DCAD9C /* CertificationService.swift */,
+				DB5DAB442A7BF6C2009AA427 /* HomeService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -941,6 +1008,7 @@
 				DB668AF32A4EECB300D702A1 /* UIViewController+.swift */,
 				DB97F83B2A52B36E009C09A1 /* NotificationName+.swift */,
 				DB0D220B2A769DD100ABF6A2 /* UICollectionView+.swift */,
+				B5B2C3932A7D097E004FC66C /* UILabel+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1059,6 +1127,7 @@
 				DB8CD7152A6D2C9F004735C8 /* CertificationCell.swift in Sources */,
 				DB7559E32A55030400B88B96 /* SportsSelectingViewController.swift in Sources */,
 				DB6D93D42A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift in Sources */,
+				DB62F1D22A7A8E120045E8DC /* HomeUserInfoDTO.swift in Sources */,
 				DBF125DB2A5E7C14004DA4B9 /* VerificationNumberTextFieldView.swift in Sources */,
 				DBFFDA2B2A47F1600008C2B5 /* UIFont+.swift in Sources */,
 				DB6D93E22A4EC8C10011F9BC /* PhoneVerificationViewController.swift in Sources */,
@@ -1070,16 +1139,19 @@
 				DB57124B2A729BC200DCAD9C /* CertificationService.swift in Sources */,
 				DBFFDA392A497A460008C2B5 /* PhoneAuthViewController.swift in Sources */,
 				DB7559DF2A548BC000B88B96 /* ProfileSettingViewController.swift in Sources */,
+				DB5DAB452A7BF6C2009AA427 /* HomeService.swift in Sources */,
 				DB5D22302A546AB400B32485 /* PhoneVerificationViewModel.swift in Sources */,
 				DB8CD71F2A6E164A004735C8 /* CommunityUseCase.swift in Sources */,
 				DB57122F2A7205DA00DCAD9C /* ResetPasswordRepository.swift in Sources */,
 				DB55B6C92A6BB28A006FEA7F /* PhoneNumLoginUseCase.swift in Sources */,
 				DB5712492A729B4000DCAD9C /* EditCertificationRepository.swift in Sources */,
+				DB5DAB432A7BF65B009AA427 /* HomeRepository.swift in Sources */,
 				DB71348D2A5BDBF90006EAAB /* AuthService.swift in Sources */,
 				DBFFDA3B2A4983F90008C2B5 /* BaseViewController.swift in Sources */,
 				DB8CD7252A6E58A1004735C8 /* CommunityType.swift in Sources */,
 				DB57122D2A72059300DCAD9C /* ResetPasswordUseCase.swift in Sources */,
 				DB0D220C2A769DD100ABF6A2 /* UICollectionView+.swift in Sources */,
+				DB5A7C6F2A79545200931DA0 /* CertifyCardView.swift in Sources */,
 				DBFF25A02A5B991A00CF6DD4 /* OAuthLoginUseCase.swift in Sources */,
 				DB57124D2A72ABF700DCAD9C /* CertificationError.swift in Sources */,
 				DB6CC3ED2A7016E700C4C2BC /* SportsSelectingUseCase.swift in Sources */,
@@ -1094,6 +1166,7 @@
 				DB8CD7222A6E16FA004735C8 /* CommunityRepository.swift in Sources */,
 				DB57122B2A71F29600DCAD9C /* ChangePasswordDTO.swift in Sources */,
 				DBDBA3112A65324C00F1CDA5 /* OAuthLoginDTO.swift in Sources */,
+				B5B2C3972A7D0F37004FC66C /* RankStatus.swift in Sources */,
 				DB51D2592A4C2719002415B0 /* AgreementModel.swift in Sources */,
 				DB7559E72A55062C00B88B96 /* SportsCell.swift in Sources */,
 				DB7559E12A548C6800B88B96 /* ProfileSettingViewModel.swift in Sources */,
@@ -1104,20 +1177,25 @@
 				DB5712422A7295E400DCAD9C /* EditCertifiactionViewController.swift in Sources */,
 				DB8CD7192A6E0B7D004735C8 /* CommunityViewModel.swift in Sources */,
 				DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */,
+				DB5DAB3D2A7BF2F8009AA427 /* HomeViewModel.swift in Sources */,
 				DB55B6D32A6C0855006FEA7F /* PhoneVerificationUseCase.swift in Sources */,
 				DB8CD7082A6D0D38004735C8 /* OAuthLoginRepository.swift in Sources */,
+				DB5DAB402A7BF331009AA427 /* HomeUseCase.swift in Sources */,
+				B5B2C3942A7D097E004FC66C /* UILabel+.swift in Sources */,
 				DB7134912A5BF46C0006EAAB /* AuthError.swift in Sources */,
 				DB668AFC2A50017700D702A1 /* UserInfoStatus.swift in Sources */,
 				DB8CD7172A6D3995004735C8 /* CreateActionSheet.swift in Sources */,
 				DB0D21F92A73E40700ABF6A2 /* EditCertifiactionViewModel.swift in Sources */,
 				DB57123E2A72651500DCAD9C /* RegistType.swift in Sources */,
 				DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */,
+				DB62F1D42A7A8EB80045E8DC /* BestRecorderDTO.swift in Sources */,
 				DB51ECC02A692EFC009F4690 /* TopTabbarItem.swift in Sources */,
 				DB8CD71B2A6E0C93004735C8 /* CategoryDTO.swift in Sources */,
 				DB0D220A2A7698D200ABF6A2 /* SportHeaderView.swift in Sources */,
 				DB0D22002A73F95100ABF6A2 /* ContentCell.swift in Sources */,
 				DB5712332A7235D200DCAD9C /* KeychainManager.swift in Sources */,
 				DB746F732A71308400FBA8D4 /* RegistCompletionViewController.swift in Sources */,
+				B5B2C3992A7D2CEB004FC66C /* GradeType.swift in Sources */,
 				DB55B6D62A6C2339006FEA7F /* PhoneAuthNumberDTO.swift in Sources */,
 				DB0D220E2A76ACFE00ABF6A2 /* SportFooterView.swift in Sources */,
 				DB0D21FB2A73E91900ABF6A2 /* EditCertificationSectionModel.swift in Sources */,
@@ -1141,11 +1219,13 @@
 				DBB820B82A5E45940016CB63 /* FindPWViewController.swift in Sources */,
 				DB0D22062A7666B600ABF6A2 /* HashTagFooterView.swift in Sources */,
 				DB0D21FD2A73F78800ABF6A2 /* ImageCell.swift in Sources */,
+				DB62F1D82A7AAF1E0045E8DC /* RankInfoCell.swift in Sources */,
 				DBB820BA2A5E47BA0016CB63 /* FindPWViewModel.swift in Sources */,
 				DB97F83C2A52B36E009C09A1 /* NotificationName+.swift in Sources */,
 				DBFFDA292A47F1570008C2B5 /* UIColor+.swift in Sources */,
 				DBF125DF2A5E7DED004DA4B9 /* ResetPasswordViewModel.swift in Sources */,
 				DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */,
+				DB62F1D62A7A8F5C0045E8DC /* HomeInfoDTO.swift in Sources */,
 				DB0D22022A73FB0B00ABF6A2 /* HashTagCell.swift in Sources */,
 				DB51ECBD2A68E846009F4690 /* FitHubTopTabbar.swift in Sources */,
 				DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */,
@@ -1187,6 +1267,7 @@
 /* Begin XCBuildConfiguration section */
 		DBFFD9F82A47E2E40008C2B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1248,6 +1329,7 @@
 		};
 		DBFFD9F92A47E2E40008C2B5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1303,7 +1385,7 @@
 		};
 		DBFFD9FB2A47E2E40008C2B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DB5F84BE2A5CF72100E16C14 /* AppInfo.xcconfig */;
+			baseConfigurationReference = B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1339,7 +1421,7 @@
 		};
 		DBFFD9FC2A47E2E40008C2B5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DB5F84BE2A5CF72100E16C14 /* AppInfo.xcconfig */;
+			baseConfigurationReference = B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
