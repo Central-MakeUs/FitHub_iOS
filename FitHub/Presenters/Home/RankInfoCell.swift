@@ -21,6 +21,7 @@ final class RankInfoCell: UITableViewCell {
     }
     
     private let profileImageView = UIImageView().then {
+        $0.layer.masksToBounds = true
         $0.image = UIImage(named: "DefaultProfile")
     }
     
@@ -79,6 +80,25 @@ final class RankInfoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.profileImageView.layer.cornerRadius = self.profileImageView.frame.width/2
+    }
+    
+    func configureCell(_ item: BestRecorderDTO) {
+        crownImageView.isHidden = item.ranking != 1
+        rankLabel.text = "\(item.ranking)"
+        profileImageView.kf.setImage(with: URL(string: item.profileUrl))
+        nameLabel.text = item.recorderNickName
+        sportLabel.text = item.category
+        certifyCount.text = "\(item.recordCount)회"
+        levelLabel.text = "Lv.\(item.level) \(item.gradeName)"
+        rankStatusImage.image = RankStatus(rawValue: item.rankingStatus)?.image?.withRenderingMode(.alwaysOriginal)
+        
+        self.levelLabel.highlightGradeName(grade: item.gradeName,
+                                           highlightText: "Lv.\(item.level) \(item.gradeName)")
+    }
+    
     //MARK: - AddSubView
     private func addSubView() {
         [rankLabel,rankStatusImage,frameView].forEach {
@@ -103,7 +123,7 @@ final class RankInfoCell: UITableViewCell {
         }
         
         frameView.snp.makeConstraints {
-            $0.leading.equalTo(rankLabel.snp.trailing).offset(11)
+            $0.leading.equalTo(rankLabel.snp.trailing).offset(20)
             $0.top.trailing.equalToSuperview()
             $0.bottom.equalToSuperview().offset(-10)
         }
