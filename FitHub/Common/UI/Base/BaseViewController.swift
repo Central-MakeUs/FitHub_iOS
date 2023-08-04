@@ -21,6 +21,7 @@ class BaseViewController: UIViewController {
         setupAttributes()
         addSubView()
         configureNavigation()
+        configureTabBar()
         layout()
         configureUI()
         setupBinding()
@@ -46,13 +47,24 @@ class BaseViewController: UIViewController {
     }
     
     func configureNavigation() {
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor : UIColor.textDefault,
-                                                            .font : UIFont.pretendard(.titleMedium)]
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.backgroundColor = .bgDefault
+        navigationBarAppearance.titleTextAttributes = [.foregroundColor : UIColor.textDefault,
+                                                       .font : UIFont.pretendard(.titleMedium)]
+        navigationItem.standardAppearance = navigationBarAppearance
+        navigationItem.scrollEdgeAppearance = navigationBarAppearance
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "BackButton")?.withRenderingMode(.alwaysOriginal),
                                                                 style: .plain,
                                                                 target: self,
                                                                 action: #selector(dldClickBackButton))
+    }
+    
+    func configureTabBar() {
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.backgroundColor = .bgDefault
+        tabBarController?.tabBar.standardAppearance = tabBarAppearance
+        tabBarController?.tabBar.scrollEdgeAppearance = tabBarAppearance
     }
     
     func setupAttributes() {

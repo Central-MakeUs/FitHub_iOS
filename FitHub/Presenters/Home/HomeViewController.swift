@@ -91,6 +91,7 @@ final class HomeViewController: BaseViewController {
     }
     
     override func configureNavigation() {
+        super.configureNavigation()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIImageView(image: UIImage(named: "logo_basic")))
         
         let noti = UIBarButtonItem(image: UIImage(named: "Alert")?.withRenderingMode(.alwaysOriginal),
@@ -116,7 +117,7 @@ final class HomeViewController: BaseViewController {
         
         output.rankerList
             .bind(to: self.rankerTableView.rx.items(cellIdentifier: RankInfoCell.identifier, cellType: RankInfoCell.self)) { index, item, cell in
-                print(item.recorderNickName)
+                cell.configureCell(item)
             }
             .disposed(by: disposeBag)
         
@@ -127,11 +128,20 @@ final class HomeViewController: BaseViewController {
                 homeVC.certifyCardView.configureInfo(userInfo)
             })
             .disposed(by: disposeBag)
+        
+        output.updateDate
+            .asDriver(onErrorJustReturn: "")
+            .map { $0.replacingOccurrences(of: "-", with: ".") }
+            .map { $0 + " 12:00 기준"}
+            .drive(updateTimeLabel.rx.text)
+            .disposed(by: disposeBag)
     }
-    
+
     private func setTitleContent(_ userInfo: HomeUserInfoDTO) {
         let text = "\(userInfo.gradeName) \(userInfo.userNickname)님,\n오늘도 힘내서 운동 해봐요!"
         self.titleLabel.text = text
+        self.titleLabel.highlightGradeName(grade: userInfo.gradeName,
+                                           highlightText: userInfo.gradeName)
         self.levelImageView.kf.setImage(with: URL(string: userInfo.gradeImageUrl))
     }
     
