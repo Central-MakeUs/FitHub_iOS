@@ -49,9 +49,8 @@ class FindPWViewModel: ViewModelType {
         
         input.sendButtonTap
             .withLatestFrom(phoneNumber)
-            .flatMap { self.usecase.checkUserInfo($0).asObservable() }
+            .flatMap { self.usecase.checkUserInfo($0, type: 1).asObservable() }
             .subscribe(onNext: { [weak self] code in
-                
                 self?.checkUserInfo.onNext(.success(code))
             }, onError: { [weak self] error in
                 self?.checkUserInfo.onNext(.failure(error as! AuthError))

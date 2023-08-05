@@ -14,7 +14,7 @@ class RegistInfoViewModel: ViewModelType {
     
     var usecase: RegistInfoUseCaseProtocol
     
-    private let sendCodePublisher = PublishSubject<Result<Int,AuthError>>()
+    private let checkRegistPublisher = PublishSubject<Result<Int,AuthError>>()
     
     let telecomProviders = Observable.of(TelecomProviderType.allCases)
     
@@ -34,7 +34,7 @@ class RegistInfoViewModel: ViewModelType {
         let dateOfBirthStatus: Observable<(UserInfoStatus,Bool)>
         let telecom: Observable<TelecomProviderType>
         let name: Observable<String>
-        let sendButtonTapEvent: Observable<Void>
+        let sendButtonTapEvent: Observable<Result<Int,AuthError>>
         let phoneNumber: Observable<(String,UserInfoStatus)>
         let sendButtonEnable: Observable<Bool>
     }
@@ -67,6 +67,18 @@ class RegistInfoViewModel: ViewModelType {
             .map { (name: $0.count > 0, dateOfBirth: $1.1, sexNumber:$2.1, phoneNumber: $3.1 == .ok) }
             .map { $0 && $1 && $2 && $3 }
         
+        input.sendButtonTapEvent
+            .withLatestFrom(phoneNumber)
+            .flatMap { self.usecase.checkRegist(phoneNum: $0.0, type: 0).asObservable() }
+            .subscribe(onNext: { [weak self] code in
+                self?.checkRegistPublisher.onNext(.success(code))
+            }, onError: { [weak self] error in
+                self?.checkRegistPublisher.onNext(.failure(error as! AuthError))
+            })
+            .disposed(by: disposeBag)
+            
+            
+        
         Observable.combineLatest(name, dateOfBirth, sexNumber, phoneNumber, telecom)
             .map { AuthUserInfo(phoneNumber: $3.0, dateOfBirth: $1.0, sexNumber: $2.0, name: $0, telecom: $4) }
             .subscribe(onNext: { [weak self] info in
@@ -79,7 +91,7 @@ class RegistInfoViewModel: ViewModelType {
                       dateOfBirthStatus: dateOfBirthStatus,
                       telecom: telecom,
                       name: name,
-                      sendButtonTapEvent: input.sendButtonTapEvent,
+                      sendButtonTapEvent: checkRegistPublisher.asObservable(),
                       phoneNumber: phoneNumber,
                       sendButtonEnable: sendButtonEnable
         )

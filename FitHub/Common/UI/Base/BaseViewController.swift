@@ -49,10 +49,13 @@ class BaseViewController: UIViewController {
     func configureNavigation() {
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.backgroundColor = .bgDefault
+        navigationBarAppearance.shadowColor = .clear
         navigationBarAppearance.titleTextAttributes = [.foregroundColor : UIColor.textDefault,
                                                        .font : UIFont.pretendard(.titleMedium)]
         navigationItem.standardAppearance = navigationBarAppearance
         navigationItem.scrollEdgeAppearance = navigationBarAppearance
+        
+        
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "BackButton")?.withRenderingMode(.alwaysOriginal),
                                                                 style: .plain,

@@ -11,6 +11,7 @@ import RxSwift
 protocol HomeRepositoryInterface {
     func fetchCategory() -> Single<[CategoryDTO]>
     func fetchHomeInfo() -> Single<HomeInfoDTO>
+    func checkAuth() -> Single<Bool>
 }
 
 final class HomeRepository: HomeRepositoryInterface {
@@ -29,5 +30,9 @@ final class HomeRepository: HomeRepositoryInterface {
     
     func fetchHomeInfo() -> Single<HomeInfoDTO> {
         return homeService.fetchHomeInfo()
+    }
+    
+    func checkAuth() -> Single<Bool> {
+        return self.homeService.checkAuth()
     }
 }
