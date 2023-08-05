@@ -16,6 +16,8 @@ protocol HomeUseCaseProtocol {
     
     func fetchCategory()
     func fetchHomeInfo()
+    
+    func checkAuth() -> Single<Bool>
 }
 
 final class HomeUseCase: HomeUseCaseProtocol {
@@ -47,5 +49,9 @@ final class HomeUseCase: HomeUseCaseProtocol {
                 self?.category.onNext(category)
             })
             .disposed(by: disposeBag)
+    }
+    
+    func checkAuth() -> Single<Bool> {
+        return self.repository.checkAuth()
     }
 }

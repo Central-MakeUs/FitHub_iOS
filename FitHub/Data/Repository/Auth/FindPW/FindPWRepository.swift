@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol FindPWRepositoryInterface {
-    func checkUserInfo(_ phoneNum: String) -> Single<Int>
+    func checkUserInfo(_ phoneNum: String, type: Int) -> Single<Int>
 }
 
 final class FindPWRepository: FindPWRepositoryInterface {
@@ -19,7 +19,7 @@ final class FindPWRepository: FindPWRepositoryInterface {
         self.service = service
     }
     
-    func checkUserInfo(_ phoneNum: String) -> Single<Int> {
-        return service.checkUserInfo(phoneNum)
+    func checkUserInfo(_ phoneNum: String, type: Int) -> Single<Int> {
+        return service.checkUserInfo(phoneNum, type: type)
     }
 }

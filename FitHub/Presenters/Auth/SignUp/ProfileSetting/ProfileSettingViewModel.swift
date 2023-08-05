@@ -41,7 +41,7 @@ class ProfileSettingViewModel: ViewModelType {
     func transform(input: Input) -> Output {
         let nickNameText = input.nickNameText
             .map { $0.filter { $0.isLetter } }
-            .map { String($0.prefix(10)) }
+            .map { String($0.prefix(8)) }
         
         let duplicate = input.duplicationCheckTap.withLatestFrom(nickNameText.distinctUntilChanged())
             .flatMap { self.usecase.duplicationNickNameCheck($0).asObservable() }

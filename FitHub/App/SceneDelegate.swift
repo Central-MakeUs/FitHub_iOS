@@ -8,6 +8,7 @@
 import UIKit
 import RxKakaoSDKAuth
 import KakaoSDKAuth
+import RxSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -35,6 +36,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func sceneDidBecomeActive(_ scene: UIScene) {
+        _ = HomeService().checkAuth()
+            .subscribe(onSuccess: { isResult in
+                if !isResult {
+                    KeychainManager.delete(key: "accessToken")
+                }
+            })
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
     }

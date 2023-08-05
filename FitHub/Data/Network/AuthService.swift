@@ -167,9 +167,9 @@ class AuthService {
     }
     
     //MARK: - 핸드폰 인증번호
-    func checkUserInfo(_ phoneNum: String) -> Single<Int> {
+    func checkUserInfo(_ phoneNum: String, type: Int) -> Single<Int> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
-        let urlString = baseURL + "users/password"
+        let urlString = baseURL + "users/exist-phone/\(type)"
         let parameter: Parameters = ["targetPhoneNum" : phoneNum]
         
         return Single<Int>.create { emitter in

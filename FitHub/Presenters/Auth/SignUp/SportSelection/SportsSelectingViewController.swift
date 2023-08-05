@@ -28,7 +28,6 @@ final class SportsSelectingViewController: BaseViewController {
     
     private lazy var sportsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout()).then {
         $0.register(SportsCell.self, forCellWithReuseIdentifier: SportsCell.identifier)
-        $0.allowsMultipleSelection = true
         $0.backgroundColor = .clear
     }
     
@@ -136,7 +135,7 @@ extension SportsSelectingViewController {
             $0.minimumInteritemSpacing = 8
             $0.minimumLineSpacing = 25
             $0.itemSize = .init(width: itemWidth, height: itemWidth + 30)
-            $0.sectionInset = .init(top: 0, left: 20, bottom: 0, right: 0)
+//            $0.sectionInset = .init(top: 0, left: 20, bottom: 0, right: 0)
         }
     }
 }
