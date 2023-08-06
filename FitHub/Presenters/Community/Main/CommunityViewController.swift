@@ -122,8 +122,16 @@ final class CommunityViewController: BaseViewController {
         self.createActionSheet.certificationButton.rx.tap
             .bind(onNext: { [weak self] in
                 self?.pushCreateCertificationVC()
+                self?.closeCreateActionSheet()
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func closeCreateActionSheet() {
+        self.actionSheetBackView.isHidden = true
+        self.createActionSheet.isHidden = true
+        self.floatingButton.setImage(UIImage(named: "Plus_Floating")?.withRenderingMode(.alwaysOriginal),
+                                      for: .normal)
     }
     
     //MARK: - 화면이동
