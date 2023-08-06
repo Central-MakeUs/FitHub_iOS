@@ -10,7 +10,7 @@ import RxSwift
 
 protocol CommunityRepositoryInterface {
     func fetchCategory() -> Single<[CategoryDTO]>
-    func fetchCertificationFeed(_ categoryId: Int) -> Single<CertificationFeedDTO>
+    func fetchCertificationFeed(_ categoryId: Int, pageIndex: Int, type: OrderType) -> Single<CertificationFeedDTO>
 }
 
 final class CommunityRepository: CommunityRepositoryInterface {
@@ -27,7 +27,7 @@ final class CommunityRepository: CommunityRepositoryInterface {
         return self.authService.fetchCategory()
     }
     
-    func fetchCertificationFeed(_ categoryId: Int) -> Single<CertificationFeedDTO> {
-        return self.certificationService.fecthCertification(categoryId)
+    func fetchCertificationFeed(_ categoryId: Int, pageIndex: Int, type: OrderType) -> Single<CertificationFeedDTO> {
+        return self.certificationService.fecthCertification(categoryId, pageIndex: pageIndex, type: type)
     }
 }

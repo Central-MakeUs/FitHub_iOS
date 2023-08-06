@@ -141,7 +141,8 @@ final class AgreementViewController: BaseViewController {
             let oAuthRegistInputVC = OAuthRegistInputViewController(OAuthRegistInputViewModel(usecase))
             self.navigationController?.pushViewController(oAuthRegistInputVC, animated: true)
         } else {
-            let usecase = RegistInfoUseCase(userInfo)
+            let usecase = RegistInfoUseCase(userInfo,
+                                            repository: RegistInfoRepository(service: AuthService()))
             self.navigationController?.pushViewController(RegistInfoInputViewController(RegistInfoViewModel(usecase)), animated: true)
         }
     }
