@@ -9,7 +9,11 @@ import Foundation
 
 class CertificationFeedDTO: Decodable {
     let recordList: [ CertificationItem]
-    let size: Int
+    let listSize: Int
+    let totalPage: Int
+    let totalElements: Int
+    let isFirst: Bool
+    let isLast: Bool
 }
 
 class CertificationItem: Decodable {
@@ -19,3 +23,4 @@ class CertificationItem: Decodable {
     let createdAt: String
     let isLiked: Bool
 }
+

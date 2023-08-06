@@ -20,7 +20,7 @@ final class SportCell: UICollectionViewCell {
     }
     
     private let titleLabel = UILabel().then {
-        $0.textColor = .textDefault
+        $0.textColor = .textSub01
         $0.numberOfLines = 0
         $0.font = .pretendard(.bodyMedium01)
     }
@@ -92,7 +92,7 @@ final class SportCell: UICollectionViewCell {
         }
         
         self.titleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.frameView.snp.bottom).offset(4)
+            $0.top.equalTo(self.frameView.snp.bottom).offset(8)
             $0.centerX.equalToSuperview()
         }
     }

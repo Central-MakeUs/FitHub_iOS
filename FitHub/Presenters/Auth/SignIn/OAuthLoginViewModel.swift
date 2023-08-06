@@ -51,6 +51,8 @@ class OAuthLoginViewModel: ViewModelType {
             .flatMap { self.usecase.signInWithKakao($0).asMaybe() }
             .subscribe(onSuccess: { [weak self] res in
                 self?.loginPublisher.onNext(.success(res))
+                KeychainManager.create(key: "accessToken", value: res.accessToken)
+                KeychainManager.create(key: "userId", value: String(res.userId))
             }, onError: { [weak self] error in
                 self?.loginPublisher.onNext(.failure(error as! AuthError))
             })

@@ -10,7 +10,7 @@ import RxSwift
 
 protocol FindPWUseCaseProtocol {
     func verifyPhoneNumber(_ numberStr: String) -> UserInfoStatus
-    func checkUserInfo(_ phoneNum: String) -> Single<Int>
+    func checkUserInfo(_ phoneNum: String, type: Int) -> Single<Int>
     
     var userInfo: AuthUserInfo { get set }
 }
@@ -30,7 +30,7 @@ class FindPWUseCase: FindPWUseCaseProtocol {
         return isValid ? .ok : .notValidPhoneNumber
     }
     
-    func checkUserInfo(_ phoneNum: String) -> Single<Int> {
-        return repository.checkUserInfo(phoneNum)
+    func checkUserInfo(_ phoneNum: String, type: Int) -> Single<Int> {
+        return repository.checkUserInfo(phoneNum, type: type)
     }
 }

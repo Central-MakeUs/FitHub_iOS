@@ -10,5 +10,5 @@ import Foundation
 final class RegistResponseDTO: Decodable {
     let userId: Int
     let nickname: String
-    let accessToken: String
+    let accessToken: String?
 }

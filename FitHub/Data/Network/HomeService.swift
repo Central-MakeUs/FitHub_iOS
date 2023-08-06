@@ -33,4 +33,28 @@ class HomeService {
             return Disposables.create()
         }
     }
+    
+    func checkAuth() -> Single<Bool> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String
+        else { return Single.error(CertificationError.invalidURL) }
+        
+        return Single<Bool>.create { emitter in
+            AF.request(baseURL, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<CheckAuthDTO>.self) { res in
+                    
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2008 {
+                            emitter(.success(true))
+                        } else {
+                            emitter(.success(false))
+                        }
+                    case .failure(let error):
+                        emitter(.failure(error))
+                    }
+                }
+            
+            return Disposables.create()
+        }
+    }
 }

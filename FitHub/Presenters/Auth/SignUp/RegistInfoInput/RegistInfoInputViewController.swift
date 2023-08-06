@@ -143,8 +143,18 @@ final class RegistInfoInputViewController: BaseViewController {
             .disposed(by: disposeBag)
 
         output.sendButtonTapEvent
-            .bind(onNext: { [weak self] in
-                self?.pushPhoneVerifactionViewController()
+            .bind(onNext: { [weak self] res in
+                switch res {
+                case .success(let code):
+                    if code == 2000 {
+                        self?.pushPhoneVerifactionViewController()
+                    } else if code == 4018 {
+                        self?.presentGuideAlert()
+                    }
+                case .failure(let error):
+                    print(error)
+                    //TODO: 에러처리
+                }
             })
             .disposed(by: disposeBag)
         
@@ -177,6 +187,20 @@ final class RegistInfoInputViewController: BaseViewController {
             self?.willPresentTelecomProviderSelectorViewController()
         })
         .disposed(by: disposeBag)
+    }
+    
+    private func presentGuideAlert() {
+        let alert = StandardAlertController(title: "안내",
+                                            message: "이미 가입된 휴대폰번호입니다.\n로그인을 진행할까요?")
+        let cancel = StandardAlertAction(title: "닫기", style: .cancel)
+        let goLogin = StandardAlertAction(title: "로그인 하러가기", style: .basic) { [weak self] _ in
+            self?.navigationController?.popToRootViewController(animated: true)
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(goLogin)
+        
+        self.present(alert, animated: false)
     }
     
     //MARK: - 화면 이동

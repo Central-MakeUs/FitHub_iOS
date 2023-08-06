@@ -13,6 +13,7 @@ protocol CommunityUseCaseProtocol {
     var currentOrder: OrderType { get set }
     var currentCommunityType: CommunityType { get set }
     
+    var currentId: BehaviorSubject<Int> { get set }
     var category: BehaviorSubject<[CategoryDTO]> { get set }
     var recordList: BehaviorSubject<[CertificationItem]> { get set }
     var selectedId: BehaviorRelay<Int> { get set }
@@ -27,7 +28,9 @@ final class CommunityUseCase: CommunityUseCaseProtocol {
     var selectedId = BehaviorRelay<Int>(value: 0)
     var recordList = BehaviorSubject<[CertificationItem]>(value: [])
     var category = BehaviorSubject<[CategoryDTO]>(value: [])
+    var currentId = BehaviorSubject<Int>(value: 0)
     
+    var currentPage = 0
     var currentOrder: OrderType = .recent
     var currentCommunityType: CommunityType = .certification
     
@@ -47,7 +50,7 @@ final class CommunityUseCase: CommunityUseCaseProtocol {
     
     func fetchCertificationFeed() {
         self.repository
-            .fetchCertificationFeed(self.selectedId.value)
+            .fetchCertificationFeed(self.selectedId.value, pageIndex: currentPage, type: currentOrder)
             .subscribe(onSuccess: { [weak self] response in
                 self?.recordList.onNext(response.recordList)
             })
