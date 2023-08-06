@@ -12,7 +12,7 @@ import RxCocoa
 final class SportsSelectingViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     var usecase: SportsSelectingUseCaseProtocol
-
+    
     var registType: RegistType
     
     private let registPublisher = PublishSubject<String?>()
@@ -49,8 +49,9 @@ final class SportsSelectingViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         input.registTap.asObservable()
+            .filter { self.registType == .OAuth }
             .flatMap { _ in
-                self.usecase.signUpWithPhoneNumber().asObservable()
+                self.usecase.signUpWithOAuth().asObservable()
                     .catch { error in
                         self.registPublisher.onNext(nil)
                         return Observable.empty() // 에러를 무시하고 빈 Observable을 반환
@@ -58,11 +59,29 @@ final class SportsSelectingViewModel: ViewModelType {
             }
             .subscribe(onNext: { res in
                 self.registPublisher.onNext(res.nickname)
-                KeychainManager.create(key: "accessToken", value: res.accessToken)
+                guard let accessToken = res.accessToken else { return }
                 KeychainManager.create(key: "userId", value: String(res.userId))
             })
             .disposed(by: disposeBag)
 
+        
+        input.registTap.asObservable()
+            .filter { self.registType == .Phone }
+            .flatMap { _ in
+                    self.usecase.signUpWithPhoneNumber().asObservable()
+                        .catch { error in
+                            self.registPublisher.onNext(nil)
+                            return Observable.empty() // 에러를 무시하고 빈 Observable을 반환
+                        }
+            }
+            .subscribe(onNext: { res in
+                self.registPublisher.onNext(res.nickname)
+                guard let accessToken = res.accessToken else { return }
+                KeychainManager.create(key: "accessToken", value: accessToken )
+                KeychainManager.create(key: "userId", value: String(res.userId))
+            })
+            .disposed(by: disposeBag)
+        
         return Output(registPublisher: registPublisher.asObserver(),
                       registButtonEnable: self.usecase.selectedIds.map { !$0.isEmpty },
                       sports: self.usecase.sports)

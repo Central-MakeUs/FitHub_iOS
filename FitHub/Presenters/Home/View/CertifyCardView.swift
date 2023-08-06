@@ -14,11 +14,12 @@ final class CertifyCardView: UIView {
         $0.font = .pretendard(.bodyLarge02)
     }
     
-    private let categoryLabel = PaddingLabel(padding: .init(top: 0, left: 4, bottom: 0, right: 4)).then {
+    private let categoryLabel = PaddingLabel(padding: .init(top: 2, left: 4, bottom: 2, right: 4)).then {
         $0.text = "스포츠"
         $0.textColor = .textSub02
         $0.font = .pretendard(.labelSmall)
         $0.layer.cornerRadius = 2
+        $0.layer.masksToBounds = true
         $0.backgroundColor = .bgSub02
     }
     
