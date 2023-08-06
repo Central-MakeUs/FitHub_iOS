@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
 
-        window?.rootViewController = setTapbar()
+        window?.rootViewController = SplashViewController(viewModel: SplashViewModel(homeService: HomeService()))
         window?.makeKeyAndVisible()
         
         UITextField.appearance().overrideUserInterfaceStyle = .dark
@@ -36,14 +36,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func sceneDidBecomeActive(_ scene: UIScene) {
-        _ = HomeService().checkAuth()
-            .subscribe(onSuccess: { isResult in
-                if !isResult {
-                    KeychainManager.delete(key: "accessToken")
-                }
-            })
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+//        _ = HomeService().checkAuth()
+//            .subscribe(onSuccess: { isResult in
+//                if !isResult {
+//                    KeychainManager.delete(key: "accessToken")
+//                    KeychainManager.delete(key: "userId")
+//                }
+//            })
     }
     
     func sceneWillResignActive(_ scene: UIScene) {

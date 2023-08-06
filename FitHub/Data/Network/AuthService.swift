@@ -140,6 +140,59 @@ class AuthService {
         }
     }
     
+    //MARK: - 소셜 회원가입
+    func signUpWithOAuth(_ registUserInfo: AuthUserInfo)-> Single<RegistResponseDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL) }
+        let urlString = baseURL + "users/sign-up/oauth"
+        guard let accessToken = KeychainManager.read("accessToken") else { return Single.error(AuthError.invalidURL) }
+        
+        var headers: HTTPHeaders = ["Content-Type" : "multipart/form-data"]
+        headers.add(name: "Authorization", value: "Bearer " + accessToken)
+        
+        let marketingAgree = registUserInfo.marketingAgree
+        let preferExercises = registUserInfo.preferExercise.map { $0.id }
+        guard let birth = registUserInfo.dateOfBirth,
+              let gender = registUserInfo.sexNumber,
+              let nickname = registUserInfo.nickName,
+              let name = registUserInfo.name,
+              let profileImage = registUserInfo.profileImage?.pngData() else { return Single.error(AuthError.invalidURL)
+        }
+        
+        let parameters: Parameters = [
+            "gender" : gender,
+            "marketingAgree" : marketingAgree,
+            "birth" : birth,
+            "name" : name,
+            "nickname" : nickname]
+        
+        return Single<RegistResponseDTO>.create { emitter in
+            AF.upload(multipartFormData: { multipartFormData in
+                multipartFormData.append(profileImage, withName: "profileImage", fileName: "\(profileImage).png", mimeType: "image/png")
+                let preferExercises = preferExercises.map { String($0) }.joined(separator: ",")
+                multipartFormData.append(preferExercises.data(using: .utf8)!, withName: "preferExercises")
+                
+                for (key,value) in parameters {
+                    multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
+                }
+            }, to: urlString, method: .patch, headers: headers)
+            .responseDecodable(of: BaseResponse<RegistResponseDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if let result = response.result {
+                        emitter(.success(result))
+                    } else {
+                        print(response.code)
+                        emitter(.failure(AuthError.serverError))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
     //MARK: - 닉네임 중복 체크
     func duplicationNickNameCheck(_ nickName: String) -> Single<Bool> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}

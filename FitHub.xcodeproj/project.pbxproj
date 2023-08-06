@@ -12,6 +12,8 @@
 		B5B2C3992A7D2CEB004FC66C /* GradeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3982A7D2CEB004FC66C /* GradeType.swift */; };
 		B5B2C39C2A7DC980004FC66C /* CheckAuthDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C39B2A7DC980004FC66C /* CheckAuthDTO.swift */; };
 		B5B2C39E2A7DE8A1004FC66C /* RegistInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C39D2A7DE8A1004FC66C /* RegistInfoRepository.swift */; };
+		B5B2C3A12A7E3987004FC66C /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3A02A7E3987004FC66C /* SplashViewController.swift */; };
+		B5B2C3A32A7E39AE004FC66C /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3A22A7E39AE004FC66C /* SplashViewModel.swift */; };
 		DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB02A67C273001B5672 /* HomeViewController.swift */; };
 		DB002BB42A67C332001B5672 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB32A67C332001B5672 /* CommunityViewController.swift */; };
 		DB002BB82A67C36F001B5672 /* LookUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB72A67C36F001B5672 /* LookUpViewController.swift */; };
@@ -162,6 +164,8 @@
 		B5B2C3982A7D2CEB004FC66C /* GradeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeType.swift; sourceTree = "<group>"; };
 		B5B2C39B2A7DC980004FC66C /* CheckAuthDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAuthDTO.swift; sourceTree = "<group>"; };
 		B5B2C39D2A7DE8A1004FC66C /* RegistInfoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistInfoRepository.swift; sourceTree = "<group>"; };
+		B5B2C3A02A7E3987004FC66C /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		B5B2C3A22A7E39AE004FC66C /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		DB002BB02A67C273001B5672 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DB002BB32A67C332001B5672 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		DB002BB72A67C36F001B5672 /* LookUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpViewController.swift; sourceTree = "<group>"; };
@@ -335,6 +339,15 @@
 				DB62F1D72A7AAF1E0045E8DC /* RankInfoCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B5B2C39F2A7E396A004FC66C /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				B5B2C3A02A7E3987004FC66C /* SplashViewController.swift */,
+				B5B2C3A22A7E39AE004FC66C /* SplashViewModel.swift */,
+			);
+			path = Splash;
 			sourceTree = "<group>";
 		};
 		DB002BAF2A67C262001B5672 /* Home */ = {
@@ -769,6 +782,7 @@
 		DBFF258B2A5B925E00CF6DD4 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				B5B2C39F2A7E396A004FC66C /* Splash */,
 				DB002BB92A67C3BA001B5672 /* MyPage */,
 				DB002BB52A67C350001B5672 /* LookUp */,
 				DB002BB22A67C2D5001B5672 /* Community */,
@@ -1168,6 +1182,7 @@
 				DB0D220C2A769DD100ABF6A2 /* UICollectionView+.swift in Sources */,
 				DB5A7C6F2A79545200931DA0 /* CertifyCardView.swift in Sources */,
 				DBFF25A02A5B991A00CF6DD4 /* OAuthLoginUseCase.swift in Sources */,
+				B5B2C3A12A7E3987004FC66C /* SplashViewController.swift in Sources */,
 				DB57124D2A72ABF700DCAD9C /* CertificationError.swift in Sources */,
 				DB6CC3ED2A7016E700C4C2BC /* SportsSelectingUseCase.swift in Sources */,
 				DB8CD70D2A6D14C5004735C8 /* CategoryCell.swift in Sources */,
@@ -1202,6 +1217,7 @@
 				DB8CD7172A6D3995004735C8 /* CreateActionSheet.swift in Sources */,
 				DB0D21F92A73E40700ABF6A2 /* EditCertifiactionViewModel.swift in Sources */,
 				DB57123E2A72651500DCAD9C /* RegistType.swift in Sources */,
+				B5B2C3A32A7E39AE004FC66C /* SplashViewModel.swift in Sources */,
 				DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */,
 				DB62F1D42A7A8EB80045E8DC /* BestRecorderDTO.swift in Sources */,
 				DB51ECC02A692EFC009F4690 /* TopTabbarItem.swift in Sources */,

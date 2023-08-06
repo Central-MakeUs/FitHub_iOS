@@ -41,6 +41,7 @@ class HomeService {
         return Single<Bool>.create { emitter in
             AF.request(baseURL, interceptor: AuthManager())
                 .responseDecodable(of:BaseResponse<CheckAuthDTO>.self) { res in
+                    
                     switch res.result {
                     case .success(let response):
                         if response.code == 2008 {

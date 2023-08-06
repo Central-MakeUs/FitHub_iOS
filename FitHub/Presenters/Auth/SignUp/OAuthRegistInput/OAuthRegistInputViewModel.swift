@@ -52,6 +52,15 @@ final class OAuthRegistInputViewModel: ViewModelType {
             .subscribe(output.nextButtonEnable)
             .disposed(by: disposeBag)
         
+        Observable.combineLatest(name, dateOfBirth, sexNumber)
+            .map { (name: $0, dateOfBirth: $1.0, sexNumber:$2.0) }
+            .subscribe(onNext: { userInfo in
+                self.usecase.registUserInfo.name = userInfo.name
+                self.usecase.registUserInfo.dateOfBirth = userInfo.dateOfBirth
+                self.usecase.registUserInfo.sexNumber = userInfo.sexNumber
+            })
+            .disposed(by: disposeBag)
+        
         input.nextTap
             .bind(to: output.nextTap)
             .disposed(by: disposeBag)

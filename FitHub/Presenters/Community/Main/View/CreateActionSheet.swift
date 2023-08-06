@@ -25,7 +25,7 @@ final class CreateActionSheet: UIStackView {
     let createFeedButton = UIButton(type: .system).then {
         var configure = UIButton.Configuration.filled()
         configure.title = "게시글 작성하기"
-        configure.image = UIImage(named: "Write")?.withRenderingMode(.alwaysOriginal)
+        configure.image = UIImage(named: "write")?.withRenderingMode(.alwaysOriginal)
         configure.imagePadding = 10
         configure.baseBackgroundColor = .clear
         configure.baseForegroundColor = .textDefault
