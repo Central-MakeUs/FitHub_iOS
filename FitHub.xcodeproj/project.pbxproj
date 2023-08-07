@@ -14,6 +14,10 @@
 		B5B2C39E2A7DE8A1004FC66C /* RegistInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C39D2A7DE8A1004FC66C /* RegistInfoRepository.swift */; };
 		B5B2C3A12A7E3987004FC66C /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3A02A7E3987004FC66C /* SplashViewController.swift */; };
 		B5B2C3A32A7E39AE004FC66C /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3A22A7E39AE004FC66C /* SplashViewModel.swift */; };
+		B5B2C3A62A7FD172004FC66C /* CertificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3A52A7FD172004FC66C /* CertificationView.swift */; };
+		B5B2C3A82A7FE502004FC66C /* TopTabBarItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3A72A7FE502004FC66C /* TopTabBarItemCell.swift */; };
+		B5B2C3AA2A7FEA4F004FC66C /* TopTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3A92A7FEA4F004FC66C /* TopTabBarView.swift */; };
+		B5B2C3AC2A7FED7B004FC66C /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3AB2A7FED7B004FC66C /* String+.swift */; };
 		DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB02A67C273001B5672 /* HomeViewController.swift */; };
 		DB002BB42A67C332001B5672 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB32A67C332001B5672 /* CommunityViewController.swift */; };
 		DB002BB82A67C36F001B5672 /* LookUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB72A67C36F001B5672 /* LookUpViewController.swift */; };
@@ -166,6 +170,10 @@
 		B5B2C39D2A7DE8A1004FC66C /* RegistInfoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistInfoRepository.swift; sourceTree = "<group>"; };
 		B5B2C3A02A7E3987004FC66C /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		B5B2C3A22A7E39AE004FC66C /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
+		B5B2C3A52A7FD172004FC66C /* CertificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationView.swift; sourceTree = "<group>"; };
+		B5B2C3A72A7FE502004FC66C /* TopTabBarItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarItemCell.swift; sourceTree = "<group>"; };
+		B5B2C3A92A7FEA4F004FC66C /* TopTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarView.swift; sourceTree = "<group>"; };
+		B5B2C3AB2A7FED7B004FC66C /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		DB002BB02A67C273001B5672 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DB002BB32A67C332001B5672 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		DB002BB72A67C36F001B5672 /* LookUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpViewController.swift; sourceTree = "<group>"; };
@@ -414,6 +422,7 @@
 				DB51ECBE2A692270009F4690 /* TopTabBar */,
 				DB8CD7122A6D2855004735C8 /* SortSwitchView.swift */,
 				DB8CD7162A6D3995004735C8 /* CreateActionSheet.swift */,
+				B5B2C3A52A7FD172004FC66C /* CertificationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -423,6 +432,7 @@
 			children = (
 				DB51ECBC2A68E846009F4690 /* FitHubTopTabbar.swift */,
 				DB51ECBF2A692EFC009F4690 /* TopTabbarItem.swift */,
+				B5B2C3A92A7FEA4F004FC66C /* TopTabBarView.swift */,
 			);
 			path = TopTabBar;
 			sourceTree = "<group>";
@@ -659,6 +669,7 @@
 			children = (
 				DB8CD70C2A6D14C5004735C8 /* CategoryCell.swift */,
 				DB8CD7142A6D2C9F004735C8 /* CertificationCell.swift */,
+				B5B2C3A72A7FE502004FC66C /* TopTabBarItemCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1037,6 +1048,7 @@
 				DB97F83B2A52B36E009C09A1 /* NotificationName+.swift */,
 				DB0D220B2A769DD100ABF6A2 /* UICollectionView+.swift */,
 				B5B2C3932A7D097E004FC66C /* UILabel+.swift */,
+				B5B2C3AB2A7FED7B004FC66C /* String+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1156,6 +1168,8 @@
 				DB7559E32A55030400B88B96 /* SportsSelectingViewController.swift in Sources */,
 				DB6D93D42A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift in Sources */,
 				DB62F1D22A7A8E120045E8DC /* HomeUserInfoDTO.swift in Sources */,
+				B5B2C3AC2A7FED7B004FC66C /* String+.swift in Sources */,
+				B5B2C3AA2A7FEA4F004FC66C /* TopTabBarView.swift in Sources */,
 				DBF125DB2A5E7C14004DA4B9 /* VerificationNumberTextFieldView.swift in Sources */,
 				DBFFDA2B2A47F1600008C2B5 /* UIFont+.swift in Sources */,
 				DB6D93E22A4EC8C10011F9BC /* PhoneVerificationViewController.swift in Sources */,
@@ -1198,11 +1212,13 @@
 				DBDBA3112A65324C00F1CDA5 /* OAuthLoginDTO.swift in Sources */,
 				B5B2C3972A7D0F37004FC66C /* RankStatus.swift in Sources */,
 				DB51D2592A4C2719002415B0 /* AgreementModel.swift in Sources */,
+				B5B2C3A62A7FD172004FC66C /* CertificationView.swift in Sources */,
 				DB7559E72A55062C00B88B96 /* SportsCell.swift in Sources */,
 				DB7559E12A548C6800B88B96 /* ProfileSettingViewModel.swift in Sources */,
 				DB97F8352A527BCF009C09A1 /* StandardNotificationAlertView.swift in Sources */,
 				DBB820BC2A5E4D990016CB63 /* FindPWUseCase.swift in Sources */,
 				DB51D2532A4B36A5002415B0 /* AgreementView.swift in Sources */,
+				B5B2C3A82A7FE502004FC66C /* TopTabBarItemCell.swift in Sources */,
 				DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */,
 				DB5712422A7295E400DCAD9C /* EditCertifiactionViewController.swift in Sources */,
 				DB8CD7192A6E0B7D004735C8 /* CommunityViewModel.swift in Sources */,
