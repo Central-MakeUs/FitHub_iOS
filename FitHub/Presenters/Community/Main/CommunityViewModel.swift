@@ -11,6 +11,8 @@ import RxSwift
 class CommunityViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
+    let targetIndex = BehaviorSubject<Int>(value: 0)
+    
     let usecase: CommunityUseCaseProtocol
     
     struct Input {
@@ -20,6 +22,7 @@ class CommunityViewModel: ViewModelType {
     struct Output {
         let category: BehaviorSubject<[CategoryDTO]>
         let certificationFeedList: BehaviorSubject<[CertificationItem]>
+        let targetIndex: Observable<Int>
     }
     
     init(_ usecase: CommunityUseCaseProtocol) {
@@ -30,6 +33,7 @@ class CommunityViewModel: ViewModelType {
         
         
         return Output(category: usecase.category,
-                      certificationFeedList: usecase.recordList)
+                      certificationFeedList: usecase.recordList,
+                      targetIndex: targetIndex.asObservable())
     }
 }

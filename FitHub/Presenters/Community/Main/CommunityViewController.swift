@@ -14,28 +14,44 @@ final class CommunityViewController: BaseViewController {
     private let viewModel: CommunityViewModel
     
     private let searchBar = FitHubSearchBar()
+    private let sortSwitchView = SortSwitchView(frame: .zero)
+    private let contentView = UIView()    
     
-    private lazy var topTabbar: FitHubTopTabbar = {
-        let tabbar = FitHubTopTabbar([TopTabbarItem("운동인증"),
-                                      TopTabbarItem("핏사이트")])
-        
-        return tabbar
-    }()
+    private let indicatorUnderLineView = UIView().then {
+        $0.backgroundColor = .bgSub01
+    }
+    
+    private let indicatorView = UIView().then {
+        $0.backgroundColor = .iconDefault
+    }
+    
+    let testView = UIView().then {
+        $0.backgroundColor = .red
+    }
+    
+    private lazy var topTabBarCollectionView = UICollectionView(frame: .zero,
+                                                           collectionViewLayout: createTopTabBar()).then {
+        $0.register(TopTabBarItemCell.self, forCellWithReuseIdentifier: TopTabBarItemCell.identifier)
+        $0.backgroundColor = .clear
+    }
     
     private lazy var categoryCollectionView = UICollectionView(frame: .zero,
                                                                collectionViewLayout: self.createLayout()).then {
+
         $0.backgroundColor = .clear
         $0.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifier)
     }
     
+    private let feedScrollView = UIScrollView().then {
+        $0.isPagingEnabled = true
+    }
+
     private lazy var certificationCollectionView = UICollectionView(frame: .zero,
                                                                     collectionViewLayout: createCertificationLayout()).then {
         $0.showsVerticalScrollIndicator = false
         $0.register(CertificationCell.self, forCellWithReuseIdentifier: CertificationCell.identifier)
         $0.backgroundColor = .clear
     }
-    
-    private let sortSwitchView = SortSwitchView(frame: .zero)
     
     private let floatingButton = UIButton(type: .system).then {
         $0.backgroundColor = .primary
@@ -56,6 +72,7 @@ final class CommunityViewController: BaseViewController {
     init(_ viewModel: CommunityViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        self.view.gestureRecognizers = nil
     }
     
     required init?(coder: NSCoder) {
@@ -67,9 +84,15 @@ final class CommunityViewController: BaseViewController {
         self.viewModel.usecase.fetchCertificationFeed()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.setUpCategoryBinding()
+    }
+    
     //MARK: - ConfigureUI
     override func configureUI() {
         self.navigationItem.leftBarButtonItem = nil
+        self.feedScrollView.delegate = self
     }
     
     //MARK: - ConfigureNavigation
@@ -97,7 +120,7 @@ final class CommunityViewController: BaseViewController {
                 cell.configureLabel(name.name)
             }
                        .disposed(by: disposeBag)
-        
+//
         output.certificationFeedList
             .bind(to: self.certificationCollectionView.rx
                 .items(cellIdentifier: CertificationCell.identifier,
@@ -105,6 +128,12 @@ final class CommunityViewController: BaseViewController {
                 cell.configureCell(item)
             }
                        .disposed(by: disposeBag)
+        
+        Observable.of(["운동인증","핏사이트"])
+            .bind(to: self.topTabBarCollectionView.rx.items(cellIdentifier: TopTabBarItemCell.identifier, cellType: TopTabBarItemCell.self)) { index, item, cell in
+                cell.configureCell(text: item)
+            }
+            .disposed(by: disposeBag)
         
         //TODO: 게시글 클릭시처리도 해줘야함.
         
@@ -144,18 +173,24 @@ final class CommunityViewController: BaseViewController {
     
     //MARK: - AddSubView
     override func addSubView() {
-        self.view.addSubview(topTabbar)
+        self.view.addSubview(topTabBarCollectionView)
+        self.view.addSubview(indicatorUnderLineView)
+        self.view.addSubview(indicatorView)
+        self.view.addSubview(feedScrollView)
         self.view.addSubview(categoryCollectionView)
-        self.view.addSubview(sortSwitchView)
-        self.view.addSubview(certificationCollectionView)
         self.view.addSubview(actionSheetBackView)
         self.view.addSubview(floatingButton)
         self.view.addSubview(createActionSheet)
+        
+        self.feedScrollView.addSubview(contentView)
+        self.feedScrollView.addSubview(sortSwitchView)
+        self.feedScrollView.addSubview(testView)
+        self.feedScrollView.addSubview(certificationCollectionView)
     }
     
     //MARK: - layout
     override func layout() {
-        self.topTabbar.snp.makeConstraints {
+        self.topTabBarCollectionView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(6)
             $0.height.equalTo(50)
@@ -164,19 +199,54 @@ final class CommunityViewController: BaseViewController {
         self.categoryCollectionView.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(20)
             $0.trailing.equalToSuperview()
-            $0.top.equalTo(self.topTabbar.snp.bottom).offset(15)
+            $0.top.equalTo(self.topTabBarCollectionView.snp.bottom).offset(15)
             $0.height.equalTo(32)
         }
-        
+
         self.sortSwitchView.snp.makeConstraints {
-            $0.trailing.equalToSuperview().offset(-20)
+            $0.trailing.equalTo(self.certificationCollectionView.snp.trailing)
+            $0.top.equalToSuperview().offset(4)
+        }
+        
+        feedScrollView.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalToSuperview()
             $0.top.equalTo(self.categoryCollectionView.snp.bottom).offset(20)
         }
         
-        self.certificationCollectionView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(20)
+        contentView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.width.equalTo(self.view.frame.width*2)
+            $0.top.equalTo(self.categoryCollectionView.snp.bottom).offset(20)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide)
+        }
+        
+        certificationCollectionView.snp.makeConstraints {
             $0.top.equalTo(self.sortSwitchView.snp.bottom).offset(15)
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+            $0.leading.equalToSuperview().offset(20)
+            $0.bottom.equalToSuperview()
+            $0.width.equalTo(self.view.frame.width - 40)
+            $0.height.equalTo(contentView.snp.height)
+        }
+        
+        testView.snp.makeConstraints {
+            $0.leading.equalTo(self.certificationCollectionView.snp.trailing).offset(40)
+            $0.top.equalToSuperview()
+            $0.trailing.equalToSuperview().offset(-20)
+            $0.bottom.equalToSuperview()
+            $0.width.equalTo(self.view.frame.width - 40)
+        }
+        
+        indicatorUnderLineView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(1)
+            make.top.equalTo(topTabBarCollectionView.snp.bottom)
+        }
+        
+        indicatorView.snp.makeConstraints { make in
+            make.centerY.equalTo(indicatorUnderLineView.snp.centerY)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(15)
+            make.height.equalTo(3)
         }
         
         self.floatingButton.snp.makeConstraints {
@@ -233,5 +303,73 @@ extension CommunityViewController {
         
         return UICollectionViewCompositionalLayout(section: section)
     }
+    
+    private func createTopTabBar() -> UICollectionViewLayout {
+        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(0.5),
+                                                            heightDimension: .absolute(50)))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1),
+                                                                         heightDimension: .absolute(50)),
+                                                       subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        
+        return UICollectionViewCompositionalLayout(section: section)
+    }
 }
 
+extension CommunityViewController {
+    func moveIndicatorbar(targetIndex: Int) {
+        let indexPath = IndexPath(item: targetIndex, section: 0)
+        topTabBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        guard let cell = topTabBarCollectionView.cellForItem(at: indexPath) as? TopTabBarItemCell else { return }
+        
+        indicatorView.snp.remakeConstraints {
+            $0.centerX.equalTo(cell)
+            $0.width.equalTo(cell.getTitleFrameWidth())
+            $0.height.equalTo(3)
+            $0.centerY.equalTo(indicatorUnderLineView)
+        }
+        
+        UIView.animate(withDuration: 0.2) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func setUpCategoryBinding() {
+        self.viewModel.targetIndex
+            .bind(onNext: { [weak self] targetIndex in
+                self?.moveIndicatorbar(targetIndex: targetIndex)
+                //TODO: 화면 전환
+            })
+            .disposed(by: disposeBag)
+
+        topTabBarCollectionView.rx.itemSelected
+            .map { $0.item }
+            .bind(to: self.viewModel.targetIndex)
+            .disposed(by: disposeBag)
+    }
+}
+
+extension CommunityViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let targetIndex = Int(scrollView.contentOffset.x/self.view.frame.width)
+        let indexPath = IndexPath(item: targetIndex, section: 0)
+        guard let cell = topTabBarCollectionView.cellForItem(at: indexPath) as? TopTabBarItemCell else { return }
+        indicatorView.snp.remakeConstraints {
+            $0.centerX.equalTo(self.view.frame.width/4 + scrollView.contentOffset.x/2)
+            $0.width.equalTo(cell.getTitleFrameWidth())
+            $0.height.equalTo(3)
+            $0.centerY.equalTo(indicatorUnderLineView)
+        }
+        
+        UIView.animate(withDuration: 0.2) {
+            self.view.layoutIfNeeded()
+        }
+        
+        if scrollView.contentOffset.x == self.view.frame.width {
+            self.viewModel.targetIndex.onNext(1)
+        } else if scrollView.contentOffset.x == 0 {
+            self.viewModel.targetIndex.onNext(0)
+        }
+    }
+}
