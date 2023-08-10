@@ -23,9 +23,11 @@ final class CertificationCell: UICollectionViewCell {
     }
     
     private let likeCntLabel = UILabel().then {
+        $0.shadowOffset = .init(width: 0.5, height: 0.5)
+        $0.shadowColor = .black.withAlphaComponent(0.2)
         $0.text = "-"
         $0.textColor = .textDefault
-        $0.font = .pretendard(.bodySmall01)
+        $0.font = .pretendard(.bodySmall02)
     }
     
     override init(frame: CGRect) {
@@ -39,7 +41,8 @@ final class CertificationCell: UICollectionViewCell {
     }
     
     func configureCell(_ item: CertificationItem) {
-        self.imageView.kf.setImage(with: URL(string: item.pictureUrl))
+        
+        self.imageView.kf.setImage(with: URL(string: item.pictureUrl ?? ""))
         self.likeCntLabel.text = "\(item.likes)"
         
         let likeImage = item.isLiked ? UIImage(named: "ic_heart_pressed") : UIImage(named: "ic_heart_default")

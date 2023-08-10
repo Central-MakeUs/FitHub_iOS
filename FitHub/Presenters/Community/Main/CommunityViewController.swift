@@ -14,7 +14,8 @@ final class CommunityViewController: BaseViewController {
     private let viewModel: CommunityViewModel
     
     private let searchBar = FitHubSearchBar()
-    private let sortSwitchView = SortSwitchView(frame: .zero)
+    private let certificationSortView = SortSwitchView()
+    private let fitSiteSortView = SortSwitchView()
     private let contentView = UIView()    
     
     private let indicatorUnderLineView = UIView().then {
@@ -25,10 +26,6 @@ final class CommunityViewController: BaseViewController {
         $0.backgroundColor = .iconDefault
     }
     
-    let testView = UIView().then {
-        $0.backgroundColor = .red
-    }
-    
     private lazy var topTabBarCollectionView = UICollectionView(frame: .zero,
                                                            collectionViewLayout: createTopTabBar()).then {
         $0.register(TopTabBarItemCell.self, forCellWithReuseIdentifier: TopTabBarItemCell.identifier)
@@ -37,7 +34,6 @@ final class CommunityViewController: BaseViewController {
     
     private lazy var categoryCollectionView = UICollectionView(frame: .zero,
                                                                collectionViewLayout: self.createLayout()).then {
-
         $0.backgroundColor = .clear
         $0.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifier)
     }
@@ -50,7 +46,13 @@ final class CommunityViewController: BaseViewController {
                                                                     collectionViewLayout: createCertificationLayout()).then {
         $0.showsVerticalScrollIndicator = false
         $0.register(CertificationCell.self, forCellWithReuseIdentifier: CertificationCell.identifier)
-        $0.backgroundColor = .clear
+        $0.backgroundColor = .bgDefault
+    }
+    
+    private let fitSiteTableView = UITableView().then {
+        $0.separatorStyle = .none
+        $0.register(FitSiteCell.self, forCellReuseIdentifier: FitSiteCell.identifier)
+        $0.backgroundColor = .bgDefault
     }
     
     private let floatingButton = UIButton(type: .system).then {
@@ -73,6 +75,7 @@ final class CommunityViewController: BaseViewController {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         self.view.gestureRecognizers = nil
+        self.view.backgroundColor = .bgDefault
     }
     
     required init?(coder: NSCoder) {
@@ -81,12 +84,18 @@ final class CommunityViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.viewModel.usecase.fetchCertificationFeed()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.setUpCategoryBinding()
+        
+        if let selectedItems = categoryCollectionView.indexPathsForSelectedItems,
+           selectedItems.isEmpty {
+            categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0),
+                                              animated: false,
+                                              scrollPosition: .centeredVertically)
+        }
     }
     
     //MARK: - ConfigureUI
@@ -120,7 +129,7 @@ final class CommunityViewController: BaseViewController {
                 cell.configureLabel(name.name)
             }
                        .disposed(by: disposeBag)
-//
+
         output.certificationFeedList
             .bind(to: self.certificationCollectionView.rx
                 .items(cellIdentifier: CertificationCell.identifier,
@@ -129,7 +138,18 @@ final class CommunityViewController: BaseViewController {
             }
                        .disposed(by: disposeBag)
         
-        Observable.of(["운동인증","핏사이트"])
+        output.fitSiteFeedList
+            .bind(to: self.fitSiteTableView.rx.items(cellIdentifier: FitSiteCell.identifier, cellType: FitSiteCell.self)) { index, item, cell in
+                cell.configureCell(item: item)
+            }
+            .disposed(by: disposeBag)
+        
+        categoryCollectionView.rx.modelSelected(CategoryDTO.self)
+            .map { $0.id }
+            .bind(to: viewModel.selectedCategory)
+            .disposed(by: disposeBag)
+        
+        viewModel.feedType
             .bind(to: self.topTabBarCollectionView.rx.items(cellIdentifier: TopTabBarItemCell.identifier, cellType: TopTabBarItemCell.self)) { index, item, cell in
                 cell.configureCell(text: item)
             }
@@ -153,6 +173,14 @@ final class CommunityViewController: BaseViewController {
                 self?.pushCreateCertificationVC()
                 self?.closeCreateActionSheet()
             })
+            .disposed(by: disposeBag)
+        
+        self.certificationSortView.type
+            .bind(to: self.viewModel.certificationSortingType)
+            .disposed(by: disposeBag)
+        
+        self.fitSiteSortView.type
+            .bind(to: self.viewModel.fitStieSortingType)
             .disposed(by: disposeBag)
     }
     
@@ -183,8 +211,9 @@ final class CommunityViewController: BaseViewController {
         self.view.addSubview(createActionSheet)
         
         self.feedScrollView.addSubview(contentView)
-        self.feedScrollView.addSubview(sortSwitchView)
-        self.feedScrollView.addSubview(testView)
+        self.feedScrollView.addSubview(certificationSortView)
+        self.feedScrollView.addSubview(fitSiteSortView)
+        self.feedScrollView.addSubview(fitSiteTableView)
         self.feedScrollView.addSubview(certificationCollectionView)
     }
     
@@ -203,7 +232,7 @@ final class CommunityViewController: BaseViewController {
             $0.height.equalTo(32)
         }
 
-        self.sortSwitchView.snp.makeConstraints {
+        self.certificationSortView.snp.makeConstraints {
             $0.trailing.equalTo(self.certificationCollectionView.snp.trailing)
             $0.top.equalToSuperview().offset(4)
         }
@@ -221,16 +250,22 @@ final class CommunityViewController: BaseViewController {
         }
         
         certificationCollectionView.snp.makeConstraints {
-            $0.top.equalTo(self.sortSwitchView.snp.bottom).offset(15)
+            $0.top.equalTo(self.certificationSortView.snp.bottom).offset(15)
             $0.leading.equalToSuperview().offset(20)
             $0.bottom.equalToSuperview()
             $0.width.equalTo(self.view.frame.width - 40)
             $0.height.equalTo(contentView.snp.height)
         }
         
-        testView.snp.makeConstraints {
+        fitSiteSortView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(4)
+            $0.trailing.equalToSuperview().offset(-20)
+            $0.trailing.equalTo(self.fitSiteTableView.snp.trailing)
+        }
+        
+        fitSiteTableView.snp.makeConstraints {
             $0.leading.equalTo(self.certificationCollectionView.snp.trailing).offset(40)
-            $0.top.equalToSuperview()
+            $0.top.equalTo(self.fitSiteSortView.snp.bottom).offset(15)
             $0.trailing.equalToSuperview().offset(-20)
             $0.bottom.equalToSuperview()
             $0.width.equalTo(self.view.frame.width - 40)
@@ -345,7 +380,18 @@ extension CommunityViewController {
 
         topTabBarCollectionView.rx.itemSelected
             .map { $0.item }
-            .bind(to: self.viewModel.targetIndex)
+            .subscribe(onNext: { [weak self] idx in
+                guard let self else { return }
+                if idx == 0 {
+                    self.feedScrollView
+                        .contentOffset = .init(x: 0, y: 0)
+                } else {
+                    self.feedScrollView
+                        .contentOffset = .init(x: self.view.frame.width, y: 0)
+                }
+                    
+                self.viewModel.targetIndex.onNext(idx)
+            })
             .disposed(by: disposeBag)
     }
 }

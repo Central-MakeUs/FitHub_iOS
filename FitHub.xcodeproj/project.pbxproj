@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B588B7D72A828BD00031C723 /* FitSiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7D62A828BD00031C723 /* FitSiteCell.swift */; };
+		B588B7DB2A83AD710031C723 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DA2A83AD710031C723 /* ArticleService.swift */; };
+		B588B7DD2A83AF280031C723 /* FitSiteFeedDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DC2A83AF280031C723 /* FitSiteFeedDTO.swift */; };
 		B5B2C3942A7D097E004FC66C /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3932A7D097E004FC66C /* UILabel+.swift */; };
 		B5B2C3972A7D0F37004FC66C /* RankStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3962A7D0F37004FC66C /* RankStatus.swift */; };
 		B5B2C3992A7D2CEB004FC66C /* GradeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3982A7D2CEB004FC66C /* GradeType.swift */; };
@@ -162,6 +165,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B588B7D62A828BD00031C723 /* FitSiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteCell.swift; sourceTree = "<group>"; };
+		B588B7DA2A83AD710031C723 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
+		B588B7DC2A83AF280031C723 /* FitSiteFeedDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FitSiteFeedDTO.swift; path = ../../../../../../../../../../../Applications/FitSiteFeedDTO.swift; sourceTree = "<group>"; };
 		B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
 		B5B2C3932A7D097E004FC66C /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		B5B2C3962A7D0F37004FC66C /* RankStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankStatus.swift; sourceTree = "<group>"; };
@@ -555,6 +561,7 @@
 			children = (
 				DB57124F2A72ACDB00DCAD9C /* CertificationFeedDTO.swift */,
 				DB0D22122A76DAF600ABF6A2 /* CreateCertificationDTO.swift */,
+				B588B7DC2A83AF280031C723 /* FitSiteFeedDTO.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -670,6 +677,7 @@
 				DB8CD70C2A6D14C5004735C8 /* CategoryCell.swift */,
 				DB8CD7142A6D2C9F004735C8 /* CertificationCell.swift */,
 				B5B2C3A72A7FE502004FC66C /* TopTabBarItemCell.swift */,
+				B588B7D62A828BD00031C723 /* FitSiteCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1035,6 +1043,7 @@
 				DB71348C2A5BDBF90006EAAB /* AuthService.swift */,
 				DB57124A2A729BC200DCAD9C /* CertificationService.swift */,
 				DB5DAB442A7BF6C2009AA427 /* HomeService.swift */,
+				B588B7DA2A83AD710031C723 /* ArticleService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1213,6 +1222,7 @@
 				B5B2C3972A7D0F37004FC66C /* RankStatus.swift in Sources */,
 				DB51D2592A4C2719002415B0 /* AgreementModel.swift in Sources */,
 				B5B2C3A62A7FD172004FC66C /* CertificationView.swift in Sources */,
+				B588B7DB2A83AD710031C723 /* ArticleService.swift in Sources */,
 				DB7559E72A55062C00B88B96 /* SportsCell.swift in Sources */,
 				DB7559E12A548C6800B88B96 /* ProfileSettingViewModel.swift in Sources */,
 				DB97F8352A527BCF009C09A1 /* StandardNotificationAlertView.swift in Sources */,
@@ -1249,8 +1259,10 @@
 				DB0D22112A76C35D00ABF6A2 /* EditCertificationModel.swift in Sources */,
 				DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */,
 				DB6D93E42A4EDCE20011F9BC /* PasswordSettingViewController.swift in Sources */,
+				B588B7D72A828BD00031C723 /* FitSiteCell.swift in Sources */,
 				DB5712502A72ACDB00DCAD9C /* CertificationFeedDTO.swift in Sources */,
 				DBF125E52A5E8DFB004DA4B9 /* NickNameTextFieldView.swift in Sources */,
+				B588B7DD2A83AF280031C723 /* FitSiteFeedDTO.swift in Sources */,
 				DB0D22132A76DAF600ABF6A2 /* CreateCertificationDTO.swift in Sources */,
 				DB51D2572A4BB8B5002415B0 /* AgreementViewModel.swift in Sources */,
 				DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */,

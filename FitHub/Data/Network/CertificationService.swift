@@ -10,9 +10,9 @@ import RxSwift
 import Alamofire
 
 class CertificationService {
-    func fecthCertification(_ categoryId: Int, pageIndex: Int, type: OrderType)->Single<CertificationFeedDTO> {
+    func fecthCertification(_ categoryId: Int, pageIndex: Int, type: SortingType)->Single<CertificationFeedDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
-        
+    
         var urlString = baseURL + "records/\(categoryId)"
         if type == .popularity { urlString += "likes"}
         
@@ -34,9 +34,12 @@ class CertificationService {
                         observer(.failure(AuthError.serverError))
                     }
                 }
+            
             return Disposables.create()
         }
     }
+
+    
     
     func createCertification(_ certificationInfo: EditCertificationModel) -> Single<CreateCertificationDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
