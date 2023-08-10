@@ -8,7 +8,7 @@
 import Foundation
 
 class CertificationFeedDTO: Decodable {
-    let recordList: [ CertificationItem]
+    let recordList: [CertificationItem]
     let listSize: Int
     let totalPage: Int
     let totalElements: Int
@@ -18,7 +18,7 @@ class CertificationFeedDTO: Decodable {
 
 class CertificationItem: Decodable {
     let recordId: Int
-    let pictureUrl: String
+    let pictureUrl: String?
     let likes: Int
     let createdAt: String
     let isLiked: Bool
