@@ -7,9 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B5705C772A866AC600408233 /* EditFitSiteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C762A866AC600408233 /* EditFitSiteModel.swift */; };
+		B5705C792A86762D00408233 /* CreateFitSiteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C782A86762D00408233 /* CreateFitSiteUseCase.swift */; };
+		B5705C7B2A86790100408233 /* CreateFitSiteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C7A2A86790100408233 /* CreateFitSiteRepository.swift */; };
+		B5705C7D2A871DF900408233 /* ExpandTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C7C2A871DF900408233 /* ExpandTextView.swift */; };
+		B5705C7F2A87686100408233 /* CreateFitSiteDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C7E2A87686100408233 /* CreateFitSiteDTO.swift */; };
 		B588B7D72A828BD00031C723 /* FitSiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7D62A828BD00031C723 /* FitSiteCell.swift */; };
 		B588B7DB2A83AD710031C723 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DA2A83AD710031C723 /* ArticleService.swift */; };
 		B588B7DD2A83AF280031C723 /* FitSiteFeedDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DC2A83AF280031C723 /* FitSiteFeedDTO.swift */; };
+		B588B7E02A85405B0031C723 /* EditFitSiteSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DF2A85405B0031C723 /* EditFitSiteSectionModel.swift */; };
+		B588B7E22A85435E0031C723 /* EditFitSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7E12A85435E0031C723 /* EditFitSiteViewController.swift */; };
+		B588B7E42A8543C00031C723 /* EditFitSiteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7E32A8543C00031C723 /* EditFitSiteViewModel.swift */; };
+		B588B7E62A8544940031C723 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7E52A8544940031C723 /* TitleCell.swift */; };
+		B588B7E82A8545110031C723 /* FitSiteImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7E72A8545110031C723 /* FitSiteImageCell.swift */; };
 		B5B2C3942A7D097E004FC66C /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3932A7D097E004FC66C /* UILabel+.swift */; };
 		B5B2C3972A7D0F37004FC66C /* RankStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3962A7D0F37004FC66C /* RankStatus.swift */; };
 		B5B2C3992A7D2CEB004FC66C /* GradeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3982A7D2CEB004FC66C /* GradeType.swift */; };
@@ -165,9 +175,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B5705C762A866AC600408233 /* EditFitSiteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteModel.swift; sourceTree = "<group>"; };
+		B5705C782A86762D00408233 /* CreateFitSiteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFitSiteUseCase.swift; sourceTree = "<group>"; };
+		B5705C7A2A86790100408233 /* CreateFitSiteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFitSiteRepository.swift; sourceTree = "<group>"; };
+		B5705C7C2A871DF900408233 /* ExpandTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandTextView.swift; sourceTree = "<group>"; };
+		B5705C7E2A87686100408233 /* CreateFitSiteDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFitSiteDTO.swift; sourceTree = "<group>"; };
 		B588B7D62A828BD00031C723 /* FitSiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteCell.swift; sourceTree = "<group>"; };
 		B588B7DA2A83AD710031C723 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		B588B7DC2A83AF280031C723 /* FitSiteFeedDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FitSiteFeedDTO.swift; path = ../../../../../../../../../../../Applications/FitSiteFeedDTO.swift; sourceTree = "<group>"; };
+		B588B7DF2A85405B0031C723 /* EditFitSiteSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteSectionModel.swift; sourceTree = "<group>"; };
+		B588B7E12A85435E0031C723 /* EditFitSiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteViewController.swift; sourceTree = "<group>"; };
+		B588B7E32A8543C00031C723 /* EditFitSiteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteViewModel.swift; sourceTree = "<group>"; };
+		B588B7E52A8544940031C723 /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
+		B588B7E72A8545110031C723 /* FitSiteImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteImageCell.swift; sourceTree = "<group>"; };
 		B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
 		B5B2C3932A7D097E004FC66C /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		B5B2C3962A7D0F37004FC66C /* RankStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankStatus.swift; sourceTree = "<group>"; };
@@ -337,6 +357,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B588B7DE2A8540070031C723 /* FitSite */ = {
+			isa = PBXGroup;
+			children = (
+				B588B7DF2A85405B0031C723 /* EditFitSiteSectionModel.swift */,
+				B588B7E12A85435E0031C723 /* EditFitSiteViewController.swift */,
+				B588B7E32A8543C00031C723 /* EditFitSiteViewModel.swift */,
+			);
+			path = FitSite;
+			sourceTree = "<group>";
+		};
 		B5B2C3952A7D0F23004FC66C /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,6 +439,8 @@
 				DB0D22072A7674F700ABF6A2 /* SportCell.swift */,
 				DB0D22092A7698D200ABF6A2 /* SportHeaderView.swift */,
 				DB0D220D2A76ACFE00ABF6A2 /* SportFooterView.swift */,
+				B588B7E52A8544940031C723 /* TitleCell.swift */,
+				B588B7E72A8545110031C723 /* FitSiteImageCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -417,6 +449,7 @@
 			isa = PBXGroup;
 			children = (
 				DB0D22102A76C35D00ABF6A2 /* EditCertificationModel.swift */,
+				B5705C762A866AC600408233 /* EditFitSiteModel.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -532,6 +565,7 @@
 		DB5712402A72916D00DCAD9C /* Create */ = {
 			isa = PBXGroup;
 			children = (
+				B588B7DE2A8540070031C723 /* FitSite */,
 				DB5712432A7296BB00DCAD9C /* Certification */,
 			);
 			path = Create;
@@ -552,6 +586,7 @@
 			isa = PBXGroup;
 			children = (
 				DB5712452A72985D00DCAD9C /* EditCertificationUseCase.swift */,
+				B5705C782A86762D00408233 /* CreateFitSiteUseCase.swift */,
 			);
 			path = Create;
 			sourceTree = "<group>";
@@ -561,6 +596,7 @@
 			children = (
 				DB57124F2A72ACDB00DCAD9C /* CertificationFeedDTO.swift */,
 				DB0D22122A76DAF600ABF6A2 /* CreateCertificationDTO.swift */,
+				B5705C7E2A87686100408233 /* CreateFitSiteDTO.swift */,
 				B588B7DC2A83AF280031C723 /* FitSiteFeedDTO.swift */,
 			);
 			path = Community;
@@ -705,6 +741,7 @@
 			children = (
 				DB8CD7212A6E16FA004735C8 /* CommunityRepository.swift */,
 				DB5712482A729B4000DCAD9C /* EditCertificationRepository.swift */,
+				B5705C7A2A86790100408233 /* CreateFitSiteRepository.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -952,6 +989,7 @@
 				DBFF25992A5B96A600CF6DD4 /* TelecomProvider */,
 				DBFF25972A5B95A500CF6DD4 /* Base */,
 				DB51ECB92A68488C009F4690 /* FitHubSearchBar.swift */,
+				B5705C7C2A871DF900408233 /* ExpandTextView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1176,6 +1214,7 @@
 				DB8CD7152A6D2C9F004735C8 /* CertificationCell.swift in Sources */,
 				DB7559E32A55030400B88B96 /* SportsSelectingViewController.swift in Sources */,
 				DB6D93D42A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift in Sources */,
+				B5705C792A86762D00408233 /* CreateFitSiteUseCase.swift in Sources */,
 				DB62F1D22A7A8E120045E8DC /* HomeUserInfoDTO.swift in Sources */,
 				B5B2C3AC2A7FED7B004FC66C /* String+.swift in Sources */,
 				B5B2C3AA2A7FEA4F004FC66C /* TopTabBarView.swift in Sources */,
@@ -1189,6 +1228,7 @@
 				DB55B6C32A6B9B55006FEA7F /* BaseResponse.swift in Sources */,
 				DB57124B2A729BC200DCAD9C /* CertificationService.swift in Sources */,
 				DBFFDA392A497A460008C2B5 /* PhoneAuthViewController.swift in Sources */,
+				B5705C7D2A871DF900408233 /* ExpandTextView.swift in Sources */,
 				DB7559DF2A548BC000B88B96 /* ProfileSettingViewController.swift in Sources */,
 				DB5DAB452A7BF6C2009AA427 /* HomeService.swift in Sources */,
 				B5B2C39E2A7DE8A1004FC66C /* RegistInfoRepository.swift in Sources */,
@@ -1203,6 +1243,7 @@
 				DB8CD7252A6E58A1004735C8 /* CommunityType.swift in Sources */,
 				DB57122D2A72059300DCAD9C /* ResetPasswordUseCase.swift in Sources */,
 				DB0D220C2A769DD100ABF6A2 /* UICollectionView+.swift in Sources */,
+				B588B7E22A85435E0031C723 /* EditFitSiteViewController.swift in Sources */,
 				DB5A7C6F2A79545200931DA0 /* CertifyCardView.swift in Sources */,
 				DBFF25A02A5B991A00CF6DD4 /* OAuthLoginUseCase.swift in Sources */,
 				B5B2C3A12A7E3987004FC66C /* SplashViewController.swift in Sources */,
@@ -1219,9 +1260,11 @@
 				DB8CD7222A6E16FA004735C8 /* CommunityRepository.swift in Sources */,
 				DB57122B2A71F29600DCAD9C /* ChangePasswordDTO.swift in Sources */,
 				DBDBA3112A65324C00F1CDA5 /* OAuthLoginDTO.swift in Sources */,
+				B5705C7F2A87686100408233 /* CreateFitSiteDTO.swift in Sources */,
 				B5B2C3972A7D0F37004FC66C /* RankStatus.swift in Sources */,
 				DB51D2592A4C2719002415B0 /* AgreementModel.swift in Sources */,
 				B5B2C3A62A7FD172004FC66C /* CertificationView.swift in Sources */,
+				B5705C7B2A86790100408233 /* CreateFitSiteRepository.swift in Sources */,
 				B588B7DB2A83AD710031C723 /* ArticleService.swift in Sources */,
 				DB7559E72A55062C00B88B96 /* SportsCell.swift in Sources */,
 				DB7559E12A548C6800B88B96 /* ProfileSettingViewModel.swift in Sources */,
@@ -1231,6 +1274,7 @@
 				B5B2C3A82A7FE502004FC66C /* TopTabBarItemCell.swift in Sources */,
 				DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */,
 				DB5712422A7295E400DCAD9C /* EditCertifiactionViewController.swift in Sources */,
+				B5705C772A866AC600408233 /* EditFitSiteModel.swift in Sources */,
 				DB8CD7192A6E0B7D004735C8 /* CommunityViewModel.swift in Sources */,
 				DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */,
 				DB5DAB3D2A7BF2F8009AA427 /* HomeViewModel.swift in Sources */,
@@ -1249,6 +1293,7 @@
 				DB51ECC02A692EFC009F4690 /* TopTabbarItem.swift in Sources */,
 				DB8CD71B2A6E0C93004735C8 /* CategoryDTO.swift in Sources */,
 				DB0D220A2A7698D200ABF6A2 /* SportHeaderView.swift in Sources */,
+				B588B7E02A85405B0031C723 /* EditFitSiteSectionModel.swift in Sources */,
 				DB0D22002A73F95100ABF6A2 /* ContentCell.swift in Sources */,
 				DB5712332A7235D200DCAD9C /* KeychainManager.swift in Sources */,
 				DB746F732A71308400FBA8D4 /* RegistCompletionViewController.swift in Sources */,
@@ -1262,6 +1307,7 @@
 				B588B7D72A828BD00031C723 /* FitSiteCell.swift in Sources */,
 				DB5712502A72ACDB00DCAD9C /* CertificationFeedDTO.swift in Sources */,
 				DBF125E52A5E8DFB004DA4B9 /* NickNameTextFieldView.swift in Sources */,
+				B588B7E62A8544940031C723 /* TitleCell.swift in Sources */,
 				B588B7DD2A83AF280031C723 /* FitSiteFeedDTO.swift in Sources */,
 				DB0D22132A76DAF600ABF6A2 /* CreateCertificationDTO.swift in Sources */,
 				DB51D2572A4BB8B5002415B0 /* AgreementViewModel.swift in Sources */,
@@ -1281,6 +1327,7 @@
 				DB62F1D82A7AAF1E0045E8DC /* RankInfoCell.swift in Sources */,
 				DBB820BA2A5E47BA0016CB63 /* FindPWViewModel.swift in Sources */,
 				DB97F83C2A52B36E009C09A1 /* NotificationName+.swift in Sources */,
+				B588B7E82A8545110031C723 /* FitSiteImageCell.swift in Sources */,
 				DBFFDA292A47F1570008C2B5 /* UIColor+.swift in Sources */,
 				DBF125DF2A5E7DED004DA4B9 /* ResetPasswordViewModel.swift in Sources */,
 				DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */,
@@ -1307,6 +1354,7 @@
 				DBF125E72A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift in Sources */,
 				DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */,
 				DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */,
+				B588B7E42A8543C00031C723 /* EditFitSiteViewModel.swift in Sources */,
 				DB668AF72A4F041100D702A1 /* ViewModelType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

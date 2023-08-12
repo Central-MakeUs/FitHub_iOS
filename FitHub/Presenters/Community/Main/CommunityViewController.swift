@@ -168,6 +168,14 @@ final class CommunityViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
+        self.certificationSortView.type
+            .bind(to: self.viewModel.certificationSortingType)
+            .disposed(by: disposeBag)
+        
+        self.fitSiteSortView.type
+            .bind(to: self.viewModel.fitStieSortingType)
+            .disposed(by: disposeBag)
+        
         self.createActionSheet.certificationButton.rx.tap
             .bind(onNext: { [weak self] in
                 self?.pushCreateCertificationVC()
@@ -175,12 +183,11 @@ final class CommunityViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        self.certificationSortView.type
-            .bind(to: self.viewModel.certificationSortingType)
-            .disposed(by: disposeBag)
-        
-        self.fitSiteSortView.type
-            .bind(to: self.viewModel.fitStieSortingType)
+        self.createActionSheet.createFeedButton.rx.tap
+            .bind(onNext: { [weak self] in
+                self?.pushCreateFitSiteVC()
+                self?.closeCreateActionSheet()
+            })
             .disposed(by: disposeBag)
     }
     
@@ -197,6 +204,13 @@ final class CommunityViewController: BaseViewController {
                                                                                        authService: AuthService()))
         let editCertificationVC = EditCertificationViewController(EditCertificationViewModel(usecase: usecase))
         self.navigationController?.pushViewController(editCertificationVC, animated: true)
+    }
+    
+    private func pushCreateFitSiteVC() {
+        let usecase = CreateFitSiteUseCase(repository: CreateFitSiteRepository(authService: AuthService(),
+                                                                               articleService: ArticleService()))
+        let editFitSiteVC = EditFitSiteViewController(EditFitSiteViewModel(usecase: usecase))
+        self.navigationController?.pushViewController(editFitSiteVC, animated: true)
     }
     
     //MARK: - AddSubView
