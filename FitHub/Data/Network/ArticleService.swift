@@ -47,4 +47,53 @@ class ArticleService {
             return Disposables.create()
         }
     }
+    
+    func createArticle(categoryId: Int, feedInfo: EditFitSiteModel)->Single<Bool> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String,
+              let token = KeychainManager.read("accessToken") else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "articles/\(categoryId)"
+        
+        var headers: HTTPHeaders = ["Content-Type" : "multipart/form-data"]
+        headers.add(.authorization(bearerToken: token))
+        
+        guard let contents = feedInfo.content,
+              let title = feedInfo.title,
+              let exerciseTag = feedInfo.selectedSport?.name else { return Single.error(AuthError.invalidURL)}
+                
+        let tagList = feedInfo.hashtags.filter { !$0.isEmpty }.joined(separator: ",")
+        let images = feedInfo.images.compactMap { $0?.jpegData(compressionQuality: .leastNormalMagnitude) }
+        let parameter: Parameters = ["title" : title,
+                                    "contents" : contents,
+                                    "exerciseTag" : exerciseTag,
+                                    "tagList" : tagList]
+        
+        return Single<Bool>.create { observer in
+            AF.upload(multipartFormData: { multipartFormData in
+                for image in images {
+                    multipartFormData.append(image, withName: "pictureList", fileName: "\(image)", mimeType: "image/jpeg")
+                }
+                
+                for (key,value) in parameter {
+                    multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
+                }
+                
+            }, to: urlString, method: .post, headers: headers)
+            .responseDecodable(of: BaseResponse<CreateFitSiteDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        observer(.success(true))
+                    } else {
+                        observer(.success(false))
+                    }
+                case .failure(let error):
+                    print(error)
+                    observer(.failure(error))
+                }
+            }
+            
+            return Disposables.create()
+        }
+        
+    }
 }
