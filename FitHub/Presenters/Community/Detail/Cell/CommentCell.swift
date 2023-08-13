@@ -10,6 +10,7 @@ import RxSwift
 
 protocol CommentCellDelegate: AnyObject {
     func toggleLike(commentId: Int, completion: @escaping (LikeCommentDTO)->Void)
+    func didClickMoreButton(ownerId: Int, commentId: Int)
 }
 
 final class CommentCell: UICollectionViewCell {
@@ -92,6 +93,7 @@ final class CommentCell: UICollectionViewCell {
     }
     
     func configureCell(item: CommentDTO) {
+        
         self.nameLabel.text = item.userInfo.nickname
         self.sportLabel.text = item.userInfo.mainExerciseInfo.category
         let grade = "Lv.\(item.userInfo.mainExerciseInfo.level) \(item.userInfo.mainExerciseInfo.gradeName)"
@@ -105,6 +107,7 @@ final class CommentCell: UICollectionViewCell {
         self.likeButton.configuration?.title = "\(item.likes)"
         self.likeButton.configuration?.attributedTitle?.font = .pretendard(.labelSmall)
         self.likeButton.tag = item.commentId
+        self.moreButton.tag = item.userInfo.ownerId
     }
     
     func configureLikeButton(isLiked: Bool) {
@@ -125,6 +128,14 @@ final class CommentCell: UICollectionViewCell {
                     self?.likeButton.configuration?.title = "\(item.newLikes)"
                     self?.likeButton.configuration?.attributedTitle?.font = .pretendard(.labelSmall)
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        moreButton.rx.tap
+            .bind(onNext: { [weak self] in
+                guard let self else { return }
+                self.delegate?.didClickMoreButton(ownerId: self.moreButton.tag,
+                                                  commentId: self.likeButton.tag)
             })
             .disposed(by: disposeBag)
     }
