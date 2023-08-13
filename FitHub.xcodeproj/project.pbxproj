@@ -12,6 +12,22 @@
 		B5705C7B2A86790100408233 /* CreateFitSiteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C7A2A86790100408233 /* CreateFitSiteRepository.swift */; };
 		B5705C7D2A871DF900408233 /* ExpandTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C7C2A871DF900408233 /* ExpandTextView.swift */; };
 		B5705C7F2A87686100408233 /* CreateFitSiteDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C7E2A87686100408233 /* CreateFitSiteDTO.swift */; };
+		B5705C832A87776800408233 /* CertificationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C822A87776800408233 /* CertificationDetailViewController.swift */; };
+		B5705C852A8777EB00408233 /* CertificationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C842A8777EB00408233 /* CertificationDetailViewModel.swift */; };
+		B5705C872A87785600408233 /* CertifiactionDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C862A87785600408233 /* CertifiactionDetailUseCase.swift */; };
+		B5705C8A2A87788B00408233 /* CertifiactionDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C892A87788B00408233 /* CertifiactionDetailRepository.swift */; };
+		B5705C8C2A87794E00408233 /* CertificationDetailDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C8B2A87794E00408233 /* CertificationDetailDTO.swift */; };
+		B5705C8E2A8779C100408233 /* CategoryInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C8D2A8779C100408233 /* CategoryInfoDTO.swift */; };
+		B5705C902A877A2900408233 /* UserInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C8F2A877A2900408233 /* UserInfoDTO.swift */; };
+		B5705C922A87ABA200408233 /* CertificationDetailSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C912A87ABA200408233 /* CertificationDetailSectionModel.swift */; };
+		B5705C952A87B07700408233 /* CertificationDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C942A87B07700408233 /* CertificationDetailCell.swift */; };
+		B5705C972A87CB9000408233 /* CommentInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C962A87CB9000408233 /* CommentInputView.swift */; };
+		B5705C992A87DD0E00408233 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C982A87DD0E00408233 /* CommentCell.swift */; };
+		B5705C9B2A87EF1F00408233 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C9A2A87EF1F00408233 /* CommentService.swift */; };
+		B5705C9D2A87F05900408233 /* FetchCommentDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C9C2A87F05900408233 /* FetchCommentDTO.swift */; };
+		B5705CA02A87F33600408233 /* CreateCommentDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C9F2A87F33600408233 /* CreateCommentDTO.swift */; };
+		B5705CA22A87F48100408233 /* LikeCommentDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CA12A87F48100408233 /* LikeCommentDTO.swift */; };
+		B5705CA42A87F5B800408233 /* CommentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CA32A87F5B800408233 /* CommentRepository.swift */; };
 		B588B7D72A828BD00031C723 /* FitSiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7D62A828BD00031C723 /* FitSiteCell.swift */; };
 		B588B7DB2A83AD710031C723 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DA2A83AD710031C723 /* ArticleService.swift */; };
 		B588B7DD2A83AF280031C723 /* FitSiteFeedDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DC2A83AF280031C723 /* FitSiteFeedDTO.swift */; };
@@ -180,6 +196,22 @@
 		B5705C7A2A86790100408233 /* CreateFitSiteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFitSiteRepository.swift; sourceTree = "<group>"; };
 		B5705C7C2A871DF900408233 /* ExpandTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandTextView.swift; sourceTree = "<group>"; };
 		B5705C7E2A87686100408233 /* CreateFitSiteDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFitSiteDTO.swift; sourceTree = "<group>"; };
+		B5705C822A87776800408233 /* CertificationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationDetailViewController.swift; sourceTree = "<group>"; };
+		B5705C842A8777EB00408233 /* CertificationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationDetailViewModel.swift; sourceTree = "<group>"; };
+		B5705C862A87785600408233 /* CertifiactionDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifiactionDetailUseCase.swift; sourceTree = "<group>"; };
+		B5705C892A87788B00408233 /* CertifiactionDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifiactionDetailRepository.swift; sourceTree = "<group>"; };
+		B5705C8B2A87794E00408233 /* CertificationDetailDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationDetailDTO.swift; sourceTree = "<group>"; };
+		B5705C8D2A8779C100408233 /* CategoryInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryInfoDTO.swift; sourceTree = "<group>"; };
+		B5705C8F2A877A2900408233 /* UserInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoDTO.swift; sourceTree = "<group>"; };
+		B5705C912A87ABA200408233 /* CertificationDetailSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationDetailSectionModel.swift; sourceTree = "<group>"; };
+		B5705C942A87B07700408233 /* CertificationDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationDetailCell.swift; sourceTree = "<group>"; };
+		B5705C962A87CB9000408233 /* CommentInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputView.swift; sourceTree = "<group>"; };
+		B5705C982A87DD0E00408233 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		B5705C9A2A87EF1F00408233 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
+		B5705C9C2A87F05900408233 /* FetchCommentDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCommentDTO.swift; sourceTree = "<group>"; };
+		B5705C9F2A87F33600408233 /* CreateCommentDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommentDTO.swift; sourceTree = "<group>"; };
+		B5705CA12A87F48100408233 /* LikeCommentDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCommentDTO.swift; sourceTree = "<group>"; };
+		B5705CA32A87F5B800408233 /* CommentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRepository.swift; sourceTree = "<group>"; };
 		B588B7D62A828BD00031C723 /* FitSiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteCell.swift; sourceTree = "<group>"; };
 		B588B7DA2A83AD710031C723 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		B588B7DC2A83AF280031C723 /* FitSiteFeedDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FitSiteFeedDTO.swift; path = ../../../../../../../../../../../Applications/FitSiteFeedDTO.swift; sourceTree = "<group>"; };
@@ -357,6 +389,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B5705C812A87775B00408233 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				B5705C932A87B06000408233 /* Cell */,
+				B5705C822A87776800408233 /* CertificationDetailViewController.swift */,
+				B5705C842A8777EB00408233 /* CertificationDetailViewModel.swift */,
+				B5705C912A87ABA200408233 /* CertificationDetailSectionModel.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		B5705C882A87787B00408233 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				B5705C892A87788B00408233 /* CertifiactionDetailRepository.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		B5705C932A87B06000408233 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B5705C942A87B07700408233 /* CertificationDetailCell.swift */,
+				B5705C982A87DD0E00408233 /* CommentCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		B5705C9E2A87F32500408233 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				B5705C9C2A87F05900408233 /* FetchCommentDTO.swift */,
+				B5705C9F2A87F33600408233 /* CreateCommentDTO.swift */,
+				B5705CA12A87F48100408233 /* LikeCommentDTO.swift */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
 		B588B7DE2A8540070031C723 /* FitSite */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,6 +477,7 @@
 		DB002BB22A67C2D5001B5672 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				B5705C812A87775B00408233 /* Detail */,
 				DB5712402A72916D00DCAD9C /* Create */,
 				DB57123F2A72915C00DCAD9C /* Main */,
 			);
@@ -594,10 +665,14 @@
 		DB57124E2A72ACC400DCAD9C /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				B5705C9E2A87F32500408233 /* Comments */,
 				DB57124F2A72ACDB00DCAD9C /* CertificationFeedDTO.swift */,
 				DB0D22122A76DAF600ABF6A2 /* CreateCertificationDTO.swift */,
 				B5705C7E2A87686100408233 /* CreateFitSiteDTO.swift */,
 				B588B7DC2A83AF280031C723 /* FitSiteFeedDTO.swift */,
+				B5705C8B2A87794E00408233 /* CertificationDetailDTO.swift */,
+				B5705C8D2A8779C100408233 /* CategoryInfoDTO.swift */,
+				B5705C8F2A877A2900408233 /* UserInfoDTO.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -732,6 +807,7 @@
 			children = (
 				DB5712442A72983100DCAD9C /* Create */,
 				DB8CD71E2A6E164A004735C8 /* CommunityUseCase.swift */,
+				B5705C862A87785600408233 /* CertifiactionDetailUseCase.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -739,9 +815,11 @@
 		DB8CD7202A6E16EA004735C8 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				B5705C882A87787B00408233 /* Detail */,
 				DB8CD7212A6E16FA004735C8 /* CommunityRepository.swift */,
 				DB5712482A729B4000DCAD9C /* EditCertificationRepository.swift */,
 				B5705C7A2A86790100408233 /* CreateFitSiteRepository.swift */,
+				B5705CA32A87F5B800408233 /* CommentRepository.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -990,6 +1068,7 @@
 				DBFF25972A5B95A500CF6DD4 /* Base */,
 				DB51ECB92A68488C009F4690 /* FitHubSearchBar.swift */,
 				B5705C7C2A871DF900408233 /* ExpandTextView.swift */,
+				B5705C962A87CB9000408233 /* CommentInputView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1082,6 +1161,7 @@
 				DB57124A2A729BC200DCAD9C /* CertificationService.swift */,
 				DB5DAB442A7BF6C2009AA427 /* HomeService.swift */,
 				B588B7DA2A83AD710031C723 /* ArticleService.swift */,
+				B5705C9A2A87EF1F00408233 /* CommentService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1213,6 +1293,7 @@
 				DB6D93DE2A4E7E340011F9BC /* RegistInfoInputViewController.swift in Sources */,
 				DB8CD7152A6D2C9F004735C8 /* CertificationCell.swift in Sources */,
 				DB7559E32A55030400B88B96 /* SportsSelectingViewController.swift in Sources */,
+				B5705C992A87DD0E00408233 /* CommentCell.swift in Sources */,
 				DB6D93D42A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift in Sources */,
 				B5705C792A86762D00408233 /* CreateFitSiteUseCase.swift in Sources */,
 				DB62F1D22A7A8E120045E8DC /* HomeUserInfoDTO.swift in Sources */,
@@ -1228,7 +1309,9 @@
 				DB55B6C32A6B9B55006FEA7F /* BaseResponse.swift in Sources */,
 				DB57124B2A729BC200DCAD9C /* CertificationService.swift in Sources */,
 				DBFFDA392A497A460008C2B5 /* PhoneAuthViewController.swift in Sources */,
+				B5705C902A877A2900408233 /* UserInfoDTO.swift in Sources */,
 				B5705C7D2A871DF900408233 /* ExpandTextView.swift in Sources */,
+				B5705C8A2A87788B00408233 /* CertifiactionDetailRepository.swift in Sources */,
 				DB7559DF2A548BC000B88B96 /* ProfileSettingViewController.swift in Sources */,
 				DB5DAB452A7BF6C2009AA427 /* HomeService.swift in Sources */,
 				B5B2C39E2A7DE8A1004FC66C /* RegistInfoRepository.swift in Sources */,
@@ -1236,11 +1319,13 @@
 				DB8CD71F2A6E164A004735C8 /* CommunityUseCase.swift in Sources */,
 				DB57122F2A7205DA00DCAD9C /* ResetPasswordRepository.swift in Sources */,
 				DB55B6C92A6BB28A006FEA7F /* PhoneNumLoginUseCase.swift in Sources */,
+				B5705CA42A87F5B800408233 /* CommentRepository.swift in Sources */,
 				DB5712492A729B4000DCAD9C /* EditCertificationRepository.swift in Sources */,
 				DB5DAB432A7BF65B009AA427 /* HomeRepository.swift in Sources */,
 				DB71348D2A5BDBF90006EAAB /* AuthService.swift in Sources */,
 				DBFFDA3B2A4983F90008C2B5 /* BaseViewController.swift in Sources */,
 				DB8CD7252A6E58A1004735C8 /* CommunityType.swift in Sources */,
+				B5705C952A87B07700408233 /* CertificationDetailCell.swift in Sources */,
 				DB57122D2A72059300DCAD9C /* ResetPasswordUseCase.swift in Sources */,
 				DB0D220C2A769DD100ABF6A2 /* UICollectionView+.swift in Sources */,
 				B588B7E22A85435E0031C723 /* EditFitSiteViewController.swift in Sources */,
@@ -1253,11 +1338,13 @@
 				DB6D93DB2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift in Sources */,
 				DB5712382A724D7B00DCAD9C /* OAuthRegistInputViewController.swift in Sources */,
 				DBFFDA3E2A4988200008C2B5 /* PhoneAuthViewModel.swift in Sources */,
+				B5705C922A87ABA200408233 /* CertificationDetailSectionModel.swift in Sources */,
 				DB002BBB2A67C3C7001B5672 /* MyPageViewController.swift in Sources */,
 				DB5D22322A5470A800B32485 /* PasswordSettingViewModel.swift in Sources */,
 				DB5712352A723C1500DCAD9C /* AuthManager.swift in Sources */,
 				DB0D22082A7674F700ABF6A2 /* SportCell.swift in Sources */,
 				DB8CD7222A6E16FA004735C8 /* CommunityRepository.swift in Sources */,
+				B5705C8C2A87794E00408233 /* CertificationDetailDTO.swift in Sources */,
 				DB57122B2A71F29600DCAD9C /* ChangePasswordDTO.swift in Sources */,
 				DBDBA3112A65324C00F1CDA5 /* OAuthLoginDTO.swift in Sources */,
 				B5705C7F2A87686100408233 /* CreateFitSiteDTO.swift in Sources */,
@@ -1265,10 +1352,12 @@
 				DB51D2592A4C2719002415B0 /* AgreementModel.swift in Sources */,
 				B5B2C3A62A7FD172004FC66C /* CertificationView.swift in Sources */,
 				B5705C7B2A86790100408233 /* CreateFitSiteRepository.swift in Sources */,
+				B5705C832A87776800408233 /* CertificationDetailViewController.swift in Sources */,
 				B588B7DB2A83AD710031C723 /* ArticleService.swift in Sources */,
 				DB7559E72A55062C00B88B96 /* SportsCell.swift in Sources */,
 				DB7559E12A548C6800B88B96 /* ProfileSettingViewModel.swift in Sources */,
 				DB97F8352A527BCF009C09A1 /* StandardNotificationAlertView.swift in Sources */,
+				B5705C872A87785600408233 /* CertifiactionDetailUseCase.swift in Sources */,
 				DBB820BC2A5E4D990016CB63 /* FindPWUseCase.swift in Sources */,
 				DB51D2532A4B36A5002415B0 /* AgreementView.swift in Sources */,
 				B5B2C3A82A7FE502004FC66C /* TopTabBarItemCell.swift in Sources */,
@@ -1277,6 +1366,7 @@
 				B5705C772A866AC600408233 /* EditFitSiteModel.swift in Sources */,
 				DB8CD7192A6E0B7D004735C8 /* CommunityViewModel.swift in Sources */,
 				DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */,
+				B5705C9B2A87EF1F00408233 /* CommentService.swift in Sources */,
 				DB5DAB3D2A7BF2F8009AA427 /* HomeViewModel.swift in Sources */,
 				DB55B6D32A6C0855006FEA7F /* PhoneVerificationUseCase.swift in Sources */,
 				DB8CD7082A6D0D38004735C8 /* OAuthLoginRepository.swift in Sources */,
@@ -1293,7 +1383,9 @@
 				DB51ECC02A692EFC009F4690 /* TopTabbarItem.swift in Sources */,
 				DB8CD71B2A6E0C93004735C8 /* CategoryDTO.swift in Sources */,
 				DB0D220A2A7698D200ABF6A2 /* SportHeaderView.swift in Sources */,
+				B5705CA22A87F48100408233 /* LikeCommentDTO.swift in Sources */,
 				B588B7E02A85405B0031C723 /* EditFitSiteSectionModel.swift in Sources */,
+				B5705C972A87CB9000408233 /* CommentInputView.swift in Sources */,
 				DB0D22002A73F95100ABF6A2 /* ContentCell.swift in Sources */,
 				DB5712332A7235D200DCAD9C /* KeychainManager.swift in Sources */,
 				DB746F732A71308400FBA8D4 /* RegistCompletionViewController.swift in Sources */,
@@ -1302,7 +1394,9 @@
 				DB0D220E2A76ACFE00ABF6A2 /* SportFooterView.swift in Sources */,
 				DB0D21FB2A73E91900ABF6A2 /* EditCertificationSectionModel.swift in Sources */,
 				DB0D22112A76C35D00ABF6A2 /* EditCertificationModel.swift in Sources */,
+				B5705C9D2A87F05900408233 /* FetchCommentDTO.swift in Sources */,
 				DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */,
+				B5705C8E2A8779C100408233 /* CategoryInfoDTO.swift in Sources */,
 				DB6D93E42A4EDCE20011F9BC /* PasswordSettingViewController.swift in Sources */,
 				B588B7D72A828BD00031C723 /* FitSiteCell.swift in Sources */,
 				DB5712502A72ACDB00DCAD9C /* CertificationFeedDTO.swift in Sources */,
@@ -1333,6 +1427,7 @@
 				DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */,
 				DB62F1D62A7A8F5C0045E8DC /* HomeInfoDTO.swift in Sources */,
 				DB0D22022A73FB0B00ABF6A2 /* HashTagCell.swift in Sources */,
+				B5705C852A8777EB00408233 /* CertificationDetailViewModel.swift in Sources */,
 				DB51ECBD2A68E846009F4690 /* FitHubTopTabbar.swift in Sources */,
 				DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */,
 				DB8CD7292A6E72C0004735C8 /* AgreementUseCase.swift in Sources */,
@@ -1356,6 +1451,7 @@
 				DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */,
 				B588B7E42A8543C00031C723 /* EditFitSiteViewModel.swift in Sources */,
 				DB668AF72A4F041100D702A1 /* ViewModelType.swift in Sources */,
+				B5705CA02A87F33600408233 /* CreateCommentDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

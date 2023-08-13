@@ -50,7 +50,7 @@ class CertificationService {
         
         let contents = certificationInfo.content ?? ""
         let categoryId = certificationInfo.selectedSport?.id ?? 0
-        let hashTagList = certificationInfo.hashtags.map{ $0 }.joined(separator: ",")
+        let hashTagList = certificationInfo.hashtags.filter { !$0.isEmpty }.joined(separator: ",")
         let urlString = baseURL + "records/\(categoryId)"
         
         let parameter: Parameters = ["contents" : contents,
@@ -84,6 +84,32 @@ class CertificationService {
                     observer(.failure(AuthError.serverError))
                 }
             }
+            return Disposables.create()
+        }
+    }
+    
+    func fetchCertifiactionDetail(recordId: Int)->Single<CertificationDetailDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
+    
+        let urlString = baseURL + "records/\(recordId)/spec"
+        
+        return Single<CertificationDetailDTO>.create { emitter in
+            AF.request(urlString, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<CertificationDetailDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            emitter(.success(result))
+                        } else {
+                            print(response.code)
+                        }
+                    case .failure(let error):
+                        emitter(.failure(AuthError.serverError))
+                        print(error)
+                    }
+                }
+            
             return Disposables.create()
         }
     }

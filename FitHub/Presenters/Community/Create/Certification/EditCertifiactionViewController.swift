@@ -139,7 +139,7 @@ extension EditCertificationViewController {
                 return cell
             case .content(string: _):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentCell.identifier, for: indexPath) as! ContentCell
-                cell.placeholder = "오늘 운동은 어땠나요?느낀점을 작성해봐요"
+                cell.placeholder = "오늘 운동은 어땠나요? 느낀점을 작성해봐요"
                 cell.delegate = self
                 
                 return cell
