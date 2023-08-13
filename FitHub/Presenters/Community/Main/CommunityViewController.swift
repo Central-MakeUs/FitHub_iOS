@@ -155,7 +155,12 @@ final class CommunityViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        //TODO: 게시글 클릭시처리도 해줘야함.
+        self.certificationCollectionView.rx.modelSelected(CertificationItem.self)
+            .map { $0.recordId }
+            .bind(onNext: { [weak self] recordId in
+                self?.pushCertificationDetail(recordId: recordId)
+            })
+            .disposed(by: disposeBag)
         
         self.floatingButton.rx.tap
             .map { !self.actionSheetBackView.isHidden }
@@ -211,6 +216,15 @@ final class CommunityViewController: BaseViewController {
                                                                                articleService: ArticleService()))
         let editFitSiteVC = EditFitSiteViewController(EditFitSiteViewModel(usecase: usecase))
         self.navigationController?.pushViewController(editFitSiteVC, animated: true)
+    }
+    
+    private func pushCertificationDetail(recordId: Int) {
+        let usecase = CertifiactionDetailUseCase(detailRepository: CertificationDetailRepository(service: CertificationService()),
+                                                 commentRepository: CommentRepository(service: CommentService()))
+        let certificationDetailVC = CertificationDetailViewController(viewModel: CertificationDetailViewModel(usecase: usecase,
+                                                                                                              recordId: recordId))
+        
+        self.navigationController?.pushViewController(certificationDetailVC, animated: true)
     }
     
     //MARK: - AddSubView
