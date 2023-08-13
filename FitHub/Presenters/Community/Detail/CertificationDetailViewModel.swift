@@ -30,6 +30,7 @@ final class CertificationDetailViewModel: ViewModelType {
     // MARK: - Output
     let recordDataSoruce = BehaviorSubject<[CertificationDetailSectionModel]>(value: [])
     let errorHandler = PublishSubject<Error>()
+    let reportCommentHandler = PublishSubject<Int>()
     
     //MARK: - Input
     let detailSource = PublishSubject<CertificationDetailDTO>()
@@ -111,6 +112,32 @@ final class CertificationDetailViewModel: ViewModelType {
     
     func toggleLike(commentId: Int) -> Single<LikeCommentDTO> {
         return self.usecase.toggleCommentLike(id: recordId, commentId: commentId)
+    }
+    
+    func deleteComment(commentId: Int) {
+        self.usecase.deleteComment(type: .records, id: self.recordId, commentId: commentId)
+            .subscribe(onSuccess: { [weak self] isSuccess in
+                if isSuccess {
+                    self?.resetPaging()
+                    self?.fetchComment()
+                    self?.fetchCertificationDetail()
+                } else {
+                    // TODO: 다른사람댓글 or type다름 or 댓글이 업석나 운동인증 존재 안하거나 게시글 없거나 처리
+                }
+            }, onFailure: { [weak self] error in
+                self?.errorHandler.onNext(error)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func reportComment(commentId: Int) {
+        self.usecase.reportComment(commentId: commentId)
+            .subscribe(onSuccess: { [weak self] code in
+                self?.reportCommentHandler.onNext(code)
+            },onFailure: { [weak self] error in
+                self?.errorHandler.onNext(error)
+            })
+            .disposed(by: disposeBag)
     }
 }
 

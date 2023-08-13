@@ -12,6 +12,8 @@ protocol CommentRepositoryInterface {
     func createComment(type: CommentType, id: Int, contents: String) -> Single<Bool>
     func fetchComments(type: CommentType, page: Int, id: Int)->Single<FetchCommentDTO>
     func toggleCommentLike(type: CommentType, id: Int, commentId: Int)->Single<LikeCommentDTO>
+    func reportComment(commentId: Int)->Single<Int>
+    func deleteComment(type: CommentType, id: Int, commentId: Int)->Single<Bool>
 }
 
 final class CommentRepository: CommentRepositoryInterface {
@@ -32,4 +34,13 @@ final class CommentRepository: CommentRepositoryInterface {
     func toggleCommentLike(type: CommentType, id: Int, commentId: Int) -> Single<LikeCommentDTO> {
         return service.toggleCommentLike(type: type, id: id, commentId: commentId)
     }
+    
+    func deleteComment(type: CommentType, id: Int, commentId: Int)->Single<Bool> {
+        return service.deleteComment(type: type, id: id, commentId: commentId)
+    }
+    
+    func reportComment(commentId: Int) -> Single<Int> {
+        return service.reportComment(commentId: commentId)
+    }
+    
 }

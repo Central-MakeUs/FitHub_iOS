@@ -28,6 +28,10 @@
 		B5705CA02A87F33600408233 /* CreateCommentDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C9F2A87F33600408233 /* CreateCommentDTO.swift */; };
 		B5705CA22A87F48100408233 /* LikeCommentDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CA12A87F48100408233 /* LikeCommentDTO.swift */; };
 		B5705CA42A87F5B800408233 /* CommentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CA32A87F5B800408233 /* CommentRepository.swift */; };
+		B5705CA62A89027A00408233 /* StandardActionSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CA52A89027A00408233 /* StandardActionSheetController.swift */; };
+		B5705CA82A89089900408233 /* StandardActionSheetAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CA72A89089900408233 /* StandardActionSheetAction.swift */; };
+		B5705CAA2A8925F400408233 /* DeleteCommentDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CA92A8925F400408233 /* DeleteCommentDTO.swift */; };
+		B5705CAC2A89283F00408233 /* ReportCommentDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CAB2A89283F00408233 /* ReportCommentDTO.swift */; };
 		B588B7D72A828BD00031C723 /* FitSiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7D62A828BD00031C723 /* FitSiteCell.swift */; };
 		B588B7DB2A83AD710031C723 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DA2A83AD710031C723 /* ArticleService.swift */; };
 		B588B7DD2A83AF280031C723 /* FitSiteFeedDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DC2A83AF280031C723 /* FitSiteFeedDTO.swift */; };
@@ -212,6 +216,10 @@
 		B5705C9F2A87F33600408233 /* CreateCommentDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommentDTO.swift; sourceTree = "<group>"; };
 		B5705CA12A87F48100408233 /* LikeCommentDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCommentDTO.swift; sourceTree = "<group>"; };
 		B5705CA32A87F5B800408233 /* CommentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRepository.swift; sourceTree = "<group>"; };
+		B5705CA52A89027A00408233 /* StandardActionSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardActionSheetController.swift; sourceTree = "<group>"; };
+		B5705CA72A89089900408233 /* StandardActionSheetAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardActionSheetAction.swift; sourceTree = "<group>"; };
+		B5705CA92A8925F400408233 /* DeleteCommentDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCommentDTO.swift; sourceTree = "<group>"; };
+		B5705CAB2A89283F00408233 /* ReportCommentDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCommentDTO.swift; sourceTree = "<group>"; };
 		B588B7D62A828BD00031C723 /* FitSiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteCell.swift; sourceTree = "<group>"; };
 		B588B7DA2A83AD710031C723 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		B588B7DC2A83AF280031C723 /* FitSiteFeedDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FitSiteFeedDTO.swift; path = ../../../../../../../../../../../Applications/FitSiteFeedDTO.swift; sourceTree = "<group>"; };
@@ -423,6 +431,8 @@
 				B5705C9C2A87F05900408233 /* FetchCommentDTO.swift */,
 				B5705C9F2A87F33600408233 /* CreateCommentDTO.swift */,
 				B5705CA12A87F48100408233 /* LikeCommentDTO.swift */,
+				B5705CA92A8925F400408233 /* DeleteCommentDTO.swift */,
+				B5705CAB2A89283F00408233 /* ReportCommentDTO.swift */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -1069,6 +1079,8 @@
 				DB51ECB92A68488C009F4690 /* FitHubSearchBar.swift */,
 				B5705C7C2A871DF900408233 /* ExpandTextView.swift */,
 				B5705C962A87CB9000408233 /* CommentInputView.swift */,
+				B5705CA52A89027A00408233 /* StandardActionSheetController.swift */,
+				B5705CA72A89089900408233 /* StandardActionSheetAction.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1294,6 +1306,7 @@
 				DB8CD7152A6D2C9F004735C8 /* CertificationCell.swift in Sources */,
 				DB7559E32A55030400B88B96 /* SportsSelectingViewController.swift in Sources */,
 				B5705C992A87DD0E00408233 /* CommentCell.swift in Sources */,
+				B5705CA62A89027A00408233 /* StandardActionSheetController.swift in Sources */,
 				DB6D93D42A4D61D60011F9BC /* TelecomProviderSelectorViewController.swift in Sources */,
 				B5705C792A86762D00408233 /* CreateFitSiteUseCase.swift in Sources */,
 				DB62F1D22A7A8E120045E8DC /* HomeUserInfoDTO.swift in Sources */,
@@ -1331,6 +1344,7 @@
 				B588B7E22A85435E0031C723 /* EditFitSiteViewController.swift in Sources */,
 				DB5A7C6F2A79545200931DA0 /* CertifyCardView.swift in Sources */,
 				DBFF25A02A5B991A00CF6DD4 /* OAuthLoginUseCase.swift in Sources */,
+				B5705CAA2A8925F400408233 /* DeleteCommentDTO.swift in Sources */,
 				B5B2C3A12A7E3987004FC66C /* SplashViewController.swift in Sources */,
 				DB57124D2A72ABF700DCAD9C /* CertificationError.swift in Sources */,
 				DB6CC3ED2A7016E700C4C2BC /* SportsSelectingUseCase.swift in Sources */,
@@ -1417,6 +1431,7 @@
 				DBFFDA422A499BC00008C2B5 /* StandardTextFieldView.swift in Sources */,
 				DBB820B82A5E45940016CB63 /* FindPWViewController.swift in Sources */,
 				DB0D22062A7666B600ABF6A2 /* HashTagFooterView.swift in Sources */,
+				B5705CAC2A89283F00408233 /* ReportCommentDTO.swift in Sources */,
 				DB0D21FD2A73F78800ABF6A2 /* ImageCell.swift in Sources */,
 				DB62F1D82A7AAF1E0045E8DC /* RankInfoCell.swift in Sources */,
 				DBB820BA2A5E47BA0016CB63 /* FindPWViewModel.swift in Sources */,
@@ -1433,6 +1448,7 @@
 				DB8CD7292A6E72C0004735C8 /* AgreementUseCase.swift in Sources */,
 				DB5712462A72985D00DCAD9C /* EditCertificationUseCase.swift in Sources */,
 				DBF125E32A5E885D004DA4B9 /* PasswordUseCase.swift in Sources */,
+				B5705CA82A89089900408233 /* StandardActionSheetAction.swift in Sources */,
 				DB8CD70B2A6D0E07004735C8 /* FindPWRepository.swift in Sources */,
 				B5B2C39C2A7DC980004FC66C /* CheckAuthDTO.swift in Sources */,
 				DB97F83E2A52C1E3009C09A1 /* PaddingLabel.swift in Sources */,
