@@ -39,8 +39,6 @@ class CertificationService {
         }
     }
 
-    
-    
     func createCertification(_ certificationInfo: EditCertificationModel) -> Single<CreateCertificationDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
         
@@ -103,6 +101,76 @@ class CertificationService {
                             emitter(.success(result))
                         } else {
                             print(response.code)
+                        }
+                    case .failure(let error):
+                        emitter(.failure(AuthError.serverError))
+                        print(error)
+                    }
+                }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func reportCertification(recordId: Int)->Single<Int> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
+    
+        let urlString = baseURL + "records/\(recordId)/report"
+        
+        return Single<Int>.create { emitter in
+            AF.request(urlString, method: .post, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<ReportCertificationDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        emitter(.success(response.code))
+                    case .failure(let error):
+                        emitter(.failure(AuthError.serverError))
+                        print(error)
+                    }
+                }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func removeCertification(recordId: Int)->Single<Int> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
+    
+        let urlString = baseURL + "records/\(recordId)"
+        
+        return Single<Int>.create { emitter in
+            AF.request(urlString, method: .delete, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<DeleteCertificationDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        emitter(.success(response.code))
+                    case .failure(let error):
+                        emitter(.failure(AuthError.serverError))
+                        print(error)
+                    }
+                }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func toggleLikeCertification(recordId: Int)->Single<LikeCertificationDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
+    
+        let urlString = baseURL + "records/\(recordId)/likes"
+        
+        return Single<LikeCertificationDTO>.create { emitter in
+            AF.request(urlString, method: .post, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<LikeCertificationDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            emitter(.success(result))
+                        } else {
+                            print(response.code)
+                            print(response.message)
+                            emitter(.failure(AuthError.invalidURL))
                         }
                     case .failure(let error):
                         emitter(.failure(AuthError.serverError))

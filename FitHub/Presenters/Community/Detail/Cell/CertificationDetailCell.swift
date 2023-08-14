@@ -6,9 +6,17 @@
 //
 
 import UIKit
+import RxSwift
+
+protocol CertificationDetailCellDelegate: AnyObject {
+    func toggleLike(articleId: Int, completion: @escaping (LikeCertificationDTO)->Void)
+}
 
 final class CertificationDetailCell: UICollectionViewCell {
     static let identifier = "CertificationDetailCell"
+    weak var delegate: CertificationDetailCellDelegate?
+    
+    private let disposeBag = DisposeBag()
     
     private let profileImageView = UIImageView(image: UIImage(named: "DefaultProfile")).then {
         $0.layer.cornerRadius = 20
@@ -46,6 +54,7 @@ final class CertificationDetailCell: UICollectionViewCell {
     }
     
     private let contentImageView = UIImageView().then {
+        $0.layer.masksToBounds = true
         $0.backgroundColor = .bgSub01
         $0.contentMode = .scaleAspectFill
     }
@@ -98,6 +107,7 @@ final class CertificationDetailCell: UICollectionViewCell {
         super.init(frame: frame)
         self.addSubViews()
         self.layout()
+        setUpBidning()
         self.backgroundColor = .bgDefault
     }
     
@@ -121,6 +131,8 @@ final class CertificationDetailCell: UICollectionViewCell {
         
         likeButton.configuration?.title = "\(item.likes)"
         commentButton.configuration?.title = "\(item.comments)"
+        likeButton.configuration?.attributedTitle?.font = .pretendard(.bodySmall01)
+        commentButton.configuration?.attributedTitle?.font = .pretendard(.bodySmall01)
     }
     
     func configureLikeButton(isLiked: Bool) {
@@ -129,6 +141,19 @@ final class CertificationDetailCell: UICollectionViewCell {
         
         self.likeButton.configuration?.baseForegroundColor = color
         self.likeButton.configuration?.image = image
+    }
+    
+    private func setUpBidning() {
+        likeButton.rx.tap
+            .bind(onNext: { [weak self] in
+                guard let self else { return }
+                self.delegate?.toggleLike(articleId: self.likeButton.tag) { item in
+                    self.configureLikeButton(isLiked: item.isLiked)
+                    self.likeButton.configuration?.title = "\(item.newLikes)"
+                    self.likeButton.configuration?.attributedTitle?.font = .pretendard(.bodySmall01)
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     private func addSubViews() {

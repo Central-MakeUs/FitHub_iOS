@@ -230,7 +230,7 @@ final class CommunityViewController: BaseViewController {
     }
     
     private func pushCertificationDetail(recordId: Int) {
-        let usecase = CertifiactionDetailUseCase(detailRepository: CertificationDetailRepository(service: CertificationService()),
+        let usecase = CertifiactionDetailUseCase(certificationRepository: CertificationRepository(service: CertificationService()),
                                                  commentRepository: CommentRepository(service: CommentService()))
         let certificationDetailVC = CertificationDetailViewController(viewModel: CertificationDetailViewModel(usecase: usecase,
                                                                                                               recordId: recordId))

@@ -74,14 +74,15 @@ final class CertificationDetailViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        viewModel.reportCommentHandler
+        viewModel.reportHandler
             .bind(onNext: { [weak self] code in
                 var message = ""
                 switch code {
                 case 2000: message = "신고가 완료되었습니다."
                 case 4051: message = "존재하지 않는 댓글입니다."
-                case 4061: message = "이미 신고되어 검토중인 댓글입니다."
-                case 4062: message = "자신의 댓글은 신고가 불가능합니다."
+                case 4061: message = "이미 신고되어 검토중인 내용입니다."
+                case 4062: message = "자신의 글은 신고가 불가능합니다."
+                case 4031: message = "존재하지 않는 게시글 입니다."
                 default: message = "알 수 없는 에러"
                 }
                 self?.notiAlert(message)
@@ -97,16 +98,16 @@ final class CertificationDetailViewController: BaseViewController {
             }
             .subscribe(onNext: { [weak self] isMyArticle in
                 if isMyArticle {
-                    self?.showMyArticleMoreInfo()
+                    self?.showMyRecordMoreInfo()
                 } else {
-                    self?.showOtherArticleMoreInfo()
+                    self?.showOtherRecordMoreInfo()
                 }
             })
             .disposed(by: disposeBag)
     }
     
     // MARK: - 화면 이동
-    private func showMyArticleMoreInfo() {
+    private func showMyRecordMoreInfo() {
         let actionSheet = StandardActionSheetController()
         let edit = StandardActionSheetAction(title: "수정하기")
         edit.configuration?.baseForegroundColor = .textDefault
@@ -117,14 +118,28 @@ final class CertificationDetailViewController: BaseViewController {
         self.present(actionSheet, animated: false)
     }
     
-    private func showOtherArticleMoreInfo() {
+    private func showOtherRecordMoreInfo() {
         let actionSheet = StandardActionSheetController()
-        let reportArticle = StandardActionSheetAction(title: "게시글 신고하기")
+        let reportArticle = StandardActionSheetAction(title: "게시글 신고하기") { [weak self] _ in
+            self?.presentReportRecordAlert()
+        }
         let reportUser = StandardActionSheetAction(title: "사용자 신고하기")
         
         actionSheet.addAction([reportArticle, reportUser])
         
         self.present(actionSheet, animated: false)
+    }
+    
+    private func presentReportRecordAlert() {
+        let alert = StandardAlertController(title: "게시글을 신고하시겠습니까?", message: "신고된 게시글은 운영진 확인 후 삭제되고,\n신고는 취소할 수 없습니다.")
+        let cancel = StandardAlertAction(title: "취소", style: .cancel)
+        let delete = StandardAlertAction(title: "신고", style: .basic) { [weak self] _ in
+            self?.viewModel.reportRecord()
+        }
+        
+        alert.addAction([cancel,delete])
+        
+        self.present(alert, animated: false)
     }
     
     override func configureNavigation() {
@@ -160,6 +175,7 @@ extension CertificationDetailViewController {
             case .detailInfo(info: let info):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CertificationDetailCell.identifier, for: indexPath) as! CertificationDetailCell
                 cell.configureCell(item: info)
+                cell.delegate = self
                 
                 return cell
             case .comments(commentsInfo: let comment):
@@ -225,6 +241,16 @@ extension CertificationDetailViewController: CommentCellDelegate {
         alert.addAction([cancel,delete])
         
         self.present(alert, animated: false)
+    }
+}
+
+extension CertificationDetailViewController: CertificationDetailCellDelegate {
+    func toggleLike(articleId: Int, completion: @escaping (LikeCertificationDTO) -> Void) {
+        viewModel.toggleLikeFitSite(articleId: articleId)
+            .subscribe(onSuccess: { item in
+                completion(item)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
