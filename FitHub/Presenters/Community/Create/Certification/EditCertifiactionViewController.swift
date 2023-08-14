@@ -15,8 +15,6 @@ final class EditCertificationViewController: BaseViewController {
     //MARK: - Properties
     private let viewModel: EditCertificationViewModel
     
-    var currentFirstResponderTextView: UITextView?
-    
     private let completeButton = UIButton(type: .system).then {
         $0.titleLabel?.font = .pretendard(.bodyMedium01)
         $0.setTitle("등록", for: .normal)
@@ -47,6 +45,16 @@ final class EditCertificationViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     //MARK: - Init
@@ -131,23 +139,8 @@ extension EditCertificationViewController {
                 return cell
             case .content(string: _):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentCell.identifier, for: indexPath) as! ContentCell
-                cell.textSizeChange = { [weak self] in
-                    if cell.contentTextView.isFirstResponder {
-                        self?.currentFirstResponderTextView = cell.contentTextView
-                        self?.collectionView.reloadData()
-                    }
-                }
-                
-                cell.responder = { [weak self] in
-                    if let textView = self?.currentFirstResponderTextView {
-                        textView.becomeFirstResponder()
-                        self?.currentFirstResponderTextView = nil
-                    }
-                }
-                
-                cell.textChange = { [weak self] text in
-                    self?.viewModel.changeContent(text)
-                }
+                cell.placeholder = "오늘 운동은 어땠나요? 느낀점을 작성해봐요"
+                cell.delegate = self
                 
                 return cell
             case .hashtag(string: let string):
@@ -324,5 +317,15 @@ extension EditCertificationViewController {
         section.boundarySupplementaryItems = [header,footer]
         
         return section
+    }
+}
+
+extension EditCertificationViewController: ContentCellDelegate {
+    func changeContentFrame() {
+        self.collectionView.reloadSections(IndexSet(integer: 2))
+    }
+    
+    func changeContent(string: String) {
+        self.viewModel.changeContent(string)
     }
 }

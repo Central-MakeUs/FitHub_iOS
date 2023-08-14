@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CommunityType {
-    case certification
-    case feed
+enum CommunityType: Int {
+    case certification = 0
+    case fitSite = 1
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum OrderType {
-    case popularity
-    case recent
+enum SortingType: Int {
+    case recent = 0
+    case popularity = 1
 }

@@ -30,5 +30,7 @@ final class AuthManager: RequestInterceptor {
     /// 특정 오류가 발생한 경우, retry가 필요한 경우
     func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
         //TODO: 토큰 유효시간 문제시 재발급 후 재시도
+        print(error)
+        print(error.localizedDescription)
     }
 }

@@ -10,51 +10,30 @@ import RxSwift
 import RxCocoa
 
 protocol CommunityUseCaseProtocol {
-    var currentOrder: OrderType { get set }
-    var currentCommunityType: CommunityType { get set }
-    
-    var currentId: BehaviorSubject<Int> { get set }
-    var category: BehaviorSubject<[CategoryDTO]> { get set }
-    var recordList: BehaviorSubject<[CertificationItem]> { get set }
-    var selectedId: BehaviorRelay<Int> { get set }
-    
-    func fetchCertificationFeed()
+    func fetchCertificationFeed(id: Int, page: Int, sortingType: SortingType)-> Single<CertificationFeedDTO>
+    func fetchFitSiteFeed(_ cateogryId: Int, page: Int, type: SortingType) -> Single<FitSiteFeedDTO>
+    func fetchCategory()->Single<[CategoryDTO]>
 }
 
 final class CommunityUseCase: CommunityUseCaseProtocol {
     private let disposeBag = DisposeBag()
     private let repository: CommunityRepositoryInterface
-    
-    var selectedId = BehaviorRelay<Int>(value: 0)
-    var recordList = BehaviorSubject<[CertificationItem]>(value: [])
-    var category = BehaviorSubject<[CategoryDTO]>(value: [])
-    var currentId = BehaviorSubject<Int>(value: 0)
-    
-    var currentPage = 0
-    var currentOrder: OrderType = .recent
-    var currentCommunityType: CommunityType = .certification
-    
+
     init(_ repository: CommunityRepositoryInterface) {
         self.repository = repository
-
-        self.fetchCategory()
     }
     
-    func fetchCategory() {
-        repository.fetchCategory()
-            .subscribe(onSuccess: { [weak self] response in
-                self?.category.onNext(response)
-            })
-            .disposed(by: disposeBag)
+    func fetchCategory()->Single<[CategoryDTO]> {
+        return repository.fetchCategory()
+            .map { [CategoryDTO(createdAt: nil, updatedAt: nil, imageUrl: nil, name: "전체", id: 0)] + $0 }
     }
     
-    func fetchCertificationFeed() {
-        self.repository
-            .fetchCertificationFeed(self.selectedId.value, pageIndex: currentPage, type: currentOrder)
-            .subscribe(onSuccess: { [weak self] response in
-                self?.recordList.onNext(response.recordList)
-            })
-            .disposed(by: disposeBag)
-            
+    func fetchCertificationFeed(id: Int, page: Int, sortingType: SortingType)-> Single<CertificationFeedDTO> {
+        return self.repository
+            .fetchCertificationFeed(id, pageIndex: page, type: sortingType)
+    }
+    
+    func fetchFitSiteFeed(_ cateogryId: Int, page: Int, type: SortingType) -> Single<FitSiteFeedDTO> {
+        return self.repository.fetchFitSiteFeed(cateogryId, page: page, type: type)
     }
 }

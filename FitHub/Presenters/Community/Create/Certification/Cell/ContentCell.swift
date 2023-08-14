@@ -9,16 +9,20 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol ContentCellDelegate: AnyObject {
+    func changeContentFrame()
+    func changeContent(string: String)
+}
+
 final class ContentCell: UICollectionViewCell {
     static let identifier = "ContentCell"
     
-    var disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
+    weak var delegate: ContentCellDelegate?
+
+    var placeholder: String = ""
     
-    var textChange: ((String)->Void)?
-    var textSizeChange: (()->Void)?
-    var responder: (()->())?
-    
-    let contentTextView = UITextView().then {
+    let contentTextView = ExpandTextView().then {
         $0.textColor = .textSub02
         $0.backgroundColor = .clear
         $0.isScrollEnabled = false
@@ -42,29 +46,27 @@ final class ContentCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        responder?()
-    }
-    
     func configureCell(text: String) {
-        self.contentTextView.text = text
+        self.contentTextView.text = text == "" ? placeholder : text
     }
     
     private func textViewBinding() {
         contentTextView.rx.text
-            .subscribe(onNext: { _ in
+            .subscribe(onNext: { [weak self] _ in
+                guard let self else { return }
                 self.contentTextView.sizeToFit()
+                self.contentTextView.canResign = false
 
                 if self.contentView.frame.height != self.contentTextView.contentSize.height {
-                    self.textSizeChange?()
+                    delegate?.changeContentFrame()
                 }
+                self.contentTextView.canResign = true
             })
             .disposed(by: disposeBag)
         
         contentTextView.rx.didBeginEditing
             .bind{
-                if self.contentTextView.text == "오늘 운동은 어땠나요?느낀점을 작성해봐요" {
+                if self.contentTextView.text == self.placeholder {
                     self.contentTextView.text = ""
                 }
                 self.contentTextView.textColor = .textDefault
@@ -73,11 +75,12 @@ final class ContentCell: UICollectionViewCell {
         contentTextView.rx.didEndEditing
             .bind { [weak self] in
                 guard let self = self else { return }
+                
                 if self.contentTextView.text.count == 0 {
-                    self.contentTextView.text = "오늘 운동은 어땠나요?느낀점을 작성해봐요"
+                    self.contentTextView.text = self.placeholder
                     self.contentTextView.textColor = .textSub02
                 }
-                self.textChange?(self.contentTextView.text)
+                delegate?.changeContent(string: self.contentTextView.text)
             }.disposed(by: disposeBag)
     }
 }
