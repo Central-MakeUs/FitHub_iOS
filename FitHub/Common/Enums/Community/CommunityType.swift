@@ -9,5 +9,5 @@ import Foundation
 
 enum CommunityType: Int {
     case certification = 0
-    case feed = 1
+    case fitSite = 1
 }

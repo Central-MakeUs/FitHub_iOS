@@ -118,9 +118,14 @@ final class FitSiteCell: UITableViewCell {
         self.timeLabel.text = item.createdAt
         self.titleLabel.text = item.title
         self.contentLabel.text = item.contents
-        self.hashTagLabel.text = "#"+item.exerciseTag
         self.heartCountLabel.text = String(item.likes)
         self.commentsCountLabel.text = String(item.comments)
+        
+        if let tag = item.exerciseTag {
+            self.hashTagLabel.text = "#"+tag
+        } else {
+            self.hashTagLabel.text = nil
+        }
         
         self.contentImageView.kf.setImage(with: URL(string: item.pictureUrl ?? ""))
         self.profileImageView.kf.setImage(with: URL(string: item.userInfo.profileUrl ?? ""))
