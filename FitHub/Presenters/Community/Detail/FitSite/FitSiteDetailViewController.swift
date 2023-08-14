@@ -89,11 +89,49 @@ final class FitSiteDetailViewController: BaseViewController {
                 self?.notiAlert(message)
             })
             .disposed(by: disposeBag)
+        
+        moreButton.rx.tap.asObservable()
+            .withLatestFrom(self.viewModel.detailSource)
+            .map { item -> Bool in
+                guard let userIdString = KeychainManager.read("userId"),
+                      let userId = Int(userIdString) else { return false }
+                return item.userInfo.ownerId == userId
+            }
+            .subscribe(onNext: { [weak self] isMyArticle in
+                if isMyArticle {
+                    self?.showMyArticleMoreInfo()
+                } else {
+                    self?.showOtherArticleMoreInfo()
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     override func configureNavigation() {
         super.configureNavigation()
         navigationItem.rightBarButtonItem = moreButton
+    }
+    
+    // MARK: - 화면 이동
+    private func showMyArticleMoreInfo() {
+        let actionSheet = StandardActionSheetController()
+        let edit = StandardActionSheetAction(title: "수정하기")
+        edit.configuration?.baseForegroundColor = .textDefault
+        let delete = StandardActionSheetAction(title: "삭제하기")
+        
+        actionSheet.addAction([edit,delete])
+        
+        self.present(actionSheet, animated: false)
+    }
+    
+    private func showOtherArticleMoreInfo() {
+        let actionSheet = StandardActionSheetController()
+        let reportArticle = StandardActionSheetAction(title: "게시글 신고하기")
+        let reportUser = StandardActionSheetAction(title: "사용자 신고하기")
+        
+        actionSheet.addAction([reportArticle, reportUser])
+        
+        self.present(actionSheet, animated: false)
     }
     
     override func addSubView() {

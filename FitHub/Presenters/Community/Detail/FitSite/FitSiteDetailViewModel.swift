@@ -142,6 +142,10 @@ final class FitSiteDetailViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
     }
+    
+    func isMyArticle() -> Single<Bool> {
+        return detailSource.asSingle().map { $0.userInfo.ownerId == 1 }
+    }
 }
 
 extension FitSiteDetailViewModel {
