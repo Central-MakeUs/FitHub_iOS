@@ -9,26 +9,41 @@ import Foundation
 import RxSwift
 
 protocol CertifiactionDetailUseCaseProtocol {
-    func fetchCertificationDetail(recordId: Int)->Single<CertificationDetailDTO>
     func createComment(id: Int, contents: String) -> Single<Bool>
     func fetchComments(page: Int, id: Int)->Single<FetchCommentDTO>
     func toggleCommentLike(id: Int, commentId: Int)->Single<LikeCommentDTO>
     func reportComment(commentId: Int)->Single<Int>
     func deleteComment(id: Int, commentId: Int)->Single<Bool>
+    func fetchCertificationDetail(recordId: Int)->Single<CertificationDetailDTO>
+    func reportCertification(recordId: Int)->Single<Int>
+    func removeCertification(recordId: Int)->Single<Int>
+    func toggleLikeCertification(recordId: Int)->Single<LikeCertificationDTO>
 }
 
 final class CertifiactionDetailUseCase: CertifiactionDetailUseCaseProtocol {
-    private let detailRepository: CertificationDetailRepositoryInterface
+    private let certificationRepository: CertificationRepositoryInterface
     private let commentRepository: CommentRepositoryInterface
     
-    init(detailRepository: CertificationDetailRepositoryInterface,
+    init(certificationRepository: CertificationRepositoryInterface,
          commentRepository: CommentRepositoryInterface) {
-        self.detailRepository = detailRepository
+        self.certificationRepository = certificationRepository
         self.commentRepository = commentRepository
     }
     
+    func toggleLikeCertification(recordId: Int) -> Single<LikeCertificationDTO> {
+        return certificationRepository.toggleLikeCertification(recordId: recordId)
+    }
+    
     func fetchCertificationDetail(recordId: Int)->Single<CertificationDetailDTO> {
-        return detailRepository.fetchCertificationDetail(recordId: recordId)
+        return certificationRepository.fetchCertificationDetail(recordId: recordId)
+    }
+    
+    func reportCertification(recordId: Int)->Single<Int> {
+        return certificationRepository.reportCertification(recordId: recordId)
+    }
+    
+    func removeCertification(recordId: Int)->Single<Int> {
+        return certificationRepository.removeCertification(recordId: recordId)
     }
     
     func createComment(id: Int, contents: String) -> Single<Bool> {

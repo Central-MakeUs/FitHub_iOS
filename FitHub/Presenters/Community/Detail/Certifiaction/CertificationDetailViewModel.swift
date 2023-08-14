@@ -30,7 +30,7 @@ final class CertificationDetailViewModel: ViewModelType {
     // MARK: - Output
     let recordDataSoruce = BehaviorSubject<[CertificationDetailSectionModel]>(value: [])
     let errorHandler = PublishSubject<Error>()
-    let reportCommentHandler = PublishSubject<Int>()
+    let reportHandler = PublishSubject<Int>()
     
     //MARK: - Input
     let detailSource = PublishSubject<CertificationDetailDTO>()
@@ -110,6 +110,18 @@ final class CertificationDetailViewModel: ViewModelType {
         return output
     }
     
+    func reportRecord() {
+        usecase.reportCertification(recordId: recordId)
+            .subscribe(onSuccess: { [weak self] code in
+                self?.reportHandler.onNext(code)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func toggleLikeFitSite(articleId: Int) -> Single<LikeCertificationDTO> {
+        return usecase.toggleLikeCertification(recordId: recordId)
+    }
+    
     func toggleLike(commentId: Int) -> Single<LikeCommentDTO> {
         return self.usecase.toggleCommentLike(id: recordId, commentId: commentId)
     }
@@ -133,7 +145,7 @@ final class CertificationDetailViewModel: ViewModelType {
     func reportComment(commentId: Int) {
         self.usecase.reportComment(commentId: commentId)
             .subscribe(onSuccess: { [weak self] code in
-                self?.reportCommentHandler.onNext(code)
+                self?.reportHandler.onNext(code)
             },onFailure: { [weak self] error in
                 self?.errorHandler.onNext(error)
             })

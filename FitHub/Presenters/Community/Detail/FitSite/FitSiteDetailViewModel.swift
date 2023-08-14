@@ -21,7 +21,7 @@ final class FitSiteDetailViewModel: ViewModelType {
     // MARK: - Output
     let recordDataSoruce = BehaviorSubject<[FitSiteDetailSectionModel]>(value: [])
     let errorHandler = PublishSubject<Error>()
-    let reportCommentHandler = PublishSubject<Int>()
+    let reportHandler = PublishSubject<Int>()
     
     //MARK: - Input
     let detailSource = PublishSubject<FitSiteDetailDTO>()
@@ -109,6 +109,14 @@ final class FitSiteDetailViewModel: ViewModelType {
         return output
     }
     
+    func reportFitSite() {
+        usecase.reportFitSite(articleId: articleId)
+            .subscribe(onSuccess: { [weak self] code in
+                self?.reportHandler.onNext(code)
+            })
+            .disposed(by: disposeBag)
+    }
+    
     func toggleLikeFitSite(articleId: Int) -> Single<LikeFitSiteDTO> {
         return usecase.toggleLikeFitSite(articleId: articleId)
     }
@@ -136,15 +144,11 @@ final class FitSiteDetailViewModel: ViewModelType {
     func reportComment(commentId: Int) {
         self.usecase.reportComment(commentId: commentId)
             .subscribe(onSuccess: { [weak self] code in
-                self?.reportCommentHandler.onNext(code)
+                self?.reportHandler.onNext(code)
             },onFailure: { [weak self] error in
                 self?.errorHandler.onNext(error)
             })
             .disposed(by: disposeBag)
-    }
-    
-    func isMyArticle() -> Single<Bool> {
-        return detailSource.asSingle().map { $0.userInfo.ownerId == 1 }
     }
 }
 
