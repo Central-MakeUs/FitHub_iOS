@@ -115,7 +115,7 @@ final class CertificationDetailViewModel: ViewModelType {
     }
     
     func deleteComment(commentId: Int) {
-        self.usecase.deleteComment(type: .records, id: self.recordId, commentId: commentId)
+        self.usecase.deleteComment(id: self.recordId, commentId: commentId)
             .subscribe(onSuccess: { [weak self] isSuccess in
                 if isSuccess {
                     self?.resetPaging()

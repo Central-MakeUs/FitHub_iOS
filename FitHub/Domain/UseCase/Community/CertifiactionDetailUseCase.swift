@@ -14,7 +14,7 @@ protocol CertifiactionDetailUseCaseProtocol {
     func fetchComments(page: Int, id: Int)->Single<FetchCommentDTO>
     func toggleCommentLike(id: Int, commentId: Int)->Single<LikeCommentDTO>
     func reportComment(commentId: Int)->Single<Int>
-    func deleteComment(type: CommentType, id: Int, commentId: Int)->Single<Bool>
+    func deleteComment(id: Int, commentId: Int)->Single<Bool>
 }
 
 final class CertifiactionDetailUseCase: CertifiactionDetailUseCaseProtocol {
@@ -47,7 +47,7 @@ final class CertifiactionDetailUseCase: CertifiactionDetailUseCaseProtocol {
         return commentRepository.reportComment(commentId: commentId)
     }
     
-    func deleteComment(type: CommentType, id: Int, commentId: Int)->Single<Bool> {
-        return commentRepository.deleteComment(type: type, id: id, commentId: commentId)
+    func deleteComment(id: Int, commentId: Int)->Single<Bool> {
+        return commentRepository.deleteComment(type: .records, id: id, commentId: commentId)
     }
 }

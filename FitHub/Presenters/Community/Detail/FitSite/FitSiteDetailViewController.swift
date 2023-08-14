@@ -1,8 +1,8 @@
 //
-//  CertificationDetailViewController.swift
+//  FitSiteDetailViewController.swift
 //  FitHub
 //
-//  Created by iOS신상우 on 2023/08/12.
+//  Created by iOS신상우 on 2023/08/14.
 //
 
 import UIKit
@@ -10,12 +10,12 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-final class CertificationDetailViewController: BaseViewController {
-    private let viewModel: CertificationDetailViewModel
+final class FitSiteDetailViewController: BaseViewController {
+    private let viewModel: FitSiteDetailViewModel
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout()).then {
         $0.register(CommentCell.self, forCellWithReuseIdentifier: CommentCell.identifier)
-        $0.register(CertificationDetailCell.self, forCellWithReuseIdentifier: CertificationDetailCell.identifier)
+        $0.register(FitSiteDetailCell.self, forCellWithReuseIdentifier: FitSiteDetailCell.identifier)
         $0.backgroundColor = .bgDefault
     }
     
@@ -26,9 +26,11 @@ final class CertificationDetailViewController: BaseViewController {
                                              target: nil,
                                              action: nil)
     
-    init(viewModel: CertificationDetailViewModel) {
+    init(viewModel: FitSiteDetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        
+        
     }
     
     required init?(coder: NSCoder) {
@@ -37,16 +39,18 @@ final class CertificationDetailViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.responseToKeyboardHegiht(commentInputView)
         self.tabBarController?.tabBar.isHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: - SetupBinding
     override func setupBinding() {
-        let input = CertificationDetailViewModel.Input(commentRegistTap: commentInputView.registButton.rx.tap
+        let input = FitSiteDetailViewModel.Input(commentRegistTap: commentInputView.registButton.rx.tap
             .asObservable()
             .compactMap { self.commentInputView.commentInputView.text },
                                                        didScroll: collectionView.rx.didScroll
@@ -68,6 +72,7 @@ final class CertificationDetailViewController: BaseViewController {
         output.commentComplete
             .subscribe(onNext: { [weak self] isSuccess in
                 self?.commentInputView.commentInputView.text = ""
+                self?.commentInputView.commentInputView.resignFirstResponder()
             })
             .disposed(by: disposeBag)
         
@@ -111,14 +116,15 @@ final class CertificationDetailViewController: BaseViewController {
 }
 
 // MARK: - DataSoruce
-extension CertificationDetailViewController {
-    private func createDataSoruce() -> RxCollectionViewSectionedReloadDataSource<CertificationDetailSectionModel> {
-        return RxCollectionViewSectionedReloadDataSource<CertificationDetailSectionModel> {
+extension FitSiteDetailViewController {
+    private func createDataSoruce() -> RxCollectionViewSectionedReloadDataSource<FitSiteDetailSectionModel> {
+        return RxCollectionViewSectionedReloadDataSource<FitSiteDetailSectionModel> {
             (dataSource, collectionView, indexPath, item) in
             switch item {
             case .detailInfo(info: let info):
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CertificationDetailCell.identifier, for: indexPath) as! CertificationDetailCell
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FitSiteDetailCell.identifier, for: indexPath) as! FitSiteDetailCell
                 cell.configureCell(item: info)
+                cell.delegate = self
                 
                 return cell
             case .comments(commentsInfo: let comment):
@@ -132,7 +138,8 @@ extension CertificationDetailViewController {
     }
 }
 
-extension CertificationDetailViewController: CommentCellDelegate {
+
+extension FitSiteDetailViewController: CommentCellDelegate {
     func toggleLike(commentId: Int, completion: @escaping (LikeCommentDTO) -> Void) {
         self.viewModel.toggleLike(commentId: commentId)
             .subscribe(onSuccess: { item in
@@ -187,7 +194,19 @@ extension CertificationDetailViewController: CommentCellDelegate {
     }
 }
 
-extension CertificationDetailViewController {
+extension FitSiteDetailViewController: FitSiteDetailCellDelegate {
+    func toggleLike(articleId: Int, completion: @escaping (LikeFitSiteDTO) -> Void) {
+        self.viewModel.toggleLikeFitSite(articleId: articleId)
+            .subscribe(onSuccess: { item in
+                completion(item)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    
+}
+
+extension FitSiteDetailViewController {
     private func createLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout() { (sectionIndex: Int,
                                                               environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
@@ -202,10 +221,10 @@ extension CertificationDetailViewController {
     
     private func createRecordInfoSection() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1.0),
-                                                            heightDimension: .estimated(1000)))
+                                                            heightDimension: .estimated(100)))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(self.view.frame.width),
-                                                                         heightDimension: .estimated(1000)),
+                                                                         heightDimension: .estimated(100)),
                                                        subitems: [item])
         
         return NSCollectionLayoutSection(group: group)
@@ -225,3 +244,4 @@ extension CertificationDetailViewController {
         return section
     }
 }
+

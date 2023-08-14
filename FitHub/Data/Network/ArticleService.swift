@@ -20,14 +20,6 @@ class ArticleService {
         
         return Single<FitSiteFeedDTO>.create { observer in
             AF.request(urlString, parameters: paramter, encoding: URLEncoding.queryString, interceptor: AuthManager())
-                .responseString() { res in
-                    switch res.result {
-                    case .success(let str):
-                        print(str)
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                    }
-                }
                 .responseDecodable(of: BaseResponse<FitSiteFeedDTO>.self) { res in
                     switch res.result {
                     case .success(let response):
@@ -94,6 +86,101 @@ class ArticleService {
             
             return Disposables.create()
         }
+    }
+    
+    func fetchFitSiteDetail(articleId: Int)->Single<FitSiteDetailDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        var urlString = baseURL + "articles/\(articleId)/spec"
         
+        return Single<FitSiteDetailDTO>.create { observer in
+            AF.request(urlString, interceptor: AuthManager())
+                .responseDecodable(of: BaseResponse<FitSiteDetailDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            observer(.success(result))
+                        } else {
+                            print(response.message)
+                            print(response.code)
+                            observer(.failure(AuthError.serverError))
+                        }
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        observer(.failure(AuthError.serverError))
+                    }
+                }
+            return Disposables.create()
+        }
+    }
+    
+    func toggleLikeFitSite(articleId: Int)->Single<LikeFitSiteDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        var urlString = baseURL + "articles/\(articleId)/likes"
+        
+        return Single<LikeFitSiteDTO>.create { observer in
+            AF.request(urlString, method: .post, interceptor: AuthManager())
+                .responseDecodable(of: BaseResponse<LikeFitSiteDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            observer(.success(result))
+                        } else {
+                            print(response.message)
+                            print(response.code)
+                            observer(.failure(AuthError.serverError))
+                        }
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        observer(.failure(AuthError.serverError))
+                    }
+                }
+            return Disposables.create()
+        }
+    }
+    
+    func reportFitSite(articleId: Int)->Single<Int> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        var urlString = baseURL + "articles/\(articleId)/report"
+        
+        return Single<Int>.create { observer in
+            AF.request(urlString, method: .post, interceptor: AuthManager())
+                .responseDecodable(of: BaseResponse<ReportFitSiteDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        observer(.success(response.code))
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        observer(.failure(AuthError.serverError))
+                    }
+                }
+            return Disposables.create()
+        }
+    }
+    
+    func deleteFitSite(articleId: Int)->Single<Bool> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        var urlString = baseURL + "articles/\(articleId)"
+        
+        return Single<Bool>.create { observer in
+            AF.request(urlString, method: .delete, interceptor: AuthManager())
+                .responseDecodable(of: BaseResponse<DeleteFitSiteDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            observer(.success(true))
+                        } else {
+                            print(response.message)
+                            print(response.code)
+                            observer(.success(false))
+                        }
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        observer(.failure(AuthError.serverError))
+                    }
+                }
+            return Disposables.create()
+        }
     }
 }

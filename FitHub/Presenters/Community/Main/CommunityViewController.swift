@@ -162,6 +162,13 @@ final class CommunityViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
+        self.fitSiteTableView.rx.modelSelected(ArticleDTO.self)
+            .map { $0.articleId }
+            .bind(onNext: { [weak self] articleId in
+                self?.pushFitSiteDetail(articleId: articleId)
+            })
+            .disposed(by: disposeBag)
+        
         self.floatingButton.rx.tap
             .map { !self.actionSheetBackView.isHidden }
             .subscribe(onNext: { [weak self] isHidden in
@@ -225,6 +232,15 @@ final class CommunityViewController: BaseViewController {
                                                                                                               recordId: recordId))
         
         self.navigationController?.pushViewController(certificationDetailVC, animated: true)
+    }
+    
+    private func pushFitSiteDetail(articleId: Int) {
+        let usecase = FitSiteDetailUseCase(commentRepository: CommentRepository(service: CommentService()),
+                                         fitSiteRepository: FitSiteRepository(service: ArticleService()))
+        let fitSiteDetailVC = FitSiteDetailViewController(viewModel: FitSiteDetailViewModel(usecase: usecase,
+                                                                                            articleId: articleId))
+        
+        self.navigationController?.pushViewController(fitSiteDetailVC, animated: true)
     }
     
     //MARK: - AddSubView
