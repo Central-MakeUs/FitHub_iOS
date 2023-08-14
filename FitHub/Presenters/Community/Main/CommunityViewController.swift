@@ -82,13 +82,22 @@ final class CommunityViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        topTabBarBinding()
+        pagingBinding()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.setUpCategoryBinding()
+        if self.viewModel.isFirstViewDidAppear {
+            self.viewModel.communityType.onNext(.certification)
+            self.viewModel.isFirstViewDidAppear = false
+        }
         
         if let selectedItems = categoryCollectionView.indexPathsForSelectedItems,
            selectedItems.isEmpty {
@@ -101,7 +110,6 @@ final class CommunityViewController: BaseViewController {
     //MARK: - ConfigureUI
     override func configureUI() {
         self.navigationItem.leftBarButtonItem = nil
-        self.feedScrollView.delegate = self
     }
     
     //MARK: - ConfigureNavigation
@@ -118,19 +126,15 @@ final class CommunityViewController: BaseViewController {
     
     //MARK: - SetupBinding
     override func setupBinding() {
-        let input = CommunityViewModel.Input()
-        
-        let output = self.viewModel.transform(input: input)
-        
-        output.category
+        viewModel.category
             .bind(to: self.categoryCollectionView.rx
                 .items(cellIdentifier: CategoryCell.identifier,
                        cellType: CategoryCell.self)) { index, name, cell in
                 cell.configureLabel(name.name)
             }
                        .disposed(by: disposeBag)
-
-        output.certificationFeedList
+        
+        viewModel.certificationFeedList
             .bind(to: self.certificationCollectionView.rx
                 .items(cellIdentifier: CertificationCell.identifier,
                        cellType: CertificationCell.self)) { index, item, cell in
@@ -138,7 +142,7 @@ final class CommunityViewController: BaseViewController {
             }
                        .disposed(by: disposeBag)
         
-        output.fitSiteFeedList
+        viewModel.fitSiteFeedList
             .bind(to: self.fitSiteTableView.rx.items(cellIdentifier: FitSiteCell.identifier, cellType: FitSiteCell.self)) { index, item, cell in
                 cell.configureCell(item: item)
             }
@@ -396,6 +400,32 @@ extension CommunityViewController {
     }
 }
 
+// MARK: - Paging
+extension CommunityViewController {
+    private func pagingBinding() {
+        certificationCollectionView.rx.didScroll
+            .map { [weak self] Void -> (offsetY: CGFloat, contentHeight: CGFloat, frameHeight: CGFloat) in
+                guard let self else { return (0,0,0) }
+                return (self.certificationCollectionView.contentOffset.y,
+                        self.certificationCollectionView.contentSize.height,
+                        self.certificationCollectionView.frame.height)
+            }
+            .bind(to: viewModel.certificationDidScroll)
+            .disposed(by: disposeBag)
+        
+        fitSiteTableView.rx.didScroll
+            .map { [weak self] Void -> (offsetY: CGFloat, contentHeight: CGFloat, frameHeight: CGFloat) in
+                guard let self else { return (0,0,0) }
+                return (self.fitSiteTableView.contentOffset.y,
+                        self.fitSiteTableView.contentSize.height,
+                        self.fitSiteTableView.frame.height)
+            }
+            .bind(to: viewModel.fitSiteDidScroll)
+            .disposed(by: disposeBag)
+    }
+}
+
+// MARK: - TopTabBar
 extension CommunityViewController {
     func moveIndicatorbar(targetIndex: Int) {
         let indexPath = IndexPath(item: targetIndex, section: 0)
@@ -414,14 +444,13 @@ extension CommunityViewController {
         }
     }
     
-    func setUpCategoryBinding() {
-        self.viewModel.targetIndex
-            .bind(onNext: { [weak self] targetIndex in
-                self?.moveIndicatorbar(targetIndex: targetIndex)
-                //TODO: 화면 전환
+    func topTabBarBinding() {
+        viewModel.communityType
+            .bind(onNext: { [weak self] type in
+                self?.moveIndicatorbar(targetIndex: type.rawValue)
             })
             .disposed(by: disposeBag)
-
+        
         topTabBarCollectionView.rx.itemSelected
             .map { $0.item }
             .subscribe(onNext: { [weak self] idx in
@@ -433,33 +462,34 @@ extension CommunityViewController {
                     self.feedScrollView
                         .contentOffset = .init(x: self.view.frame.width, y: 0)
                 }
-                    
-                self.viewModel.targetIndex.onNext(idx)
+                self.viewModel.communityType.onNext(.init(rawValue: idx) ?? .certification)
             })
             .disposed(by: disposeBag)
-    }
-}
-
-extension CommunityViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let targetIndex = Int(scrollView.contentOffset.x/self.view.frame.width)
-        let indexPath = IndexPath(item: targetIndex, section: 0)
-        guard let cell = topTabBarCollectionView.cellForItem(at: indexPath) as? TopTabBarItemCell else { return }
-        indicatorView.snp.remakeConstraints {
-            $0.centerX.equalTo(self.view.frame.width/4 + scrollView.contentOffset.x/2)
-            $0.width.equalTo(cell.getTitleFrameWidth())
-            $0.height.equalTo(3)
-            $0.centerY.equalTo(indicatorUnderLineView)
-        }
         
-        UIView.animate(withDuration: 0.2) {
-            self.view.layoutIfNeeded()
-        }
-        
-        if scrollView.contentOffset.x == self.view.frame.width {
-            self.viewModel.targetIndex.onNext(1)
-        } else if scrollView.contentOffset.x == 0 {
-            self.viewModel.targetIndex.onNext(0)
-        }
+        topTabBarCollectionView.rx.didScroll
+            .bind(onNext: { [weak self] in
+                guard let self else { return }
+                let targetIndex = Int(topTabBarCollectionView.contentOffset.x/self.view.frame.width)
+                let indexPath = IndexPath(item: targetIndex, section: 0)
+                guard let cell = topTabBarCollectionView.cellForItem(at: indexPath) as? TopTabBarItemCell else { return }
+                
+                indicatorView.snp.remakeConstraints {
+                    $0.centerX.equalTo(self.view.frame.width/4 + self.topTabBarCollectionView.contentOffset.x/2)
+                    $0.width.equalTo(cell.getTitleFrameWidth())
+                    $0.height.equalTo(3)
+                    $0.centerY.equalTo(self.indicatorUnderLineView)
+                }
+                
+                UIView.animate(withDuration: 0.2) {
+                    self.view.layoutIfNeeded()
+                }
+                
+                if topTabBarCollectionView.contentOffset.x == self.view.frame.width {
+                    self.viewModel.communityType.onNext(.certification)
+                } else if topTabBarCollectionView.contentOffset.x == 0 {
+                    self.viewModel.communityType.onNext(.fitSite)
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }

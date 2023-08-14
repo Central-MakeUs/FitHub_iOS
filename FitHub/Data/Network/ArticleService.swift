@@ -13,11 +13,12 @@ class ArticleService {
     
     func fetchArticles(categoryId: Int, page: Int, sortingType: SortingType)->Single<FitSiteFeedDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        
         var urlString = baseURL + "articles/\(categoryId)"
         if sortingType == .popularity { urlString += "/likes" }
         
         let paramter: Parameters = ["pageIndex" : page]
-        
+       
         return Single<FitSiteFeedDTO>.create { observer in
             AF.request(urlString, parameters: paramter, encoding: URLEncoding.queryString, interceptor: AuthManager())
                 .responseDecodable(of: BaseResponse<FitSiteFeedDTO>.self) { res in
