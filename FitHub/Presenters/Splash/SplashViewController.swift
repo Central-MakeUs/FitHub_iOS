@@ -62,7 +62,8 @@ final class SplashViewController: BaseViewController {
         homeVC.tabBarItem.title = "홈"
         
         let communityVCUsecase = CommunityUseCase(CommunityRepository(AuthService(),
-                                                                     certificationService: CertificationService()))
+                                                                      certificationService: CertificationService(),
+                                                                      articleService: ArticleService()))
         let communityVC = UINavigationController(rootViewController: CommunityViewController(CommunityViewModel(communityVCUsecase)))
         communityVC.tabBarItem.image = UIImage(named: "CommunityIcon")
         communityVC.tabBarItem.title = "커뮤니티"

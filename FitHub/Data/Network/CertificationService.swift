@@ -10,9 +10,9 @@ import RxSwift
 import Alamofire
 
 class CertificationService {
-    func fecthCertification(_ categoryId: Int, pageIndex: Int, type: OrderType)->Single<CertificationFeedDTO> {
+    func fecthCertification(_ categoryId: Int, pageIndex: Int, type: SortingType)->Single<CertificationFeedDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
-        
+    
         var urlString = baseURL + "records/\(categoryId)"
         if type == .popularity { urlString += "likes"}
         
@@ -34,10 +34,11 @@ class CertificationService {
                         observer(.failure(AuthError.serverError))
                     }
                 }
+            
             return Disposables.create()
         }
     }
-    
+
     func createCertification(_ certificationInfo: EditCertificationModel) -> Single<CreateCertificationDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
         
@@ -47,7 +48,7 @@ class CertificationService {
         
         let contents = certificationInfo.content ?? ""
         let categoryId = certificationInfo.selectedSport?.id ?? 0
-        let hashTagList = certificationInfo.hashtags.map{ $0 }.joined(separator: ",")
+        let hashTagList = certificationInfo.hashtags.filter { !$0.isEmpty }.joined(separator: ",")
         let urlString = baseURL + "records/\(categoryId)"
         
         let parameter: Parameters = ["contents" : contents,
@@ -81,6 +82,102 @@ class CertificationService {
                     observer(.failure(AuthError.serverError))
                 }
             }
+            return Disposables.create()
+        }
+    }
+    
+    func fetchCertifiactionDetail(recordId: Int)->Single<CertificationDetailDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
+    
+        let urlString = baseURL + "records/\(recordId)/spec"
+        
+        return Single<CertificationDetailDTO>.create { emitter in
+            AF.request(urlString, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<CertificationDetailDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            emitter(.success(result))
+                        } else {
+                            print(response.code)
+                        }
+                    case .failure(let error):
+                        emitter(.failure(AuthError.serverError))
+                        print(error)
+                    }
+                }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func reportCertification(recordId: Int)->Single<Int> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
+    
+        let urlString = baseURL + "records/\(recordId)/report"
+        
+        return Single<Int>.create { emitter in
+            AF.request(urlString, method: .post, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<ReportCertificationDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        emitter(.success(response.code))
+                    case .failure(let error):
+                        emitter(.failure(AuthError.serverError))
+                        print(error)
+                    }
+                }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func removeCertification(recordId: Int)->Single<Int> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
+    
+        let urlString = baseURL + "records/\(recordId)"
+        
+        return Single<Int>.create { emitter in
+            AF.request(urlString, method: .delete, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<DeleteCertificationDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        emitter(.success(response.code))
+                    case .failure(let error):
+                        emitter(.failure(AuthError.serverError))
+                        print(error)
+                    }
+                }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func toggleLikeCertification(recordId: Int)->Single<LikeCertificationDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
+    
+        let urlString = baseURL + "records/\(recordId)/likes"
+        
+        return Single<LikeCertificationDTO>.create { emitter in
+            AF.request(urlString, method: .post, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<LikeCertificationDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            emitter(.success(result))
+                        } else {
+                            print(response.code)
+                            print(response.message)
+                            emitter(.failure(AuthError.invalidURL))
+                        }
+                    case .failure(let error):
+                        emitter(.failure(AuthError.serverError))
+                        print(error)
+                    }
+                }
+            
             return Disposables.create()
         }
     }

@@ -43,15 +43,7 @@ final class SportCell: UICollectionViewCell {
     }
     
     func configureCell(item: CategoryDTO, selectedItem: CategoryDTO?) {
-        do {
-            if let urlString = item.imageUrl,
-               let url = URL(string: urlString) {
-                let data = try Data(contentsOf: url)
-                self.imageView.image = UIImage(data: data)
-            }
-        } catch {
-            print(error)
-        }
+        self.imageView.kf.setImage(with:URL(string: item.imageUrl ?? ""))
         self.titleLabel.text = item.name
         
         if let selectedItem,
@@ -88,7 +80,8 @@ final class SportCell: UICollectionViewCell {
         }
         
         self.imageView.snp.makeConstraints {
-            $0.leading.trailing.top.bottom.equalToSuperview()
+            $0.width.height.equalTo(40)
+            $0.center.equalToSuperview()
         }
         
         self.titleLabel.snp.makeConstraints {

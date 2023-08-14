@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class CreateCertificationDTO: Decodable {
     let recordId: Int
     let ownerId: Int
