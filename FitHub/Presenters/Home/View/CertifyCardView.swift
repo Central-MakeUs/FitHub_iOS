@@ -30,7 +30,7 @@ final class CertifyCardView: UIView {
         $0.backgroundColor = .bgSub02
     }
     
-    private let infoButton = UIButton(type: .system).then {
+    let infoButton = UIButton(type: .system).then {
         $0.setImage(UIImage(named: "ic_info")?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
