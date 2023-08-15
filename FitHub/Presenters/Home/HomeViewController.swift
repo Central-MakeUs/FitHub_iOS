@@ -115,13 +115,13 @@ final class HomeViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         
-        output.rankerList
+        viewModel.rankingList
             .bind(to: self.rankerTableView.rx.items(cellIdentifier: RankInfoCell.identifier, cellType: RankInfoCell.self)) { index, item, cell in
                 cell.configureCell(item)
             }
             .disposed(by: disposeBag)
         
-        output.userInfo
+        viewModel.userInfo
             .withUnretained(self)
             .bind(onNext: { (homeVC,userInfo) in
                 homeVC.setTitleContent(userInfo)
@@ -129,12 +129,23 @@ final class HomeViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        output.updateDate
+        viewModel.updateDate
             .asDriver(onErrorJustReturn: "")
             .map { $0.replacingOccurrences(of: "-", with: ".") }
             .map { $0 + " 12:00 기준"}
             .drive(updateTimeLabel.rx.text)
             .disposed(by: disposeBag)
+        
+        certifyCardView.infoButton.rx.tap
+            .bind(onNext: { [weak self] in
+                self?.showLevelInfoVC()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func showLevelInfoVC() {
+        let levelInfoVC = LevelInfoViewController(viewModel: self.viewModel)
+        self.navigationController?.pushViewController(levelInfoVC, animated: true)
     }
 
     private func setTitleContent(_ userInfo: HomeUserInfoDTO) {

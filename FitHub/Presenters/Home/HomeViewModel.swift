@@ -12,34 +12,54 @@ final class HomeViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
     let usecase: HomeUseCaseProtocol
-   
+    
+    let rankingList = PublishSubject<[BestRecorderDTO]>()
+    let userInfo = PublishSubject<HomeUserInfoDTO>()
+    let updateDate = PublishSubject<String>()
+    
+    let levelInfo = PublishSubject<LevelInfoDTO>()
     
     struct Input {
-        
     }
     
     struct Output {
-        let category: Observable<[CategoryDTO]>
-        let userInfo: Observable<HomeUserInfoDTO>
-        let rankerList: Observable<[BestRecorderDTO]>
-        let updateDate: Observable<String>
+        let category = BehaviorSubject<[CategoryDTO]>(value: [])
     }
     
     init(usecase: HomeUseCaseProtocol) {
         self.usecase = usecase
+        
+        
+        
     }
     
     func transform(input: Input) -> Output {
+        let output = Output()
         
+        usecase.fetchCategory()
+            .subscribe(onSuccess: { category in
+                output.category.onNext(category)
+            })
+            .disposed(by: disposeBag)
         
-        return Output(category: self.usecase.category.asObserver(),
-                      userInfo: self.usecase.userInfo.asObserver(),
-                      rankerList: self.usecase.rankingList.asObserver(),
-                      updateDate: self.usecase.updateDate.asObserver())
+        return output
     }
     
     func updateHomeInfo() {
         self.usecase.fetchHomeInfo()
-        self.usecase.fetchCategory()
+            .subscribe(onSuccess: { [weak self] result in
+                self?.userInfo.onNext(result.userInfo)
+                self?.rankingList.onNext(result.bestRecorderList)
+                self?.updateDate.onNext(result.bestStandardDate)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func fetchLevelInfo() {
+        usecase.fetchLevelInfo()
+            .subscribe(onSuccess: { [weak self] item in
+                self?.levelInfo.onNext(item)
+            })
+            .disposed(by: disposeBag)
     }
 }

@@ -9,49 +9,33 @@ import Foundation
 import RxSwift
 
 protocol HomeUseCaseProtocol {
-    var rankingList: PublishSubject<[BestRecorderDTO]> { get set }
-    var userInfo: PublishSubject<HomeUserInfoDTO> { get set }
-    var category: PublishSubject<[CategoryDTO]> { get set }
-    var updateDate: PublishSubject<String> { get set }
-    
-    func fetchCategory()
-    func fetchHomeInfo()
+    func fetchCategory()->Single<[CategoryDTO]>
+    func fetchHomeInfo()->Single<HomeInfoDTO>
+    func fetchLevelInfo() -> Single<LevelInfoDTO>
     
     func checkAuth() -> Single<Bool>
 }
 
 final class HomeUseCase: HomeUseCaseProtocol {
     private let repository: HomeRepositoryInterface
-    var disposeBag = DisposeBag()
-    
-    var rankingList = PublishSubject<[BestRecorderDTO]>()
-    var userInfo = PublishSubject<HomeUserInfoDTO>()
-    var category = PublishSubject<[CategoryDTO]>()
-    var updateDate = PublishSubject<String>()
-    
+
     init(repository: HomeRepositoryInterface) {
         self.repository = repository
     }
     
-    func fetchHomeInfo() {
-        self.repository.fetchHomeInfo()
-            .subscribe(onSuccess: { [weak self] result in
-                self?.userInfo.onNext(result.userInfo)
-                self?.rankingList.onNext(result.bestRecorderList)
-                self?.updateDate.onNext(result.bestStandardDate)
-            })
-            .disposed(by: disposeBag)
+    func fetchHomeInfo()->Single<HomeInfoDTO> {
+        return self.repository.fetchHomeInfo()
     }
     
-    func fetchCategory() {
-        self.repository.fetchCategory()
-            .subscribe(onSuccess: { [weak self] category in
-                self?.category.onNext(category)
-            })
-            .disposed(by: disposeBag)
+    func fetchCategory()-> Single<[CategoryDTO]> {
+        return self.repository.fetchCategory()
     }
     
     func checkAuth() -> Single<Bool> {
         return self.repository.checkAuth()
+    }
+    
+    func fetchLevelInfo() -> Single<LevelInfoDTO> {
+        return repository.fetchLevelInfo()
     }
 }
