@@ -54,6 +54,10 @@
 		B5705CDB2A8AA95C00408233 /* LevelInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CDA2A8AA95C00408233 /* LevelInfoViewController.swift */; };
 		B5705CDF2A8AB41000408233 /* LevelIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CDE2A8AB41000408233 /* LevelIconCell.swift */; };
 		B5705CE12A8AB89600408233 /* LevelIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CE02A8AB89600408233 /* LevelIconView.swift */; };
+		B5705CE42A8B4E5800408233 /* BookMarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CE32A8B4E5800408233 /* BookMarkViewController.swift */; };
+		B5705CE62A8B506D00408233 /* BookMarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CE52A8B506D00408233 /* BookMarkViewModel.swift */; };
+		B5705CE82A8B50B100408233 /* BookMarkUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CE72A8B50B100408233 /* BookMarkUseCase.swift */; };
+		B5705CEA2A8B661E00408233 /* BookMarkDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CE92A8B661E00408233 /* BookMarkDefaultView.swift */; };
 		B588B7D72A828BD00031C723 /* FitSiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7D62A828BD00031C723 /* FitSiteCell.swift */; };
 		B588B7DB2A83AD710031C723 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DA2A83AD710031C723 /* ArticleService.swift */; };
 		B588B7E02A85405B0031C723 /* EditFitSiteSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DF2A85405B0031C723 /* EditFitSiteSectionModel.swift */; };
@@ -263,6 +267,10 @@
 		B5705CDA2A8AA95C00408233 /* LevelInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelInfoViewController.swift; sourceTree = "<group>"; };
 		B5705CDE2A8AB41000408233 /* LevelIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelIconCell.swift; sourceTree = "<group>"; };
 		B5705CE02A8AB89600408233 /* LevelIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelIconView.swift; sourceTree = "<group>"; };
+		B5705CE32A8B4E5800408233 /* BookMarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkViewController.swift; sourceTree = "<group>"; };
+		B5705CE52A8B506D00408233 /* BookMarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkViewModel.swift; sourceTree = "<group>"; };
+		B5705CE72A8B50B100408233 /* BookMarkUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkUseCase.swift; sourceTree = "<group>"; };
+		B5705CE92A8B661E00408233 /* BookMarkDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkDefaultView.swift; sourceTree = "<group>"; };
 		B588B7D62A828BD00031C723 /* FitSiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteCell.swift; sourceTree = "<group>"; };
 		B588B7DA2A83AD710031C723 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		B588B7DF2A85405B0031C723 /* EditFitSiteSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteSectionModel.swift; sourceTree = "<group>"; };
@@ -538,6 +546,16 @@
 			path = LevelInfo;
 			sourceTree = "<group>";
 		};
+		B5705CE22A8B4E4400408233 /* BookMark */ = {
+			isa = PBXGroup;
+			children = (
+				B5705CE32A8B4E5800408233 /* BookMarkViewController.swift */,
+				B5705CE52A8B506D00408233 /* BookMarkViewModel.swift */,
+				B5705CE92A8B661E00408233 /* BookMarkDefaultView.swift */,
+			);
+			path = BookMark;
+			sourceTree = "<group>";
+		};
 		B588B7DE2A8540070031C723 /* FitSite */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,6 +596,7 @@
 		DB002BAF2A67C262001B5672 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				B5705CE22A8B4E4400408233 /* BookMark */,
 				B5705CDD2A8AA99A00408233 /* LevelInfo */,
 				B5B2C39A2A7D4CA9004FC66C /* View */,
 				DB002BB02A67C273001B5672 /* HomeViewController.swift */,
@@ -790,6 +809,7 @@
 			isa = PBXGroup;
 			children = (
 				DB5DAB3F2A7BF331009AA427 /* HomeUseCase.swift */,
+				B5705CE72A8B50B100408233 /* BookMarkUseCase.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1417,6 +1437,7 @@
 				B5705CDF2A8AB41000408233 /* LevelIconCell.swift in Sources */,
 				B5B2C3AC2A7FED7B004FC66C /* String+.swift in Sources */,
 				B5B2C3AA2A7FEA4F004FC66C /* TopTabBarView.swift in Sources */,
+				B5705CE42A8B4E5800408233 /* BookMarkViewController.swift in Sources */,
 				DBF125DB2A5E7C14004DA4B9 /* VerificationNumberTextFieldView.swift in Sources */,
 				DBFFDA2B2A47F1600008C2B5 /* UIFont+.swift in Sources */,
 				DB6D93E22A4EC8C10011F9BC /* PhoneVerificationViewController.swift in Sources */,
@@ -1488,6 +1509,7 @@
 				DBB820BC2A5E4D990016CB63 /* FindPWUseCase.swift in Sources */,
 				DB51D2532A4B36A5002415B0 /* AgreementView.swift in Sources */,
 				B5B2C3A82A7FE502004FC66C /* TopTabBarItemCell.swift in Sources */,
+				B5705CE62A8B506D00408233 /* BookMarkViewModel.swift in Sources */,
 				DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */,
 				DB5712422A7295E400DCAD9C /* EditCertifiactionViewController.swift in Sources */,
 				B5705C772A866AC600408233 /* EditFitSiteModel.swift in Sources */,
@@ -1510,6 +1532,7 @@
 				DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */,
 				DB62F1D42A7A8EB80045E8DC /* BestRecorderDTO.swift in Sources */,
 				DB51ECC02A692EFC009F4690 /* TopTabbarItem.swift in Sources */,
+				B5705CE82A8B50B100408233 /* BookMarkUseCase.swift in Sources */,
 				DB8CD71B2A6E0C93004735C8 /* CategoryDTO.swift in Sources */,
 				B5705CD92A8AA42600408233 /* BookMarkDTO.swift in Sources */,
 				DB0D220A2A7698D200ABF6A2 /* SportHeaderView.swift in Sources */,
@@ -1586,6 +1609,7 @@
 				B5705CCB2A895A0700408233 /* SimpleImageCell.swift in Sources */,
 				B5705CD32A8A933500408233 /* ReportCertificationDTO.swift in Sources */,
 				DBF125E72A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift in Sources */,
+				B5705CEA2A8B661E00408233 /* BookMarkDefaultView.swift in Sources */,
 				DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */,
 				B5705CCF2A8A92BA00408233 /* DeleteCertificationDTO.swift in Sources */,
 				DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */,

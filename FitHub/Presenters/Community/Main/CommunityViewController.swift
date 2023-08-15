@@ -86,6 +86,8 @@ final class CommunityViewController: BaseViewController {
         super.viewDidLoad()
         topTabBarBinding()
         pagingBinding()
+        
+        self.view.gestureRecognizers = nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -375,7 +377,7 @@ extension CommunityViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                               heightDimension: .fractionalHeight(0.5))
+                                               heightDimension: .fractionalHeight(0.45))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
         group.contentInsets = .init(top: 5, leading: 0, bottom: 0, trailing: 0)
