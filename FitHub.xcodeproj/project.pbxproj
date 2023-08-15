@@ -58,6 +58,7 @@
 		B5705CE62A8B506D00408233 /* BookMarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CE52A8B506D00408233 /* BookMarkViewModel.swift */; };
 		B5705CE82A8B50B100408233 /* BookMarkUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CE72A8B50B100408233 /* BookMarkUseCase.swift */; };
 		B5705CEA2A8B661E00408233 /* BookMarkDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CE92A8B661E00408233 /* BookMarkDefaultView.swift */; };
+		B5705CEC2A8B735F00408233 /* FitSiteScrapDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CEB2A8B735F00408233 /* FitSiteScrapDTO.swift */; };
 		B588B7D72A828BD00031C723 /* FitSiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7D62A828BD00031C723 /* FitSiteCell.swift */; };
 		B588B7DB2A83AD710031C723 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DA2A83AD710031C723 /* ArticleService.swift */; };
 		B588B7E02A85405B0031C723 /* EditFitSiteSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DF2A85405B0031C723 /* EditFitSiteSectionModel.swift */; };
@@ -271,6 +272,7 @@
 		B5705CE52A8B506D00408233 /* BookMarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkViewModel.swift; sourceTree = "<group>"; };
 		B5705CE72A8B50B100408233 /* BookMarkUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkUseCase.swift; sourceTree = "<group>"; };
 		B5705CE92A8B661E00408233 /* BookMarkDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkDefaultView.swift; sourceTree = "<group>"; };
+		B5705CEB2A8B735F00408233 /* FitSiteScrapDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteScrapDTO.swift; sourceTree = "<group>"; };
 		B588B7D62A828BD00031C723 /* FitSiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteCell.swift; sourceTree = "<group>"; };
 		B588B7DA2A83AD710031C723 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		B588B7DF2A85405B0031C723 /* EditFitSiteSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteSectionModel.swift; sourceTree = "<group>"; };
@@ -512,6 +514,7 @@
 				B5705CB62A8945D400408233 /* ReportFitSiteDTO.swift */,
 				B5705CB82A89462F00408233 /* DeleteFitSiteDTO.swift */,
 				B5705CBA2A89466D00408233 /* UpdateFitSiteDTO.swift */,
+				B5705CEB2A8B735F00408233 /* FitSiteScrapDTO.swift */,
 			);
 			path = FitSite;
 			sourceTree = "<group>";
@@ -1561,6 +1564,7 @@
 				DB51D2572A4BB8B5002415B0 /* AgreementViewModel.swift in Sources */,
 				DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */,
 				DB57123A2A72590B00DCAD9C /* OAuthRegistInputViewModel.swift in Sources */,
+				B5705CEC2A8B735F00408233 /* FitSiteScrapDTO.swift in Sources */,
 				DB57123C2A7259B700DCAD9C /* OAuthRegistInputUseCase.swift in Sources */,
 				B5705CD72A8AA2E200408233 /* LevelInfoDTO.swift in Sources */,
 				DB6D93CF2A4D596D0011F9BC /* TelecomProviderType.swift in Sources */,

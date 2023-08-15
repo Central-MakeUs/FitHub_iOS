@@ -11,6 +11,7 @@ import RxCocoa
 
 protocol FitSiteDetailCellDelegate: AnyObject {
     func toggleLike(articleId: Int, completion: @escaping (LikeFitSiteDTO)->Void)
+    func toggleScrap(articleId: Int, completion: @escaping ( FitSiteScrapDTO)->Void)
 }
 
 final class FitSiteDetailCell: UICollectionViewCell {
@@ -159,7 +160,7 @@ final class FitSiteDetailCell: UICollectionViewCell {
     
     func configureBookmark(isScraped: Bool) {
         // MARK: - 북마크 이미지 분기하기
-        let image = isScraped ? UIImage(named: "BookMark") : UIImage(named: "BookMark")
+        let image = isScraped ? UIImage(named: "ic_bookmark_fill") : UIImage(named: "BookMark")
         bookmarkButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
@@ -197,6 +198,15 @@ final class FitSiteDetailCell: UICollectionViewCell {
                     self.configureLikeButton(isLiked: item.isLiked)
                     self.likeButton.configuration?.title = "\(item.articleLikes)"
                     self.likeButton.configuration?.attributedTitle?.font = .pretendard(.bodySmall01)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        bookmarkButton.rx.tap
+            .bind(onNext: { [weak self] in
+                guard let self else { return }
+                self.delegate?.toggleScrap(articleId: self.likeButton.tag) { item in
+                    self.configureBookmark(isScraped: item.isSaved)
                 }
             })
             .disposed(by: disposeBag)

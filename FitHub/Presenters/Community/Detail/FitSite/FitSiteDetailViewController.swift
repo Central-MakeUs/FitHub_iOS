@@ -256,7 +256,13 @@ extension FitSiteDetailViewController: FitSiteDetailCellDelegate {
             .disposed(by: disposeBag)
     }
     
-    
+    func toggleScrap(articleId: Int, completion: @escaping (FitSiteScrapDTO) -> Void) {
+        self.viewModel.toggleScrapFitSite(articleId: articleId)
+            .subscribe(onSuccess: { item in
+                completion(item)
+            })
+            .disposed(by: disposeBag)
+    }
 }
 
 extension FitSiteDetailViewController {
