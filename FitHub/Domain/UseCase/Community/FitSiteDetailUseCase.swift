@@ -17,6 +17,7 @@ protocol FitSiteDetailUseCaseProtocol {
     
     func fetchFitSiteDetail(articleId: Int)->Single<FitSiteDetailDTO>
     func toggleLikeFitSite(articleId: Int)->Single<LikeFitSiteDTO>
+    func scrapFitSite(articleId: Int)->Single<FitSiteScrapDTO>
     func reportFitSite(articleId: Int)->Single<Int>
     func deleteFitSite(articleId: Int)->Single<Bool>
 }
@@ -57,6 +58,10 @@ final class FitSiteDetailUseCase: FitSiteDetailUseCaseProtocol {
     
     func toggleLikeFitSite(articleId: Int)->Single<LikeFitSiteDTO> {
         return fitSiteRepository.toggleLikeFitSite(articleId: articleId)
+    }
+    
+    func scrapFitSite(articleId: Int)->Single<FitSiteScrapDTO> {
+        return fitSiteRepository.scrapFitSite(articleId: articleId)
     }
     
     func reportFitSite(articleId: Int)->Single<Int> {

@@ -12,6 +12,8 @@ protocol HomeRepositoryInterface {
     func fetchCategory() -> Single<[CategoryDTO]>
     func fetchHomeInfo() -> Single<HomeInfoDTO>
     func checkAuth() -> Single<Bool>
+    func fetchLevelInfo() -> Single<LevelInfoDTO>
+    func fetchBookMark(categoryId: Int, page: Int) -> Single<BookMarkDTO>
 }
 
 final class HomeRepository: HomeRepositoryInterface {
@@ -34,5 +36,13 @@ final class HomeRepository: HomeRepositoryInterface {
     
     func checkAuth() -> Single<Bool> {
         return self.homeService.checkAuth()
+    }
+    
+    func fetchLevelInfo() -> Single<LevelInfoDTO> {
+        return homeService.fetchLevelInfo()
+    }
+    
+    func fetchBookMark(categoryId: Int, page: Int) -> Single<BookMarkDTO> {
+        return homeService.fetchBookMark(categoryId: categoryId, page: page)
     }
 }
