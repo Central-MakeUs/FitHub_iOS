@@ -16,6 +16,7 @@ final class BookMarkViewModel {
     let category = BehaviorSubject<[CategoryDTO]>(value: [])
     let selectedCategory = BehaviorSubject<Int>(value: 0)
     let articleFeedList = BehaviorRelay<[ArticleDTO]>(value: [])
+    let bookMarkDidScroll = PublishSubject<(CGFloat,CGFloat,CGFloat)>()
     
     // Paging
     var isPaging = false
@@ -30,11 +31,30 @@ final class BookMarkViewModel {
                 self?.category.onNext(response)
             })
             .disposed(by: disposeBag)
+        
+        selectedCategory
+            .skip(1)
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] type in
+                self?.resetBookMark()
+                self?.fetchBookMark(isReset: true)
+            })
+            .disposed(by: disposeBag)
+        
+        bookMarkDidScroll
+            .filter { $0.1 != 0.0 }
+            .subscribe(onNext: { [weak self] (offsetY, contentHeight, frameHeight) in
+                guard let self else { return }
+                if offsetY > (contentHeight - frameHeight) {
+                    if self.isPaging == false && !isLast { self.paging() }
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     func viewWillAppear() {
         resetBookMark()
-        fetchBookMark()
+        fetchBookMark(isReset: true)
     }
 }
 
@@ -42,10 +62,9 @@ extension BookMarkViewModel {
     private func resetBookMark() {
         currentPage = 0
         isLast = false
-        articleFeedList.accept([])
     }
     
-    private func fetchBookMark() {
+    private func fetchBookMark(isReset: Bool) {
         selectedCategory.asObservable()
             .take(1)
             .flatMap {
@@ -58,6 +77,7 @@ extension BookMarkViewModel {
             .subscribe(onNext: { [weak self] result in
                 guard let self else { return }
                 var newValue = self.articleFeedList.value
+                if isReset { newValue = [] }
                 newValue.append(contentsOf: result.articleList)
                 self.articleFeedList.accept(newValue)
                 self.isLast = result.isLast
@@ -65,5 +85,11 @@ extension BookMarkViewModel {
                 self?.isPaging = false
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func paging() {
+        self.isPaging = true
+        currentPage += 1
+        fetchBookMark(isReset: false)
     }
 }

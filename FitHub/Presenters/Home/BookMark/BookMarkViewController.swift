@@ -108,12 +108,39 @@ final class BookMarkViewController: BaseViewController {
                 self?.showCommunityVC()
             })
             .disposed(by: disposeBag)
+        
+        fitSiteTableView.rx.didScroll
+            .map { [weak self] Void -> (offsetY: CGFloat, contentHeight: CGFloat, frameHeight: CGFloat) in
+                guard let self else { return (0,0,0) }
+                return (self.fitSiteTableView.contentOffset.y,
+                        self.fitSiteTableView.contentSize.height,
+                        self.fitSiteTableView.frame.height)
+            }
+            .bind(to: viewModel.bookMarkDidScroll)
+            .disposed(by: disposeBag)
+        
+        fitSiteTableView.rx.modelSelected(ArticleDTO.self)
+            .map { $0.articleId }
+            .bind(onNext: { [weak self] articleId in
+                self?.pushFitSiteDetail(articleId: articleId)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: - 화면 이동
+    private func pushFitSiteDetail(articleId: Int) {
+        let usecase = FitSiteDetailUseCase(commentRepository: CommentRepository(service: CommentService()),
+                                         fitSiteRepository: FitSiteRepository(service: ArticleService()))
+        let fitSiteDetailVC = FitSiteDetailViewController(viewModel: FitSiteDetailViewModel(usecase: usecase,
+                                                                                            articleId: articleId))
+        
+        self.navigationController?.pushViewController(fitSiteDetailVC, animated: true)
     }
     
     private func showCommunityVC() {
-        self.navigationController?.popViewController(animated: true)
         self.tabBarController?.selectedIndex = 1
         self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func addSubView() {
