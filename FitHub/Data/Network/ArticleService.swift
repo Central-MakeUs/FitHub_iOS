@@ -184,4 +184,30 @@ class ArticleService {
             return Disposables.create()
         }
     }
+    
+    func scrapFitSite(articleId: Int)->Single<FitSiteScrapDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        var urlString = baseURL + "articles/\(articleId)/scrap"
+        
+        return Single<FitSiteScrapDTO>.create { observer in
+            AF.request(urlString, method: .post, interceptor: AuthManager())
+                .responseDecodable(of: BaseResponse<FitSiteScrapDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            observer(.success(result))
+                        } else {
+                            print(response.message)
+                            print(response.code)
+                            observer(.failure(AuthError.serverError))
+                        }
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        observer(.failure(AuthError.serverError))
+                    }
+                }
+            return Disposables.create()
+        }
+    }
 }
