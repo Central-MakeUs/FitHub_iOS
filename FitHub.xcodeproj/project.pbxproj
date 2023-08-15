@@ -49,6 +49,16 @@
 		B5705CD12A8A930200408233 /* UpdateCertificationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CD02A8A930200408233 /* UpdateCertificationDTO.swift */; };
 		B5705CD32A8A933500408233 /* ReportCertificationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CD22A8A933500408233 /* ReportCertificationDTO.swift */; };
 		B5705CD52A8A96F300408233 /* LikeCertificationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CD42A8A96F300408233 /* LikeCertificationDTO.swift */; };
+		B5705CD72A8AA2E200408233 /* LevelInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CD62A8AA2E200408233 /* LevelInfoDTO.swift */; };
+		B5705CD92A8AA42600408233 /* BookMarkDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CD82A8AA42600408233 /* BookMarkDTO.swift */; };
+		B5705CDB2A8AA95C00408233 /* LevelInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CDA2A8AA95C00408233 /* LevelInfoViewController.swift */; };
+		B5705CDF2A8AB41000408233 /* LevelIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CDE2A8AB41000408233 /* LevelIconCell.swift */; };
+		B5705CE12A8AB89600408233 /* LevelIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CE02A8AB89600408233 /* LevelIconView.swift */; };
+		B5705CE42A8B4E5800408233 /* BookMarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CE32A8B4E5800408233 /* BookMarkViewController.swift */; };
+		B5705CE62A8B506D00408233 /* BookMarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CE52A8B506D00408233 /* BookMarkViewModel.swift */; };
+		B5705CE82A8B50B100408233 /* BookMarkUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CE72A8B50B100408233 /* BookMarkUseCase.swift */; };
+		B5705CEA2A8B661E00408233 /* BookMarkDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CE92A8B661E00408233 /* BookMarkDefaultView.swift */; };
+		B5705CEC2A8B735F00408233 /* FitSiteScrapDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CEB2A8B735F00408233 /* FitSiteScrapDTO.swift */; };
 		B588B7D72A828BD00031C723 /* FitSiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7D62A828BD00031C723 /* FitSiteCell.swift */; };
 		B588B7DB2A83AD710031C723 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DA2A83AD710031C723 /* ArticleService.swift */; };
 		B588B7E02A85405B0031C723 /* EditFitSiteSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DF2A85405B0031C723 /* EditFitSiteSectionModel.swift */; };
@@ -253,6 +263,16 @@
 		B5705CD02A8A930200408233 /* UpdateCertificationDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCertificationDTO.swift; sourceTree = "<group>"; };
 		B5705CD22A8A933500408233 /* ReportCertificationDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCertificationDTO.swift; sourceTree = "<group>"; };
 		B5705CD42A8A96F300408233 /* LikeCertificationDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCertificationDTO.swift; sourceTree = "<group>"; };
+		B5705CD62A8AA2E200408233 /* LevelInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelInfoDTO.swift; sourceTree = "<group>"; };
+		B5705CD82A8AA42600408233 /* BookMarkDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkDTO.swift; sourceTree = "<group>"; };
+		B5705CDA2A8AA95C00408233 /* LevelInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelInfoViewController.swift; sourceTree = "<group>"; };
+		B5705CDE2A8AB41000408233 /* LevelIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelIconCell.swift; sourceTree = "<group>"; };
+		B5705CE02A8AB89600408233 /* LevelIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelIconView.swift; sourceTree = "<group>"; };
+		B5705CE32A8B4E5800408233 /* BookMarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkViewController.swift; sourceTree = "<group>"; };
+		B5705CE52A8B506D00408233 /* BookMarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkViewModel.swift; sourceTree = "<group>"; };
+		B5705CE72A8B50B100408233 /* BookMarkUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkUseCase.swift; sourceTree = "<group>"; };
+		B5705CE92A8B661E00408233 /* BookMarkDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkDefaultView.swift; sourceTree = "<group>"; };
+		B5705CEB2A8B735F00408233 /* FitSiteScrapDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteScrapDTO.swift; sourceTree = "<group>"; };
 		B588B7D62A828BD00031C723 /* FitSiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteCell.swift; sourceTree = "<group>"; };
 		B588B7DA2A83AD710031C723 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		B588B7DF2A85405B0031C723 /* EditFitSiteSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteSectionModel.swift; sourceTree = "<group>"; };
@@ -494,6 +514,7 @@
 				B5705CB62A8945D400408233 /* ReportFitSiteDTO.swift */,
 				B5705CB82A89462F00408233 /* DeleteFitSiteDTO.swift */,
 				B5705CBA2A89466D00408233 /* UpdateFitSiteDTO.swift */,
+				B5705CEB2A8B735F00408233 /* FitSiteScrapDTO.swift */,
 			);
 			path = FitSite;
 			sourceTree = "<group>";
@@ -516,6 +537,26 @@
 				B5705CC62A894D9B00408233 /* FitSiteDetailViewController.swift */,
 			);
 			path = FitSite;
+			sourceTree = "<group>";
+		};
+		B5705CDD2A8AA99A00408233 /* LevelInfo */ = {
+			isa = PBXGroup;
+			children = (
+				B5705CDA2A8AA95C00408233 /* LevelInfoViewController.swift */,
+				B5705CDE2A8AB41000408233 /* LevelIconCell.swift */,
+				B5705CE02A8AB89600408233 /* LevelIconView.swift */,
+			);
+			path = LevelInfo;
+			sourceTree = "<group>";
+		};
+		B5705CE22A8B4E4400408233 /* BookMark */ = {
+			isa = PBXGroup;
+			children = (
+				B5705CE32A8B4E5800408233 /* BookMarkViewController.swift */,
+				B5705CE52A8B506D00408233 /* BookMarkViewModel.swift */,
+				B5705CE92A8B661E00408233 /* BookMarkDefaultView.swift */,
+			);
+			path = BookMark;
 			sourceTree = "<group>";
 		};
 		B588B7DE2A8540070031C723 /* FitSite */ = {
@@ -558,6 +599,8 @@
 		DB002BAF2A67C262001B5672 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				B5705CE22A8B4E4400408233 /* BookMark */,
+				B5705CDD2A8AA99A00408233 /* LevelInfo */,
 				B5B2C39A2A7D4CA9004FC66C /* View */,
 				DB002BB02A67C273001B5672 /* HomeViewController.swift */,
 				DB5DAB3C2A7BF2F8009AA427 /* HomeViewModel.swift */,
@@ -769,6 +812,7 @@
 			isa = PBXGroup;
 			children = (
 				DB5DAB3F2A7BF331009AA427 /* HomeUseCase.swift */,
+				B5705CE72A8B50B100408233 /* BookMarkUseCase.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -788,6 +832,8 @@
 				DB62F1D32A7A8EB80045E8DC /* BestRecorderDTO.swift */,
 				DB62F1D52A7A8F5C0045E8DC /* HomeInfoDTO.swift */,
 				B5B2C39B2A7DC980004FC66C /* CheckAuthDTO.swift */,
+				B5705CD62A8AA2E200408233 /* LevelInfoDTO.swift */,
+				B5705CD82A8AA42600408233 /* BookMarkDTO.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1391,8 +1437,10 @@
 				B5705C792A86762D00408233 /* CreateFitSiteUseCase.swift in Sources */,
 				B5705CD52A8A96F300408233 /* LikeCertificationDTO.swift in Sources */,
 				DB62F1D22A7A8E120045E8DC /* HomeUserInfoDTO.swift in Sources */,
+				B5705CDF2A8AB41000408233 /* LevelIconCell.swift in Sources */,
 				B5B2C3AC2A7FED7B004FC66C /* String+.swift in Sources */,
 				B5B2C3AA2A7FEA4F004FC66C /* TopTabBarView.swift in Sources */,
+				B5705CE42A8B4E5800408233 /* BookMarkViewController.swift in Sources */,
 				DBF125DB2A5E7C14004DA4B9 /* VerificationNumberTextFieldView.swift in Sources */,
 				DBFFDA2B2A47F1600008C2B5 /* UIFont+.swift in Sources */,
 				DB6D93E22A4EC8C10011F9BC /* PhoneVerificationViewController.swift in Sources */,
@@ -1464,6 +1512,7 @@
 				DBB820BC2A5E4D990016CB63 /* FindPWUseCase.swift in Sources */,
 				DB51D2532A4B36A5002415B0 /* AgreementView.swift in Sources */,
 				B5B2C3A82A7FE502004FC66C /* TopTabBarItemCell.swift in Sources */,
+				B5705CE62A8B506D00408233 /* BookMarkViewModel.swift in Sources */,
 				DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */,
 				DB5712422A7295E400DCAD9C /* EditCertifiactionViewController.swift in Sources */,
 				B5705C772A866AC600408233 /* EditFitSiteModel.swift in Sources */,
@@ -1486,7 +1535,9 @@
 				DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */,
 				DB62F1D42A7A8EB80045E8DC /* BestRecorderDTO.swift in Sources */,
 				DB51ECC02A692EFC009F4690 /* TopTabbarItem.swift in Sources */,
+				B5705CE82A8B50B100408233 /* BookMarkUseCase.swift in Sources */,
 				DB8CD71B2A6E0C93004735C8 /* CategoryDTO.swift in Sources */,
+				B5705CD92A8AA42600408233 /* BookMarkDTO.swift in Sources */,
 				DB0D220A2A7698D200ABF6A2 /* SportHeaderView.swift in Sources */,
 				B5705CA22A87F48100408233 /* LikeCommentDTO.swift in Sources */,
 				B588B7E02A85405B0031C723 /* EditFitSiteSectionModel.swift in Sources */,
@@ -1513,7 +1564,9 @@
 				DB51D2572A4BB8B5002415B0 /* AgreementViewModel.swift in Sources */,
 				DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */,
 				DB57123A2A72590B00DCAD9C /* OAuthRegistInputViewModel.swift in Sources */,
+				B5705CEC2A8B735F00408233 /* FitSiteScrapDTO.swift in Sources */,
 				DB57123C2A7259B700DCAD9C /* OAuthRegistInputUseCase.swift in Sources */,
+				B5705CD72A8AA2E200408233 /* LevelInfoDTO.swift in Sources */,
 				DB6D93CF2A4D596D0011F9BC /* TelecomProviderType.swift in Sources */,
 				DBF125E12A5E7DFD004DA4B9 /* ResetPasswordViewController.swift in Sources */,
 				DB55B6C52A6BAF38006FEA7F /* PhoneNumLoginDTO.swift in Sources */,
@@ -1535,6 +1588,7 @@
 				DB668AF42A4EECB300D702A1 /* UIViewController+.swift in Sources */,
 				DB62F1D62A7A8F5C0045E8DC /* HomeInfoDTO.swift in Sources */,
 				DB0D22022A73FB0B00ABF6A2 /* HashTagCell.swift in Sources */,
+				B5705CDB2A8AA95C00408233 /* LevelInfoViewController.swift in Sources */,
 				B5705C852A8777EB00408233 /* CertificationDetailViewModel.swift in Sources */,
 				DB51ECBD2A68E846009F4690 /* FitHubTopTabbar.swift in Sources */,
 				DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */,
@@ -1555,9 +1609,11 @@
 				DBDBA30E2A64EC8200F1CDA5 /* NickNameDTO.swift in Sources */,
 				DB002BB82A67C36F001B5672 /* LookUpViewController.swift in Sources */,
 				DB8CD6FF2A6D0B7C004735C8 /* ProfileSettingRepository.swift in Sources */,
+				B5705CE12A8AB89600408233 /* LevelIconView.swift in Sources */,
 				B5705CCB2A895A0700408233 /* SimpleImageCell.swift in Sources */,
 				B5705CD32A8A933500408233 /* ReportCertificationDTO.swift in Sources */,
 				DBF125E72A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift in Sources */,
+				B5705CEA2A8B661E00408233 /* BookMarkDefaultView.swift in Sources */,
 				DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */,
 				B5705CCF2A8A92BA00408233 /* DeleteCertificationDTO.swift in Sources */,
 				DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */,

@@ -57,4 +57,61 @@ class HomeService {
             return Disposables.create()
         }
     }
+    
+    func fetchLevelInfo() -> Single<LevelInfoDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String
+        else { return Single.error(CertificationError.invalidURL) }
+        
+        let urlString = baseURL + "home/level-info"
+        
+        return Single<LevelInfoDTO>.create { emitter in
+            AF.request(urlString, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<LevelInfoDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            emitter(.success(result))
+                        } else {
+                            print(response.code)
+                            print(response.message)
+                            emitter(.failure(CertificationError.serverError))
+                        }
+                    case .failure(let error):
+                        emitter(.failure(error))
+                    }
+                }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func fetchBookMark(categoryId: Int, page: Int) -> Single<BookMarkDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String
+        else { return Single.error(CertificationError.invalidURL) }
+        let parameter: Parameters = ["pageIndex" : page]
+        
+        let urlString = baseURL + "home/book-mark/\(categoryId)"
+        
+        return Single<BookMarkDTO>.create { emitter in
+            AF.request(urlString, parameters: parameter, encoding: URLEncoding.queryString, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<BookMarkDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            emitter(.success(result))
+                        } else {
+                            print(response.code)
+                            print(response.message)
+                            emitter(.failure(CertificationError.serverError))
+                        }
+                    case .failure(let error):
+                        emitter(.failure(error))
+                    }
+                }
+            
+            return Disposables.create()
+        }
+    }
 }

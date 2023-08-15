@@ -11,6 +11,7 @@ import RxSwift
 protocol FitSiteRepositoryInterface {
     func fetchFitSiteDetail(articleId: Int)->Single<FitSiteDetailDTO>
     func toggleLikeFitSite(articleId: Int)->Single<LikeFitSiteDTO>
+    func scrapFitSite(articleId: Int)->Single<FitSiteScrapDTO>
     func reportFitSite(articleId: Int)->Single<Int>
     func deleteFitSite(articleId: Int)->Single<Bool>
 }
@@ -30,11 +31,15 @@ final class FitSiteRepository: FitSiteRepositoryInterface {
         return service.toggleLikeFitSite(articleId: articleId)
     }
     
+    func scrapFitSite(articleId: Int)->Single<FitSiteScrapDTO> {
+        return service.scrapFitSite(articleId: articleId)
+    }
+    
     func reportFitSite(articleId: Int)->Single<Int> {
         return service.reportFitSite(articleId: articleId)
     }
     
     func deleteFitSite(articleId: Int)->Single<Bool> {
         return service.deleteFitSite(articleId: articleId)
-    }
+    }    
 }

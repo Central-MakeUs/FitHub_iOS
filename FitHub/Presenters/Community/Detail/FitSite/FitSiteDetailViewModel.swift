@@ -117,6 +117,10 @@ final class FitSiteDetailViewModel: ViewModelType {
             .disposed(by: disposeBag)
     }
     
+    func toggleScrapFitSite(articleId: Int) -> Single<FitSiteScrapDTO> {
+        return usecase.scrapFitSite(articleId: articleId)
+    }
+    
     func toggleLikeFitSite(articleId: Int) -> Single<LikeFitSiteDTO> {
         return usecase.toggleLikeFitSite(articleId: articleId)
     }

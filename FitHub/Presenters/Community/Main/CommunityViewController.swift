@@ -86,6 +86,8 @@ final class CommunityViewController: BaseViewController {
         super.viewDidLoad()
         topTabBarBinding()
         pagingBinding()
+        
+        self.view.gestureRecognizers = nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,6 +124,18 @@ final class CommunityViewController: BaseViewController {
         self.navigationItem.rightBarButtonItems = [noti,bookmark]
         
         self.navigationItem.titleView = searchBar
+        
+        bookmark.rx.tap
+            .bind(onNext: { [weak self] in
+                let usecase = BookMarkUseCase(homeRepository: HomeRepository(homeService: HomeService(),
+                                                                             authService: AuthService()),
+                                              communityRepository: CommunityRepository(AuthService(),
+                                                                                       certificationService: CertificationService(), articleService: ArticleService()))
+                let bookMarkVC = BookMarkViewController(viewModel: BookMarkViewModel(usecase: usecase))
+                
+                self?.navigationController?.pushViewController(bookMarkVC, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
     //MARK: - SetupBinding
@@ -375,7 +389,7 @@ extension CommunityViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                               heightDimension: .fractionalHeight(0.5))
+                                               heightDimension: .fractionalHeight(0.45))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
         group.contentInsets = .init(top: 5, leading: 0, bottom: 0, trailing: 0)
