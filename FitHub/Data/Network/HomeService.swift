@@ -91,7 +91,7 @@ class HomeService {
         else { return Single.error(CertificationError.invalidURL) }
         let parameter: Parameters = ["pageIndex" : page]
         
-        let urlString = baseURL + "book-mark/\(categoryId)"
+        let urlString = baseURL + "home/book-mark/\(categoryId)"
         
         return Single<BookMarkDTO>.create { emitter in
             AF.request(urlString, parameters: parameter, encoding: URLEncoding.queryString, interceptor: AuthManager())

@@ -100,6 +100,18 @@ final class HomeViewController: BaseViewController {
                                        style: .plain, target: nil, action: nil)
         
         self.navigationItem.rightBarButtonItems = [noti,bookmark]
+        
+        bookmark.rx.tap
+            .bind(onNext: { [weak self] in
+                let usecase = BookMarkUseCase(homeRepository: HomeRepository(homeService: HomeService(),
+                                                                             authService: AuthService()),
+                                              communityRepository: CommunityRepository(AuthService(),
+                                                                                       certificationService: CertificationService(), articleService: ArticleService()))
+                let bookMarkVC = BookMarkViewController(viewModel: BookMarkViewModel(usecase: usecase))
+                
+                self?.navigationController?.pushViewController(bookMarkVC, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 
     
