@@ -28,9 +28,6 @@ final class HomeViewModel: ViewModelType {
     
     init(usecase: HomeUseCaseProtocol) {
         self.usecase = usecase
-        
-        
-        
     }
     
     func transform(input: Input) -> Output {

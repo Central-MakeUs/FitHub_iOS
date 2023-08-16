@@ -85,6 +85,7 @@ final class SportsCell: UICollectionViewCell {
         
         self.imageView.snp.makeConstraints {
             $0.leading.trailing.top.bottom.equalToSuperview()
+            $0.width.height.equalTo(40)
         }
         
         self.titleLabel.snp.makeConstraints {

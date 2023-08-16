@@ -84,6 +84,8 @@ final class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.viewModel.updateHomeInfo()
+        
+        print(KeychainManager.read("accessToken"))
     }
     
     override func setupAttributes() {
@@ -125,7 +127,6 @@ final class HomeViewController: BaseViewController {
                 cell.configureCell(item: item, selectedItem: nil)
             }
             .disposed(by: disposeBag)
-        
         
         viewModel.rankingList
             .bind(to: self.rankerTableView.rx.items(cellIdentifier: RankInfoCell.identifier, cellType: RankInfoCell.self)) { index, item, cell in

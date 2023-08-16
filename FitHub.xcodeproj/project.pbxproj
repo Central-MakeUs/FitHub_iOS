@@ -59,6 +59,19 @@
 		B5705CE82A8B50B100408233 /* BookMarkUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CE72A8B50B100408233 /* BookMarkUseCase.swift */; };
 		B5705CEA2A8B661E00408233 /* BookMarkDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CE92A8B661E00408233 /* BookMarkDefaultView.swift */; };
 		B5705CEC2A8B735F00408233 /* FitSiteScrapDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CEB2A8B735F00408233 /* FitSiteScrapDTO.swift */; };
+		B5705CF22A8B85D800408233 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CF12A8B85D800408233 /* SearchService.swift */; };
+		B5705CF52A8B86D500408233 /* RecommendKeywordDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CF42A8B86D500408233 /* RecommendKeywordDTO.swift */; };
+		B5705CF72A8B879300408233 /* SearchTotalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CF62A8B879300408233 /* SearchTotalDTO.swift */; };
+		B5705CF92A8B90FD00408233 /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CF82A8B90FD00408233 /* SearchRepository.swift */; };
+		B5705CFB2A8B91D500408233 /* SearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CFA2A8B91D500408233 /* SearchUseCase.swift */; };
+		B5705CFD2A8B928400408233 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CFC2A8B928400408233 /* SearchViewController.swift */; };
+		B5705CFF2A8B93CE00408233 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705CFE2A8B93CE00408233 /* SearchViewModel.swift */; };
+		B5705D012A8BB66200408233 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705D002A8BB66200408233 /* CustomSearchBar.swift */; };
+		B5705D032A8BB78600408233 /* RecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705D022A8BB78600408233 /* RecommendView.swift */; };
+		B5705D052A8C313600408233 /* SearchTotalSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705D042A8C313600408233 /* SearchTotalSectionModel.swift */; };
+		B5705D072A8C33A900408233 /* FitSiteCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705D062A8C33A900408233 /* FitSiteCollectionCell.swift */; };
+		B5705D092A8C410C00408233 /* SearchTotalHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705D082A8C410C00408233 /* SearchTotalHeaderView.swift */; };
+		B5705D0B2A8CF50700408233 /* EmptyResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705D0A2A8CF50700408233 /* EmptyResultView.swift */; };
 		B588B7D72A828BD00031C723 /* FitSiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7D62A828BD00031C723 /* FitSiteCell.swift */; };
 		B588B7DB2A83AD710031C723 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DA2A83AD710031C723 /* ArticleService.swift */; };
 		B588B7E02A85405B0031C723 /* EditFitSiteSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DF2A85405B0031C723 /* EditFitSiteSectionModel.swift */; };
@@ -273,6 +286,19 @@
 		B5705CE72A8B50B100408233 /* BookMarkUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkUseCase.swift; sourceTree = "<group>"; };
 		B5705CE92A8B661E00408233 /* BookMarkDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkDefaultView.swift; sourceTree = "<group>"; };
 		B5705CEB2A8B735F00408233 /* FitSiteScrapDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteScrapDTO.swift; sourceTree = "<group>"; };
+		B5705CF12A8B85D800408233 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
+		B5705CF42A8B86D500408233 /* RecommendKeywordDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendKeywordDTO.swift; sourceTree = "<group>"; };
+		B5705CF62A8B879300408233 /* SearchTotalDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTotalDTO.swift; sourceTree = "<group>"; };
+		B5705CF82A8B90FD00408233 /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
+		B5705CFA2A8B91D500408233 /* SearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCase.swift; sourceTree = "<group>"; };
+		B5705CFC2A8B928400408233 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		B5705CFE2A8B93CE00408233 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		B5705D002A8BB66200408233 /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
+		B5705D022A8BB78600408233 /* RecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendView.swift; sourceTree = "<group>"; };
+		B5705D042A8C313600408233 /* SearchTotalSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTotalSectionModel.swift; sourceTree = "<group>"; };
+		B5705D062A8C33A900408233 /* FitSiteCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteCollectionCell.swift; sourceTree = "<group>"; };
+		B5705D082A8C410C00408233 /* SearchTotalHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTotalHeaderView.swift; sourceTree = "<group>"; };
+		B5705D0A2A8CF50700408233 /* EmptyResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultView.swift; sourceTree = "<group>"; };
 		B588B7D62A828BD00031C723 /* FitSiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteCell.swift; sourceTree = "<group>"; };
 		B588B7DA2A83AD710031C723 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		B588B7DF2A85405B0031C723 /* EditFitSiteSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteSectionModel.swift; sourceTree = "<group>"; };
@@ -557,6 +583,29 @@
 				B5705CE92A8B661E00408233 /* BookMarkDefaultView.swift */,
 			);
 			path = BookMark;
+			sourceTree = "<group>";
+		};
+		B5705CF02A8B855700408233 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				B5705CFC2A8B928400408233 /* SearchViewController.swift */,
+				B5705CFE2A8B93CE00408233 /* SearchViewModel.swift */,
+				B5705D022A8BB78600408233 /* RecommendView.swift */,
+				B5705D042A8C313600408233 /* SearchTotalSectionModel.swift */,
+				B5705D062A8C33A900408233 /* FitSiteCollectionCell.swift */,
+				B5705D082A8C410C00408233 /* SearchTotalHeaderView.swift */,
+				B5705D0A2A8CF50700408233 /* EmptyResultView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		B5705CF32A8B86BD00408233 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				B5705CF42A8B86D500408233 /* RecommendKeywordDTO.swift */,
+				B5705CF62A8B879300408233 /* SearchTotalDTO.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		B588B7DE2A8540070031C723 /* FitSite */ = {
@@ -943,6 +992,7 @@
 				DB8CD71E2A6E164A004735C8 /* CommunityUseCase.swift */,
 				B5705C862A87785600408233 /* CertifiactionDetailUseCase.swift */,
 				B5705CBE2A894B9800408233 /* FitSiteDetailUseCase.swift */,
+				B5705CFA2A8B91D500408233 /* SearchUseCase.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -956,6 +1006,7 @@
 				B5705C7A2A86790100408233 /* CreateFitSiteRepository.swift */,
 				B5705CA32A87F5B800408233 /* CommentRepository.swift */,
 				B5705CBC2A894ABE00408233 /* FitSiteRepository.swift */,
+				B5705CF82A8B90FD00408233 /* SearchRepository.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -1021,6 +1072,7 @@
 		DBF125EA2A5EA0DA004DA4B9 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				B5705CF32A8B86BD00408233 /* Search */,
 				DB5DAB462A7BF9C6009AA427 /* Home */,
 				DB57124E2A72ACC400DCAD9C /* Community */,
 				DBDBA30F2A65323D00F1CDA5 /* Auth */,
@@ -1052,6 +1104,7 @@
 		DBFF258B2A5B925E00CF6DD4 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				B5705CF02A8B855700408233 /* Search */,
 				B5B2C39F2A7E396A004FC66C /* Splash */,
 				DB002BB92A67C3BA001B5672 /* MyPage */,
 				DB002BB52A67C350001B5672 /* LookUp */,
@@ -1203,6 +1256,7 @@
 				DBFF25992A5B96A600CF6DD4 /* TelecomProvider */,
 				DBFF25972A5B95A500CF6DD4 /* Base */,
 				DB51ECB92A68488C009F4690 /* FitHubSearchBar.swift */,
+				B5705D002A8BB66200408233 /* CustomSearchBar.swift */,
 				B5705C7C2A871DF900408233 /* ExpandTextView.swift */,
 				B5705C962A87CB9000408233 /* CommentInputView.swift */,
 				B5705CA52A89027A00408233 /* StandardActionSheetController.swift */,
@@ -1300,6 +1354,7 @@
 				DB5DAB442A7BF6C2009AA427 /* HomeService.swift */,
 				B588B7DA2A83AD710031C723 /* ArticleService.swift */,
 				B5705C9A2A87EF1F00408233 /* CommentService.swift */,
+				B5705CF12A8B85D800408233 /* SearchService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1438,8 +1493,10 @@
 				B5705CD52A8A96F300408233 /* LikeCertificationDTO.swift in Sources */,
 				DB62F1D22A7A8E120045E8DC /* HomeUserInfoDTO.swift in Sources */,
 				B5705CDF2A8AB41000408233 /* LevelIconCell.swift in Sources */,
+				B5705D032A8BB78600408233 /* RecommendView.swift in Sources */,
 				B5B2C3AC2A7FED7B004FC66C /* String+.swift in Sources */,
 				B5B2C3AA2A7FEA4F004FC66C /* TopTabBarView.swift in Sources */,
+				B5705CFD2A8B928400408233 /* SearchViewController.swift in Sources */,
 				B5705CE42A8B4E5800408233 /* BookMarkViewController.swift in Sources */,
 				DBF125DB2A5E7C14004DA4B9 /* VerificationNumberTextFieldView.swift in Sources */,
 				DBFFDA2B2A47F1600008C2B5 /* UIFont+.swift in Sources */,
@@ -1467,6 +1524,7 @@
 				DB57122F2A7205DA00DCAD9C /* ResetPasswordRepository.swift in Sources */,
 				DB55B6C92A6BB28A006FEA7F /* PhoneNumLoginUseCase.swift in Sources */,
 				B5705CA42A87F5B800408233 /* CommentRepository.swift in Sources */,
+				B5705CF92A8B90FD00408233 /* SearchRepository.swift in Sources */,
 				DB5712492A729B4000DCAD9C /* EditCertificationRepository.swift in Sources */,
 				DB5DAB432A7BF65B009AA427 /* HomeRepository.swift in Sources */,
 				DB71348D2A5BDBF90006EAAB /* AuthService.swift in Sources */,
@@ -1475,18 +1533,21 @@
 				B5705C952A87B07700408233 /* CertificationDetailCell.swift in Sources */,
 				DB57122D2A72059300DCAD9C /* ResetPasswordUseCase.swift in Sources */,
 				DB0D220C2A769DD100ABF6A2 /* UICollectionView+.swift in Sources */,
+				B5705CFB2A8B91D500408233 /* SearchUseCase.swift in Sources */,
 				B588B7E22A85435E0031C723 /* EditFitSiteViewController.swift in Sources */,
 				DB5A7C6F2A79545200931DA0 /* CertifyCardView.swift in Sources */,
 				DBFF25A02A5B991A00CF6DD4 /* OAuthLoginUseCase.swift in Sources */,
 				B5705CAA2A8925F400408233 /* DeleteCommentDTO.swift in Sources */,
 				B5B2C3A12A7E3987004FC66C /* SplashViewController.swift in Sources */,
 				DB57124D2A72ABF700DCAD9C /* CertificationError.swift in Sources */,
+				B5705D072A8C33A900408233 /* FitSiteCollectionCell.swift in Sources */,
 				B5705CBD2A894ABE00408233 /* FitSiteRepository.swift in Sources */,
 				DB6CC3ED2A7016E700C4C2BC /* SportsSelectingUseCase.swift in Sources */,
 				DB8CD70D2A6D14C5004735C8 /* CategoryCell.swift in Sources */,
 				DB6D93DB2A4DCC650011F9BC /* DateOfBirthTextFieldView.swift in Sources */,
 				DB5712382A724D7B00DCAD9C /* OAuthRegistInputViewController.swift in Sources */,
 				DBFFDA3E2A4988200008C2B5 /* PhoneAuthViewModel.swift in Sources */,
+				B5705D092A8C410C00408233 /* SearchTotalHeaderView.swift in Sources */,
 				B5705CB92A89462F00408233 /* DeleteFitSiteDTO.swift in Sources */,
 				B5705C922A87ABA200408233 /* CertificationDetailSectionModel.swift in Sources */,
 				DB002BBB2A67C3C7001B5672 /* MyPageViewController.swift in Sources */,
@@ -1503,6 +1564,7 @@
 				DB51D2592A4C2719002415B0 /* AgreementModel.swift in Sources */,
 				B5B2C3A62A7FD172004FC66C /* CertificationView.swift in Sources */,
 				B5705C7B2A86790100408233 /* CreateFitSiteRepository.swift in Sources */,
+				B5705CF72A8B879300408233 /* SearchTotalDTO.swift in Sources */,
 				B5705C832A87776800408233 /* CertificationDetailViewController.swift in Sources */,
 				B588B7DB2A83AD710031C723 /* ArticleService.swift in Sources */,
 				DB7559E72A55062C00B88B96 /* SportsCell.swift in Sources */,
@@ -1574,12 +1636,15 @@
 				DB668AF92A4F06D000D702A1 /* AuthUserInfo.swift in Sources */,
 				DB51ECBA2A68488C009F4690 /* FitHubSearchBar.swift in Sources */,
 				DBFFDA422A499BC00008C2B5 /* StandardTextFieldView.swift in Sources */,
+				B5705CF52A8B86D500408233 /* RecommendKeywordDTO.swift in Sources */,
 				DBB820B82A5E45940016CB63 /* FindPWViewController.swift in Sources */,
 				DB0D22062A7666B600ABF6A2 /* HashTagFooterView.swift in Sources */,
 				B5705CAC2A89283F00408233 /* ReportCommentDTO.swift in Sources */,
 				DB0D21FD2A73F78800ABF6A2 /* ImageCell.swift in Sources */,
 				DB62F1D82A7AAF1E0045E8DC /* RankInfoCell.swift in Sources */,
+				B5705D0B2A8CF50700408233 /* EmptyResultView.swift in Sources */,
 				DBB820BA2A5E47BA0016CB63 /* FindPWViewModel.swift in Sources */,
+				B5705D012A8BB66200408233 /* CustomSearchBar.swift in Sources */,
 				B5705CBF2A894B9800408233 /* FitSiteDetailUseCase.swift in Sources */,
 				DB97F83C2A52B36E009C09A1 /* NotificationName+.swift in Sources */,
 				B588B7E82A8545110031C723 /* FitSiteImageCell.swift in Sources */,
@@ -1591,6 +1656,7 @@
 				B5705CDB2A8AA95C00408233 /* LevelInfoViewController.swift in Sources */,
 				B5705C852A8777EB00408233 /* CertificationDetailViewModel.swift in Sources */,
 				DB51ECBD2A68E846009F4690 /* FitHubTopTabbar.swift in Sources */,
+				B5705D052A8C313600408233 /* SearchTotalSectionModel.swift in Sources */,
 				DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */,
 				DB8CD7292A6E72C0004735C8 /* AgreementUseCase.swift in Sources */,
 				DB5712462A72985D00DCAD9C /* EditCertificationUseCase.swift in Sources */,
@@ -1619,6 +1685,8 @@
 				DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */,
 				B588B7E42A8543C00031C723 /* EditFitSiteViewModel.swift in Sources */,
 				DB668AF72A4F041100D702A1 /* ViewModelType.swift in Sources */,
+				B5705CFF2A8B93CE00408233 /* SearchViewModel.swift in Sources */,
+				B5705CF22A8B85D800408233 /* SearchService.swift in Sources */,
 				B5705CA02A87F33600408233 /* CreateCommentDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
