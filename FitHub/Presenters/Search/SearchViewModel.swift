@@ -1,17 +1,23 @@
 //
-//  CommunityViewModel.swift
+//  SearchViewModel.swift
 //  FitHub
 //
-//  Created by 신상우 on 2023/07/24.
+//  Created by iOS신상우 on 2023/08/15.
 //
 
-import Foundation
+import UIKit
 import RxSwift
 import RxCocoa
 
-final class CommunityViewModel {
-    var disposeBag = DisposeBag()
-    private let usecase: CommunityUseCaseProtocol
+enum SearchTabItemType: Int {
+    case total = 0
+    case certification = 1
+    case fitSite = 2
+}
+
+final class SearchViewModel {
+    private let usecase: SearchUseCaseProtocol
+    private let disposeBag = DisposeBag()
     
     var isFirstViewDidAppear = true
     
@@ -24,35 +30,37 @@ final class CommunityViewModel {
     var isLastFitSite = false
     
     // MARK: - Input
-    let selectedCategory = BehaviorSubject<Int>(value: 0)
+    let keywordTap = PublishSubject<String>()
+    let communityType = PublishSubject<SearchTabItemType>()
+    let searchText = BehaviorRelay<String>(value: "")
+    
     let certificationSortingType = BehaviorSubject<SortingType>(value: .recent)
     let fitStieSortingType = BehaviorSubject<SortingType>(value: .recent)
     let certificationDidScroll = PublishSubject<(CGFloat,CGFloat,CGFloat)>()
     let fitSiteDidScroll = PublishSubject<(CGFloat,CGFloat,CGFloat)>()
     
     // MARK: - Output
-    let feedType = Observable.of(["운동인증","핏사이트"])
-    let category = BehaviorSubject<[CategoryDTO]>(value: [])
-    
+    let topTabBarItems = Observable.of(["전체","운동인증","핏사이트"])
+    let keywords = BehaviorSubject<[String]>(value: [])
+    let totalDataSource = PublishSubject<[SearchTotalSectionModel]>()
     let certificationFeedList = BehaviorRelay<[CertificationDTO]>(value: [])
     let fitSiteFeedList = BehaviorRelay<[ArticleDTO]>(value: [])
-    var communityType = BehaviorSubject<CommunityType>(value: .certification)
     
-    init(_ usecase: CommunityUseCaseProtocol) {
+    init(usecase: SearchUseCaseProtocol) {
         self.usecase = usecase
         
-        usecase.fetchCategory()
-            .subscribe(onSuccess: { [weak self] response in
-                self?.category.onNext(response)
+        usecase.fetchRecommendKeyword()
+            .subscribe(onSuccess: { [weak self] item in
+                self?.keywords.onNext(item.keywordList)
             })
             .disposed(by: disposeBag)
-
+        
         communityType
             .filter { $0 == .certification }
             .withLatestFrom(certificationFeedList)
             .filter{ $0.isEmpty }
             .subscribe(onNext: { [weak self] _ in
-                self?.fetchCertification()
+                self?.fetchCertification(isReset: true)
             })
             .disposed(by: disposeBag)
         
@@ -61,33 +69,31 @@ final class CommunityViewModel {
             .withLatestFrom(fitSiteFeedList)
             .filter{ $0.isEmpty }
             .subscribe(onNext: { [weak self] _ in
-                self?.fetchFitSite()
-            })
-            .disposed(by: disposeBag)
-        
-        selectedCategory
-            .distinctUntilChanged()
-            .withLatestFrom(communityType)
-            .subscribe(onNext: { [weak self] type in
-                self?.resetFitSite()
-                self?.resetCertification()
-                self?.communityType.onNext(type)
+                self?.fetchFitSite(isReset: true)
             })
             .disposed(by: disposeBag)
         
         fitStieSortingType
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] _ in
-                self?.resetFitSite()
-                self?.fetchFitSite()
+                self?.fetchFitSite(isReset: true)
             })
             .disposed(by: disposeBag)
         
         certificationSortingType
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] _ in
-                self?.resetCertification()
-                self?.fetchCertification()
+                self?.fetchCertification(isReset: true)
+            })
+            .disposed(by: disposeBag)
+        
+        searchText
+            .subscribe(onNext: { [weak self] _ in
+                self?.fetchFitSite(isReset: true)
+                self?.fetchCertification(isReset: true)
+                self?.communityType.onNext(.total)
+                self?.fetchTotalResult()
+                // TODO: 전체 결과 띄욱
             })
             .disposed(by: disposeBag)
         
@@ -117,46 +123,44 @@ final class CommunityViewModel {
     }
 }
 
-extension CommunityViewModel {
-    private func resetFitSite() {
-        self.currentFitSitePage = 0
-        self.isLastFitSite = false
-        self.fitSiteFeedList.accept([])
-    }
-    
-    private func resetCertification() {
-        self.currentCertificationPage = 0
-        self.isLastCertification = false
-        self.certificationFeedList.accept([])
-    }
-    
+extension SearchViewModel {
+
     private func fitSitePaging() {
         self.isPaging = true
         currentFitSitePage += 1
-        fetchFitSite()
+        fetchFitSite(isReset: false)
     }
     
     private func certifiactionPaging() {
         self.isPaging = true
         currentCertificationPage += 1
-        fetchCertification()
+        fetchCertification(isReset: false)
     }
     
-    private func fetchFitSite() {
-        Observable.combineLatest(selectedCategory.asObservable(),
+    private func fetchFitSite(isReset: Bool) {
+        if isReset {
+            self.currentFitSitePage = 0
+            self.isLastFitSite = false
+        }
+        Observable.combineLatest(searchText.asObservable(),
                                  fitStieSortingType.asObservable())
         .take(1)
         .flatMap {
-            self.usecase.fetchFitSiteFeed($0.0,
-                                          page: self.currentFitSitePage,
-                                          type: $0.1).asObservable()
+            self.usecase.searchToFitSite(tag: $0.0,
+                                         page: self.currentFitSitePage,
+                                         type: $0.1).asObservable()
                 .catch { error in
                     return Observable.empty()
                 }
         }
         .subscribe(onNext: { [weak self] result in
+            guard let result else {
+                self?.fitSiteFeedList.accept([])
+                return
+            }
             guard let self else { return }
             var newValue = self.fitSiteFeedList.value
+            if isReset { newValue = [] }
             newValue.append(contentsOf: result.articleList)
             self.fitSiteFeedList.accept(newValue)
             self.isLastFitSite = result.isLast
@@ -166,21 +170,30 @@ extension CommunityViewModel {
         .disposed(by: disposeBag)
     }
     
-    private func fetchCertification() {
-        Observable.combineLatest(selectedCategory.asObservable(),
+    private func fetchCertification(isReset: Bool) {
+        if isReset {
+            self.currentCertificationPage = 0
+            self.isLastCertification = false
+        }
+        Observable.combineLatest(searchText.asObservable(),
                                  certificationSortingType.asObservable())
         .take(1)
         .flatMap {
-            self.usecase.fetchCertificationFeed(id: $0.0,
-                                                page: self.currentCertificationPage,
-                                                sortingType: $0.1).asObservable()
+            self.usecase.searchCertification(tag: $0.0,
+                                             page: self.currentCertificationPage,
+                                             type: $0.1).asObservable()
                 .catch { error in
                     return Observable.empty()
                 }
         }
         .subscribe(onNext: { [weak self] result in
+            guard let result else {
+                self?.certificationFeedList.accept([])
+                return
+            }
             guard let self else { return }
             var newValue = self.certificationFeedList.value
+            if isReset { newValue = [] }
             newValue.append(contentsOf: result.recordList)
             self.certificationFeedList.accept(newValue)
             self.isLastCertification = result.isLast
@@ -188,5 +201,26 @@ extension CommunityViewModel {
             self?.isPaging = false
         })
         .disposed(by: disposeBag)
+    }
+    
+    private func fetchTotalResult() {
+        self.usecase.searchTotalItem(tag: searchText.value).asObservable()
+            .subscribe(onNext: { [weak self] result in
+                guard let result else {
+                    let resultDatasource = [SearchTotalSectionModel.certification(items: [])] + [ SearchTotalSectionModel.fitSite(items: [])]
+                    self?.totalDataSource.onNext(resultDatasource)
+                    return
+                }
+                let recordDataSource = result.recordPreview.recordList.prefix(3)
+                    .map { SearchTotalSectionModel.Item.certification(record: $0) }
+                    
+                let articleDataSource = result.articlePreview.articleList.prefix(3)
+                    .map { SearchTotalSectionModel.Item.fitSite(article: $0) }
+
+                let resultDatasource = [SearchTotalSectionModel.certification(items: recordDataSource)] + [ SearchTotalSectionModel.fitSite(items: articleDataSource)]
+                
+                self?.totalDataSource.onNext(resultDatasource)
+            })
+            .disposed(by: disposeBag)
     }
 }

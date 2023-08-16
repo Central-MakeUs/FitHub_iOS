@@ -40,7 +40,7 @@ final class CertificationCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(_ item: CertificationItem) {
+    func configureCell(_ item: CertificationDTO) {
         
         self.imageView.kf.setImage(with: URL(string: item.pictureUrl ?? ""))
         self.likeCntLabel.text = "\(item.likes)"

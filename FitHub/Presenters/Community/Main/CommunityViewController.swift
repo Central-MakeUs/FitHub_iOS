@@ -13,7 +13,9 @@ final class CommunityViewController: BaseViewController {
     //MARK: - Properties
     private let viewModel: CommunityViewModel
     
-    private let searchBar = FitHubSearchBar()
+    private let searchBar = FitHubSearchBar(frame: .init(x: 0, y: 0, width: 100, height: 44)).then {
+        $0.searchTextField.isEnabled = false
+    }
     private let certificationSortView = SortSwitchView()
     private let fitSiteSortView = SortSwitchView()
     private let contentView = UIView()    
@@ -39,6 +41,7 @@ final class CommunityViewController: BaseViewController {
     }
     
     private let feedScrollView = UIScrollView().then {
+        $0.showsHorizontalScrollIndicator = false
         $0.isPagingEnabled = true
     }
 
@@ -116,6 +119,7 @@ final class CommunityViewController: BaseViewController {
     
     //MARK: - ConfigureNavigation
     override func configureNavigation() {
+        super.configureNavigation()
         let noti = UIBarButtonItem(image: UIImage(named: "Alert")?.withRenderingMode(.alwaysOriginal),
                                    style: .plain, target: nil, action: nil)
         let bookmark = UIBarButtonItem(image: UIImage(named: "BookMark")?.withRenderingMode(.alwaysOriginal),
@@ -173,7 +177,7 @@ final class CommunityViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        self.certificationCollectionView.rx.modelSelected(CertificationItem.self)
+        self.certificationCollectionView.rx.modelSelected(CertificationDTO.self)
             .map { $0.recordId }
             .bind(onNext: { [weak self] recordId in
                 self?.pushCertificationDetail(recordId: recordId)
@@ -219,6 +223,12 @@ final class CommunityViewController: BaseViewController {
                 self?.closeCreateActionSheet()
             })
             .disposed(by: disposeBag)
+        
+        searchBar.rx.tapGesture()
+            .bind(onNext: { [weak self] _ in
+                self?.showSearchVC()
+            })
+            .disposed(by: disposeBag)
     }
     
     private func closeCreateActionSheet() {
@@ -229,6 +239,12 @@ final class CommunityViewController: BaseViewController {
     }
     
     //MARK: - 화면이동
+    private func showSearchVC() {
+        let usecase = SearchUseCase(searchRepository: SearchRepository(service: SearchService()))
+        let searchVC = SearchViewController(viewModel: SearchViewModel(usecase: usecase))
+        self.navigationController?.pushViewController(searchVC, animated: true)
+    }
+    
     private func pushCreateCertificationVC() {
         let usecase = EditCertificationUseCase(repository: EditCertificationRepository(certificationService: CertificationService(),
                                                                                        authService: AuthService()))
@@ -384,19 +400,19 @@ extension CommunityViewController {
     
     private func createCertificationLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4),
-                                              heightDimension: .fractionalHeight(1))
+                                              heightDimension: .fractionalWidth(0.67))
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                               heightDimension: .fractionalHeight(0.45))
+                                               heightDimension: .estimated(0))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
-        group.contentInsets = .init(top: 5, leading: 0, bottom: 0, trailing: 0)
         group.interItemSpacing = .fixed(5)
         
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .none
+        section.interGroupSpacing = 5
         
         return UICollectionViewCompositionalLayout(section: section)
     }
@@ -480,15 +496,15 @@ extension CommunityViewController {
             })
             .disposed(by: disposeBag)
         
-        topTabBarCollectionView.rx.didScroll
+        feedScrollView.rx.didScroll
             .bind(onNext: { [weak self] in
                 guard let self else { return }
-                let targetIndex = Int(topTabBarCollectionView.contentOffset.x/self.view.frame.width)
+                let targetIndex = Int(feedScrollView.contentOffset.x/self.view.frame.width)
                 let indexPath = IndexPath(item: targetIndex, section: 0)
                 guard let cell = topTabBarCollectionView.cellForItem(at: indexPath) as? TopTabBarItemCell else { return }
                 
                 indicatorView.snp.remakeConstraints {
-                    $0.centerX.equalTo(self.view.frame.width/4 + self.topTabBarCollectionView.contentOffset.x/2)
+                    $0.centerX.equalTo(self.view.frame.width/4 + self.feedScrollView.contentOffset.x/2)
                     $0.width.equalTo(cell.getTitleFrameWidth())
                     $0.height.equalTo(3)
                     $0.centerY.equalTo(self.indicatorUnderLineView)
@@ -498,10 +514,10 @@ extension CommunityViewController {
                     self.view.layoutIfNeeded()
                 }
                 
-                if topTabBarCollectionView.contentOffset.x == self.view.frame.width {
-                    self.viewModel.communityType.onNext(.certification)
-                } else if topTabBarCollectionView.contentOffset.x == 0 {
+                if feedScrollView.contentOffset.x == self.view.frame.width {
                     self.viewModel.communityType.onNext(.fitSite)
+                } else if feedScrollView.contentOffset.x == 0 {
+                    self.viewModel.communityType.onNext(.certification)
                 }
             })
             .disposed(by: disposeBag)
