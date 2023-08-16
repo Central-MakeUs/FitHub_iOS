@@ -9,10 +9,11 @@ import UIKit
 
 final class CategoryCell: UICollectionViewCell {
     static let identifier = "CategoryCell"
+    var isUseSelected = true
     
     override var isSelected: Bool {
         didSet {
-            if isSelected {
+            if isSelected && isUseSelected {
                 self.nameLabel.backgroundColor = .bgSub01
                 self.nameLabel.textColor = .primary
                 self.nameLabel.layer.borderColor = UIColor.primary.cgColor
