@@ -84,8 +84,6 @@ final class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.viewModel.updateHomeInfo()
-        
-        print(KeychainManager.read("accessToken"))
     }
     
     override func setupAttributes() {

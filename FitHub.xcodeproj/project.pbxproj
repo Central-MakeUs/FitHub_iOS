@@ -90,6 +90,10 @@
 		B5B2C3A82A7FE502004FC66C /* TopTabBarItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3A72A7FE502004FC66C /* TopTabBarItemCell.swift */; };
 		B5B2C3AA2A7FEA4F004FC66C /* TopTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3A92A7FEA4F004FC66C /* TopTabBarView.swift */; };
 		B5B2C3AC2A7FED7B004FC66C /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3AB2A7FED7B004FC66C /* String+.swift */; };
+		B5DE49E32A8DA47B0006A46A /* MyPageExerciseCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DE49E22A8DA47B0006A46A /* MyPageExerciseCardView.swift */; };
+		B5ED12702A8E5A61002769BE /* MyPageTabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED126F2A8E5A61002769BE /* MyPageTabItemView.swift */; };
+		B5ED12722A8E7102002769BE /* CardPagingControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED12712A8E7102002769BE /* CardPagingControlView.swift */; };
+		B5ED12752A8E73BB002769BE /* MyPageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED12742A8E73BB002769BE /* MyPageDTO.swift */; };
 		DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB02A67C273001B5672 /* HomeViewController.swift */; };
 		DB002BB42A67C332001B5672 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB32A67C332001B5672 /* CommunityViewController.swift */; };
 		DB002BB82A67C36F001B5672 /* LookUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB72A67C36F001B5672 /* LookUpViewController.swift */; };
@@ -318,6 +322,10 @@
 		B5B2C3A72A7FE502004FC66C /* TopTabBarItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarItemCell.swift; sourceTree = "<group>"; };
 		B5B2C3A92A7FEA4F004FC66C /* TopTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarView.swift; sourceTree = "<group>"; };
 		B5B2C3AB2A7FED7B004FC66C /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		B5DE49E22A8DA47B0006A46A /* MyPageExerciseCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageExerciseCardView.swift; sourceTree = "<group>"; };
+		B5ED126F2A8E5A61002769BE /* MyPageTabItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTabItemView.swift; sourceTree = "<group>"; };
+		B5ED12712A8E7102002769BE /* CardPagingControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPagingControlView.swift; sourceTree = "<group>"; };
+		B5ED12742A8E73BB002769BE /* MyPageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageDTO.swift; sourceTree = "<group>"; };
 		DB002BB02A67C273001B5672 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DB002BB32A67C332001B5672 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		DB002BB72A67C36F001B5672 /* LookUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpViewController.swift; sourceTree = "<group>"; };
@@ -645,6 +653,14 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
+		B5ED12732A8E73AA002769BE /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				B5ED12742A8E73BB002769BE /* MyPageDTO.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
 		DB002BAF2A67C262001B5672 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -679,6 +695,9 @@
 			isa = PBXGroup;
 			children = (
 				DB002BBA2A67C3C7001B5672 /* MyPageViewController.swift */,
+				B5DE49E22A8DA47B0006A46A /* MyPageExerciseCardView.swift */,
+				B5ED12712A8E7102002769BE /* CardPagingControlView.swift */,
+				B5ED126F2A8E5A61002769BE /* MyPageTabItemView.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -1072,6 +1091,7 @@
 		DBF125EA2A5EA0DA004DA4B9 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				B5ED12732A8E73AA002769BE /* MyPage */,
 				B5705CF32A8B86BD00408233 /* Search */,
 				DB5DAB462A7BF9C6009AA427 /* Home */,
 				DB57124E2A72ACC400DCAD9C /* Community */,
@@ -1516,6 +1536,7 @@
 				B5705C8A2A87788B00408233 /* CertifiactionDetailRepository.swift in Sources */,
 				DB7559DF2A548BC000B88B96 /* ProfileSettingViewController.swift in Sources */,
 				B5705CB32A8943A600408233 /* FitSiteDetailDTO.swift in Sources */,
+				B5DE49E32A8DA47B0006A46A /* MyPageExerciseCardView.swift in Sources */,
 				B5705CC52A894D3A00408233 /* FitSiteDetailSectionModel.swift in Sources */,
 				DB5DAB452A7BF6C2009AA427 /* HomeService.swift in Sources */,
 				B5B2C39E2A7DE8A1004FC66C /* RegistInfoRepository.swift in Sources */,
@@ -1602,6 +1623,7 @@
 				B5705CD92A8AA42600408233 /* BookMarkDTO.swift in Sources */,
 				DB0D220A2A7698D200ABF6A2 /* SportHeaderView.swift in Sources */,
 				B5705CA22A87F48100408233 /* LikeCommentDTO.swift in Sources */,
+				B5ED12722A8E7102002769BE /* CardPagingControlView.swift in Sources */,
 				B588B7E02A85405B0031C723 /* EditFitSiteSectionModel.swift in Sources */,
 				B5705C972A87CB9000408233 /* CommentInputView.swift in Sources */,
 				DB0D22002A73F95100ABF6A2 /* ContentCell.swift in Sources */,
@@ -1618,6 +1640,7 @@
 				DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */,
 				B5705C8E2A8779C100408233 /* CategoryInfoDTO.swift in Sources */,
 				DB6D93E42A4EDCE20011F9BC /* PasswordSettingViewController.swift in Sources */,
+				B5ED12702A8E5A61002769BE /* MyPageTabItemView.swift in Sources */,
 				B588B7D72A828BD00031C723 /* FitSiteCell.swift in Sources */,
 				DB5712502A72ACDB00DCAD9C /* CertificationFeedDTO.swift in Sources */,
 				DBF125E52A5E8DFB004DA4B9 /* NickNameTextFieldView.swift in Sources */,
@@ -1680,6 +1703,7 @@
 				B5705CD32A8A933500408233 /* ReportCertificationDTO.swift in Sources */,
 				DBF125E72A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift in Sources */,
 				B5705CEA2A8B661E00408233 /* BookMarkDefaultView.swift in Sources */,
+				B5ED12752A8E73BB002769BE /* MyPageDTO.swift in Sources */,
 				DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */,
 				B5705CCF2A8A92BA00408233 /* DeleteCertificationDTO.swift in Sources */,
 				DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */,
