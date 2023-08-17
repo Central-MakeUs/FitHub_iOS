@@ -78,7 +78,6 @@ final class CertifyCardView: UIView {
         $0.backgroundColor = .bgSub02
     }
 
-    //TODO: Model 받아서 뷰 데이터 입력
     override init(frame: CGRect) {
         super.init(frame: frame)
         
