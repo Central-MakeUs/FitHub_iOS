@@ -9,8 +9,7 @@ import UIKit
 
 final class CardPagingControlView: UIView {
     private let scrollView = UIScrollView().then {
-        $0.isScrollEnabled = false
-        $0.isPagingEnabled = false
+        $0.isPagingEnabled = true
         $0.showsHorizontalScrollIndicator = false
     }
     
@@ -35,7 +34,7 @@ final class CardPagingControlView: UIView {
         
         self.pageControl.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.top.equalTo(scrollView.snp.bottom)
         }
     }
     
@@ -50,6 +49,7 @@ final class CardPagingControlView: UIView {
             _ = MyPageExerciseCardView().then {
                 if index == 0 { $0.titleLabel.text = "메인 운동" }
                 $0.configureInfo(items[index])
+
                 let xPosition = width * CGFloat(index)
                 $0.frame = CGRect(x: xPosition, y: 0, width: width, height: 122)
                 

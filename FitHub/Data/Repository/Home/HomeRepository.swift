@@ -18,10 +18,10 @@ protocol HomeRepositoryInterface {
 
 final class HomeRepository: HomeRepositoryInterface {
     private let homeService: HomeService
-    private let authService: AuthService
+    private let authService: UserService
     
     init(homeService: HomeService,
-         authService: AuthService) {
+         authService: UserService) {
         self.homeService = homeService
         self.authService = authService
     }

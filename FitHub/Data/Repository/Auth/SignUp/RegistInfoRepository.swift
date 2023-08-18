@@ -13,9 +13,9 @@ protocol RegistInfoRepositoryInterface {
 }
 
 class RegistInfoRepository: RegistInfoRepositoryInterface {
-    private let service: AuthService
+    private let service: UserService
     
-    init(service: AuthService) {
+    init(service: UserService) {
         self.service = service
     }
     

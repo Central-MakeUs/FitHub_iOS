@@ -15,10 +15,10 @@ protocol CreateFitSiteRepositoryInterface {
 }
 
 final class CreateFitSiteRepository: CreateFitSiteRepositoryInterface {
-    private let authService: AuthService
+    private let authService: UserService
     private let articleService: ArticleService
     
-    init(authService: AuthService,
+    init(authService: UserService,
          articleService: ArticleService) {
         self.authService = authService
         self.articleService = articleService

@@ -125,7 +125,7 @@ final class StandardAlertController: UIViewController{
         }
         
         self.actionStackView.snp.makeConstraints {
-            $0.height.equalTo(54)
+            $0.height.equalTo(52)
         }
     }
     

@@ -15,7 +15,7 @@ final class MyPageTabItemView: UIStackView {
     
     private let disclosureImageView = UIImageView(image: UIImage(named: "Disclosure")?.withRenderingMode(.alwaysOriginal))
     
-    var subLabel = UILabel().then {
+    private let subLabel = UILabel().then {
         $0.font = .pretendard(.bodyLarge02)
         $0.textColor = .textSub02
         $0.isHidden = true
@@ -23,6 +23,7 @@ final class MyPageTabItemView: UIStackView {
     
     init(title: String) {
         self.titleLabel.text = title
+        
         super.init(frame: .zero)
         [titleLabel, disclosureImageView, subLabel].forEach {
             self.addSubview($0)
@@ -42,6 +43,12 @@ final class MyPageTabItemView: UIStackView {
             $0.trailing.equalToSuperview().inset(20)
             $0.centerY.equalToSuperview()
         }
+    }
+    
+    func configureLabelMode(text: String) {
+        subLabel.text = text
+        subLabel.isHidden = false
+        disclosureImageView.isHidden = true
     }
     
     required init(coder: NSCoder) {

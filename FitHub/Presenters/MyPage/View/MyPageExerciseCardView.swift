@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import RxSwift
 
 final class MyPageExerciseCardView: UIView {
+    private let disposeBag = DisposeBag()
+    
     let titleLabel = UILabel().then {
         $0.text = "서브 운동"
         $0.textColor = .textDefault
@@ -70,6 +73,8 @@ final class MyPageExerciseCardView: UIView {
         self.layout()
         
         progressView.progress = 0.8
+        
+        setUpBinding()
     }
     
     required init?(coder: NSCoder) {
@@ -86,6 +91,14 @@ final class MyPageExerciseCardView: UIView {
         let grade = "Lv.\(item.level) \(item.gradeName)"
         self.gradeLabel.text = grade
         self.gradeLabel.highlightGradeName(grade: item.gradeName, highlightText: grade)
+    }
+    
+    private func setUpBinding() {
+        changeMainExerciseButton.rx.tap
+            .subscribe(onNext: { 
+                NotificationCenter.default.post(name: .tapChangeMainExercise, object: nil)
+            })
+            .disposed(by: disposeBag)
     }
 
     private func addSubView() {
