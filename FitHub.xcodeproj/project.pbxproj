@@ -94,6 +94,15 @@
 		B5ED12702A8E5A61002769BE /* MyPageTabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED126F2A8E5A61002769BE /* MyPageTabItemView.swift */; };
 		B5ED12722A8E7102002769BE /* CardPagingControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED12712A8E7102002769BE /* CardPagingControlView.swift */; };
 		B5ED12752A8E73BB002769BE /* MyPageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED12742A8E73BB002769BE /* MyPageDTO.swift */; };
+		B5ED12782A8E7B27002769BE /* MyPageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED12772A8E7B27002769BE /* MyPageRepository.swift */; };
+		B5ED127B2A8E7BDB002769BE /* MyPageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED127A2A8E7BDB002769BE /* MyPageUseCase.swift */; };
+		B5ED127D2A8E7C77002769BE /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED127C2A8E7C77002769BE /* MyPageViewModel.swift */; };
+		B5ED12802A8EDBE7002769BE /* ChangeProfileDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED127F2A8EDBE7002769BE /* ChangeProfileDTO.swift */; };
+		B5ED12822A8EDC17002769BE /* DefaultProfileDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED12812A8EDC17002769BE /* DefaultProfileDTO.swift */; };
+		B5ED12842A8EDCB3002769BE /* ChnageMaineExerciseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED12832A8EDCB3002769BE /* ChnageMaineExerciseDTO.swift */; };
+		B5ED13072A8F7798002769BE /* MainExerciseChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED13062A8F7798002769BE /* MainExerciseChangeViewController.swift */; };
+		B5ED13092A8F7DC0002769BE /* CurrentExerciseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED13082A8F7DC0002769BE /* CurrentExerciseDTO.swift */; };
+		B5ED130E2A8FE5A7002769BE /* PrivacyInfoSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED130D2A8FE5A7002769BE /* PrivacyInfoSettingViewController.swift */; };
 		DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB02A67C273001B5672 /* HomeViewController.swift */; };
 		DB002BB42A67C332001B5672 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB32A67C332001B5672 /* CommunityViewController.swift */; };
 		DB002BB82A67C36F001B5672 /* LookUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB72A67C36F001B5672 /* LookUpViewController.swift */; };
@@ -163,7 +172,7 @@
 		DB6D93DE2A4E7E340011F9BC /* RegistInfoInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93DD2A4E7E340011F9BC /* RegistInfoInputViewController.swift */; };
 		DB6D93E22A4EC8C10011F9BC /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93E12A4EC8C10011F9BC /* PhoneVerificationViewController.swift */; };
 		DB6D93E42A4EDCE20011F9BC /* PasswordSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D93E32A4EDCE20011F9BC /* PasswordSettingViewController.swift */; };
-		DB71348D2A5BDBF90006EAAB /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB71348C2A5BDBF90006EAAB /* AuthService.swift */; };
+		DB71348D2A5BDBF90006EAAB /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB71348C2A5BDBF90006EAAB /* UserService.swift */; };
 		DB7134912A5BF46C0006EAAB /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7134902A5BF46C0006EAAB /* AuthError.swift */; };
 		DB746F732A71308400FBA8D4 /* RegistCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB746F722A71308400FBA8D4 /* RegistCompletionViewController.swift */; };
 		DB7559DF2A548BC000B88B96 /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7559DE2A548BC000B88B96 /* ProfileSettingViewController.swift */; };
@@ -326,6 +335,15 @@
 		B5ED126F2A8E5A61002769BE /* MyPageTabItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTabItemView.swift; sourceTree = "<group>"; };
 		B5ED12712A8E7102002769BE /* CardPagingControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPagingControlView.swift; sourceTree = "<group>"; };
 		B5ED12742A8E73BB002769BE /* MyPageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageDTO.swift; sourceTree = "<group>"; };
+		B5ED12772A8E7B27002769BE /* MyPageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageRepository.swift; sourceTree = "<group>"; };
+		B5ED127A2A8E7BDB002769BE /* MyPageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageUseCase.swift; sourceTree = "<group>"; };
+		B5ED127C2A8E7C77002769BE /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
+		B5ED127F2A8EDBE7002769BE /* ChangeProfileDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileDTO.swift; sourceTree = "<group>"; };
+		B5ED12812A8EDC17002769BE /* DefaultProfileDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultProfileDTO.swift; sourceTree = "<group>"; };
+		B5ED12832A8EDCB3002769BE /* ChnageMaineExerciseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChnageMaineExerciseDTO.swift; sourceTree = "<group>"; };
+		B5ED13062A8F7798002769BE /* MainExerciseChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainExerciseChangeViewController.swift; sourceTree = "<group>"; };
+		B5ED13082A8F7DC0002769BE /* CurrentExerciseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentExerciseDTO.swift; sourceTree = "<group>"; };
+		B5ED130D2A8FE5A7002769BE /* PrivacyInfoSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyInfoSettingViewController.swift; sourceTree = "<group>"; };
 		DB002BB02A67C273001B5672 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DB002BB32A67C332001B5672 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		DB002BB72A67C36F001B5672 /* LookUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpViewController.swift; sourceTree = "<group>"; };
@@ -395,7 +413,7 @@
 		DB6D93DD2A4E7E340011F9BC /* RegistInfoInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistInfoInputViewController.swift; sourceTree = "<group>"; };
 		DB6D93E12A4EC8C10011F9BC /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
 		DB6D93E32A4EDCE20011F9BC /* PasswordSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingViewController.swift; sourceTree = "<group>"; };
-		DB71348C2A5BDBF90006EAAB /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		DB71348C2A5BDBF90006EAAB /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		DB7134902A5BF46C0006EAAB /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		DB746F722A71308400FBA8D4 /* RegistCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCompletionViewController.swift; sourceTree = "<group>"; };
 		DB7559DE2A548BC000B88B96 /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
@@ -657,8 +675,38 @@
 			isa = PBXGroup;
 			children = (
 				B5ED12742A8E73BB002769BE /* MyPageDTO.swift */,
+				B5ED127F2A8EDBE7002769BE /* ChangeProfileDTO.swift */,
+				B5ED12812A8EDC17002769BE /* DefaultProfileDTO.swift */,
+				B5ED12832A8EDCB3002769BE /* ChnageMaineExerciseDTO.swift */,
+				B5ED13082A8F7DC0002769BE /* CurrentExerciseDTO.swift */,
 			);
 			path = MyPage;
+			sourceTree = "<group>";
+		};
+		B5ED12762A8E7B18002769BE /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				B5ED12772A8E7B27002769BE /* MyPageRepository.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		B5ED12792A8E7BCD002769BE /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				B5ED127A2A8E7BDB002769BE /* MyPageUseCase.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		B5ED127E2A8E7C8D002769BE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5ED12712A8E7102002769BE /* CardPagingControlView.swift */,
+				B5DE49E22A8DA47B0006A46A /* MyPageExerciseCardView.swift */,
+				B5ED126F2A8E5A61002769BE /* MyPageTabItemView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		DB002BAF2A67C262001B5672 /* Home */ = {
@@ -694,10 +742,11 @@
 		DB002BB92A67C3BA001B5672 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				B5ED127E2A8E7C8D002769BE /* View */,
 				DB002BBA2A67C3C7001B5672 /* MyPageViewController.swift */,
-				B5DE49E22A8DA47B0006A46A /* MyPageExerciseCardView.swift */,
-				B5ED12712A8E7102002769BE /* CardPagingControlView.swift */,
-				B5ED126F2A8E5A61002769BE /* MyPageTabItemView.swift */,
+				B5ED13062A8F7798002769BE /* MainExerciseChangeViewController.swift */,
+				B5ED127C2A8E7C77002769BE /* MyPageViewModel.swift */,
+				B5ED130D2A8FE5A7002769BE /* PrivacyInfoSettingViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -1104,6 +1153,7 @@
 		DBF125EB2A5EB5E9004DA4B9 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				B5ED12762A8E7B18002769BE /* MyPage */,
 				DB5DAB412A7BF643009AA427 /* Home */,
 				DB8CD7202A6E16EA004735C8 /* Community */,
 				DB8CD6FC2A6D0B5C004735C8 /* Auth */,
@@ -1301,6 +1351,7 @@
 		DBFF259E2A5B990200CF6DD4 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				B5ED12792A8E7BCD002769BE /* MyPage */,
 				DB5DAB3E2A7BF326009AA427 /* Home */,
 				DB8CD71D2A6E163C004735C8 /* Community */,
 				DBF125EE2A600B04004DA4B9 /* Auth */,
@@ -1369,7 +1420,7 @@
 		DBFFDA202A47F0EF0008C2B5 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				DB71348C2A5BDBF90006EAAB /* AuthService.swift */,
+				DB71348C2A5BDBF90006EAAB /* UserService.swift */,
 				DB57124A2A729BC200DCAD9C /* CertificationService.swift */,
 				DB5DAB442A7BF6C2009AA427 /* HomeService.swift */,
 				B588B7DA2A83AD710031C723 /* ArticleService.swift */,
@@ -1529,6 +1580,7 @@
 				DB002BB42A67C332001B5672 /* CommunityViewController.swift in Sources */,
 				B5705CC72A894D9B00408233 /* FitSiteDetailViewController.swift in Sources */,
 				DB55B6C32A6B9B55006FEA7F /* BaseResponse.swift in Sources */,
+				B5ED13092A8F7DC0002769BE /* CurrentExerciseDTO.swift in Sources */,
 				DB57124B2A729BC200DCAD9C /* CertificationService.swift in Sources */,
 				DBFFDA392A497A460008C2B5 /* PhoneAuthViewController.swift in Sources */,
 				B5705C902A877A2900408233 /* UserInfoDTO.swift in Sources */,
@@ -1536,7 +1588,9 @@
 				B5705C8A2A87788B00408233 /* CertifiactionDetailRepository.swift in Sources */,
 				DB7559DF2A548BC000B88B96 /* ProfileSettingViewController.swift in Sources */,
 				B5705CB32A8943A600408233 /* FitSiteDetailDTO.swift in Sources */,
+				B5ED12822A8EDC17002769BE /* DefaultProfileDTO.swift in Sources */,
 				B5DE49E32A8DA47B0006A46A /* MyPageExerciseCardView.swift in Sources */,
+				B5ED12782A8E7B27002769BE /* MyPageRepository.swift in Sources */,
 				B5705CC52A894D3A00408233 /* FitSiteDetailSectionModel.swift in Sources */,
 				DB5DAB452A7BF6C2009AA427 /* HomeService.swift in Sources */,
 				B5B2C39E2A7DE8A1004FC66C /* RegistInfoRepository.swift in Sources */,
@@ -1548,7 +1602,7 @@
 				B5705CF92A8B90FD00408233 /* SearchRepository.swift in Sources */,
 				DB5712492A729B4000DCAD9C /* EditCertificationRepository.swift in Sources */,
 				DB5DAB432A7BF65B009AA427 /* HomeRepository.swift in Sources */,
-				DB71348D2A5BDBF90006EAAB /* AuthService.swift in Sources */,
+				DB71348D2A5BDBF90006EAAB /* UserService.swift in Sources */,
 				DBFFDA3B2A4983F90008C2B5 /* BaseViewController.swift in Sources */,
 				DB8CD7252A6E58A1004735C8 /* CommunityType.swift in Sources */,
 				B5705C952A87B07700408233 /* CertificationDetailCell.swift in Sources */,
@@ -1572,6 +1626,7 @@
 				B5705CB92A89462F00408233 /* DeleteFitSiteDTO.swift in Sources */,
 				B5705C922A87ABA200408233 /* CertificationDetailSectionModel.swift in Sources */,
 				DB002BBB2A67C3C7001B5672 /* MyPageViewController.swift in Sources */,
+				B5ED130E2A8FE5A7002769BE /* PrivacyInfoSettingViewController.swift in Sources */,
 				DB5D22322A5470A800B32485 /* PasswordSettingViewModel.swift in Sources */,
 				DB5712352A723C1500DCAD9C /* AuthManager.swift in Sources */,
 				DB0D22082A7674F700ABF6A2 /* SportCell.swift in Sources */,
@@ -1584,7 +1639,9 @@
 				B5705CB12A89432B00408233 /* FitSiteFeedDTO.swift in Sources */,
 				DB51D2592A4C2719002415B0 /* AgreementModel.swift in Sources */,
 				B5B2C3A62A7FD172004FC66C /* CertificationView.swift in Sources */,
+				B5ED13072A8F7798002769BE /* MainExerciseChangeViewController.swift in Sources */,
 				B5705C7B2A86790100408233 /* CreateFitSiteRepository.swift in Sources */,
+				B5ED127B2A8E7BDB002769BE /* MyPageUseCase.swift in Sources */,
 				B5705CF72A8B879300408233 /* SearchTotalDTO.swift in Sources */,
 				B5705C832A87776800408233 /* CertificationDetailViewController.swift in Sources */,
 				B588B7DB2A83AD710031C723 /* ArticleService.swift in Sources */,
@@ -1597,6 +1654,7 @@
 				B5B2C3A82A7FE502004FC66C /* TopTabBarItemCell.swift in Sources */,
 				B5705CE62A8B506D00408233 /* BookMarkViewModel.swift in Sources */,
 				DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */,
+				B5ED12802A8EDBE7002769BE /* ChangeProfileDTO.swift in Sources */,
 				DB5712422A7295E400DCAD9C /* EditCertifiactionViewController.swift in Sources */,
 				B5705C772A866AC600408233 /* EditFitSiteModel.swift in Sources */,
 				DB8CD7192A6E0B7D004735C8 /* CommunityViewModel.swift in Sources */,
@@ -1648,6 +1706,7 @@
 				DB0D22132A76DAF600ABF6A2 /* CreateCertificationDTO.swift in Sources */,
 				DB51D2572A4BB8B5002415B0 /* AgreementViewModel.swift in Sources */,
 				DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */,
+				B5ED127D2A8E7C77002769BE /* MyPageViewModel.swift in Sources */,
 				DB57123A2A72590B00DCAD9C /* OAuthRegistInputViewModel.swift in Sources */,
 				B5705CEC2A8B735F00408233 /* FitSiteScrapDTO.swift in Sources */,
 				DB57123C2A7259B700DCAD9C /* OAuthRegistInputUseCase.swift in Sources */,
@@ -1694,6 +1753,7 @@
 				DB8CD7272A6E5A27004735C8 /* OrderType.swift in Sources */,
 				DBFFDA352A492A4E0008C2B5 /* OAuthLoginViewModel.swift in Sources */,
 				DB97F8382A52B2F2009C09A1 /* StandardAlertController.swift in Sources */,
+				B5ED12842A8EDCB3002769BE /* ChnageMaineExerciseDTO.swift in Sources */,
 				DB6CC3F32A70E59700C4C2BC /* RegistResponseDTO.swift in Sources */,
 				DBDBA30E2A64EC8200F1CDA5 /* NickNameDTO.swift in Sources */,
 				DB002BB82A67C36F001B5672 /* LookUpViewController.swift in Sources */,

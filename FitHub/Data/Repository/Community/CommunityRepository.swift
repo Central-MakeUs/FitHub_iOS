@@ -15,11 +15,11 @@ protocol CommunityRepositoryInterface {
 }
 
 final class CommunityRepository: CommunityRepositoryInterface {
-    private let authService: AuthService
+    private let authService: UserService
     private let certificationService: CertificationService
     private let articleService: ArticleService
     
-    init(_ authService: AuthService,
+    init(_ authService: UserService,
          certificationService: CertificationService,
          articleService: ArticleService) {
         self.authService = authService

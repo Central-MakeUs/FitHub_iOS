@@ -13,9 +13,9 @@ protocol FindPWRepositoryInterface {
 }
 
 final class FindPWRepository: FindPWRepositoryInterface {
-    private let service: AuthService
+    private let service: UserService
     
-    init(_ service: AuthService) {
+    init(_ service: UserService) {
         self.service = service
     }
     

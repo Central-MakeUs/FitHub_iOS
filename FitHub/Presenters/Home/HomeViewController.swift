@@ -104,8 +104,8 @@ final class HomeViewController: BaseViewController {
         bookmark.rx.tap
             .bind(onNext: { [weak self] in
                 let usecase = BookMarkUseCase(homeRepository: HomeRepository(homeService: HomeService(),
-                                                                             authService: AuthService()),
-                                              communityRepository: CommunityRepository(AuthService(),
+                                                                             authService: UserService()),
+                                              communityRepository: CommunityRepository(UserService(),
                                                                                        certificationService: CertificationService(), articleService: ArticleService()))
                 let bookMarkVC = BookMarkViewController(viewModel: BookMarkViewModel(usecase: usecase))
                 
@@ -240,7 +240,7 @@ extension HomeViewController {
     private func addNotificationCenter() {
         NotificationCenter.default.rx.notification(.presentAlert)
             .subscribe(onNext: { [weak self] notification in
-                let authRepository = OAuthLoginRepository(AuthService())
+                let authRepository = OAuthLoginRepository(UserService())
                 let authVC = UINavigationController(rootViewController: OAuthLoginViewController(
                     OAuthLoginViewModel(OAuthLoginUseCase(authRepository))))
                 authVC.modalPresentationStyle = .fullScreen

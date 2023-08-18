@@ -5,11 +5,12 @@
 //  Created by 신상우 on 2023/07/10.
 //
 
-import Foundation
+import UIKit
 import Alamofire
 import RxSwift
 
-class AuthService {
+
+class UserService {
     //MARK: - Login
     func signInAppleLogin(_ token: String)->Single<OAuthLoginDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
@@ -330,6 +331,129 @@ class AuthService {
                 }
             return Disposables.create()
         }
+    }
+    
+    // MARK: - MyPage
+    func fetchMyPage()-> Single<MyPageDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/my-page"
+
+        return Single<MyPageDTO>.create { emitter in
+            AF.request(urlString, interceptor: AuthManager())
+                .responseDecodable(of: BaseResponse<MyPageDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            emitter(.success(result))
+                        } else {
+                            emitter(.failure(AuthError.serverError))
+                        }
+                    case .failure(let error):
+                        emitter(.failure(error))
+                    }
+                    
+                }
+            return Disposables.create()
+        }
+    }
+    
+    func changeProfile(imageData: Data)-> Single<ChangeProfileDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/my-page/profile"
+        guard let accessToken = KeychainManager.read("accessToken") else { return Single.error(AuthError.invalidURL) }
         
+        var headers: HTTPHeaders = ["Content-Type" : "multipart/form-data"]
+        headers.add(name: "Authorization", value: "Bearer " + accessToken)
+        
+        return Single<ChangeProfileDTO>.create { emitter in
+            AF.upload(multipartFormData: { multipartFormData in
+                multipartFormData.append(imageData, withName: "newProfile", fileName: "\(imageData).jpeg", mimeType: "image/jpeg")
+            }, to: urlString, method: .patch, headers: headers)
+            .responseDecodable(of: BaseResponse<ChangeProfileDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        guard let result = response.result else { return }
+                        emitter(.success(result))
+                    } else {
+                        print(response.code)
+                        print(response.message)
+                        emitter(.failure(AuthError.serverError))
+                    }
+                case .failure(let error):
+                    print(error)
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func setDefaultProfile()-> Single<Bool> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/my-page/profile/default"
+
+        return Single<Bool>.create { emitter in
+            AF.request(urlString, method: .patch, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<DefaultProfileDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        emitter(.success(true))
+                    } else {
+                        emitter(.failure(AuthError.serverError))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func changeMainExercise(categoryId: Int)-> Single<Bool> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/my-page/main-exercise/\(categoryId)"
+
+        return Single<Bool>.create { emitter in
+            AF.request(urlString, method: .patch, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<ChangeMaineExerciseDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        emitter(.success(true))
+                    } else {
+                        emitter(.success(false))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func getCurrentMainExercise()-> Single<CurrentExerciseDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/main-exercise"
+
+        return Single<CurrentExerciseDTO>.create { emitter in
+            AF.request(urlString, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<CurrentExerciseDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        guard let result = response.result else { return }
+                        emitter(.success(result))
+                    } else {
+                        emitter(.failure(AuthError.serverError))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
     }
 }

@@ -132,8 +132,8 @@ final class CommunityViewController: BaseViewController {
         bookmark.rx.tap
             .bind(onNext: { [weak self] in
                 let usecase = BookMarkUseCase(homeRepository: HomeRepository(homeService: HomeService(),
-                                                                             authService: AuthService()),
-                                              communityRepository: CommunityRepository(AuthService(),
+                                                                             authService: UserService()),
+                                              communityRepository: CommunityRepository(UserService(),
                                                                                        certificationService: CertificationService(), articleService: ArticleService()))
                 let bookMarkVC = BookMarkViewController(viewModel: BookMarkViewModel(usecase: usecase))
                 
@@ -247,13 +247,13 @@ final class CommunityViewController: BaseViewController {
     
     private func pushCreateCertificationVC() {
         let usecase = EditCertificationUseCase(repository: EditCertificationRepository(certificationService: CertificationService(),
-                                                                                       authService: AuthService()))
+                                                                                       authService: UserService()))
         let editCertificationVC = EditCertificationViewController(EditCertificationViewModel(usecase: usecase))
         self.navigationController?.pushViewController(editCertificationVC, animated: true)
     }
     
     private func pushCreateFitSiteVC() {
-        let usecase = CreateFitSiteUseCase(repository: CreateFitSiteRepository(authService: AuthService(),
+        let usecase = CreateFitSiteUseCase(repository: CreateFitSiteRepository(authService: UserService(),
                                                                                articleService: ArticleService()))
         let editFitSiteVC = EditFitSiteViewController(EditFitSiteViewModel(usecase: usecase))
         self.navigationController?.pushViewController(editFitSiteVC, animated: true)
