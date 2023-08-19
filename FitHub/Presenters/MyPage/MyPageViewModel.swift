@@ -75,6 +75,24 @@ final class MyPageViewModel {
         return usecase.changeMainExercise(categoryId: newCategoryId)
     }
     
+    func fetchPrivacyInfo() {
+        usecase.fetchPrivacyInfo()
+            .subscribe(onSuccess: { [weak self] info in
+                self?.privacyInfo.onNext(info)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func quitAuth() {
+        usecase.quitAuth()
+            .subscribe(onSuccess: { [weak self] isSuccess in
+                self?.quitHandler.onNext(isSuccess)
+            }, onFailure: { [weak self] error in
+                self?.errorHandler.onNext(error)
+            })
+            .disposed(by: disposeBag)
+    }
+    
     // MARK: - Output
     let errorHandler = PublishSubject<Error>()
     let myPageInfo = PublishSubject<MyPageDTO>()
@@ -85,4 +103,7 @@ final class MyPageViewModel {
     let newCategoryId = BehaviorRelay<Int?>(value: nil)
     
     let changeButtonEnable = BehaviorSubject<Bool>(value: false)
+    
+    let privacyInfo = PublishSubject<PrivacyInfoDTO>()
+    let quitHandler = PublishSubject<Bool>()
 }

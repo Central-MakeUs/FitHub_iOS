@@ -1,34 +1,33 @@
 //
-//  ResetPasswordUseCase.swift
+//  ResetPWUseCase.swift
 //  FitHub
 //
-//  Created by 신상우 on 2023/07/27.
+//  Created by iOS신상우 on 2023/08/19.
 //
 
 import Foundation
 import RxSwift
 
-protocol ResetPasswordUseCaseProtocol {
-    var userInfo: AuthUserInfo { get set }
-    
+protocol ResetPWUseCaseProtocol {
     func verifyPassword(_ password: String) -> UserInfoStatus
     func verifyPasswordVerification(_ passwordVerification: String, _ password: String) -> UserInfoStatus
-    
-    func changePassword() -> Single<Bool>
+    func checkPassword(password: String) -> Single<Bool>
+    func changePassword(newPassword: String) -> Single<Bool>
 }
 
-final class ResetPasswordUseCase: ResetPasswordUseCaseProtocol {
-    private let repository: ResetPasswordRepositoryInterface
-    var userInfo: AuthUserInfo
+final class ResetPWUseCase: ResetPWUseCaseProtocol {
+    private let mypageRepository: MyPageRepositoryInterface
     
-    init(_ repository: ResetPasswordRepositoryInterface,
-         userInfo: AuthUserInfo) {
-        self.userInfo = userInfo
-        self.repository = repository
+    init(mypageRepository: MyPageRepositoryInterface) {
+        self.mypageRepository = mypageRepository
     }
     
-    func changePassword() -> Single<Bool> {
-        return self.repository.resetPassword(userInfo)
+    func checkPassword(password: String) -> Single<Bool> {
+        return mypageRepository.checkPassword(password: password)
+    }
+    
+    func changePassword(newPassword: String) -> Single<Bool> {
+        return mypageRepository.changePassword(newPassword: newPassword)
     }
     
     func verifyPassword(_ password: String) -> UserInfoStatus {
@@ -50,7 +49,7 @@ final class ResetPasswordUseCase: ResetPasswordUseCaseProtocol {
     }
     
     func verifyPasswordVerification(_ passwordVerification: String, _ password: String) -> UserInfoStatus {
-        if passwordVerification.count == 0 {
+        if passwordVerification.isEmpty {
             return .ok
         }
         

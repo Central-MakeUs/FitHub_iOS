@@ -7,6 +7,6 @@
 
 import Foundation
 
-class ChangePasswordDTO: Decodable {
+struct ChangePasswordDTO: Decodable {
     let newPass: String
 }

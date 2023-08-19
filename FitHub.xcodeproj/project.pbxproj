@@ -103,6 +103,12 @@
 		B5ED13072A8F7798002769BE /* MainExerciseChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED13062A8F7798002769BE /* MainExerciseChangeViewController.swift */; };
 		B5ED13092A8F7DC0002769BE /* CurrentExerciseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED13082A8F7DC0002769BE /* CurrentExerciseDTO.swift */; };
 		B5ED130E2A8FE5A7002769BE /* PrivacyInfoSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED130D2A8FE5A7002769BE /* PrivacyInfoSettingViewController.swift */; };
+		B5ED13102A8FEAEF002769BE /* PrivacyInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED130F2A8FEAEF002769BE /* PrivacyInfoDTO.swift */; };
+		B5ED13122A9085F8002769BE /* QuitDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED13112A9085F8002769BE /* QuitDTO.swift */; };
+		B5ED13172A9092FE002769BE /* ResetPWViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED13162A9092FE002769BE /* ResetPWViewModel.swift */; };
+		B5ED13192A909367002769BE /* ResetPWUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED13182A909367002769BE /* ResetPWUseCase.swift */; };
+		B5ED131B2A9096F8002769BE /* PasswordConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED131A2A9096F8002769BE /* PasswordConfirmViewController.swift */; };
+		B5ED131D2A909EE7002769BE /* ResetPWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED131C2A909EE7002769BE /* ResetPWViewController.swift */; };
 		DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB02A67C273001B5672 /* HomeViewController.swift */; };
 		DB002BB42A67C332001B5672 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB32A67C332001B5672 /* CommunityViewController.swift */; };
 		DB002BB82A67C36F001B5672 /* LookUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB72A67C36F001B5672 /* LookUpViewController.swift */; };
@@ -344,6 +350,12 @@
 		B5ED13062A8F7798002769BE /* MainExerciseChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainExerciseChangeViewController.swift; sourceTree = "<group>"; };
 		B5ED13082A8F7DC0002769BE /* CurrentExerciseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentExerciseDTO.swift; sourceTree = "<group>"; };
 		B5ED130D2A8FE5A7002769BE /* PrivacyInfoSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyInfoSettingViewController.swift; sourceTree = "<group>"; };
+		B5ED130F2A8FEAEF002769BE /* PrivacyInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyInfoDTO.swift; sourceTree = "<group>"; };
+		B5ED13112A9085F8002769BE /* QuitDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitDTO.swift; sourceTree = "<group>"; };
+		B5ED13162A9092FE002769BE /* ResetPWViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPWViewModel.swift; sourceTree = "<group>"; };
+		B5ED13182A909367002769BE /* ResetPWUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPWUseCase.swift; sourceTree = "<group>"; };
+		B5ED131A2A9096F8002769BE /* PasswordConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordConfirmViewController.swift; sourceTree = "<group>"; };
+		B5ED131C2A909EE7002769BE /* ResetPWViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPWViewController.swift; sourceTree = "<group>"; };
 		DB002BB02A67C273001B5672 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DB002BB32A67C332001B5672 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		DB002BB72A67C36F001B5672 /* LookUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpViewController.swift; sourceTree = "<group>"; };
@@ -679,6 +691,8 @@
 				B5ED12812A8EDC17002769BE /* DefaultProfileDTO.swift */,
 				B5ED12832A8EDCB3002769BE /* ChnageMaineExerciseDTO.swift */,
 				B5ED13082A8F7DC0002769BE /* CurrentExerciseDTO.swift */,
+				B5ED130F2A8FEAEF002769BE /* PrivacyInfoDTO.swift */,
+				B5ED13112A9085F8002769BE /* QuitDTO.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -695,6 +709,7 @@
 			isa = PBXGroup;
 			children = (
 				B5ED127A2A8E7BDB002769BE /* MyPageUseCase.swift */,
+				B5ED13182A909367002769BE /* ResetPWUseCase.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -707,6 +722,16 @@
 				B5ED126F2A8E5A61002769BE /* MyPageTabItemView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B5ED13152A9092AA002769BE /* ResetPW */ = {
+			isa = PBXGroup;
+			children = (
+				B5ED13162A9092FE002769BE /* ResetPWViewModel.swift */,
+				B5ED131A2A9096F8002769BE /* PasswordConfirmViewController.swift */,
+				B5ED131C2A909EE7002769BE /* ResetPWViewController.swift */,
+			);
+			path = ResetPW;
 			sourceTree = "<group>";
 		};
 		DB002BAF2A67C262001B5672 /* Home */ = {
@@ -742,6 +767,7 @@
 		DB002BB92A67C3BA001B5672 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				B5ED13152A9092AA002769BE /* ResetPW */,
 				B5ED127E2A8E7C8D002769BE /* View */,
 				DB002BBA2A67C3C7001B5672 /* MyPageViewController.swift */,
 				B5ED13062A8F7798002769BE /* MainExerciseChangeViewController.swift */,
@@ -1580,7 +1606,9 @@
 				DB002BB42A67C332001B5672 /* CommunityViewController.swift in Sources */,
 				B5705CC72A894D9B00408233 /* FitSiteDetailViewController.swift in Sources */,
 				DB55B6C32A6B9B55006FEA7F /* BaseResponse.swift in Sources */,
+				B5ED13192A909367002769BE /* ResetPWUseCase.swift in Sources */,
 				B5ED13092A8F7DC0002769BE /* CurrentExerciseDTO.swift in Sources */,
+				B5ED13172A9092FE002769BE /* ResetPWViewModel.swift in Sources */,
 				DB57124B2A729BC200DCAD9C /* CertificationService.swift in Sources */,
 				DBFFDA392A497A460008C2B5 /* PhoneAuthViewController.swift in Sources */,
 				B5705C902A877A2900408233 /* UserInfoDTO.swift in Sources */,
@@ -1588,6 +1616,7 @@
 				B5705C8A2A87788B00408233 /* CertifiactionDetailRepository.swift in Sources */,
 				DB7559DF2A548BC000B88B96 /* ProfileSettingViewController.swift in Sources */,
 				B5705CB32A8943A600408233 /* FitSiteDetailDTO.swift in Sources */,
+				B5ED13122A9085F8002769BE /* QuitDTO.swift in Sources */,
 				B5ED12822A8EDC17002769BE /* DefaultProfileDTO.swift in Sources */,
 				B5DE49E32A8DA47B0006A46A /* MyPageExerciseCardView.swift in Sources */,
 				B5ED12782A8E7B27002769BE /* MyPageRepository.swift in Sources */,
@@ -1665,6 +1694,7 @@
 				B5705CD12A8A930200408233 /* UpdateCertificationDTO.swift in Sources */,
 				B5705CBB2A89466D00408233 /* UpdateFitSiteDTO.swift in Sources */,
 				DB8CD7082A6D0D38004735C8 /* OAuthLoginRepository.swift in Sources */,
+				B5ED13102A8FEAEF002769BE /* PrivacyInfoDTO.swift in Sources */,
 				DB5DAB402A7BF331009AA427 /* HomeUseCase.swift in Sources */,
 				B5B2C3942A7D097E004FC66C /* UILabel+.swift in Sources */,
 				DB7134912A5BF46C0006EAAB /* AuthError.swift in Sources */,
@@ -1771,7 +1801,9 @@
 				DB668AF72A4F041100D702A1 /* ViewModelType.swift in Sources */,
 				B5705CFF2A8B93CE00408233 /* SearchViewModel.swift in Sources */,
 				B5705CF22A8B85D800408233 /* SearchService.swift in Sources */,
+				B5ED131B2A9096F8002769BE /* PasswordConfirmViewController.swift in Sources */,
 				B5705CA02A87F33600408233 /* CreateCommentDTO.swift in Sources */,
+				B5ED131D2A909EE7002769BE /* ResetPWViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

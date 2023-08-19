@@ -15,6 +15,10 @@ protocol MyPageRepositoryInterface {
     func changeMainExercise(categoryId: Int)-> Single<Bool>
     func fetchCategory() -> Single<[CategoryDTO]>
     func getCurrentMainExercise()-> Single<CurrentExerciseDTO>
+    func fetchPrivacyInfo() -> Single<PrivacyInfoDTO>
+    func quitAuth() -> Single<Bool>
+    func checkPassword(password: String) -> Single<Bool>
+    func changePassword(newPassword: String) -> Single<Bool>
 }
 
 final class MyPageRepository: MyPageRepositoryInterface {
@@ -46,5 +50,21 @@ final class MyPageRepository: MyPageRepositoryInterface {
     
     func getCurrentMainExercise()-> Single<CurrentExerciseDTO> {
         return service.getCurrentMainExercise()
+    }
+    
+    func fetchPrivacyInfo() -> Single<PrivacyInfoDTO> {
+        return service.fetchPrivacyInfo()
+    }
+    
+    func quitAuth() -> Single<Bool> {
+        return service.quitAuth()
+    }
+    
+    func checkPassword(password: String) -> Single<Bool> {
+        return service.checkPassword(password: password)
+    }
+    
+    func changePassword(newPassword: String) -> Single<Bool> {
+        return service.changePassword(newPassword: newPassword)
     }
 }

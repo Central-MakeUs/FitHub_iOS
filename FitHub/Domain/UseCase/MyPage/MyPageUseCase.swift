@@ -15,6 +15,8 @@ protocol MyPageUseCaseProtocol {
     func changeMainExercise(categoryId: Int)-> Single<Bool>
     func fetchCategory() -> Single<[CategoryDTO]>
     func getCurrentMainExercise()-> Single<CurrentExerciseDTO>
+    func fetchPrivacyInfo() -> Single<PrivacyInfoDTO>
+    func quitAuth() -> Single<Bool>
 }
 
 final class MyPageUseCase: MyPageUseCaseProtocol {
@@ -46,5 +48,13 @@ final class MyPageUseCase: MyPageUseCaseProtocol {
     
     func getCurrentMainExercise()-> Single<CurrentExerciseDTO> {
         return mypageRepository.getCurrentMainExercise()
+    }
+    
+    func fetchPrivacyInfo() -> Single<PrivacyInfoDTO> {
+        return mypageRepository.fetchPrivacyInfo()
+    }
+    
+    func quitAuth() -> Single<Bool> {
+        return mypageRepository.quitAuth()
     }
 }
