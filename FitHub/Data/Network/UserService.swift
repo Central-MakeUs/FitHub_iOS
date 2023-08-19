@@ -305,7 +305,7 @@ class UserService {
     }
     
     //MARK: - 비밀번호 변경
-    func changePassword(_ registUser: AuthUserInfo)-> Single<Bool> {
+    func resetPassword(_ registUser: AuthUserInfo)-> Single<Bool> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
         let urlString = baseURL + "users/password"
         guard let newPassword = registUser.password,
@@ -446,6 +446,100 @@ class UserService {
                     if response.code == 2000 {
                         guard let result = response.result else { return }
                         emitter(.success(result))
+                    } else {
+                        emitter(.failure(AuthError.serverError))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func fetchPrivacyInfo() -> Single<PrivacyInfoDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "user/my-page/personal-data"
+
+        return Single<PrivacyInfoDTO>.create { emitter in
+            AF.request(urlString, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<PrivacyInfoDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        guard let result = response.result else { return }
+                        emitter(.success(result))
+                    } else {
+                        emitter(.failure(AuthError.serverError))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    /// 회원탈퇴 api
+    func quitAuth() -> Single<Bool> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/quit"
+
+        return Single<Bool>.create { emitter in
+            AF.request(urlString, method: .post, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<QuitDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        emitter(.success(true))
+                    } else {
+                        emitter(.success(false))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func changePassword(newPassword: String) -> Single<Bool> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/my-page/password"
+        let parameter: Parameters = ["newPassword" : newPassword]
+
+        return Single<Bool>.create { emitter in
+            AF.request(urlString, method: .patch, parameters: parameter, encoding: JSONEncoding.default, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<ChangePasswordDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        emitter(.success(true))
+                    } else {
+                        emitter(.success(false))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func checkPassword(password: String) -> Single<Bool> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/check-pass"
+        let parameter: Parameters = ["password" : password]
+
+        return Single<Bool>.create { emitter in
+            AF.request(urlString, method: .post, parameters: parameter, encoding: JSONEncoding.default, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<String>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2022 {
+                        emitter(.success(true))
+                    } else if response.code == 2023{
+                        emitter(.success(false))
                     } else {
                         emitter(.failure(AuthError.serverError))
                     }

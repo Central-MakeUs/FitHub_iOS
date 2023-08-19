@@ -195,6 +195,11 @@ final class MyPageViewController: BaseViewController {
     }
     
     //MARK: - 화면 이동
+    private func showPrivacyInfoVC() {
+        let privacyInfoSettingVC = PrivacyInfoSettingViewController(viewModel: self.viewModel)
+        self.navigationController?.pushViewController(privacyInfoSettingVC, animated: true)
+    }
+    
     private func showChangeMainExerciseVC() {
         let changeMainExerciseVC = MainExerciseChangeViewController(self.viewModel)
         self.navigationController?.pushViewController(changeMainExerciseVC, animated: true)
@@ -328,10 +333,18 @@ extension MyPageViewController {
     private func tapItemBinding() {
         logoutItem.rx.tapGesture()
             .asDriver()
+            .skip(1)
             .drive(onNext: { [weak self] _ in
                 KeychainManager.delete(key: "accessToken")
                 KeychainManager.delete(key: "userId")
                 self?.notiAlert("로그아웃 되었습니다.")
+            })
+            .disposed(by: disposeBag)
+        
+        privacyInfoSetting.rx.tapGesture()
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                self?.showPrivacyInfoVC()
             })
             .disposed(by: disposeBag)
     }
