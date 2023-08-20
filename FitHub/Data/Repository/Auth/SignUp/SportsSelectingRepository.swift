@@ -15,9 +15,9 @@ protocol SportsSelectingRepositoryInterface {
 }
 
 final class SportsSelectingRepository: SportsSelectingRepositoryInterface {
-    private let service: AuthService
+    private let service: UserService
     
-    init(_ service: AuthService) {
+    init(_ service: UserService) {
         self.service = service
     }
     

@@ -134,7 +134,7 @@ final class PhoneVerificationViewController: BaseViewController {
             self.navigationController?.pushViewController(passwordSettingVC, animated: true)
         } else {
             //TODO: 비밀번호 재설정 페이지 이동
-            let usecase = ResetPasswordUseCase(ResetPasswordRepository(service: AuthService()),
+            let usecase = ResetPasswordUseCase(ResetPasswordRepository(service: UserService()),
                                                userInfo: userInfo)
             let passwordResetVC = ResetPasswordViewController(ResetPasswordViewModel(usecase))
             self.navigationController?.pushViewController(passwordResetVC, animated: true)

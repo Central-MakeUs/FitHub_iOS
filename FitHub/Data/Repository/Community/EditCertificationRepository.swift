@@ -15,10 +15,10 @@ protocol EditCertificationRepositoryInterface {
 
 final class EditCertificationRepository: EditCertificationRepositoryInterface {
     private let certificationService: CertificationService
-    private let authService: AuthService
+    private let authService: UserService
     
     init(certificationService: CertificationService,
-         authService: AuthService) {
+         authService: UserService) {
         self.certificationService = certificationService
         self.authService = authService
     }

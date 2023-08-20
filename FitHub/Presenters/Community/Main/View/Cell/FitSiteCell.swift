@@ -12,7 +12,6 @@ final class FitSiteCell: UITableViewCell {
     
     private let profileImageView = UIImageView().then {
         $0.image = UIImage(named: "DefaultProfile")
-        $0.contentMode = .scaleAspectFit
         $0.layer.masksToBounds = true
     }
     
@@ -103,6 +102,7 @@ final class FitSiteCell: UITableViewCell {
         
         addSubViews()
         layout()
+        self.layoutIfNeeded()
     }
     
     required init?(coder: NSCoder) {

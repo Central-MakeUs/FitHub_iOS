@@ -23,4 +23,3 @@ class CertificationDTO: Decodable {
     let createdAt: String
     let isLiked: Bool
 }
-

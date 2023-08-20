@@ -181,4 +181,61 @@ class CertificationService {
             return Disposables.create()
         }
     }
+    
+    func deleteCertifications(recordIdList: [Int])->Single<CertificationDeleteRecordsDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
+    
+        let urlString = baseURL + "records"
+        let parameter: Parameters = ["recordIdList" : recordIdList]
+        
+        return Single<CertificationDeleteRecordsDTO>.create { emitter in
+            AF.request(urlString, method: .patch, parameters: parameter, encoding: JSONEncoding.default, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<CertificationDeleteRecordsDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            emitter(.success(result))
+                        } else {
+                            print(response.code)
+                            print(response.message)
+                            emitter(.failure(AuthError.invalidURL))
+                        }
+                    case .failure(let error):
+                        emitter(.failure(AuthError.serverError))
+                        print(error)
+                    }
+                }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func deleteCertification(recordId: Int)->Single<CertificationDeleteRecordDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
+    
+        let urlString = baseURL + "record/\(recordId)"
+        
+        return Single<CertificationDeleteRecordDTO>.create { emitter in
+            AF.request(urlString, method: .delete, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<CertificationDeleteRecordDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            emitter(.success(result))
+                        } else {
+                            print(response.code)
+                            print(response.message)
+                            emitter(.failure(AuthError.invalidURL))
+                        }
+                    case .failure(let error):
+                        emitter(.failure(AuthError.serverError))
+                        print(error)
+                    }
+                }
+            
+            return Disposables.create()
+        }
+    }
 }

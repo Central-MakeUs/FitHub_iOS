@@ -187,7 +187,7 @@ class ArticleService {
     
     func scrapFitSite(articleId: Int)->Single<FitSiteScrapDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
-        var urlString = baseURL + "articles/\(articleId)/scrap"
+        let urlString = baseURL + "articles/\(articleId)/scrap"
         
         return Single<FitSiteScrapDTO>.create { observer in
             AF.request(urlString, method: .post, interceptor: AuthManager())
@@ -207,6 +207,35 @@ class ArticleService {
                         observer(.failure(AuthError.serverError))
                     }
                 }
+            return Disposables.create()
+        }
+    }
+    
+    func deleteFitSites(articleIdList: [Int])->Single<DeleteFitSitesDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
+    
+        let urlString = baseURL + "articles"
+        let parameter: Parameters = ["articleIdList" : articleIdList]
+        
+        return Single<DeleteFitSitesDTO>.create { emitter in
+            AF.request(urlString, method: .patch, parameters: parameter, encoding: JSONEncoding.default, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<DeleteFitSitesDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            emitter(.success(result))
+                        } else {
+                            print(response.code)
+                            print(response.message)
+                            emitter(.failure(AuthError.invalidURL))
+                        }
+                    case .failure(let error):
+                        emitter(.failure(AuthError.serverError))
+                        print(error)
+                    }
+                }
+            
             return Disposables.create()
         }
     }

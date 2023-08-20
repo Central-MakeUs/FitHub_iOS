@@ -5,11 +5,12 @@
 //  Created by 신상우 on 2023/07/10.
 //
 
-import Foundation
+import UIKit
 import Alamofire
 import RxSwift
 
-class AuthService {
+
+class UserService {
     //MARK: - Login
     func signInAppleLogin(_ token: String)->Single<OAuthLoginDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
@@ -304,7 +305,7 @@ class AuthService {
     }
     
     //MARK: - 비밀번호 변경
-    func changePassword(_ registUser: AuthUserInfo)-> Single<Bool> {
+    func resetPassword(_ registUser: AuthUserInfo)-> Single<Bool> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
         let urlString = baseURL + "users/password"
         guard let newPassword = registUser.password,
@@ -330,6 +331,330 @@ class AuthService {
                 }
             return Disposables.create()
         }
+    }
+    
+    // MARK: - MyPage
+    func fetchMyPage()-> Single<MyPageDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/my-page"
+
+        return Single<MyPageDTO>.create { emitter in
+            AF.request(urlString, interceptor: AuthManager())
+                .responseDecodable(of: BaseResponse<MyPageDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            emitter(.success(result))
+                        } else {
+                            emitter(.failure(AuthError.serverError))
+                        }
+                    case .failure(let error):
+                        emitter(.failure(error))
+                    }
+                    
+                }
+            return Disposables.create()
+        }
+    }
+    
+    func changeProfile(imageData: Data)-> Single<ChangeProfileDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/my-page/profile"
+        guard let accessToken = KeychainManager.read("accessToken") else { return Single.error(AuthError.invalidURL) }
         
+        var headers: HTTPHeaders = ["Content-Type" : "multipart/form-data"]
+        headers.add(name: "Authorization", value: "Bearer " + accessToken)
+        
+        return Single<ChangeProfileDTO>.create { emitter in
+            AF.upload(multipartFormData: { multipartFormData in
+                multipartFormData.append(imageData, withName: "newProfile", fileName: "\(imageData).jpeg", mimeType: "image/jpeg")
+            }, to: urlString, method: .patch, headers: headers)
+            .responseDecodable(of: BaseResponse<ChangeProfileDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        guard let result = response.result else { return }
+                        emitter(.success(result))
+                    } else {
+                        print(response.code)
+                        print(response.message)
+                        emitter(.failure(AuthError.serverError))
+                    }
+                case .failure(let error):
+                    print(error)
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func setDefaultProfile()-> Single<Bool> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/my-page/profile/default"
+
+        return Single<Bool>.create { emitter in
+            AF.request(urlString, method: .patch, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<DefaultProfileDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        emitter(.success(true))
+                    } else {
+                        emitter(.failure(AuthError.serverError))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func changeMainExercise(categoryId: Int)-> Single<Bool> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/my-page/main-exercise/\(categoryId)"
+
+        return Single<Bool>.create { emitter in
+            AF.request(urlString, method: .patch, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<ChangeMaineExerciseDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        emitter(.success(true))
+                    } else {
+                        emitter(.success(false))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func getCurrentMainExercise()-> Single<CurrentExerciseDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/main-exercise"
+
+        return Single<CurrentExerciseDTO>.create { emitter in
+            AF.request(urlString, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<CurrentExerciseDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        guard let result = response.result else { return }
+                        emitter(.success(result))
+                    } else {
+                        emitter(.failure(AuthError.serverError))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func fetchPrivacyInfo() -> Single<PrivacyInfoDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "user/my-page/personal-data"
+
+        return Single<PrivacyInfoDTO>.create { emitter in
+            AF.request(urlString, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<PrivacyInfoDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        guard let result = response.result else { return }
+                        emitter(.success(result))
+                    } else {
+                        emitter(.failure(AuthError.serverError))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    /// 회원탈퇴 api
+    func quitAuth() -> Single<Bool> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/quit"
+
+        return Single<Bool>.create { emitter in
+            AF.request(urlString, method: .post, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<QuitDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        emitter(.success(true))
+                    } else {
+                        emitter(.success(false))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func changePassword(newPassword: String) -> Single<Bool> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/my-page/password"
+        let parameter: Parameters = ["newPassword" : newPassword]
+
+        return Single<Bool>.create { emitter in
+            AF.request(urlString, method: .patch, parameters: parameter, encoding: JSONEncoding.default, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<ChangePasswordDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        emitter(.success(true))
+                    } else {
+                        emitter(.success(false))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func checkPassword(password: String) -> Single<Bool> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/check-pass"
+        let parameter: Parameters = ["password" : password]
+
+        return Single<Bool>.create { emitter in
+            AF.request(urlString, method: .post, parameters: parameter, encoding: JSONEncoding.default, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<String>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2022 {
+                        emitter(.success(true))
+                    } else if response.code == 2023{
+                        emitter(.success(false))
+                    } else {
+                        emitter(.failure(AuthError.serverError))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func fetchCertificationFeed(categoryId: Int, page: Int) -> Single<CertificationFeedDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/records/\(categoryId)"
+        let parameter: Parameters = ["pageIndex" : page]
+
+        return Single<CertificationFeedDTO>.create { emitter in
+            AF.request(urlString, parameters: parameter, encoding: URLEncoding.queryString, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<CertificationFeedDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        guard let result = response.result else { return }
+                        emitter(.success(result))
+                    } else {
+                        emitter(.failure(AuthError.serverError))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func fetchFitSiteFeed(categoryId: Int, page: Int) -> Single<FitSiteFeedDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/articles/\(categoryId)"
+        let parameter: Parameters = ["pageIndex" : page]
+
+        return Single<FitSiteFeedDTO>.create { emitter in
+            AF.request(urlString, parameters: parameter, encoding: URLEncoding.queryString, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<FitSiteFeedDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        guard let result = response.result else { return }
+                        emitter(.success(result))
+                    } else {
+                        emitter(.failure(AuthError.serverError))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func fetchOtherProfileInfo(userId: Int) -> Single<BaseResponse<OtherUserInfoDTO>> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/\(userId)"
+
+        return Single<BaseResponse<OtherUserInfoDTO>>.create { emitter in
+            AF.request(urlString, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<OtherUserInfoDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    emitter(.success(response))
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func fetchOtherUserArticle(userId: Int, categoryId: Int, page: Int) -> Single<FitSiteFeedDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/\(userId)/articles/\(categoryId)"
+        let parameter: Parameters = ["pageIndex" : page]
+        return Single<FitSiteFeedDTO>.create { emitter in
+            AF.request(urlString, parameters: parameter, encoding: URLEncoding.queryString, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<FitSiteFeedDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        guard let result = response.result else { return }
+                        emitter(.success(result))
+                    } else {
+                        emitter(.failure(AuthError.serverError))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func reportUser(userId: Int) -> Single<Int> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/\(userId)/report"
+        
+        return Single<Int>.create { emitter in
+            AF.request(urlString, method: .post, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<ReportUserDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    emitter(.success(response.code))
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
     }
 }

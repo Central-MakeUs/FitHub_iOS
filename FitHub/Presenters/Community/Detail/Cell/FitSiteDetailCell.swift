@@ -128,6 +128,7 @@ final class FitSiteDetailCell: UICollectionViewCell {
     }
     
     func configureCell(item: FitSiteDetailDTO) {
+        self.titleLabel.text = item.title
         self.nameLabel.text = item.userInfo.nickname
         self.sportLabel.text = item.articleCategory.name
         let grade = "Lv.\(item.userInfo.mainExerciseInfo.level) \(item.userInfo.mainExerciseInfo.gradeName)"

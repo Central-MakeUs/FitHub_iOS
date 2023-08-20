@@ -26,7 +26,7 @@ final class ContentCell: UICollectionViewCell {
         $0.textColor = .textSub02
         $0.backgroundColor = .clear
         $0.isScrollEnabled = false
-        $0.text = "오늘 운동은 어땠나요?느낀점을 작성해봐요"
+        $0.text = "오늘 운동은 어땠나요? 느낀점을 작성해봐요"
         $0.font = .pretendard(.bodyMedium01)
     }
     

@@ -79,12 +79,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabBarController.tabBar.tintColor = .white
         
         let homeUsecase = HomeUseCase(repository: HomeRepository(homeService: HomeService(),
-                                                                 authService: AuthService()))
+                                                                 authService: UserService()))
         let homeVC = UINavigationController(rootViewController: HomeViewController(HomeViewModel(usecase: homeUsecase)))
         homeVC.tabBarItem.image = UIImage(named: "HomeIcon")
         homeVC.tabBarItem.title = "홈"
         
-        let communityVCUsecase = CommunityUseCase(CommunityRepository(AuthService(),
+        let communityVCUsecase = CommunityUseCase(CommunityRepository(UserService(),
                                                                       certificationService: CertificationService(),
                                                                       articleService: ArticleService()))
         let communityVC = UINavigationController(rootViewController: CommunityViewController(CommunityViewModel(communityVCUsecase)))
@@ -95,7 +95,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         lookUpVC.tabBarItem.image = UIImage(named: "LookUpIcon")
         lookUpVC.tabBarItem.title = "둘러보기"
         
-        let myPageVC = UINavigationController(rootViewController: MyPageViewController())
+        let myPageUsecase = MyPageUseCase(mypageRepository: MyPageRepository(service: UserService()))
+        let myPageVC = UINavigationController(rootViewController: MyPageViewController(viewModel: MyPageViewModel(usecase: myPageUsecase)))
         myPageVC.tabBarItem.image = UIImage(named: "MyPageIcon")
         myPageVC.tabBarItem.title = "마이핏허브"
         

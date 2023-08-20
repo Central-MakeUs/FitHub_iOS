@@ -79,6 +79,8 @@ final class CommunityViewController: BaseViewController {
         super.init(nibName: nil, bundle: nil)
         self.view.gestureRecognizers = nil
         self.view.backgroundColor = .bgDefault
+        setCertificationDefaultView()
+        setFitSiteDefaultView()
     }
     
     required init?(coder: NSCoder) {
@@ -132,8 +134,8 @@ final class CommunityViewController: BaseViewController {
         bookmark.rx.tap
             .bind(onNext: { [weak self] in
                 let usecase = BookMarkUseCase(homeRepository: HomeRepository(homeService: HomeService(),
-                                                                             authService: AuthService()),
-                                              communityRepository: CommunityRepository(AuthService(),
+                                                                             authService: UserService()),
+                                              communityRepository: CommunityRepository(UserService(),
                                                                                        certificationService: CertificationService(), articleService: ArticleService()))
                 let bookMarkVC = BookMarkViewController(viewModel: BookMarkViewModel(usecase: usecase))
                 
@@ -247,13 +249,13 @@ final class CommunityViewController: BaseViewController {
     
     private func pushCreateCertificationVC() {
         let usecase = EditCertificationUseCase(repository: EditCertificationRepository(certificationService: CertificationService(),
-                                                                                       authService: AuthService()))
+                                                                                       authService: UserService()))
         let editCertificationVC = EditCertificationViewController(EditCertificationViewModel(usecase: usecase))
         self.navigationController?.pushViewController(editCertificationVC, animated: true)
     }
     
     private func pushCreateFitSiteVC() {
-        let usecase = CreateFitSiteUseCase(repository: CreateFitSiteRepository(authService: AuthService(),
+        let usecase = CreateFitSiteUseCase(repository: CreateFitSiteRepository(authService: UserService(),
                                                                                articleService: ArticleService()))
         let editFitSiteVC = EditFitSiteViewController(EditFitSiteViewModel(usecase: usecase))
         self.navigationController?.pushViewController(editFitSiteVC, animated: true)
@@ -261,7 +263,10 @@ final class CommunityViewController: BaseViewController {
     
     private func pushCertificationDetail(recordId: Int) {
         let usecase = CertifiactionDetailUseCase(certificationRepository: CertificationRepository(service: CertificationService()),
-                                                 commentRepository: CommentRepository(service: CommentService()))
+                                                 commentRepository: CommentRepository(service: CommentService()),
+                                                 communityRepostiroy: CommunityRepository(UserService(),
+                                                                                          certificationService: CertificationService(),
+                                                                                          articleService: ArticleService()))
         let certificationDetailVC = CertificationDetailViewController(viewModel: CertificationDetailViewModel(usecase: usecase,
                                                                                                               recordId: recordId))
         
@@ -270,7 +275,10 @@ final class CommunityViewController: BaseViewController {
     
     private func pushFitSiteDetail(articleId: Int) {
         let usecase = FitSiteDetailUseCase(commentRepository: CommentRepository(service: CommentService()),
-                                         fitSiteRepository: FitSiteRepository(service: ArticleService()))
+                                         fitSiteRepository: FitSiteRepository(service: ArticleService()),
+                                           communityRepository: CommunityRepository(UserService(),
+                                                                                    certificationService: CertificationService(),
+                                                                                    articleService: ArticleService()))
         let fitSiteDetailVC = FitSiteDetailViewController(viewModel: FitSiteDetailViewModel(usecase: usecase,
                                                                                             articleId: articleId))
         
@@ -337,7 +345,6 @@ final class CommunityViewController: BaseViewController {
         
         fitSiteSortView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(4)
-            $0.trailing.equalToSuperview().offset(-20)
             $0.trailing.equalTo(self.fitSiteTableView.snp.trailing)
         }
         
@@ -523,3 +530,49 @@ extension CommunityViewController {
             .disposed(by: disposeBag)
     }
 }
+extension CommunityViewController {
+    private func setFitSiteDefaultView() {
+        let defaultView = UIView()
+        let guideLabel = UILabel().then {
+            $0.text = "아직 작성한 글이 없습니다."
+            $0.textColor = .textDefault
+            $0.font = .pretendard(.bodyLarge02)
+        }
+        
+        defaultView.addSubview(guideLabel)
+        guideLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(20)
+            $0.centerX.equalToSuperview()
+        }
+        
+        fitSiteTableView.backgroundView = defaultView
+        
+        viewModel.fitSiteFeedList
+            .map { !$0.isEmpty }
+            .bind(to: defaultView.rx.isHidden)
+            .disposed(by: disposeBag)
+    }
+    
+    private func setCertificationDefaultView() {
+        let defaultView = UIView()
+        let guideLabel = UILabel().then {
+            $0.text = "아직 작성한 글이 없습니다."
+            $0.textColor = .textDefault
+            $0.font = .pretendard(.bodyLarge02)
+        }
+        
+        defaultView.addSubview(guideLabel)
+        guideLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(20)
+            $0.centerX.equalToSuperview()
+        }
+        
+        certificationCollectionView.backgroundView = defaultView
+        
+        viewModel.certificationFeedList
+            .map { !$0.isEmpty }
+            .bind(to: defaultView.rx.isHidden)
+            .disposed(by: disposeBag)
+    }
+}
+

@@ -104,6 +104,25 @@ final class CertificationDetailViewController: BaseViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        viewModel.reportUserHandler
+            .bind(onNext: { [weak self] code in
+                switch code {
+                case 2000:
+                    let alert = StandardAlertController(title: "신고 완료", message: "정상적으로 신고가 완료되었습니다.")
+                    let ok = StandardAlertAction(title: "확인", style: .basic) { [weak self] _ in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                    alert.addAction(ok)
+                    
+                    self?.present(alert, animated: false)
+                case 4013: self?.notiAlert("존재하지 않는 유저입니다.")
+                case 4062: self?.notiAlert("이미 신고 완료된 유저입니다.")
+                case 4063: self?.notiAlert("자기 자신을 신고할 수 없습니다.")
+                default: self?.notiAlert("알 수 없는 오류\n관리자에게 문의해주세요.")
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     // MARK: - 화면 이동
@@ -123,7 +142,9 @@ final class CertificationDetailViewController: BaseViewController {
         let reportArticle = StandardActionSheetAction(title: "게시글 신고하기") { [weak self] _ in
             self?.presentReportRecordAlert()
         }
-        let reportUser = StandardActionSheetAction(title: "사용자 신고하기")
+        let reportUser = StandardActionSheetAction(title: "사용자 신고하기") { [weak self] _ in
+            self?.showReportUserAlert()
+        }
         
         actionSheet.addAction([reportArticle, reportUser])
         
@@ -138,6 +159,17 @@ final class CertificationDetailViewController: BaseViewController {
         }
         
         alert.addAction([cancel,delete])
+        
+        self.present(alert, animated: false)
+    }
+    
+    private func showReportUserAlert() {
+        let alert = StandardAlertController(title: "사용자를 신고하시겠습니까?", message: "신고된 사용자는 차단되어 글과 댓글이\n숨겨지고, 차단은 취소할 수 없습니다.")
+        let report = StandardAlertAction(title: "신고", style: .basic) { [weak self] _ in
+            self?.viewModel.reportUser()
+        }
+        let cancel = StandardAlertAction(title: "취소", style: .cancel)
+        alert.addAction([cancel,report])
         
         self.present(alert, animated: false)
     }
@@ -209,7 +241,10 @@ extension CertificationDetailViewController: CommentCellDelegate {
             }
             actionSheet.addAction(deleteComment)
         } else {
-            let reportUser = StandardActionSheetAction(title: "사용자 신고하기")
+            let reportUser = StandardActionSheetAction(title: "사용자 신고하기") { [weak self] _ in
+                self?.showReportUserAlert()
+            }
+            
             let reportComment = StandardActionSheetAction(title: "댓글 신고하기") { [weak self] _ in
                 self?.presentReportCommentAlert(commentId: commentId)
             }

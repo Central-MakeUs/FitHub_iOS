@@ -105,7 +105,7 @@ final class OAuthLoginViewController: BaseViewController {
         self.otherLoginButton.rx.tap
             .asDriver()
             .drive(onNext: {
-                let usecase = PhoneNumLoginUseCase(PhoneNumLoginRepository(AuthService()))
+                let usecase = PhoneNumLoginUseCase(PhoneNumLoginRepository(UserService()))
                 self.navigationController?.pushViewController(PhoneAuthViewController(PhoneAuthViewModel(usecase)), animated: true)
             })
             .disposed(by: self.disposeBag)

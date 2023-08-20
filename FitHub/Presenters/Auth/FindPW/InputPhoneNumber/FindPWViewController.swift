@@ -97,7 +97,7 @@ final class FindPWViewController: BaseViewController {
     }
     
     private func pushPhoneVerificationViewController() {
-        let usecase = PhoneVerificationUseCase(repository: PhoneVerificationRepository(AuthService()))
+        let usecase = PhoneVerificationUseCase(repository: PhoneVerificationRepository(UserService()))
         usecase.registUserInfo = self.viewModel.usecase.userInfo
         
         let phoneVerificationVC = PhoneVerificationViewController(PhoneVerificationViewModel(usecase))

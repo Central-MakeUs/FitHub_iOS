@@ -6,10 +6,19 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 import Kingfisher
+
+protocol CertificationCellDelegate: AnyObject {
+    func toggleSelected(recordId: Int)
+}
 
 final class CertificationCell: UICollectionViewCell {
     static let identifier = "CertificationCell"
+    private let disposeBag = DisposeBag()
+    
+    weak var delegate: CertificationCellDelegate?
     
     private let imageView = UIImageView().then {
         $0.backgroundColor = .iconDisabled
@@ -30,10 +39,16 @@ final class CertificationCell: UICollectionViewCell {
         $0.font = .pretendard(.bodySmall02)
     }
     
+    private let checkButton = UIButton().then {
+        $0.setImage(UIImage(named: "CheckOff"), for: .normal)
+        $0.isHidden = true
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubView()
         self.layout()
+        self.setUpBinding()
     }
     
     required init?(coder: NSCoder) {
@@ -41,7 +56,6 @@ final class CertificationCell: UICollectionViewCell {
     }
     
     func configureCell(_ item: CertificationDTO) {
-        
         self.imageView.kf.setImage(with: URL(string: item.pictureUrl ?? ""))
         self.likeCntLabel.text = "\(item.likes)"
         
@@ -49,11 +63,38 @@ final class CertificationCell: UICollectionViewCell {
         self.likeButton.setImage(likeImage?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
+    func configureMyFeeCell(_ item: CertificationDTO, isSelected: Bool) {
+        self.imageView.kf.setImage(with: URL(string: item.pictureUrl ?? ""))
+        self.likeCntLabel.text = "\(item.likes)"
+        
+        let likeImage = item.isLiked ? UIImage(named: "ic_heart_pressed") : UIImage(named: "ic_heart_default")
+        self.likeButton.setImage(likeImage?.withRenderingMode(.alwaysOriginal), for: .normal)
+        checkButton.isHidden = false
+        changeCheck(isSelected: isSelected)
+        checkButton.tag = item.recordId
+    }
+    
+    func changeCheck(isSelected: Bool) {
+        let image = isSelected ? UIImage(named: "CheckOn") : UIImage(named: "CheckOff")
+        checkButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+    }
+    
+    // MARK: - setUpBinding
+    private func setUpBinding() {
+        checkButton.rx.tap
+            .bind { [weak self] in
+                guard let self else { return }
+                self.delegate?.toggleSelected(recordId: checkButton.tag)
+            }
+            .disposed(by: disposeBag)
+    }
+    
     //MARK: - AddSubView
     private func addSubView() {
         self.contentView.addSubview(imageView)
         self.contentView.addSubview(likeButton)
         self.contentView.addSubview(likeCntLabel)
+        self.contentView.addSubview(checkButton)
     }
     
     //MARK: - Layout
@@ -69,6 +110,10 @@ final class CertificationCell: UICollectionViewCell {
         self.likeCntLabel.snp.makeConstraints {
             $0.centerY.equalTo(self.likeButton)
             $0.leading.equalTo(self.likeButton.snp.trailing).offset(2)
+        }
+        
+        checkButton.snp.makeConstraints {
+            $0.trailing.top.equalToSuperview().inset(10)
         }
     }
 }

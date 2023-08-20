@@ -18,16 +18,21 @@ protocol CertifiactionDetailUseCaseProtocol {
     func reportCertification(recordId: Int)->Single<Int>
     func removeCertification(recordId: Int)->Single<Int>
     func toggleLikeCertification(recordId: Int)->Single<LikeCertificationDTO>
+    
+    func reportUser(userId: Int) -> Single<Int>
 }
 
 final class CertifiactionDetailUseCase: CertifiactionDetailUseCaseProtocol {
     private let certificationRepository: CertificationRepositoryInterface
     private let commentRepository: CommentRepositoryInterface
+    private let communityRepostiroy: CommunityRepositoryInterface
     
     init(certificationRepository: CertificationRepositoryInterface,
-         commentRepository: CommentRepositoryInterface) {
+         commentRepository: CommentRepositoryInterface,
+         communityRepostiroy: CommunityRepositoryInterface) {
         self.certificationRepository = certificationRepository
         self.commentRepository = commentRepository
+        self.communityRepostiroy = communityRepostiroy
     }
     
     func toggleLikeCertification(recordId: Int) -> Single<LikeCertificationDTO> {
@@ -64,5 +69,9 @@ final class CertifiactionDetailUseCase: CertifiactionDetailUseCaseProtocol {
     
     func deleteComment(id: Int, commentId: Int)->Single<Bool> {
         return commentRepository.deleteComment(type: .records, id: id, commentId: commentId)
+    }
+    
+    func reportUser(userId: Int) -> Single<Int> {
+        return communityRepostiroy.reportUser(userId: userId)
     }
 }
