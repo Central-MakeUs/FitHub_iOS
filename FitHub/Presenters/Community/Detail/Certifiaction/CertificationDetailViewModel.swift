@@ -19,6 +19,8 @@ final class CertificationDetailViewModel: ViewModelType {
     private var isPaging = false
     private var isLastPage: Bool = false
     
+    var certificationModel: CertificationDetailDTO?
+    
     struct Input {
         let commentRegistTap: Observable<String>
         let didScroll: Observable<(CGFloat,CGFloat,CGFloat)>
@@ -33,6 +35,8 @@ final class CertificationDetailViewModel: ViewModelType {
     let errorHandler = PublishSubject<Error>()
     let reportHandler = PublishSubject<Int>()
     let reportUserHandler = PublishSubject<Int>()
+    let deleteFeedHandler = PublishSubject<Bool>()
+    let updateHandler = PublishSubject<CertificationDetailDTO>()
     
     //MARK: - Input
     let detailSource = PublishSubject<CertificationDetailDTO>()
@@ -119,7 +123,6 @@ final class CertificationDetailViewModel: ViewModelType {
                 self?.reportUserHandler.onNext(code)
             })
             .disposed(by: disposeBag)
-        
     }
     
     func reportRecord() {
@@ -136,6 +139,18 @@ final class CertificationDetailViewModel: ViewModelType {
     
     func toggleLike(commentId: Int) -> Single<LikeCommentDTO> {
         return self.usecase.toggleCommentLike(id: recordId, commentId: commentId)
+    }
+    
+    func deleteCertification() {
+        usecase.removeCertification(recordId: recordId)
+            .subscribe(onSuccess: { [weak self] code in
+                if code == 2000 {
+                    self?.deleteFeedHandler.onNext(true)
+                } else {
+                    self?.errorHandler.onNext(AuthError.serverError)
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     func deleteComment(commentId: Int) {
@@ -163,6 +178,11 @@ final class CertificationDetailViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
     }
+    
+    func viewWillAppear() {
+        fetchCertificationDetail()
+        fetchComment()
+    }
 }
 
 extension CertificationDetailViewModel {
@@ -171,6 +191,7 @@ extension CertificationDetailViewModel {
             .subscribe(onSuccess: { [weak self] res in
                 self?.ownerId = res.userInfo.ownerId
                 self?.detailSource.onNext(res)
+                self?.certificationModel = res
             }, onFailure: { [weak self] error in
                 self?.errorHandler.onNext(error)
             })

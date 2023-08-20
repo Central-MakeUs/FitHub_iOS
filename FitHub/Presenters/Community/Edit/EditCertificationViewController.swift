@@ -1,9 +1,10 @@
 //
-//  EditCertifiactionViewController.swift
+//  EditCertificationViewController.swift
 //  FitHub
 //
-//  Created by 신상우 on 2023/07/27.
+//  Created by iOS신상우 on 2023/08/20.
 //
+
 
 import UIKit
 import RxSwift
@@ -11,9 +12,9 @@ import RxCocoa
 import RxDataSources
 import PhotosUI
 
-final class CreateCertificationViewController: BaseViewController {
+final class EditCertificationViewController: BaseViewController {
     //MARK: - Properties
-    private let viewModel: CreateCertificationViewModel
+    private let viewModel: EditCertificationViewModel
     
     private let completeButton = UIButton(type: .system).then {
         $0.titleLabel?.font = .pretendard(.bodyMedium01)
@@ -33,7 +34,7 @@ final class CreateCertificationViewController: BaseViewController {
         $0.backgroundColor = .clear
     }
     
-    init(_ viewModel: CreateCertificationViewModel) {
+    init(_ viewModel: EditCertificationViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         self.view.gestureRecognizers = nil
@@ -60,14 +61,16 @@ final class CreateCertificationViewController: BaseViewController {
     //MARK: - Init
     override func configureNavigation() {
         super.configureNavigation()
-        self.title = "운동 인증하기"
+        self.title = "인증 수정하기"
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: completeButton)
     }
     
     //MARK: - SetupBinding
     override func setupBinding() {
-        let input = CreateCertificationViewModel.Input(completeTap: completeButton.rx.tap.asObservable())
+        let input = EditCertificationViewModel.Input(completeTap: completeButton.rx.tap.asObservable())
+        
+        completeButton.rx.tap.bind(onNext: { [weak self] in self?.view.endEditing(true) }).disposed(by: disposeBag)
         
         let output = self.viewModel.transform(input: input)
         
@@ -91,6 +94,7 @@ final class CreateCertificationViewController: BaseViewController {
         
         self.collectionView.rx.modelSelected(CreateCertificationSectionModel.Item.self)
             .subscribe(onNext: { [weak self] model in
+                self?.view.endEditing(true)
                 switch model {
                 case .sport(item: let item):
                     self?.viewModel.selectedSportSource.accept(item)
@@ -102,12 +106,12 @@ final class CreateCertificationViewController: BaseViewController {
         
         output.completePublisher
             .asDriver(onErrorJustReturn: false)
-            .drive(onNext: { isSuccess in
+            .drive(onNext: { [weak self] isSuccess in
                 if isSuccess {
                     print("성공")
-                    self.navigationController?.popViewController(animated: true)
+                    self?.navigationController?.popViewController(animated: true)
                 } else {
-                    self.notiAlert("작성 실패: 서버 오류")
+                    self?.notiAlert("작성 실패: 서버 오류")
                 }
             })
             .disposed(by: disposeBag)
@@ -127,7 +131,7 @@ final class CreateCertificationViewController: BaseViewController {
 }
 
 // MARK: - DataSoruce
-extension CreateCertificationViewController {
+extension EditCertificationViewController {
     private func createDataSoruce() -> RxCollectionViewSectionedReloadDataSource<CreateCertificationSectionModel> {
         return RxCollectionViewSectionedReloadDataSource<CreateCertificationSectionModel> {
             (dataSource, collectionView, indexPath, item) in
@@ -137,9 +141,10 @@ extension CreateCertificationViewController {
                 cell.tapButton = { [weak self] in self?.showPhotoAlbum() }
                 cell.configureCell(image: image)
                 return cell
-            case .content(string: _):
+            case .content(string: let text):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentCell.identifier, for: indexPath) as! ContentCell
                 cell.placeholder = "오늘 운동은 어땠나요? 느낀점을 작성해봐요"
+                cell.configureCell(text: text)
                 cell.delegate = self
                 
                 return cell
@@ -184,7 +189,7 @@ extension CreateCertificationViewController {
 }
 
 //MARK: - HashTag
-extension CreateCertificationViewController: HashTagDelegate {
+extension EditCertificationViewController: HashTagDelegate {
     func addHashTag(_ text: String) {
         self.viewModel.addHashTag(text)
     }
@@ -196,7 +201,7 @@ extension CreateCertificationViewController: HashTagDelegate {
 }
 
 //MARK: - PHPicker Delegate
-extension CreateCertificationViewController: PHPickerViewControllerDelegate, UINavigationControllerDelegate {
+extension EditCertificationViewController: PHPickerViewControllerDelegate, UINavigationControllerDelegate {
     private func showPhotoAlbum() {
         var configuration = PHPickerConfiguration()
         configuration.selectionLimit = 1
@@ -216,13 +221,14 @@ extension CreateCertificationViewController: PHPickerViewControllerDelegate, UIN
             itemProvider.loadObject(ofClass: UIImage.self) { [weak self] result, error in
                 guard let image = result as? UIImage else { return }
                 self?.viewModel.imageSource.onNext(image)
+                self?.viewModel.remainImageUrl = nil
             }
         }
     }
 }
 
 // MARK: - Compositional
-extension CreateCertificationViewController {
+extension EditCertificationViewController {
     private func createLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout() { (sectionIndex: Int,
                                                               environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
@@ -320,7 +326,7 @@ extension CreateCertificationViewController {
     }
 }
 
-extension CreateCertificationViewController: ContentCellDelegate {
+extension EditCertificationViewController: ContentCellDelegate {
     func changeContentFrame() {
         self.collectionView.reloadSections(IndexSet(integer: 2))
     }

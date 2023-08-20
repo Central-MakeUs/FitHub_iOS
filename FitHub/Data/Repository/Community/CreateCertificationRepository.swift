@@ -11,7 +11,6 @@ import RxSwift
 protocol CreateCertificationRepositoryInterface {
     func fetchCategory() -> Single<[CategoryDTO]>
     func createCertification(_ certificationInfo: CreateCertificationModel) -> Single<CreateCertificationDTO>
-    func updateCertification(recordId: Int, certificationInfo: CreateCertificationModel) -> Single<UpdateCertificationDTO>
 }
 
 final class CreateCertificationRepository: CreateCertificationRepositoryInterface {
@@ -30,9 +29,5 @@ final class CreateCertificationRepository: CreateCertificationRepositoryInterfac
     
     func createCertification(_ certificationInfo: CreateCertificationModel) -> Single<CreateCertificationDTO> {
         return certificationService.createCertification(certificationInfo)
-    }
-    
-    func updateCertification(recordId: Int, certificationInfo: CreateCertificationModel) -> Single<UpdateCertificationDTO> {
-        return certificationService.updateCertification(recordId: recordId, certificationInfo: certificationInfo)
     }
 }

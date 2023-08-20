@@ -15,6 +15,7 @@ protocol CertificationRepositoryInterface {
     func reportCertification(recordId: Int)->Single<Int>
     func removeCertification(recordId: Int)->Single<Int>
     func toggleLikeCertification(recordId: Int)->Single<LikeCertificationDTO>
+    func updateCertification(recordId: Int, certificationInfo: CreateCertificationModel, remainImageUrl: String?) -> Single<UpdateCertificationDTO>
 }
 
 final class CertificationRepository: CertificationRepositoryInterface {
@@ -48,4 +49,7 @@ final class CertificationRepository: CertificationRepositoryInterface {
         return service.toggleLikeCertification(recordId: recordId)
     }
     
+    func updateCertification(recordId: Int, certificationInfo: CreateCertificationModel, remainImageUrl: String?) -> Single<UpdateCertificationDTO> {
+        return service.updateCertification(recordId: recordId, certificationInfo: certificationInfo, remainImageUrl: remainImageUrl)
+    }
 }

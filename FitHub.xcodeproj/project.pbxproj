@@ -122,11 +122,15 @@
 		B5ED133B2A91C93C002769BE /* OtherUserInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED133A2A91C93C002769BE /* OtherUserInfoDTO.swift */; };
 		B5ED133D2A91F173002769BE /* OtherFitSiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED133C2A91F173002769BE /* OtherFitSiteCell.swift */; };
 		B5ED133F2A920017002769BE /* ReportUserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED133E2A920017002769BE /* ReportUserDTO.swift */; };
+		B5ED13422A923B03002769BE /* EditCertificationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED13412A923B03002769BE /* EditCertificationUseCase.swift */; };
+		B5ED13452A923BB4002769BE /* EditCertificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED13442A923BB4002769BE /* EditCertificationViewModel.swift */; };
+		B5ED13472A923C09002769BE /* EditCertificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED13462A923C09002769BE /* EditCertificationViewController.swift */; };
+		B5ED13492A923E68002769BE /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED13482A923E68002769BE /* UserRepository.swift */; };
 		DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB02A67C273001B5672 /* HomeViewController.swift */; };
 		DB002BB42A67C332001B5672 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB32A67C332001B5672 /* CommunityViewController.swift */; };
 		DB002BB82A67C36F001B5672 /* LookUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB72A67C36F001B5672 /* LookUpViewController.swift */; };
 		DB002BBB2A67C3C7001B5672 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BBA2A67C3C7001B5672 /* MyPageViewController.swift */; };
-		DB0D21F92A73E40700ABF6A2 /* EditCertifiactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D21F82A73E40700ABF6A2 /* EditCertifiactionViewModel.swift */; };
+		DB0D21F92A73E40700ABF6A2 /* CreateCertifiactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D21F82A73E40700ABF6A2 /* CreateCertifiactionViewModel.swift */; };
 		DB0D21FB2A73E91900ABF6A2 /* CreateCertificationSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D21FA2A73E91900ABF6A2 /* CreateCertificationSectionModel.swift */; };
 		DB0D21FD2A73F78800ABF6A2 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D21FC2A73F78800ABF6A2 /* ImageCell.swift */; };
 		DB0D22002A73F95100ABF6A2 /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D21FF2A73F95100ABF6A2 /* ContentCell.swift */; };
@@ -159,7 +163,7 @@
 		DB57123A2A72590B00DCAD9C /* OAuthRegistInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5712392A72590B00DCAD9C /* OAuthRegistInputViewModel.swift */; };
 		DB57123C2A7259B700DCAD9C /* OAuthRegistInputUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57123B2A7259B700DCAD9C /* OAuthRegistInputUseCase.swift */; };
 		DB57123E2A72651500DCAD9C /* RegistType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57123D2A72651500DCAD9C /* RegistType.swift */; };
-		DB5712422A7295E400DCAD9C /* EditCertifiactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5712412A7295E400DCAD9C /* EditCertifiactionViewController.swift */; };
+		DB5712422A7295E400DCAD9C /* CreateCertifiactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5712412A7295E400DCAD9C /* CreateCertifiactionViewController.swift */; };
 		DB5712462A72985D00DCAD9C /* CreateCertificationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5712452A72985D00DCAD9C /* CreateCertificationUseCase.swift */; };
 		DB5712492A729B4000DCAD9C /* CreateCertificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5712482A729B4000DCAD9C /* CreateCertificationRepository.swift */; };
 		DB57124B2A729BC200DCAD9C /* CertificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57124A2A729BC200DCAD9C /* CertificationService.swift */; };
@@ -382,11 +386,15 @@
 		B5ED133A2A91C93C002769BE /* OtherUserInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserInfoDTO.swift; sourceTree = "<group>"; };
 		B5ED133C2A91F173002769BE /* OtherFitSiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherFitSiteCell.swift; sourceTree = "<group>"; };
 		B5ED133E2A920017002769BE /* ReportUserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUserDTO.swift; sourceTree = "<group>"; };
+		B5ED13412A923B03002769BE /* EditCertificationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCertificationUseCase.swift; sourceTree = "<group>"; };
+		B5ED13442A923BB4002769BE /* EditCertificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCertificationViewModel.swift; sourceTree = "<group>"; };
+		B5ED13462A923C09002769BE /* EditCertificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCertificationViewController.swift; sourceTree = "<group>"; };
+		B5ED13482A923E68002769BE /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		DB002BB02A67C273001B5672 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DB002BB32A67C332001B5672 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		DB002BB72A67C36F001B5672 /* LookUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpViewController.swift; sourceTree = "<group>"; };
 		DB002BBA2A67C3C7001B5672 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
-		DB0D21F82A73E40700ABF6A2 /* EditCertifiactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCertifiactionViewModel.swift; sourceTree = "<group>"; };
+		DB0D21F82A73E40700ABF6A2 /* CreateCertifiactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCertifiactionViewModel.swift; sourceTree = "<group>"; };
 		DB0D21FA2A73E91900ABF6A2 /* CreateCertificationSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCertificationSectionModel.swift; sourceTree = "<group>"; };
 		DB0D21FC2A73F78800ABF6A2 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		DB0D21FF2A73F95100ABF6A2 /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
@@ -419,7 +427,7 @@
 		DB5712392A72590B00DCAD9C /* OAuthRegistInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthRegistInputViewModel.swift; sourceTree = "<group>"; };
 		DB57123B2A7259B700DCAD9C /* OAuthRegistInputUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthRegistInputUseCase.swift; sourceTree = "<group>"; };
 		DB57123D2A72651500DCAD9C /* RegistType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistType.swift; sourceTree = "<group>"; };
-		DB5712412A7295E400DCAD9C /* EditCertifiactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCertifiactionViewController.swift; sourceTree = "<group>"; };
+		DB5712412A7295E400DCAD9C /* CreateCertifiactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCertifiactionViewController.swift; sourceTree = "<group>"; };
 		DB5712452A72985D00DCAD9C /* CreateCertificationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCertificationUseCase.swift; sourceTree = "<group>"; };
 		DB5712482A729B4000DCAD9C /* CreateCertificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCertificationRepository.swift; sourceTree = "<group>"; };
 		DB57124A2A729BC200DCAD9C /* CertificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationService.swift; sourceTree = "<group>"; };
@@ -795,6 +803,23 @@
 			path = OtherProfile;
 			sourceTree = "<group>";
 		};
+		B5ED13402A923AEF002769BE /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				B5ED13412A923B03002769BE /* EditCertificationUseCase.swift */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		B5ED13432A923BA2002769BE /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				B5ED13442A923BB4002769BE /* EditCertificationViewModel.swift */,
+				B5ED13462A923C09002769BE /* EditCertificationViewController.swift */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
 		DB002BAF2A67C262001B5672 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -810,6 +835,7 @@
 		DB002BB22A67C2D5001B5672 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				B5ED13432A923BA2002769BE /* Edit */,
 				B5705C812A87775B00408233 /* Detail */,
 				DB5712402A72916D00DCAD9C /* Create */,
 				DB57123F2A72915C00DCAD9C /* Main */,
@@ -986,8 +1012,8 @@
 			isa = PBXGroup;
 			children = (
 				DB0D21FE2A73F94000ABF6A2 /* Cell */,
-				DB5712412A7295E400DCAD9C /* EditCertifiactionViewController.swift */,
-				DB0D21F82A73E40700ABF6A2 /* EditCertifiactionViewModel.swift */,
+				DB5712412A7295E400DCAD9C /* CreateCertifiactionViewController.swift */,
+				DB0D21F82A73E40700ABF6A2 /* CreateCertifiactionViewModel.swift */,
 				DB0D21FA2A73E91900ABF6A2 /* CreateCertificationSectionModel.swift */,
 			);
 			path = Certification;
@@ -1089,6 +1115,7 @@
 				DB8CD7092A6D0DF7004735C8 /* FindPW */,
 				DB8CD7022A6D0C43004735C8 /* SignIn */,
 				DB8CD6FD2A6D0B66004735C8 /* SignUp */,
+				B5ED13482A923E68002769BE /* UserRepository.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1145,6 +1172,7 @@
 		DB8CD71D2A6E163C004735C8 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				B5ED13402A923AEF002769BE /* Edit */,
 				DB5712442A72983100DCAD9C /* Create */,
 				DB8CD71E2A6E164A004735C8 /* CommunityUseCase.swift */,
 				B5705C862A87785600408233 /* CertifiactionDetailUseCase.swift */,
@@ -1745,6 +1773,7 @@
 				B5705CF72A8B879300408233 /* SearchTotalDTO.swift in Sources */,
 				B5705C832A87776800408233 /* CertificationDetailViewController.swift in Sources */,
 				B588B7DB2A83AD710031C723 /* ArticleService.swift in Sources */,
+				B5ED13492A923E68002769BE /* UserRepository.swift in Sources */,
 				DB7559E72A55062C00B88B96 /* SportsCell.swift in Sources */,
 				DB7559E12A548C6800B88B96 /* ProfileSettingViewModel.swift in Sources */,
 				DB97F8352A527BCF009C09A1 /* StandardNotificationAlertView.swift in Sources */,
@@ -1755,7 +1784,7 @@
 				B5705CE62A8B506D00408233 /* BookMarkViewModel.swift in Sources */,
 				DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */,
 				B5ED12802A8EDBE7002769BE /* ChangeProfileDTO.swift in Sources */,
-				DB5712422A7295E400DCAD9C /* EditCertifiactionViewController.swift in Sources */,
+				DB5712422A7295E400DCAD9C /* CreateCertifiactionViewController.swift in Sources */,
 				B5705C772A866AC600408233 /* EditFitSiteModel.swift in Sources */,
 				DB8CD7192A6E0B7D004735C8 /* CommunityViewModel.swift in Sources */,
 				DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */,
@@ -1771,7 +1800,7 @@
 				DB7134912A5BF46C0006EAAB /* AuthError.swift in Sources */,
 				DB668AFC2A50017700D702A1 /* UserInfoStatus.swift in Sources */,
 				DB8CD7172A6D3995004735C8 /* CreateActionSheet.swift in Sources */,
-				DB0D21F92A73E40700ABF6A2 /* EditCertifiactionViewModel.swift in Sources */,
+				DB0D21F92A73E40700ABF6A2 /* CreateCertifiactionViewModel.swift in Sources */,
 				B5ED133F2A920017002769BE /* ReportUserDTO.swift in Sources */,
 				DB57123E2A72651500DCAD9C /* RegistType.swift in Sources */,
 				B5B2C3A32A7E39AE004FC66C /* SplashViewModel.swift in Sources */,
@@ -1788,6 +1817,7 @@
 				B588B7E02A85405B0031C723 /* EditFitSiteSectionModel.swift in Sources */,
 				B5705C972A87CB9000408233 /* CommentInputView.swift in Sources */,
 				DB0D22002A73F95100ABF6A2 /* ContentCell.swift in Sources */,
+				B5ED13452A923BB4002769BE /* EditCertificationViewModel.swift in Sources */,
 				B5705CB72A8945D400408233 /* ReportFitSiteDTO.swift in Sources */,
 				DB5712332A7235D200DCAD9C /* KeychainManager.swift in Sources */,
 				DB746F732A71308400FBA8D4 /* RegistCompletionViewController.swift in Sources */,
@@ -1827,6 +1857,7 @@
 				DBB820B82A5E45940016CB63 /* FindPWViewController.swift in Sources */,
 				DB0D22062A7666B600ABF6A2 /* HashTagFooterView.swift in Sources */,
 				B5705CAC2A89283F00408233 /* ReportCommentDTO.swift in Sources */,
+				B5ED13472A923C09002769BE /* EditCertificationViewController.swift in Sources */,
 				DB0D21FD2A73F78800ABF6A2 /* ImageCell.swift in Sources */,
 				DB62F1D82A7AAF1E0045E8DC /* RankInfoCell.swift in Sources */,
 				B5705D0B2A8CF50700408233 /* EmptyResultView.swift in Sources */,
@@ -1851,6 +1882,7 @@
 				DBF125E32A5E885D004DA4B9 /* PasswordUseCase.swift in Sources */,
 				B5705CA82A89089900408233 /* StandardActionSheetAction.swift in Sources */,
 				DB8CD70B2A6D0E07004735C8 /* FindPWRepository.swift in Sources */,
+				B5ED13422A923B03002769BE /* EditCertificationUseCase.swift in Sources */,
 				B5B2C39C2A7DC980004FC66C /* CheckAuthDTO.swift in Sources */,
 				DB97F83E2A52C1E3009C09A1 /* PaddingLabel.swift in Sources */,
 				DB97F83A2A52B2F7009C09A1 /* StandardAlertAction.swift in Sources */,
