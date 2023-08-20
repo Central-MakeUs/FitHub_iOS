@@ -47,7 +47,9 @@ final class ContentCell: UICollectionViewCell {
     }
     
     func configureCell(text: String) {
-        self.contentTextView.text = text == "" ? placeholder : text
+        self.contentTextView.text = text.isEmpty ? placeholder : text
+        let color: UIColor = text.isEmpty ? .textSub02 : .textDefault
+        contentTextView.textColor = color
     }
     
     private func textViewBinding() {

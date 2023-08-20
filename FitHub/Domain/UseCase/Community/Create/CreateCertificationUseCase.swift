@@ -14,7 +14,6 @@ protocol CreateCertificationUseCaseProtocol {
     var sports: BehaviorSubject<[CategoryDTO]> { get set }
     
     func createCertification() -> Single<CreateCertificationDTO>
-    func updateCertification(recordId: Int, certificationInfo: CreateCertificationModel) -> Single<UpdateCertificationDTO>
 }
 
 final class CreateCertificationUseCase: CreateCertificationUseCaseProtocol {
@@ -38,9 +37,5 @@ final class CreateCertificationUseCase: CreateCertificationUseCaseProtocol {
     
     func createCertification() -> Single<CreateCertificationDTO> {
         return self.repository.createCertification(certifiactionInfo)
-    }
-    
-    func updateCertification(recordId: Int, certificationInfo: CreateCertificationModel) -> Single<UpdateCertificationDTO> {
-        return self.repository.updateCertification(recordId: recordId, certificationInfo: self.certifiactionInfo)
     }
 }

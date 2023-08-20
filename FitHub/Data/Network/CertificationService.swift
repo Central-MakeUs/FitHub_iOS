@@ -86,7 +86,7 @@ class CertificationService {
         }
     }
     
-    func updateCertification(recordId: Int, certificationInfo: CreateCertificationModel) -> Single<UpdateCertificationDTO> {
+    func updateCertification(recordId: Int, certificationInfo: CreateCertificationModel, remainImageUrl: String?) -> Single<UpdateCertificationDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
         
         guard let categoryTag = certificationInfo.selectedSport?.name,
@@ -99,6 +99,8 @@ class CertificationService {
         let urlString = baseURL + "record/\(recordId)"
         
         let parameter: Parameters = ["contents" : contents,
+                                     "category" : categoryId,
+                                     "remainImageUrl" : remainImageUrl ?? "",
                                      "exerciseTag" : categoryTag,
                                      "hashTagList" : hashTagList,
         ]
@@ -109,7 +111,7 @@ class CertificationService {
         
         return Single<UpdateCertificationDTO>.create { observer in
             AF.upload(multipartFormData: { multipartFormData in
-                multipartFormData.append(image, withName: "image", fileName: "\(image).jpeg", mimeType: "image/jpeg")
+                multipartFormData.append(image, withName: "newImage", fileName: "\(image).jpeg", mimeType: "image/jpeg")
                 
                 for (key,value) in parameter {
                     multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
@@ -183,7 +185,7 @@ class CertificationService {
     func removeCertification(recordId: Int)->Single<Int> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
     
-        let urlString = baseURL + "records/\(recordId)"
+        let urlString = baseURL + "record/\(recordId)"
         
         return Single<Int>.create { emitter in
             AF.request(urlString, method: .delete, interceptor: AuthManager())
