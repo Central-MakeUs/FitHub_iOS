@@ -69,9 +69,13 @@ final class CommunityViewModel {
             .distinctUntilChanged()
             .withLatestFrom(communityType)
             .subscribe(onNext: { [weak self] type in
-                self?.resetFitSite()
-                self?.resetCertification()
-                self?.communityType.onNext(type)
+                if type == .certification {
+                    self?.resetFitSite()
+                    self?.fetchCertification(isReset: true)
+                } else {
+                    self?.resetCertification()
+                    self?.fetchFitSite(isReset: true)
+                }
             })
             .disposed(by: disposeBag)
         

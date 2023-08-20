@@ -79,6 +79,8 @@ final class CommunityViewController: BaseViewController {
         super.init(nibName: nil, bundle: nil)
         self.view.gestureRecognizers = nil
         self.view.backgroundColor = .bgDefault
+        setCertificationDefaultView()
+        setFitSiteDefaultView()
     }
     
     required init?(coder: NSCoder) {
@@ -522,3 +524,49 @@ extension CommunityViewController {
             .disposed(by: disposeBag)
     }
 }
+extension CommunityViewController {
+    private func setFitSiteDefaultView() {
+        let defaultView = UIView()
+        let guideLabel = UILabel().then {
+            $0.text = "아직 작성한 글이 없습니다."
+            $0.textColor = .textDefault
+            $0.font = .pretendard(.bodyLarge02)
+        }
+        
+        defaultView.addSubview(guideLabel)
+        guideLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(20)
+            $0.centerX.equalToSuperview()
+        }
+        
+        fitSiteTableView.backgroundView = defaultView
+        
+        viewModel.fitSiteFeedList
+            .map { !$0.isEmpty }
+            .bind(to: defaultView.rx.isHidden)
+            .disposed(by: disposeBag)
+    }
+    
+    private func setCertificationDefaultView() {
+        let defaultView = UIView()
+        let guideLabel = UILabel().then {
+            $0.text = "아직 작성한 글이 없습니다."
+            $0.textColor = .textDefault
+            $0.font = .pretendard(.bodyLarge02)
+        }
+        
+        defaultView.addSubview(guideLabel)
+        guideLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(20)
+            $0.centerX.equalToSuperview()
+        }
+        
+        certificationCollectionView.backgroundView = defaultView
+        
+        viewModel.certificationFeedList
+            .map { !$0.isEmpty }
+            .bind(to: defaultView.rx.isHidden)
+            .disposed(by: disposeBag)
+    }
+}
+
