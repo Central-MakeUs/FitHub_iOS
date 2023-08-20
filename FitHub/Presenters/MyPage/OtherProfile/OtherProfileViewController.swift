@@ -193,6 +193,25 @@ final class OtherProfileViewController: BaseViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        viewModel.errorHandler
+            .bind(onNext: { [weak self] code in
+                var title = "서버 에러"
+                var message = "사용자 정보를 불러올 수 없습니다."
+                
+                if code == 4013 || code == 4064 {
+                    title = "알 림"
+                    message = "삭제 또는 차단되어 불러올 수 없는 사용자 입니다."
+                }
+                let alert = StandardAlertController(title: title, message: message)
+                let ok = StandardAlertAction(title: "확인", style: .basic) { [weak self] _ in
+                    self?.navigationController?.popViewController(animated: true)
+                }
+                alert.addAction(ok)
+                
+                self?.present(alert, animated: false)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func pushFitSiteDetail(articleId: Int) {

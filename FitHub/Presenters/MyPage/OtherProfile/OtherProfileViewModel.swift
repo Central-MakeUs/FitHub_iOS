@@ -32,10 +32,15 @@ final class OtherProfileViewModel {
         
         usecase.fetchOtherProfileInfo(userId: userId)
             .subscribe(onSuccess: { [weak self] response in
-                self?.otherUserInfo.onNext(response)
+                if response.code == 2000 {
+                    guard let result = response.result else { return }
+                    self?.otherUserInfo.onNext(result)
+                } else {
+                    self?.errorHandler.onNext(response.code)
+                }
             })
             .disposed(by: disposeBag)
-        
+
         didScroll
             .filter { $0.1 != 0.0 }
             .subscribe(onNext: { [weak self] (offsetY, contentHeight, frameHeight) in
@@ -65,6 +70,7 @@ final class OtherProfileViewModel {
     let didScroll = PublishSubject<(CGFloat,CGFloat,CGFloat)>()
     
     let reportUserHandler = PublishSubject<Int>()
+    let errorHandler = PublishSubject<Int>()
     
 }
 
