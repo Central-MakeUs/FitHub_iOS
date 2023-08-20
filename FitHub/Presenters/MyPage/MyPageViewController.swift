@@ -347,5 +347,25 @@ extension MyPageViewController {
                 self?.showPrivacyInfoVC()
             })
             .disposed(by: disposeBag)
+        
+        myFeedItem.rx.tapGesture()
+            .asDriver()
+            .skip(1)
+            .drive(onNext: { [weak self] _ in
+                self?.showMyFeedVC()
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+// MARK: - 화면 이동
+extension MyPageViewController {
+    private func showMyFeedVC() {
+        let usecase = MyFeedUseCase(communityRepo: CommunityRepository(UserService(),
+                                                                       certificationService: CertificationService(),
+                                                                       articleService: ArticleService()),
+                                    mypageRepo: MyPageRepository(service: UserService()))
+        let feedVC = MyFeedViewController(MyFeedViewModel(usecase))
+        self.navigationController?.pushViewController(feedVC, animated: true)
     }
 }

@@ -1,24 +1,43 @@
 //
-//  CommunityViewController.swift
+//  MyFeedViewController.swift
 //  FitHub
 //
-//  Created by 신상우 on 2023/07/19.
+//  Created by iOS신상우 on 2023/08/19.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
 
-final class CommunityViewController: BaseViewController {
+final class MyFeedViewController: BaseViewController {
     //MARK: - Properties
-    private let viewModel: CommunityViewModel
+    private let viewModel: MyFeedViewModel
     
-    private let searchBar = FitHubSearchBar(frame: .init(x: 0, y: 0, width: 100, height: 44)).then {
-        $0.searchTextField.isEnabled = false
+    private let certificationBackView = MyFeedDefaultView(title: "운동 인증 이력이 없습니다.",
+                                                          subTitle: "오늘의 운동을 인증해보세요!",
+                                                          buttonName: "인증 하러가기")
+    
+    private let fitSiteBackView = MyFeedDefaultView(title: "작성한 게시글이 없습니다.",
+                                                    subTitle: "핏사이트에서 운동이야기를 나눠보세요",
+                                                    buttonName: "글 쓰러가기")
+    
+    private let certificationSelectionAllToggleButton = AllCheckButton()
+    
+    private let certicationSelectionDeleteButton = UIButton(type: .system).then {
+        $0.setTitle("선택삭제", for: .normal)
+        $0.setTitleColor(.textSub01, for: .normal)
+        $0.titleLabel?.font = .pretendard(.bodySmall02)
     }
-    private let certificationSortView = SortSwitchView()
-    private let fitSiteSortView = SortSwitchView()
-    private let contentView = UIView()    
+    
+    private let fitSiteSelectionAllTogleButton = AllCheckButton()
+    
+    private let fitSiteSelectionDeleteButton = UIButton(type: .system).then {
+        $0.setTitle("선택삭제", for: .normal)
+        $0.setTitleColor(.textSub01, for: .normal)
+        $0.titleLabel?.font = .pretendard(.bodySmall02)
+    }
+    
+    private let contentView = UIView()
     
     private let indicatorUnderLineView = UIView().then {
         $0.backgroundColor = .bgSub01
@@ -54,27 +73,12 @@ final class CommunityViewController: BaseViewController {
     
     private let fitSiteTableView = UITableView().then {
         $0.separatorStyle = .none
-        $0.register(FitSiteCell.self, forCellReuseIdentifier: FitSiteCell.identifier)
+        $0.register(MyFitSiteCell.self, forCellReuseIdentifier: MyFitSiteCell.identifier)
         $0.backgroundColor = .bgDefault
     }
     
-    private let floatingButton = UIButton(type: .system).then {
-        $0.backgroundColor = .primary
-        $0.layer.cornerRadius = 28
-        $0.setImage(UIImage(named: "Plus_Floating")?.withRenderingMode(.alwaysOriginal), for: .normal)
-    }
-    
-    private let createActionSheet = CreateActionSheet().then {
-        $0.isHidden = true
-    }
-    
-    private let actionSheetBackView = UIView().then {
-        $0.backgroundColor = .bgDefault.withAlphaComponent(0.5)
-        $0.isHidden = true
-    }
-    
     //MARK: - Init
-    init(_ viewModel: CommunityViewModel) {
+    init(_ viewModel: MyFeedViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         self.view.gestureRecognizers = nil
@@ -89,6 +93,7 @@ final class CommunityViewController: BaseViewController {
         super.viewDidLoad()
         topTabBarBinding()
         pagingBinding()
+        setDefaultView()
         
         self.view.gestureRecognizers = nil
     }
@@ -112,11 +117,6 @@ final class CommunityViewController: BaseViewController {
         }
     }
     
-    //MARK: - ConfigureUI
-    override func configureUI() {
-        self.navigationItem.leftBarButtonItem = nil
-    }
-    
     //MARK: - ConfigureNavigation
     override func configureNavigation() {
         super.configureNavigation()
@@ -126,8 +126,7 @@ final class CommunityViewController: BaseViewController {
                                        style: .plain, target: nil, action: nil)
         
         self.navigationItem.rightBarButtonItems = [noti,bookmark]
-        
-        self.navigationItem.titleView = searchBar
+
         
         bookmark.rx.tap
             .bind(onNext: { [weak self] in
@@ -155,14 +154,20 @@ final class CommunityViewController: BaseViewController {
         viewModel.certificationFeedList
             .bind(to: self.certificationCollectionView.rx
                 .items(cellIdentifier: CertificationCell.identifier,
-                       cellType: CertificationCell.self)) { index, item, cell in
-                cell.configureCell(item)
+                       cellType: CertificationCell.self)) { [weak self] index, item, cell in
+                guard let self else { return }
+                let isSelected = self.viewModel.selectedRecoridIdList.value.contains(item.recordId)
+                cell.delegate = self
+                cell.configureMyFeeCell(item, isSelected: isSelected)
             }
                        .disposed(by: disposeBag)
         
         viewModel.fitSiteFeedList
-            .bind(to: self.fitSiteTableView.rx.items(cellIdentifier: FitSiteCell.identifier, cellType: FitSiteCell.self)) { index, item, cell in
-                cell.configureCell(item: item)
+            .bind(to: self.fitSiteTableView.rx.items(cellIdentifier: MyFitSiteCell.identifier, cellType: MyFitSiteCell.self)) { [weak self] index, item, cell in
+                guard let self else { return }
+                cell.delegate = self
+                let isSelected = self.viewModel.selectedArticleidIdList.value.contains(item.articleId)
+                cell.configureCell(item: item, isSelected: isSelected)
             }
             .disposed(by: disposeBag)
         
@@ -191,51 +196,49 @@ final class CommunityViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        self.floatingButton.rx.tap
-            .map { !self.actionSheetBackView.isHidden }
-            .subscribe(onNext: { [weak self] isHidden in
-                self?.actionSheetBackView.isHidden = isHidden
-                self?.createActionSheet.isHidden = isHidden
-                let buttonImgName = isHidden ? "Plus_Floating" : "Minus_Floating"
-                self?.floatingButton.setImage(UIImage(named: buttonImgName)?.withRenderingMode(.alwaysOriginal),
-                                              for: .normal)
+        certificationSelectionAllToggleButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.viewModel.toggleCertificationAllSelection()
             })
             .disposed(by: disposeBag)
         
-        self.certificationSortView.type
-            .bind(to: self.viewModel.certificationSortingType)
-            .disposed(by: disposeBag)
-        
-        self.fitSiteSortView.type
-            .bind(to: self.viewModel.fitStieSortingType)
-            .disposed(by: disposeBag)
-        
-        self.createActionSheet.certificationButton.rx.tap
-            .bind(onNext: { [weak self] in
-                self?.pushCreateCertificationVC()
-                self?.closeCreateActionSheet()
+        viewModel.selectedRecoridIdList
+            .subscribe(onNext: { [weak self] _ in
+                self?.certificationCollectionView.reloadData()
             })
             .disposed(by: disposeBag)
         
-        self.createActionSheet.createFeedButton.rx.tap
-            .bind(onNext: { [weak self] in
-                self?.pushCreateFitSiteVC()
-                self?.closeCreateActionSheet()
+        viewModel.certificationAllButtonCheck
+            .bind(to: certificationSelectionAllToggleButton.rx.isSelected)
+            .disposed(by: disposeBag)
+        
+        certicationSelectionDeleteButton.rx.tap
+            .subscribe(onNext: {[weak self] in
+                self?.viewModel.deleteCertifications()
             })
             .disposed(by: disposeBag)
         
-        searchBar.rx.tapGesture()
-            .bind(onNext: { [weak self] _ in
-                self?.showSearchVC()
+        fitSiteSelectionAllTogleButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.viewModel.toggleFitSiteAllSelection()
             })
             .disposed(by: disposeBag)
-    }
-    
-    private func closeCreateActionSheet() {
-        self.actionSheetBackView.isHidden = true
-        self.createActionSheet.isHidden = true
-        self.floatingButton.setImage(UIImage(named: "Plus_Floating")?.withRenderingMode(.alwaysOriginal),
-                                      for: .normal)
+        
+        viewModel.selectedArticleidIdList
+            .subscribe(onNext: { [weak self] _ in
+                self?.fitSiteTableView.reloadData()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.fitSiteAllButtonCheck
+            .bind(to: fitSiteSelectionAllTogleButton.rx.isSelected)
+            .disposed(by: disposeBag)
+        
+        fitSiteSelectionDeleteButton.rx.tap
+            .subscribe(onNext: {[weak self] in
+                self?.viewModel.deleteFitSites()
+            })
+            .disposed(by: disposeBag)
     }
     
     //MARK: - 화면이동
@@ -284,13 +287,12 @@ final class CommunityViewController: BaseViewController {
         self.view.addSubview(indicatorView)
         self.view.addSubview(feedScrollView)
         self.view.addSubview(categoryCollectionView)
-        self.view.addSubview(actionSheetBackView)
-        self.view.addSubview(floatingButton)
-        self.view.addSubview(createActionSheet)
         
         self.feedScrollView.addSubview(contentView)
-        self.feedScrollView.addSubview(certificationSortView)
-        self.feedScrollView.addSubview(fitSiteSortView)
+        self.feedScrollView.addSubview(certificationSelectionAllToggleButton)
+        self.feedScrollView.addSubview(certicationSelectionDeleteButton)
+        self.feedScrollView.addSubview(fitSiteSelectionAllTogleButton)
+        self.feedScrollView.addSubview(fitSiteSelectionDeleteButton)
         self.feedScrollView.addSubview(fitSiteTableView)
         self.feedScrollView.addSubview(certificationCollectionView)
     }
@@ -309,11 +311,6 @@ final class CommunityViewController: BaseViewController {
             $0.top.equalTo(self.topTabBarCollectionView.snp.bottom).offset(15)
             $0.height.equalTo(32)
         }
-
-        self.certificationSortView.snp.makeConstraints {
-            $0.trailing.equalTo(self.certificationCollectionView.snp.trailing)
-            $0.top.equalToSuperview().offset(4)
-        }
         
         feedScrollView.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
@@ -327,25 +324,39 @@ final class CommunityViewController: BaseViewController {
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
         
+        certificationSelectionAllToggleButton.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(4)
+            $0.leading.equalTo(self.certificationCollectionView)
+        }
+        
+        certicationSelectionDeleteButton.snp.makeConstraints {
+            $0.centerY.equalTo(certificationSelectionAllToggleButton)
+            $0.trailing.equalTo(self.certificationCollectionView)
+        }
+        
         certificationCollectionView.snp.makeConstraints {
-            $0.top.equalTo(self.certificationSortView.snp.bottom).offset(15)
+            $0.top.equalTo(self.certificationSelectionAllToggleButton.snp.bottom).offset(15)
             $0.leading.equalToSuperview().offset(20)
             $0.bottom.equalToSuperview()
             $0.width.equalTo(self.view.frame.width - 40)
             $0.height.equalTo(contentView.snp.height)
         }
         
-        fitSiteSortView.snp.makeConstraints {
+        fitSiteSelectionAllTogleButton.snp.makeConstraints {
             $0.top.equalToSuperview().offset(4)
-            $0.trailing.equalTo(self.fitSiteTableView.snp.trailing)
+            $0.leading.equalTo(self.fitSiteTableView)
+        }
+        
+        fitSiteSelectionDeleteButton.snp.makeConstraints {
+            $0.centerY.equalTo(fitSiteSelectionAllTogleButton)
+            $0.trailing.equalTo(self.fitSiteTableView)
         }
         
         fitSiteTableView.snp.makeConstraints {
             $0.leading.equalTo(self.certificationCollectionView.snp.trailing).offset(40)
-            $0.top.equalTo(self.fitSiteSortView.snp.bottom).offset(15)
+            $0.top.equalTo(self.fitSiteSelectionAllTogleButton.snp.bottom).offset(15)
             $0.trailing.equalToSuperview().offset(-20)
             $0.bottom.equalToSuperview()
-            $0.width.equalTo(self.view.frame.width - 40)
         }
         
         indicatorUnderLineView.snp.makeConstraints { make in
@@ -360,25 +371,11 @@ final class CommunityViewController: BaseViewController {
             make.width.equalTo(15)
             make.height.equalTo(3)
         }
-        
-        self.floatingButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().offset(-20)
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-30)
-            $0.width.height.equalTo(56)
-        }
-        
-        self.actionSheetBackView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
-        self.createActionSheet.snp.makeConstraints {
-            $0.trailing.equalToSuperview().offset(-20)
-            $0.bottom.equalTo(self.floatingButton.snp.top).offset(-10)
-        }
     }
 }
 
-extension CommunityViewController {
+// MARK: - CollectionLayout
+extension MyFeedViewController {
     private func createLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(1),
                                               heightDimension: .absolute(32))
@@ -430,7 +427,7 @@ extension CommunityViewController {
 }
 
 // MARK: - Paging
-extension CommunityViewController {
+extension MyFeedViewController {
     private func pagingBinding() {
         certificationCollectionView.rx.didScroll
             .map { [weak self] Void -> (offsetY: CGFloat, contentHeight: CGFloat, frameHeight: CGFloat) in
@@ -455,7 +452,7 @@ extension CommunityViewController {
 }
 
 // MARK: - TopTabBar
-extension CommunityViewController {
+extension MyFeedViewController {
     func moveIndicatorbar(targetIndex: Int) {
         let indexPath = IndexPath(item: targetIndex, section: 0)
         topTabBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
@@ -518,6 +515,63 @@ extension CommunityViewController {
                 } else if feedScrollView.contentOffset.x == 0 {
                     self.viewModel.communityType.onNext(.certification)
                 }
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+// MARK: - CellDelegate
+extension MyFeedViewController: CertificationCellDelegate, MyFitSiteCellDelegate {
+    func toggleSelectedFitSite(articleId: Int) {
+        var idList = viewModel.selectedArticleidIdList.value
+        if idList.contains(articleId) {
+            idList.remove(articleId)
+        } else {
+            idList.insert(articleId)
+        }
+        viewModel.selectedArticleidIdList.accept(idList)
+    }
+    
+    func toggleSelected(recordId: Int) {
+        var idList = viewModel.selectedRecoridIdList.value
+        if idList.contains(recordId) {
+            idList.remove(recordId)
+        } else {
+            idList.insert(recordId)
+        }
+        viewModel.selectedRecoridIdList.accept(idList)
+    }
+}
+
+// MARK: - DefaultView
+extension MyFeedViewController {
+    private func setDefaultView() {
+        certificationCollectionView.backgroundView = certificationBackView
+        fitSiteTableView.backgroundView = fitSiteBackView
+        
+        viewModel.fitSiteFeedList
+            .map { !$0.isEmpty }
+            .bind(to: fitSiteBackView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        viewModel.certificationFeedList
+            .map { !$0.isEmpty }
+            .bind(to: certificationBackView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        certificationBackView.moveButton.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                self?.tabBarController?.selectedIndex = 1
+                self?.navigationController?.popToRootViewController(animated: false)
+            })
+            .disposed(by: disposeBag)
+        
+        fitSiteBackView.moveButton.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                self?.tabBarController?.selectedIndex = 1
+                self?.navigationController?.popToRootViewController(animated: false)
             })
             .disposed(by: disposeBag)
     }
