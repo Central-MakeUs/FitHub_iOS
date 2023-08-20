@@ -249,10 +249,10 @@ final class MyFeedViewController: BaseViewController {
     }
     
     private func pushCreateCertificationVC() {
-        let usecase = EditCertificationUseCase(repository: EditCertificationRepository(certificationService: CertificationService(),
+        let usecase = CreateCertificationUseCase(repository: CreateCertificationRepository(certificationService: CertificationService(),
                                                                                        authService: UserService()))
-        let editCertificationVC = EditCertificationViewController(EditCertificationViewModel(usecase: usecase))
-        self.navigationController?.pushViewController(editCertificationVC, animated: true)
+        let createCertificationVC = CreateCertificationViewController(CreateCertificationViewModel(usecase: usecase))
+        self.navigationController?.pushViewController(createCertificationVC, animated: true)
     }
     
     private func pushCreateFitSiteVC() {
