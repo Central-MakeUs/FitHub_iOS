@@ -9,10 +9,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class EditCertificationViewModel: ViewModelType {
+final class CreateCertificationViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
-    var usecase: EditCertificationUseCaseProtocol
+    var usecase: CreateCertificationUseCaseProtocol
     
     var imageSource = BehaviorSubject<UIImage?>(value: nil)
     
@@ -31,18 +31,18 @@ final class EditCertificationViewModel: ViewModelType {
     }
     
     struct Output {
-        let dataSource: Observable<[EditCertificationSectionModel]>
+        let dataSource: Observable<[CreateCertificationSectionModel]>
         let completeEnable: Observable<Bool>
         let completePublisher: PublishSubject<Bool>
     }
     
-    init(usecase: EditCertificationUseCaseProtocol) {
+    init(usecase: CreateCertificationUseCaseProtocol) {
         self.usecase = usecase
         Observable.combineLatest(imageSource,
                                  contentSource,
                                  hashTagSource,
                                  selectedSportSource)
-        .map { EditCertificationModel(profileImage: $0, content: $1, hashtags: $2, selectedSport: $3) }
+        .map { CreateCertificationModel(profileImage: $0, content: $1, hashtags: $2, selectedSport: $3) }
         .subscribe(onNext: { [weak self] model in
             self?.usecase.certifiactionInfo = model
         })
@@ -56,24 +56,24 @@ final class EditCertificationViewModel: ViewModelType {
     
     func transform(input: Input) -> Output {
         let imageSourceSection = imageSource
-            .map { [EditCertificationSectionModel.image(items: [.image(image: $0)])]}
+            .map { [CreateCertificationSectionModel.image(items: [.image(image: $0)])]}
         
         let contentSection = contentSource
             .map {
-                [EditCertificationSectionModel.content(items: [.content(string: $0 ?? "")])]
+                [CreateCertificationSectionModel.content(items: [.content(string: $0 ?? "")])]
             }
         
         let hashTagSection = hashTagSource
             .map { $0.map {
-                EditCertificationSectionModel.Item.hashtag(string: $0)
+                CreateCertificationSectionModel.Item.hashtag(string: $0)
             }}
-            .map { [EditCertificationSectionModel.hashtag(items: $0)] }
+            .map { [CreateCertificationSectionModel.hashtag(items: $0)] }
         
         let sportSection = self.usecase.sports
             .map { $0.map {
-                EditCertificationSectionModel.Item.sport(item: $0)
+                CreateCertificationSectionModel.Item.sport(item: $0)
             }}
-            .map { [EditCertificationSectionModel.sport(items: $0)] }
+            .map { [CreateCertificationSectionModel.sport(items: $0)] }
         
         let dataSource = Observable.combineLatest(imageSourceSection,
                                                   contentSection,

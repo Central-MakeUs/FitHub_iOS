@@ -11,9 +11,9 @@ import RxCocoa
 import RxDataSources
 import PhotosUI
 
-final class EditCertificationViewController: BaseViewController {
+final class CreateCertificationViewController: BaseViewController {
     //MARK: - Properties
-    private let viewModel: EditCertificationViewModel
+    private let viewModel: CreateCertificationViewModel
     
     private let completeButton = UIButton(type: .system).then {
         $0.titleLabel?.font = .pretendard(.bodyMedium01)
@@ -33,7 +33,7 @@ final class EditCertificationViewController: BaseViewController {
         $0.backgroundColor = .clear
     }
     
-    init(_ viewModel: EditCertificationViewModel) {
+    init(_ viewModel: CreateCertificationViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         self.view.gestureRecognizers = nil
@@ -67,7 +67,7 @@ final class EditCertificationViewController: BaseViewController {
     
     //MARK: - SetupBinding
     override func setupBinding() {
-        let input = EditCertificationViewModel.Input(completeTap: completeButton.rx.tap.asObservable())
+        let input = CreateCertificationViewModel.Input(completeTap: completeButton.rx.tap.asObservable())
         
         let output = self.viewModel.transform(input: input)
         
@@ -89,7 +89,7 @@ final class EditCertificationViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        self.collectionView.rx.modelSelected(EditCertificationSectionModel.Item.self)
+        self.collectionView.rx.modelSelected(CreateCertificationSectionModel.Item.self)
             .subscribe(onNext: { [weak self] model in
                 switch model {
                 case .sport(item: let item):
@@ -127,9 +127,9 @@ final class EditCertificationViewController: BaseViewController {
 }
 
 // MARK: - DataSoruce
-extension EditCertificationViewController {
-    private func createDataSoruce() -> RxCollectionViewSectionedReloadDataSource<EditCertificationSectionModel> {
-        return RxCollectionViewSectionedReloadDataSource<EditCertificationSectionModel> {
+extension CreateCertificationViewController {
+    private func createDataSoruce() -> RxCollectionViewSectionedReloadDataSource<CreateCertificationSectionModel> {
+        return RxCollectionViewSectionedReloadDataSource<CreateCertificationSectionModel> {
             (dataSource, collectionView, indexPath, item) in
             switch item {
             case .image(image: let image):
@@ -184,7 +184,7 @@ extension EditCertificationViewController {
 }
 
 //MARK: - HashTag
-extension EditCertificationViewController: HashTagDelegate {
+extension CreateCertificationViewController: HashTagDelegate {
     func addHashTag(_ text: String) {
         self.viewModel.addHashTag(text)
     }
@@ -196,7 +196,7 @@ extension EditCertificationViewController: HashTagDelegate {
 }
 
 //MARK: - PHPicker Delegate
-extension EditCertificationViewController: PHPickerViewControllerDelegate, UINavigationControllerDelegate {
+extension CreateCertificationViewController: PHPickerViewControllerDelegate, UINavigationControllerDelegate {
     private func showPhotoAlbum() {
         var configuration = PHPickerConfiguration()
         configuration.selectionLimit = 1
@@ -222,7 +222,7 @@ extension EditCertificationViewController: PHPickerViewControllerDelegate, UINav
 }
 
 // MARK: - Compositional
-extension EditCertificationViewController {
+extension CreateCertificationViewController {
     private func createLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout() { (sectionIndex: Int,
                                                               environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
@@ -320,7 +320,7 @@ extension EditCertificationViewController {
     }
 }
 
-extension EditCertificationViewController: ContentCellDelegate {
+extension CreateCertificationViewController: ContentCellDelegate {
     func changeContentFrame() {
         self.collectionView.reloadSections(IndexSet(integer: 2))
     }

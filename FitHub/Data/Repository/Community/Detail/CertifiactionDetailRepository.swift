@@ -11,7 +11,7 @@ import RxSwift
 protocol CertificationRepositoryInterface {
     func fecthCertification(_ categoryId: Int, pageIndex: Int, type: SortingType)->Single<CertificationFeedDTO>
     func fetchCertificationDetail(recordId: Int)->Single<CertificationDetailDTO>
-    func createCertification(_ certificationInfo: EditCertificationModel) -> Single<CreateCertificationDTO>
+    func createCertification(_ certificationInfo: CreateCertificationModel) -> Single<CreateCertificationDTO>
     func reportCertification(recordId: Int)->Single<Int>
     func removeCertification(recordId: Int)->Single<Int>
     func toggleLikeCertification(recordId: Int)->Single<LikeCertificationDTO>
@@ -28,7 +28,7 @@ final class CertificationRepository: CertificationRepositoryInterface {
         return service.fecthCertification(categoryId, pageIndex: pageIndex, type: type)
     }
     
-    func createCertification(_ certificationInfo: EditCertificationModel) -> Single<CreateCertificationDTO> {
+    func createCertification(_ certificationInfo: CreateCertificationModel) -> Single<CreateCertificationDTO> {
         return service.createCertification(certificationInfo)
     }
     

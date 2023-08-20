@@ -60,6 +60,7 @@ final class CertificationDetailViewModel: ViewModelType {
                 self?.isLastPage = info.isLast
             })
             .disposed(by: disposeBag)
+        
         self.fetchCertificationDetail()
         
         self.fetchComment()

@@ -39,7 +39,7 @@ class CertificationService {
         }
     }
 
-    func createCertification(_ certificationInfo: EditCertificationModel) -> Single<CreateCertificationDTO> {
+    func createCertification(_ certificationInfo: CreateCertificationModel) -> Single<CreateCertificationDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
         
         guard let categoryTag = certificationInfo.selectedSport?.name,
@@ -69,6 +69,53 @@ class CertificationService {
                 }
             }, to: urlString, method: .post, headers: headers)
             .responseDecodable(of: BaseResponse<CreateCertificationDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    print(response.code)
+                    if response.code == 2000 {
+                        guard let result = response.result else { return }
+                        observer(.success(result))
+                    } else {
+                        observer(.failure(CertificationError.serverError))
+                    }
+                case .failure:
+                    observer(.failure(AuthError.serverError))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func updateCertification(recordId: Int, certificationInfo: CreateCertificationModel) -> Single<UpdateCertificationDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
+        
+        guard let categoryTag = certificationInfo.selectedSport?.name,
+              let image = certificationInfo.profileImage?.jpegData(compressionQuality: 0.2),
+              let accessToken = KeychainManager.read("accessToken") else { return Single.error(CertificationError.otherError) }
+        
+        let contents = certificationInfo.content ?? ""
+        let categoryId = certificationInfo.selectedSport?.id ?? 0
+        let hashTagList = certificationInfo.hashtags.filter { !$0.isEmpty }.joined(separator: ",")
+        let urlString = baseURL + "record/\(recordId)"
+        
+        let parameter: Parameters = ["contents" : contents,
+                                     "exerciseTag" : categoryTag,
+                                     "hashTagList" : hashTagList,
+        ]
+        
+        
+        let headers: HTTPHeaders = [.authorization(bearerToken: accessToken),
+                                    .contentType("multipart/form-data")]
+        
+        return Single<UpdateCertificationDTO>.create { observer in
+            AF.upload(multipartFormData: { multipartFormData in
+                multipartFormData.append(image, withName: "image", fileName: "\(image).jpeg", mimeType: "image/jpeg")
+                
+                for (key,value) in parameter {
+                    multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
+                }
+            }, to: urlString, method: .patch, headers: headers)
+            .responseDecodable(of: BaseResponse<UpdateCertificationDTO>.self) { res in
                 switch res.result {
                 case .success(let response):
                     print(response.code)
