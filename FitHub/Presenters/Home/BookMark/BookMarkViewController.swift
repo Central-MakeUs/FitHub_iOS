@@ -130,7 +130,10 @@ final class BookMarkViewController: BaseViewController {
     // MARK: - 화면 이동
     private func pushFitSiteDetail(articleId: Int) {
         let usecase = FitSiteDetailUseCase(commentRepository: CommentRepository(service: CommentService()),
-                                         fitSiteRepository: FitSiteRepository(service: ArticleService()))
+                                         fitSiteRepository: FitSiteRepository(service: ArticleService()),
+                                           communityRepository: CommunityRepository(UserService(),
+                                                                                    certificationService: CertificationService(),
+                                                                                    articleService: ArticleService()))
         let fitSiteDetailVC = FitSiteDetailViewController(viewModel: FitSiteDetailViewModel(usecase: usecase,
                                                                                             articleId: articleId))
         

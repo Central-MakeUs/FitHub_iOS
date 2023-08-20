@@ -644,4 +644,22 @@ class UserService {
             return Disposables.create()
         }
     }
+    
+    func reportUser(userId: Int) -> Single<Int> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/\(userId)/report"
+        
+        return Single<Int>.create { emitter in
+            AF.request(urlString, method: .post, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<ReportUserDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    emitter(.success(response.code))
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
 }

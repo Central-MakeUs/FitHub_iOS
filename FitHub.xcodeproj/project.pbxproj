@@ -121,6 +121,7 @@
 		B5ED13392A91C795002769BE /* OtherProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED13382A91C795002769BE /* OtherProfileUseCase.swift */; };
 		B5ED133B2A91C93C002769BE /* OtherUserInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED133A2A91C93C002769BE /* OtherUserInfoDTO.swift */; };
 		B5ED133D2A91F173002769BE /* OtherFitSiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED133C2A91F173002769BE /* OtherFitSiteCell.swift */; };
+		B5ED133F2A920017002769BE /* ReportUserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED133E2A920017002769BE /* ReportUserDTO.swift */; };
 		DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB02A67C273001B5672 /* HomeViewController.swift */; };
 		DB002BB42A67C332001B5672 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB32A67C332001B5672 /* CommunityViewController.swift */; };
 		DB002BB82A67C36F001B5672 /* LookUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB72A67C36F001B5672 /* LookUpViewController.swift */; };
@@ -380,6 +381,7 @@
 		B5ED13382A91C795002769BE /* OtherProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileUseCase.swift; sourceTree = "<group>"; };
 		B5ED133A2A91C93C002769BE /* OtherUserInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserInfoDTO.swift; sourceTree = "<group>"; };
 		B5ED133C2A91F173002769BE /* OtherFitSiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherFitSiteCell.swift; sourceTree = "<group>"; };
+		B5ED133E2A920017002769BE /* ReportUserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUserDTO.swift; sourceTree = "<group>"; };
 		DB002BB02A67C273001B5672 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DB002BB32A67C332001B5672 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		DB002BB72A67C36F001B5672 /* LookUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpViewController.swift; sourceTree = "<group>"; };
@@ -719,6 +721,7 @@
 				B5ED130F2A8FEAEF002769BE /* PrivacyInfoDTO.swift */,
 				B5ED13112A9085F8002769BE /* QuitDTO.swift */,
 				B5ED133A2A91C93C002769BE /* OtherUserInfoDTO.swift */,
+				B5ED133E2A920017002769BE /* ReportUserDTO.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -1769,6 +1772,7 @@
 				DB668AFC2A50017700D702A1 /* UserInfoStatus.swift in Sources */,
 				DB8CD7172A6D3995004735C8 /* CreateActionSheet.swift in Sources */,
 				DB0D21F92A73E40700ABF6A2 /* EditCertifiactionViewModel.swift in Sources */,
+				B5ED133F2A920017002769BE /* ReportUserDTO.swift in Sources */,
 				DB57123E2A72651500DCAD9C /* RegistType.swift in Sources */,
 				B5B2C3A32A7E39AE004FC66C /* SplashViewModel.swift in Sources */,
 				DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */,

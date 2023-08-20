@@ -64,6 +64,8 @@ final class OtherProfileViewModel {
     
     let didScroll = PublishSubject<(CGFloat,CGFloat,CGFloat)>()
     
+    let reportUserHandler = PublishSubject<Int>()
+    
 }
 
 extension OtherProfileViewModel {
@@ -100,5 +102,14 @@ extension OtherProfileViewModel {
                 self?.isPaging = false
             })
             .disposed(by: disposeBag)
+    }
+    
+    func reportUser() {
+        usecase.reportUser(userId: userId)
+            .subscribe(onSuccess: { [weak self] code in
+                self?.reportUserHandler.onNext(code)
+            })
+            .disposed(by: disposeBag)
+        
     }
 }

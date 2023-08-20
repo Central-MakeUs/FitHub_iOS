@@ -14,6 +14,7 @@ protocol CommunityRepositoryInterface {
     func fetchFitSiteFeed(_ cateogryId: Int, page: Int, type: SortingType) -> Single<FitSiteFeedDTO>
     func deleteCertifications(recordIdList: [Int])->Single<CertificationDeleteRecordsDTO>
     func deleteFitSites(articleIdList: [Int])->Single<DeleteFitSitesDTO>
+    func reportUser(userId: Int) -> Single<Int>
 }
 
 final class CommunityRepository: CommunityRepositoryInterface {
@@ -47,5 +48,9 @@ final class CommunityRepository: CommunityRepositoryInterface {
     
     func deleteFitSites(articleIdList: [Int])->Single<DeleteFitSitesDTO> {
         return articleService.deleteFitSites(articleIdList: articleIdList)
+    }
+    
+    func reportUser(userId: Int) -> Single<Int> {
+        return authService.reportUser(userId: userId)
     }
 }

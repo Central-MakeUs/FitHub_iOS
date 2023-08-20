@@ -263,7 +263,10 @@ final class CommunityViewController: BaseViewController {
     
     private func pushCertificationDetail(recordId: Int) {
         let usecase = CertifiactionDetailUseCase(certificationRepository: CertificationRepository(service: CertificationService()),
-                                                 commentRepository: CommentRepository(service: CommentService()))
+                                                 commentRepository: CommentRepository(service: CommentService()),
+                                                 communityRepostiroy: CommunityRepository(UserService(),
+                                                                                          certificationService: CertificationService(),
+                                                                                          articleService: ArticleService()))
         let certificationDetailVC = CertificationDetailViewController(viewModel: CertificationDetailViewModel(usecase: usecase,
                                                                                                               recordId: recordId))
         
@@ -272,7 +275,10 @@ final class CommunityViewController: BaseViewController {
     
     private func pushFitSiteDetail(articleId: Int) {
         let usecase = FitSiteDetailUseCase(commentRepository: CommentRepository(service: CommentService()),
-                                         fitSiteRepository: FitSiteRepository(service: ArticleService()))
+                                         fitSiteRepository: FitSiteRepository(service: ArticleService()),
+                                           communityRepository: CommunityRepository(UserService(),
+                                                                                    certificationService: CertificationService(),
+                                                                                    articleService: ArticleService()))
         let fitSiteDetailVC = FitSiteDetailViewController(viewModel: FitSiteDetailViewModel(usecase: usecase,
                                                                                             articleId: articleId))
         

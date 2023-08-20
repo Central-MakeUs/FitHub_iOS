@@ -13,6 +13,7 @@ final class CertificationDetailViewModel: ViewModelType {
     
     private let usecase: CertifiactionDetailUseCaseProtocol
     private let recordId: Int
+    private var ownerId = 0
     
     private var currentCommentPage = 0
     private var isPaging = false
@@ -31,6 +32,7 @@ final class CertificationDetailViewModel: ViewModelType {
     let recordDataSoruce = BehaviorSubject<[CertificationDetailSectionModel]>(value: [])
     let errorHandler = PublishSubject<Error>()
     let reportHandler = PublishSubject<Int>()
+    let reportUserHandler = PublishSubject<Int>()
     
     //MARK: - Input
     let detailSource = PublishSubject<CertificationDetailDTO>()
@@ -110,6 +112,15 @@ final class CertificationDetailViewModel: ViewModelType {
         return output
     }
     
+    func reportUser() {
+        usecase.reportUser(userId: ownerId)
+            .subscribe(onSuccess: { [weak self] code in
+                self?.reportUserHandler.onNext(code)
+            })
+            .disposed(by: disposeBag)
+        
+    }
+    
     func reportRecord() {
         usecase.reportCertification(recordId: recordId)
             .subscribe(onSuccess: { [weak self] code in
@@ -157,6 +168,7 @@ extension CertificationDetailViewModel {
     private func fetchCertificationDetail() {
         usecase.fetchCertificationDetail(recordId: recordId)
             .subscribe(onSuccess: { [weak self] res in
+                self?.ownerId = res.userInfo.ownerId
                 self?.detailSource.onNext(res)
             }, onFailure: { [weak self] error in
                 self?.errorHandler.onNext(error)
