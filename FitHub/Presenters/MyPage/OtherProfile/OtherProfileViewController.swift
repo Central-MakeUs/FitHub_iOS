@@ -17,7 +17,6 @@ final class OtherProfileViewController: BaseViewController {
                                              target: nil,
                                              action: nil)
 
-    
     private let feedScrollView = UIScrollView().then {
         $0.showsVerticalScrollIndicator = false
     }
@@ -74,6 +73,11 @@ final class OtherProfileViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = .bgDefault
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
@@ -98,10 +102,6 @@ final class OtherProfileViewController: BaseViewController {
     override func configureNavigation() {
         super.configureNavigation()
         navigationItem.rightBarButtonItem = moreButton
-    }
-    
-    override func configureUI() {
-        self.view.backgroundColor = .bgDefault
     }
     
     override func setupBinding() {
@@ -174,11 +174,32 @@ final class OtherProfileViewController: BaseViewController {
                 self?.showMoreInfo()
             })
             .disposed(by: disposeBag)
+        
+        viewModel.reportUserHandler
+            .bind(onNext: { [weak self] code in
+                switch code {
+                case 2000:
+                    let alert = StandardAlertController(title: "신고 완료", message: "정상적으로 신고가 완료되었습니다.")
+                    let ok = StandardAlertAction(title: "확인", style: .basic) { [weak self] _ in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                    alert.addAction(ok)
+                    
+                    self?.present(alert, animated: false)
+                case 4013: self?.notiAlert("존재하지 않는 유저입니다.")
+                case 4062: self?.notiAlert("이미 신고 완료된 유저입니다.")
+                case 4063: self?.notiAlert("자기 자신을 신고할 수 없습니다.")
+                default: self?.notiAlert("알 수 없는 오류\n관리자에게 문의해주세요.")
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     private func pushFitSiteDetail(articleId: Int) {
         let usecase = FitSiteDetailUseCase(commentRepository: CommentRepository(service: CommentService()),
-                                         fitSiteRepository: FitSiteRepository(service: ArticleService()))
+                                           fitSiteRepository: FitSiteRepository(service: ArticleService()),
+                                           communityRepository: CommunityRepository(UserService(),
+                                                                                    certificationService: CertificationService(), articleService: ArticleService()))
         let fitSiteDetailVC = FitSiteDetailViewController(viewModel: FitSiteDetailViewModel(usecase: usecase,
                                                                                             articleId: articleId))
         
@@ -187,11 +208,24 @@ final class OtherProfileViewController: BaseViewController {
     
     private func showMoreInfo() {
         let actionSheet = StandardActionSheetController()
-        let reportUser = StandardActionSheetAction(title: "사용자 신고하기")
+        let reportUser = StandardActionSheetAction(title: "사용자 신고하기") { [weak self] _ in
+            self?.showReportUserAlert()
+        }
         
         actionSheet.addAction(reportUser)
         
         self.present(actionSheet, animated: false)
+    }
+    
+    private func showReportUserAlert() {
+        let alert = StandardAlertController(title: "사용자를 신고하시겠습니까?", message: "신고된 사용자는 차단되어 글과 댓글이\n숨겨지고, 차단은 취소할 수 없습니다.")
+        let report = StandardAlertAction(title: "신고", style: .basic) { [weak self] _ in
+            self?.viewModel.reportUser()
+        }
+        let cancel = StandardAlertAction(title: "취소", style: .cancel)
+        alert.addAction([cancel,report])
+        
+        self.present(alert, animated: false)
     }
     
     override func addSubView() {

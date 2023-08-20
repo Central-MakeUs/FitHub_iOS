@@ -20,16 +20,21 @@ protocol FitSiteDetailUseCaseProtocol {
     func scrapFitSite(articleId: Int)->Single<FitSiteScrapDTO>
     func reportFitSite(articleId: Int)->Single<Int>
     func deleteFitSite(articleId: Int)->Single<Bool>
+    
+    func reportUser(userId: Int) -> Single<Int>
 }
 
 final class FitSiteDetailUseCase: FitSiteDetailUseCaseProtocol {
     private let commentRepository: CommentRepositoryInterface
     private let fitSiteRepository: FitSiteRepositoryInterface
+    private let communityRepository: CommunityRepositoryInterface
     
     init(commentRepository: CommentRepositoryInterface,
-         fitSiteRepository: FitSiteRepositoryInterface) {
+         fitSiteRepository: FitSiteRepositoryInterface,
+         communityRepository: CommunityRepositoryInterface) {
         self.commentRepository = commentRepository
         self.fitSiteRepository = fitSiteRepository
+        self.communityRepository = communityRepository
     }
     
     func createComment(id: Int, contents: String) -> Single<Bool> {
@@ -70,5 +75,9 @@ final class FitSiteDetailUseCase: FitSiteDetailUseCaseProtocol {
     
     func deleteFitSite(articleId: Int)->Single<Bool> {
         return fitSiteRepository.deleteFitSite(articleId: articleId)
+    }
+    
+    func reportUser(userId: Int) -> Single<Int> {
+        return communityRepository.reportUser(userId: userId)
     }
 }

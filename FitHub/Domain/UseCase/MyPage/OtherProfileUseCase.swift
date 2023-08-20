@@ -12,6 +12,7 @@ protocol OtherProfileUseCaseProtocol {
     func fetchCategory()->Single<[CategoryDTO]>
     func fetchOtherProfileInfo(userId: Int) -> Single<OtherUserInfoDTO>
     func fetchOtherUserArticle(userId: Int, categoryId: Int, page: Int) -> Single<FitSiteFeedDTO>
+    func reportUser(userId: Int) -> Single<Int>
 }
 
 final class OtherProfileUseCase: OtherProfileUseCaseProtocol {
@@ -35,5 +36,9 @@ final class OtherProfileUseCase: OtherProfileUseCaseProtocol {
     
     func fetchOtherUserArticle(userId: Int, categoryId: Int, page: Int) -> Single<FitSiteFeedDTO> {
         return mypageRepo.fetchOtherUserArticle(userId: userId, categoryId: categoryId, page: page)
+    }
+    
+    func reportUser(userId: Int) -> Single<Int> {
+        return communityRepo.reportUser(userId: userId)
     }
 }
