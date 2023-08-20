@@ -155,7 +155,13 @@ final class HomeViewController: BaseViewController {
         
         rankerTableView.rx.modelSelected(BestRecorderDTO.self)
             .bind(onNext: { [weak self] model in
-                self?.showOtherUserProfile(userId: model.id)
+                guard let userIdString = KeychainManager.read("userId"),
+                let userId = Int(userIdString) else { return }
+                if userId == model.id {
+                    self?.tabBarController?.selectedIndex = 3
+                } else {
+                    self?.showOtherUserProfile(userId: model.id)
+                }
             })
             .disposed(by: disposeBag)
     }

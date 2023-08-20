@@ -35,7 +35,7 @@ final class StandardAlertController: UIViewController{
     
     private lazy var contentStackView = UIStackView(arrangedSubviews: [titleLabel, messageLabel]).then {
         $0.spacing = 15
-        $0.layoutMargins = .init(top: 0, left: 20, bottom: 0, right: 20)
+        $0.layoutMargins = .init(top: 0, left: 0, bottom: 0, right: 0)
         $0.isLayoutMarginsRelativeArrangement = true
         $0.axis = .vertical
     }

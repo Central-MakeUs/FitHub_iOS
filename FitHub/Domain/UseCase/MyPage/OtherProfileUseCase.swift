@@ -10,7 +10,7 @@ import RxSwift
 
 protocol OtherProfileUseCaseProtocol {
     func fetchCategory()->Single<[CategoryDTO]>
-    func fetchOtherProfileInfo(userId: Int) -> Single<OtherUserInfoDTO>
+    func fetchOtherProfileInfo(userId: Int) -> Single<BaseResponse<OtherUserInfoDTO>>
     func fetchOtherUserArticle(userId: Int, categoryId: Int, page: Int) -> Single<FitSiteFeedDTO>
     func reportUser(userId: Int) -> Single<Int>
 }
@@ -30,7 +30,7 @@ final class OtherProfileUseCase: OtherProfileUseCaseProtocol {
             .map { [CategoryDTO(createdAt: nil, updatedAt: nil, imageUrl: nil, name: "전체", id: 0)] + $0 }
     }
     
-    func fetchOtherProfileInfo(userId: Int) -> Single<OtherUserInfoDTO> {
+    func fetchOtherProfileInfo(userId: Int) -> Single<BaseResponse<OtherUserInfoDTO>> {
         return mypageRepo.fetchOtherProfileInfo(userId: userId)
     }
     
