@@ -598,4 +598,50 @@ class UserService {
             return Disposables.create()
         }
     }
+    
+    func fetchOtherProfileInfo(userId: Int) -> Single<OtherUserInfoDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/\(userId)"
+
+        return Single<OtherUserInfoDTO>.create { emitter in
+            AF.request(urlString, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<OtherUserInfoDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        guard let result = response.result else { return }
+                        emitter(.success(result))
+                    } else {
+                        emitter(.failure(AuthError.serverError))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func fetchOtherUserArticle(userId: Int, categoryId: Int, page: Int) -> Single<FitSiteFeedDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/\(userId)/articles/\(categoryId)"
+        let parameter: Parameters = ["pageIndex" : page]
+        return Single<FitSiteFeedDTO>.create { emitter in
+            AF.request(urlString, parameters: parameter, encoding: URLEncoding.queryString, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<FitSiteFeedDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        guard let result = response.result else { return }
+                        emitter(.success(result))
+                    } else {
+                        emitter(.failure(AuthError.serverError))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
 }

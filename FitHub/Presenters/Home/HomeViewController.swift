@@ -152,6 +152,21 @@ final class HomeViewController: BaseViewController {
                 self?.showLevelInfoVC()
             })
             .disposed(by: disposeBag)
+        
+        rankerTableView.rx.modelSelected(BestRecorderDTO.self)
+            .bind(onNext: { [weak self] model in
+                self?.showOtherUserProfile(userId: model.id)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func showOtherUserProfile(userId: Int) {
+        let usecase = OtherProfileUseCase(communityRepo: CommunityRepository(UserService(),
+                                                                             certificationService: CertificationService(), articleService: ArticleService()),
+                                          mypageRepo: MyPageRepository(service: UserService()))
+        let otherProfileVC = OtherProfileViewController(viewModel: OtherProfileViewModel(userId: userId,
+                                                                                         usecase: usecase))
+        self.navigationController?.pushViewController(otherProfileVC, animated: true)
     }
     
     private func showLevelInfoVC() {
