@@ -9,17 +9,17 @@ import Foundation
 import RxSwift
 
 protocol ResetPasswordRepositoryInterface {
-    func changePassword(_ registUser: AuthUserInfo)-> Single<Bool>
+    func resetPassword(_ registUser: AuthUserInfo)-> Single<Bool>
 }
 
 final class ResetPasswordRepository: ResetPasswordRepositoryInterface {
-    private let service: AuthService
+    private let service: UserService
     
-    init(service: AuthService) {
+    init(service: UserService) {
         self.service = service
     }
     
-    func changePassword(_ userInfo: AuthUserInfo)-> Single<Bool> {
-        return service.changePassword(userInfo)
+    func resetPassword(_ userInfo: AuthUserInfo)-> Single<Bool> {
+        return service.resetPassword(userInfo)
     }
 }

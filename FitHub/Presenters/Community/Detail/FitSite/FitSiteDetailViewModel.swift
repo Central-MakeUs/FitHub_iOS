@@ -13,6 +13,7 @@ final class FitSiteDetailViewModel: ViewModelType {
     
     private let usecase: FitSiteDetailUseCaseProtocol
     private let articleId: Int
+    private var ownerId: Int = 0
     
     private var currentCommentPage = 0
     private var isPaging = false
@@ -22,6 +23,7 @@ final class FitSiteDetailViewModel: ViewModelType {
     let recordDataSoruce = BehaviorSubject<[FitSiteDetailSectionModel]>(value: [])
     let errorHandler = PublishSubject<Error>()
     let reportHandler = PublishSubject<Int>()
+    let reportUserHandler = PublishSubject<Int>()
     
     //MARK: - Input
     let detailSource = PublishSubject<FitSiteDetailDTO>()
@@ -78,7 +80,7 @@ final class FitSiteDetailViewModel: ViewModelType {
     
     func transform(input: Input) -> Output {
         let output = Output()
-        
+    
         input.commentRegistTap
             .flatMap { self.usecase.createComment(id: self.articleId, contents: $0).asObservable()
                     .catchAndReturn(false)
@@ -107,6 +109,14 @@ final class FitSiteDetailViewModel: ViewModelType {
             .disposed(by: disposeBag)
             
         return output
+    }
+    
+    func reportUser() {
+        usecase.reportUser(userId: ownerId)
+            .subscribe(onSuccess: { [weak self] code in
+                self?.reportUserHandler.onNext(code)
+            })
+            .disposed(by: disposeBag)
     }
     
     func reportFitSite() {
@@ -160,6 +170,7 @@ extension FitSiteDetailViewModel {
     private func fetchFitSiteDetail() {
         usecase.fetchFitSiteDetail(articleId: articleId)
             .subscribe(onSuccess: { [weak self] res in
+                self?.ownerId = res.userInfo.ownerId
                 self?.detailSource.onNext(res)
             }, onFailure: { [weak self] error in
                 self?.errorHandler.onNext(error)

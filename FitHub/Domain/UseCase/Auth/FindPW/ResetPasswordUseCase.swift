@@ -28,7 +28,7 @@ final class ResetPasswordUseCase: ResetPasswordUseCaseProtocol {
     }
     
     func changePassword() -> Single<Bool> {
-        return self.repository.changePassword(userInfo)
+        return self.repository.resetPassword(userInfo)
     }
     
     func verifyPassword(_ password: String) -> UserInfoStatus {

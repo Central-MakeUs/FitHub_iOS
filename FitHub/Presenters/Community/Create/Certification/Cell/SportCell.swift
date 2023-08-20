@@ -54,6 +54,14 @@ final class SportCell: UICollectionViewCell {
         }
     }
     
+    func configureCell(item: CategoryDTO, selectedId: Int?) {
+        self.imageView.kf.setImage(with:URL(string: item.imageUrl ?? ""))
+        self.titleLabel.text = item.name
+        
+        let isSelected = selectedId == item.id
+        self.updateSelection(isSelected)
+    }
+    
     private func updateSelection(_ isSelected: Bool) {
         if isSelected {
             self.frameView.backgroundColor = .bgSub02
@@ -80,7 +88,7 @@ final class SportCell: UICollectionViewCell {
         }
         
         self.imageView.snp.makeConstraints {
-            $0.width.height.equalTo(40)
+            $0.width.height.equalTo(self.frameView.snp.width).multipliedBy(0.55)
             $0.center.equalToSuperview()
         }
         

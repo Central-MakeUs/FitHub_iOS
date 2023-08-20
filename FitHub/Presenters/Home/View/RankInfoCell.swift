@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 final class RankInfoCell: UITableViewCell {
     static let identifier = "RankInfoCell"
     

@@ -8,6 +8,7 @@
 import Foundation
 
 struct BestRecorderDTO: Decodable {
+    let id: Int
     let ranking: Int
     let rankingStatus: String
     let recorderNickName: String

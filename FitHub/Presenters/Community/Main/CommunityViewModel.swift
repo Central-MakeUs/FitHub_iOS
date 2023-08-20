@@ -52,7 +52,7 @@ final class CommunityViewModel {
             .withLatestFrom(certificationFeedList)
             .filter{ $0.isEmpty }
             .subscribe(onNext: { [weak self] _ in
-                self?.fetchCertification()
+                self?.fetchCertification(isReset: true)
             })
             .disposed(by: disposeBag)
         
@@ -61,7 +61,7 @@ final class CommunityViewModel {
             .withLatestFrom(fitSiteFeedList)
             .filter{ $0.isEmpty }
             .subscribe(onNext: { [weak self] _ in
-                self?.fetchFitSite()
+                self?.fetchFitSite(isReset: true)
             })
             .disposed(by: disposeBag)
         
@@ -69,25 +69,27 @@ final class CommunityViewModel {
             .distinctUntilChanged()
             .withLatestFrom(communityType)
             .subscribe(onNext: { [weak self] type in
-                self?.resetFitSite()
-                self?.resetCertification()
-                self?.communityType.onNext(type)
+                if type == .certification {
+                    self?.resetFitSite()
+                    self?.fetchCertification(isReset: true)
+                } else {
+                    self?.resetCertification()
+                    self?.fetchFitSite(isReset: true)
+                }
             })
             .disposed(by: disposeBag)
         
         fitStieSortingType
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] _ in
-                self?.resetFitSite()
-                self?.fetchFitSite()
+                self?.fetchFitSite(isReset: true)
             })
             .disposed(by: disposeBag)
         
         certificationSortingType
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] _ in
-                self?.resetCertification()
-                self?.fetchCertification()
+                self?.fetchCertification(isReset: true)
             })
             .disposed(by: disposeBag)
         
@@ -133,16 +135,20 @@ extension CommunityViewModel {
     private func fitSitePaging() {
         self.isPaging = true
         currentFitSitePage += 1
-        fetchFitSite()
+        fetchFitSite(isReset: false)
     }
     
     private func certifiactionPaging() {
         self.isPaging = true
         currentCertificationPage += 1
-        fetchCertification()
+        fetchCertification(isReset: false)
     }
     
-    private func fetchFitSite() {
+    private func fetchFitSite(isReset: Bool) {
+        if isReset {
+            self.currentFitSitePage = 0
+            self.isLastFitSite = false
+        }
         Observable.combineLatest(selectedCategory.asObservable(),
                                  fitStieSortingType.asObservable())
         .take(1)
@@ -157,6 +163,7 @@ extension CommunityViewModel {
         .subscribe(onNext: { [weak self] result in
             guard let self else { return }
             var newValue = self.fitSiteFeedList.value
+            if isReset { newValue = [] }
             newValue.append(contentsOf: result.articleList)
             self.fitSiteFeedList.accept(newValue)
             self.isLastFitSite = result.isLast
@@ -166,7 +173,11 @@ extension CommunityViewModel {
         .disposed(by: disposeBag)
     }
     
-    private func fetchCertification() {
+    private func fetchCertification(isReset: Bool) {
+        if isReset {
+            self.currentCertificationPage = 0
+            self.isLastCertification = false
+        }
         Observable.combineLatest(selectedCategory.asObservable(),
                                  certificationSortingType.asObservable())
         .take(1)
@@ -181,6 +192,7 @@ extension CommunityViewModel {
         .subscribe(onNext: { [weak self] result in
             guard let self else { return }
             var newValue = self.certificationFeedList.value
+            if isReset { newValue = [] }
             newValue.append(contentsOf: result.recordList)
             self.certificationFeedList.accept(newValue)
             self.isLastCertification = result.isLast

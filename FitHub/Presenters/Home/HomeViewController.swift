@@ -84,8 +84,6 @@ final class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.viewModel.updateHomeInfo()
-        
-        print(KeychainManager.read("accessToken"))
     }
     
     override func setupAttributes() {
@@ -106,8 +104,8 @@ final class HomeViewController: BaseViewController {
         bookmark.rx.tap
             .bind(onNext: { [weak self] in
                 let usecase = BookMarkUseCase(homeRepository: HomeRepository(homeService: HomeService(),
-                                                                             authService: AuthService()),
-                                              communityRepository: CommunityRepository(AuthService(),
+                                                                             authService: UserService()),
+                                              communityRepository: CommunityRepository(UserService(),
                                                                                        certificationService: CertificationService(), articleService: ArticleService()))
                 let bookMarkVC = BookMarkViewController(viewModel: BookMarkViewModel(usecase: usecase))
                 
@@ -154,6 +152,27 @@ final class HomeViewController: BaseViewController {
                 self?.showLevelInfoVC()
             })
             .disposed(by: disposeBag)
+        
+        rankerTableView.rx.modelSelected(BestRecorderDTO.self)
+            .bind(onNext: { [weak self] model in
+                guard let userIdString = KeychainManager.read("userId"),
+                let userId = Int(userIdString) else { return }
+                if userId == model.id {
+                    self?.tabBarController?.selectedIndex = 3
+                } else {
+                    self?.showOtherUserProfile(userId: model.id)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func showOtherUserProfile(userId: Int) {
+        let usecase = OtherProfileUseCase(communityRepo: CommunityRepository(UserService(),
+                                                                             certificationService: CertificationService(), articleService: ArticleService()),
+                                          mypageRepo: MyPageRepository(service: UserService()))
+        let otherProfileVC = OtherProfileViewController(viewModel: OtherProfileViewModel(userId: userId,
+                                                                                         usecase: usecase))
+        self.navigationController?.pushViewController(otherProfileVC, animated: true)
     }
     
     private func showLevelInfoVC() {
@@ -242,7 +261,7 @@ extension HomeViewController {
     private func addNotificationCenter() {
         NotificationCenter.default.rx.notification(.presentAlert)
             .subscribe(onNext: { [weak self] notification in
-                let authRepository = OAuthLoginRepository(AuthService())
+                let authRepository = OAuthLoginRepository(UserService())
                 let authVC = UINavigationController(rootViewController: OAuthLoginViewController(
                     OAuthLoginViewModel(OAuthLoginUseCase(authRepository))))
                 authVC.modalPresentationStyle = .fullScreen
