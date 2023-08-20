@@ -21,6 +21,8 @@ protocol MyPageRepositoryInterface {
     func changePassword(newPassword: String) -> Single<Bool>
     func fetchCertificationFeed(categoryId: Int, page: Int) -> Single<CertificationFeedDTO>
     func fetchFitSiteFeed(categoryId: Int, page: Int) -> Single<FitSiteFeedDTO>
+    func fetchOtherProfileInfo(userId: Int) -> Single<OtherUserInfoDTO>
+    func fetchOtherUserArticle(userId: Int, categoryId: Int, page: Int) -> Single<FitSiteFeedDTO>
 }
 
 final class MyPageRepository: MyPageRepositoryInterface {
@@ -76,5 +78,13 @@ final class MyPageRepository: MyPageRepositoryInterface {
     
     func fetchFitSiteFeed(categoryId: Int, page: Int) -> Single<FitSiteFeedDTO> {
         return service.fetchFitSiteFeed(categoryId: categoryId, page: page)
+    }
+    
+    func fetchOtherProfileInfo(userId: Int) -> Single<OtherUserInfoDTO> {
+        return service.fetchOtherProfileInfo(userId: userId)
+    }
+    
+    func fetchOtherUserArticle(userId: Int, categoryId: Int, page: Int) -> Single<FitSiteFeedDTO> {
+        return service.fetchOtherUserArticle(userId: userId, categoryId: categoryId, page: page)
     }
 }
