@@ -24,7 +24,6 @@ final class SimpleImageCell: UICollectionViewCell {
         imageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
         self.backgroundColor = .clear
     }
     
