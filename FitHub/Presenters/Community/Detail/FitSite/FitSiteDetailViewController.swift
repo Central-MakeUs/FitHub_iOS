@@ -34,6 +34,7 @@ final class FitSiteDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.gestureRecognizers = nil
+        responseToKeyboardHeightWithScrollView(collectionView)
     }
     
     required init?(coder: NSCoder) {
