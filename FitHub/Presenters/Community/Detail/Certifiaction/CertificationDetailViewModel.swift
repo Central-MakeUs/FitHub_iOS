@@ -181,7 +181,6 @@ final class CertificationDetailViewModel: ViewModelType {
     
     func viewWillAppear() {
         fetchCertificationDetail()
-        fetchComment()
     }
 }
 

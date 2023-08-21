@@ -171,6 +171,7 @@ final class CommunityViewController: BaseViewController {
         
         viewModel.fitSiteFeedList
             .bind(to: self.fitSiteTableView.rx.items(cellIdentifier: FitSiteCell.identifier, cellType: FitSiteCell.self)) { index, item, cell in
+                cell.delegate = self
                 cell.configureCell(item: item)
             }
             .disposed(by: disposeBag)
@@ -594,6 +595,23 @@ extension CommunityViewController {
                 self?.certificationCollectionView.refreshControl?.endRefreshing()
             })
             .disposed(by: disposeBag)
+    }
+}
+
+extension CommunityViewController: FitSiteDelegateCell {
+    func didClickUserProfile(ownerId: Int) {
+        guard let userIdString = KeychainManager.read("userId"),
+              let userId = Int(userIdString) else { return }
+        if ownerId == userId {
+            self.tabBarController?.selectedIndex = 3
+        } else {
+            let usecase = OtherProfileUseCase(communityRepo: CommunityRepository(UserService(),
+                                                                                 certificationService: CertificationService(), articleService: ArticleService()),
+                                              mypageRepo: MyPageRepository(service: UserService()))
+            let otherProfileVC = OtherProfileViewController(viewModel: OtherProfileViewModel(userId: ownerId,
+                                                                                             usecase: usecase))
+            self.navigationController?.pushViewController(otherProfileVC, animated: true)
+        }
     }
 }
 

@@ -17,8 +17,9 @@ final class ImageCell: UICollectionViewCell {
     var tapButton: (()->Void)?
     
     private let imageView = UIImageView().then {
+        $0.layer.masksToBounds = true
         $0.backgroundColor = .bgSub01
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
     }
     
     private let changeImageButton = UIButton(type: .system).then {
