@@ -12,6 +12,7 @@ import RxCocoa
 protocol FitSiteDetailCellDelegate: AnyObject {
     func toggleLike(articleId: Int, completion: @escaping (LikeFitSiteDTO)->Void)
     func toggleScrap(articleId: Int, completion: @escaping ( FitSiteScrapDTO)->Void)
+    func didClickUserProfile(ownerId: Int)
 }
 
 final class FitSiteDetailCell: UICollectionViewCell {
@@ -149,6 +150,7 @@ final class FitSiteDetailCell: UICollectionViewCell {
         configureImageList(pictureList: item.articlePictureList.pictureList)
         
         self.likeButton.tag = item.articleId
+        self.profileImageView.tag = item.userInfo.ownerId
     }
     
     func configureLikeButton(isLiked: Bool) {
@@ -209,6 +211,13 @@ final class FitSiteDetailCell: UICollectionViewCell {
                 self.delegate?.toggleScrap(articleId: self.likeButton.tag) { item in
                     self.configureBookmark(isScraped: item.isSaved)
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        profileImageView.rx.tapGesture()
+            .bind(onNext: { [weak self] _ in
+                guard let self else { return }
+                self.delegate?.didClickUserProfile(ownerId: self.profileImageView.tag)
             })
             .disposed(by: disposeBag)
     }

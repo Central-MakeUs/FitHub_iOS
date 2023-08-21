@@ -116,7 +116,6 @@ final class FitSiteDetailViewModel: ViewModelType {
     
     func viewWillAppear() {
         fetchFitSiteDetail()
-        fetchComment()
     }
     
     func deleteArticle() {

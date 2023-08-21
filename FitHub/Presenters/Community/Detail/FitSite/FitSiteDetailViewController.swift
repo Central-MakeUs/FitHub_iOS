@@ -361,6 +361,21 @@ extension FitSiteDetailViewController: FitSiteDetailCellDelegate {
             })
             .disposed(by: disposeBag)
     }
+    
+    func didClickUserProfile(ownerId: Int) {
+        guard let userIdString = KeychainManager.read("userId"),
+              let userId = Int(userIdString) else { return }
+        if ownerId == userId {
+            self.tabBarController?.selectedIndex = 3
+        } else {
+            let usecase = OtherProfileUseCase(communityRepo: CommunityRepository(UserService(),
+                                                                                 certificationService: CertificationService(), articleService: ArticleService()),
+                                              mypageRepo: MyPageRepository(service: UserService()))
+            let otherProfileVC = OtherProfileViewController(viewModel: OtherProfileViewModel(userId: ownerId,
+                                                                                             usecase: usecase))
+            self.navigationController?.pushViewController(otherProfileVC, animated: true)
+        }
+    }
 }
 
 extension FitSiteDetailViewController {
