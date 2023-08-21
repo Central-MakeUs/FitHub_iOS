@@ -18,7 +18,8 @@ final class CommunityViewController: BaseViewController {
     }
     private let certificationSortView = SortSwitchView()
     private let fitSiteSortView = SortSwitchView()
-    private let contentView = UIView()    
+    private let contentView = UIView()
+    private let refreshControl = UIRefreshControl()
     
     private let indicatorUnderLineView = UIView().then {
         $0.backgroundColor = .bgSub01
@@ -47,6 +48,7 @@ final class CommunityViewController: BaseViewController {
 
     private lazy var certificationCollectionView = UICollectionView(frame: .zero,
                                                                     collectionViewLayout: createCertificationLayout()).then {
+        $0.refreshControl = refreshControl
         $0.showsVerticalScrollIndicator = false
         $0.register(CertificationCell.self, forCellWithReuseIdentifier: CertificationCell.identifier)
         $0.backgroundColor = .bgDefault
@@ -79,6 +81,7 @@ final class CommunityViewController: BaseViewController {
         super.init(nibName: nil, bundle: nil)
         self.view.gestureRecognizers = nil
         self.view.backgroundColor = .bgDefault
+        
         setCertificationDefaultView()
         setFitSiteDefaultView()
     }
@@ -91,8 +94,6 @@ final class CommunityViewController: BaseViewController {
         super.viewDidLoad()
         topTabBarBinding()
         pagingBinding()
-        
-        self.view.gestureRecognizers = nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,6 +111,12 @@ final class CommunityViewController: BaseViewController {
     //MARK: - ConfigureUI
     override func configureUI() {
         self.navigationItem.leftBarButtonItem = nil
+        
+        [fitSiteTableView, certificationCollectionView].forEach { view in
+            view.refreshControl = UIRefreshControl().then {
+                $0.addTarget(self, action: #selector(self.pullRefreshFeed), for: .valueChanged)
+            }
+        }
     }
     
     //MARK: - ConfigureNavigation
@@ -231,6 +238,10 @@ final class CommunityViewController: BaseViewController {
                 self?.showSearchVC()
             })
             .disposed(by: disposeBag)
+        
+        refreshControl.rx.controlEvent(.valueChanged)
+            .bind(to: viewModel.refresh)
+            .disposed(by: disposeBag)
     }
     
     private func closeCreateActionSheet() {
@@ -238,6 +249,10 @@ final class CommunityViewController: BaseViewController {
         self.createActionSheet.isHidden = true
         self.floatingButton.setImage(UIImage(named: "Plus_Floating")?.withRenderingMode(.alwaysOriginal),
                                       for: .normal)
+    }
+    
+    @objc func pullRefreshFeed() {
+        viewModel.refreshFeed()
     }
     
     //MARK: - 화면이동
@@ -257,7 +272,7 @@ final class CommunityViewController: BaseViewController {
     private func pushCreateFitSiteVC() {
         let usecase = CreateFitSiteUseCase(repository: CreateFitSiteRepository(authService: UserService(),
                                                                                articleService: ArticleService()))
-        let editFitSiteVC = EditFitSiteViewController(EditFitSiteViewModel(usecase: usecase))
+        let editFitSiteVC = CreateFitSiteViewController(CreateFitSiteViewModel(usecase: usecase))
         self.navigationController?.pushViewController(editFitSiteVC, animated: true)
     }
     
@@ -549,7 +564,10 @@ extension CommunityViewController {
         
         viewModel.fitSiteFeedList
             .map { !$0.isEmpty }
-            .bind(to: defaultView.rx.isHidden)
+            .bind(onNext: { [weak self] isHidden in
+                defaultView.isHidden = isHidden
+                self?.fitSiteTableView.refreshControl?.endRefreshing()
+            })
             .disposed(by: disposeBag)
     }
     
@@ -571,7 +589,10 @@ extension CommunityViewController {
         
         viewModel.certificationFeedList
             .map { !$0.isEmpty }
-            .bind(to: defaultView.rx.isHidden)
+            .bind(onNext: { [weak self] isHidden in
+                defaultView.isHidden = isHidden
+                self?.certificationCollectionView.refreshControl?.endRefreshing()
+            })
             .disposed(by: disposeBag)
     }
 }

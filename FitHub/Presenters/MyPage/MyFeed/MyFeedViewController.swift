@@ -256,8 +256,8 @@ final class MyFeedViewController: BaseViewController {
     private func pushCreateFitSiteVC() {
         let usecase = CreateFitSiteUseCase(repository: CreateFitSiteRepository(authService: UserService(),
                                                                                articleService: ArticleService()))
-        let editFitSiteVC = EditFitSiteViewController(EditFitSiteViewModel(usecase: usecase))
-        self.navigationController?.pushViewController(editFitSiteVC, animated: true)
+        let createFitSiteVC = CreateFitSiteViewController(CreateFitSiteViewModel(usecase: usecase))
+        self.navigationController?.pushViewController(createFitSiteVC, animated: true)
     }
     
     private func pushCertificationDetail(recordId: Int) {

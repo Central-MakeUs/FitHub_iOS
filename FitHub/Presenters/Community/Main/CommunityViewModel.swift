@@ -29,6 +29,7 @@ final class CommunityViewModel {
     let fitStieSortingType = BehaviorSubject<SortingType>(value: .recent)
     let certificationDidScroll = PublishSubject<(CGFloat,CGFloat,CGFloat)>()
     let fitSiteDidScroll = PublishSubject<(CGFloat,CGFloat,CGFloat)>()
+    let refresh = PublishSubject<Void>()
     
     // MARK: - Output
     let feedType = Observable.of(["운동인증","핏사이트"])
@@ -92,8 +93,10 @@ final class CommunityViewModel {
                 self?.fetchCertification(isReset: true)
             })
             .disposed(by: disposeBag)
+
         
         didScroll()
+        refreshFeed()
     }
     
     func didScroll() {
@@ -113,6 +116,19 @@ final class CommunityViewModel {
                 guard let self else { return }
                 if offsetY > (contentHeight - frameHeight) {
                     if self.isPaging == false && !isLastCertification { self.certifiactionPaging() }
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func refreshFeed() {
+        communityType.asObserver()
+            .take(1)
+            .subscribe(onNext: { [weak self] type in
+                if type == .certification {
+                    self?.fetchCertification(isReset: true)
+                } else {
+                    self?.fetchFitSite(isReset: true)
                 }
             })
             .disposed(by: disposeBag)

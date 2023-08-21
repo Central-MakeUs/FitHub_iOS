@@ -78,6 +78,17 @@ class BaseViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @objc func didClickBackButtonWithFeed() {
+        let alert = StandardAlertController(title: "작성을 종료하시겠습니까?", message: "작성하신 내용이 저장되지 않습니다.")
+        let cancel = StandardAlertAction(title: "취소", style: .cancel)
+        let ok = StandardAlertAction(title: "확인", style: .basic) { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction([cancel,ok])
+        
+        self.present(alert, animated: false)
+    }
+    
     func setupBinding() {
     }
     
@@ -99,6 +110,13 @@ class BaseViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "확인", style: .default, handler: completion))
         
         return alert
+    }
+    
+    func setFeedBackButton() {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "BackButton")?.withRenderingMode(.alwaysOriginal),
+                                                                style: .plain,
+                                                                target: self,
+                                                                action: #selector(didClickBackButtonWithFeed))
     }
 }
 

@@ -2,7 +2,7 @@
 //  EditFitSiteViewController.swift
 //  FitHub
 //
-//  Created by iOS신상우 on 2023/08/11.
+//  Created by iOS신상우 on 2023/08/21.
 //
 
 import UIKit
@@ -46,6 +46,7 @@ final class EditFitSiteViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setFeedBackButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -148,8 +149,9 @@ extension EditFitSiteViewController {
         return RxCollectionViewSectionedReloadDataSource<EditFitSiteSectionModel> {
             (dataSource, collectionView, indexPath, item) in
             switch item {
-            case .title(string: _):
+            case .title(string: let title):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCell.identifier, for: indexPath) as! TitleCell
+                cell.configureCell(text: title)
                 cell.delegate = self
                 
                 return cell
@@ -234,6 +236,7 @@ extension EditFitSiteViewController: PHPickerViewControllerDelegate, UINavigatio
                 }
             }
         }
+        viewModel.remainImageList = nil
     }
 }
 

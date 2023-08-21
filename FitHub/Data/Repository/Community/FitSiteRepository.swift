@@ -14,6 +14,7 @@ protocol FitSiteRepositoryInterface {
     func scrapFitSite(articleId: Int)->Single<FitSiteScrapDTO>
     func reportFitSite(articleId: Int)->Single<Int>
     func deleteFitSite(articleId: Int)->Single<Bool>
+    func updateArticle(articleId: Int, feedInfo: EditFitSiteModel, remainImageList: [String])->Single<Bool>
 }
 
 final class FitSiteRepository: FitSiteRepositoryInterface {
@@ -41,5 +42,9 @@ final class FitSiteRepository: FitSiteRepositoryInterface {
     
     func deleteFitSite(articleId: Int)->Single<Bool> {
         return service.deleteFitSite(articleId: articleId)
-    }    
+    }
+    
+    func updateArticle(articleId: Int, feedInfo: EditFitSiteModel, remainImageList: [String])->Single<Bool> {
+        return service.updateArticle(articleId: articleId, feedInfo: feedInfo, remainImageList: remainImageList)
+    }
 }
