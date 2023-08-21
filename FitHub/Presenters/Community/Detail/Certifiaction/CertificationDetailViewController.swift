@@ -35,6 +35,11 @@ final class CertificationDetailViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        responseToKeyboardHeightWithScrollView(collectionView)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.responseToKeyboardHegiht(commentInputView)

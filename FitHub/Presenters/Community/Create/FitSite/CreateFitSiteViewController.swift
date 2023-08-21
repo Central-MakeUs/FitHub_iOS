@@ -47,6 +47,7 @@ final class CreateFitSiteViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setFeedBackButton()
+        responseToKeyboardHeightWithScrollView(collectionView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
