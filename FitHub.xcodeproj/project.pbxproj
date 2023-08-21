@@ -82,6 +82,7 @@
 		B58D3C112A939F46008F06D2 /* EditFitSiteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C102A939F46008F06D2 /* EditFitSiteUseCase.swift */; };
 		B58D3C132A93A32E008F06D2 /* EditFitSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C122A93A32E008F06D2 /* EditFitSiteViewController.swift */; };
 		B58D3C152A93C24D008F06D2 /* FitSiteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C142A93C24D008F06D2 /* FitSiteError.swift */; };
+		B58D3C172A93D052008F06D2 /* FitSiteDetailContentImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C162A93D052008F06D2 /* FitSiteDetailContentImageViewController.swift */; };
 		B5B2C3942A7D097E004FC66C /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3932A7D097E004FC66C /* UILabel+.swift */; };
 		B5B2C3972A7D0F37004FC66C /* RankStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3962A7D0F37004FC66C /* RankStatus.swift */; };
 		B5B2C3992A7D2CEB004FC66C /* GradeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3982A7D2CEB004FC66C /* GradeType.swift */; };
@@ -349,6 +350,7 @@
 		B58D3C102A939F46008F06D2 /* EditFitSiteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteUseCase.swift; sourceTree = "<group>"; };
 		B58D3C122A93A32E008F06D2 /* EditFitSiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteViewController.swift; sourceTree = "<group>"; };
 		B58D3C142A93C24D008F06D2 /* FitSiteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteError.swift; sourceTree = "<group>"; };
+		B58D3C162A93D052008F06D2 /* FitSiteDetailContentImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteDetailContentImageViewController.swift; sourceTree = "<group>"; };
 		B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
 		B5B2C3932A7D097E004FC66C /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		B5B2C3962A7D0F37004FC66C /* RankStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankStatus.swift; sourceTree = "<group>"; };
@@ -642,6 +644,7 @@
 				B5705CC22A894D2C00408233 /* FitSiteDetailViewModel.swift */,
 				B5705CC42A894D3A00408233 /* FitSiteDetailSectionModel.swift */,
 				B5705CC62A894D9B00408233 /* FitSiteDetailViewController.swift */,
+				B58D3C162A93D052008F06D2 /* FitSiteDetailContentImageViewController.swift */,
 			);
 			path = FitSite;
 			sourceTree = "<group>";
@@ -1737,6 +1740,7 @@
 				B5705C7D2A871DF900408233 /* ExpandTextView.swift in Sources */,
 				B5705C8A2A87788B00408233 /* CertifiactionDetailRepository.swift in Sources */,
 				DB7559DF2A548BC000B88B96 /* ProfileSettingViewController.swift in Sources */,
+				B58D3C172A93D052008F06D2 /* FitSiteDetailContentImageViewController.swift in Sources */,
 				B5705CB32A8943A600408233 /* FitSiteDetailDTO.swift in Sources */,
 				B5ED13292A91231F002769BE /* AllCheckButton.swift in Sources */,
 				B5ED13122A9085F8002769BE /* QuitDTO.swift in Sources */,
