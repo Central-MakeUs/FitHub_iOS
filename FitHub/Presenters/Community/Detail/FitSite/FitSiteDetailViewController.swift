@@ -124,6 +124,24 @@ final class FitSiteDetailViewController: BaseViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        viewModel.errorHandler
+            .bind(onNext: { [weak self] error in
+                if let fitSiteError = error as? FitSiteError,
+                   fitSiteError == .invalidArticle {
+                    self?.showInvalidArticleNoti()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.deleteFeedHandler
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { [weak self] isSuccess in
+                if isSuccess {
+                    self?.showDeleteCompleteAlert()
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     override func configureNavigation() {
@@ -132,6 +150,39 @@ final class FitSiteDetailViewController: BaseViewController {
     }
     
     // MARK: - 화면 이동
+    private func showDeleteCompleteAlert() {
+        let alert = StandardAlertController(title: "삭제 완료", message: "정상적으로 삭제가 완료되었습니다.")
+        let ok = StandardAlertAction(title: "확인", style: .basic) { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        
+        alert.addAction(ok)
+        
+        self.present(alert, animated: false)
+    }
+    
+    private func showDeleteAlert() {
+        let alert = StandardAlertController(title: "게시글을 삭제하시겠어요?", message: "해당 게시글은 영구 삭제됩니다.")
+        let cancel = StandardAlertAction(title: "취소", style: .cancel)
+        let delete = StandardAlertAction(title: "삭제", style: .basic) { [weak self] _ in
+            self?.viewModel.deleteArticle()
+        }
+        
+        alert.addAction([cancel,delete])
+        
+        self.present(alert, animated: false)
+    }
+    
+    private func showInvalidArticleNoti() {
+        let alert = StandardAlertController(title: "존재하지 않는 게시글입니다.", message: "차단 또는 삭제된 게시글")
+        let ok = StandardAlertAction(title: "확인", style: .basic) { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction(ok)
+        
+        self.present(alert, animated: false)
+    }
+    
     private func showMyArticleMoreInfo() {
         let actionSheet = StandardActionSheetController()
         let edit = StandardActionSheetAction(title: "수정하기") { [weak self] _ in
@@ -140,7 +191,9 @@ final class FitSiteDetailViewController: BaseViewController {
             self.showEditFitSite(info: info)
         }
         edit.configuration?.baseForegroundColor = .textDefault
-        let delete = StandardActionSheetAction(title: "삭제하기")
+        let delete = StandardActionSheetAction(title: "삭제하기") { [weak self] _ in
+            self?.showDeleteAlert()
+        }
         
         actionSheet.addAction([edit,delete])
         

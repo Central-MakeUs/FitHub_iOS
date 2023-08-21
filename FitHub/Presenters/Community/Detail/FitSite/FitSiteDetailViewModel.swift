@@ -26,6 +26,7 @@ final class FitSiteDetailViewModel: ViewModelType {
     let errorHandler = PublishSubject<Error>()
     let reportHandler = PublishSubject<Int>()
     let reportUserHandler = PublishSubject<Int>()
+    let deleteFeedHandler = PublishSubject<Bool>()
     
     //MARK: - Input
     let detailSource = PublishSubject<FitSiteDetailDTO>()
@@ -116,6 +117,14 @@ final class FitSiteDetailViewModel: ViewModelType {
     func viewWillAppear() {
         fetchFitSiteDetail()
         fetchComment()
+    }
+    
+    func deleteArticle() {
+        usecase.deleteFitSite(articleId: articleId)
+            .subscribe(onSuccess: { [weak self] isSuccess in
+                self?.deleteFeedHandler.onNext(isSuccess)
+            })
+            .disposed(by: disposeBag)
     }
     
     func reportUser() {
