@@ -98,22 +98,11 @@ final class MyFeedViewController: BaseViewController {
         self.view.gestureRecognizers = nil
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if self.viewModel.isFirstViewDidAppear {
             self.viewModel.communityType.onNext(.certification)
             self.viewModel.isFirstViewDidAppear = false
-        }
-        
-        if let selectedItems = categoryCollectionView.indexPathsForSelectedItems,
-           selectedItems.isEmpty {
-            categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0),
-                                              animated: false,
-                                              scrollPosition: .centeredVertically)
         }
     }
     
@@ -146,7 +135,14 @@ final class MyFeedViewController: BaseViewController {
         viewModel.category
             .bind(to: self.categoryCollectionView.rx
                 .items(cellIdentifier: CategoryCell.identifier,
-                       cellType: CategoryCell.self)) { index, name, cell in
+                       cellType: CategoryCell.self)) { [weak self] index, name, cell in
+                guard let self else { return }
+                if let selectedItems = categoryCollectionView.indexPathsForSelectedItems,
+                   selectedItems.isEmpty {
+                    categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0),
+                                                      animated: false,
+                                                      scrollPosition: .centeredVertically)
+                }
                 cell.configureLabel(name.name)
             }
                        .disposed(by: disposeBag)
@@ -177,7 +173,9 @@ final class MyFeedViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         viewModel.feedType
-            .bind(to: self.topTabBarCollectionView.rx.items(cellIdentifier: TopTabBarItemCell.identifier, cellType: TopTabBarItemCell.self)) { index, item, cell in
+            .bind(to: self.topTabBarCollectionView.rx.items(cellIdentifier: TopTabBarItemCell.identifier, cellType: TopTabBarItemCell.self)) { [weak self] index, item, cell in
+                guard let self else { return }
+
                 cell.configureCell(text: item)
             }
             .disposed(by: disposeBag)
