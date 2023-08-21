@@ -105,13 +105,6 @@ final class CommunityViewController: BaseViewController {
             self.viewModel.communityType.onNext(.certification)
             self.viewModel.isFirstViewDidAppear = false
         }
-        
-        if let selectedItems = categoryCollectionView.indexPathsForSelectedItems,
-           selectedItems.isEmpty {
-            categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0),
-                                              animated: false,
-                                              scrollPosition: .centeredVertically)
-        }
     }
     
     //MARK: - ConfigureUI
@@ -149,7 +142,14 @@ final class CommunityViewController: BaseViewController {
         viewModel.category
             .bind(to: self.categoryCollectionView.rx
                 .items(cellIdentifier: CategoryCell.identifier,
-                       cellType: CategoryCell.self)) { index, name, cell in
+                       cellType: CategoryCell.self)) { [weak self] index, name, cell in
+                guard let self else { return }
+                if let selectedItems = categoryCollectionView.indexPathsForSelectedItems,
+                   selectedItems.isEmpty {
+                    categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0),
+                                                      animated: false,
+                                                      scrollPosition: .centeredVertically)
+                }
                 cell.configureLabel(name.name)
             }
                        .disposed(by: disposeBag)
