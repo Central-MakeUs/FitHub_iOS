@@ -19,6 +19,8 @@ final class FitSiteDetailViewModel: ViewModelType {
     private var isPaging = false
     private var isLastPage: Bool = false
     
+    var fitSiteModel: FitSiteDetailDTO?
+    
     // MARK: - Output
     let recordDataSoruce = BehaviorSubject<[FitSiteDetailSectionModel]>(value: [])
     let errorHandler = PublishSubject<Error>()
@@ -111,6 +113,11 @@ final class FitSiteDetailViewModel: ViewModelType {
         return output
     }
     
+    func viewWillAppear() {
+        fetchFitSiteDetail()
+        fetchComment()
+    }
+    
     func reportUser() {
         usecase.reportUser(userId: ownerId)
             .subscribe(onSuccess: { [weak self] code in
@@ -172,6 +179,7 @@ extension FitSiteDetailViewModel {
             .subscribe(onSuccess: { [weak self] res in
                 self?.ownerId = res.userInfo.ownerId
                 self?.detailSource.onNext(res)
+                self?.fitSiteModel = res
             }, onFailure: { [weak self] error in
                 self?.errorHandler.onNext(error)
             })

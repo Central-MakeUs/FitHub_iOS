@@ -89,24 +89,26 @@ class ArticleService {
         }
     }
     
-    func editArticle(categoryId: Int, feedInfo: EditFitSiteModel, remainImageList: [String])->Single<Bool> {
+    func updateArticle(articleId: Int, feedInfo: EditFitSiteModel, remainImageList: [String])->Single<Bool> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String,
               let token = KeychainManager.read("accessToken") else { return Single.error(AuthError.invalidURL)}
-        let urlString = baseURL + "articles/\(categoryId)"
+        let urlString = baseURL + "articles/\(articleId)"
         
         var headers: HTTPHeaders = ["Content-Type" : "multipart/form-data"]
         headers.add(.authorization(bearerToken: token))
         
         guard let contents = feedInfo.content,
               let title = feedInfo.title,
-              let exerciseTag = feedInfo.selectedSport?.name else { return Single.error(AuthError.invalidURL)}
+              let exerciseTag = feedInfo.selectedSport?.name,
+              let categoryId = feedInfo.selectedSport?.id else { return Single.error(AuthError.invalidURL)}
                 
         let tagList = feedInfo.hashtags.filter { !$0.isEmpty }.joined(separator: ",")
         let images = feedInfo.images.compactMap { $0?.jpegData(compressionQuality: .leastNormalMagnitude) }
         let parameter: Parameters = ["title" : title,
-                                    "contents" : contents,
-                                    "exerciseTag" : exerciseTag,
-                                    "tagList" : tagList,
+                                     "contents" : contents,
+                                     "category" : categoryId,
+                                     "exerciseTag" : exerciseTag,
+                                     "hashTagList" : tagList,
                                      "remainPictureUrlList" : remainImageList]
         
         return Single<Bool>.create { observer in

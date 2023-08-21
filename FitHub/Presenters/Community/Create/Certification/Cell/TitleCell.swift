@@ -46,6 +46,8 @@ final class TitleCell: UICollectionViewCell {
     
     func configureCell(text: String) {
         self.titleTextView.text = text
+        let color: UIColor = text.isEmpty ? .textSub02 : .textDefault
+        titleTextView.textColor = color
     }
     
     private func textViewBinding() {

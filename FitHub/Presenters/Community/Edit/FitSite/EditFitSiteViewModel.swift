@@ -1,18 +1,21 @@
 //
-//  EditFitSiteViewModel.swift
+//  FitSiteViewModel.swift
 //  FitHub
 //
-//  Created by iOS신상우 on 2023/08/11.
+//  Created by iOS신상우 on 2023/08/21.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
+import Kingfisher
 
-final class EditFitSiteViewModel : ViewModelType {
+final class EditFitSiteViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
-    var usecase: CreateFitSiteUseCaseProtocol
+    var usecase: EditFitSiteUseCaseProtocol
+    
+    private let articleId: Int
     
     var imageSource = BehaviorRelay<[UIImage?]>(value: [nil])
     
@@ -28,9 +31,12 @@ final class EditFitSiteViewModel : ViewModelType {
     
     let completePublisher = PublishSubject<Bool>()
     
-    var fitSiteInfo = EditFitSiteModel()
-    
     let sports = BehaviorSubject<[CategoryDTO]>(value: [])
+    
+    var oldFitsiteInfo = EditFitSiteModel()
+    var newFitSiteInfo = EditFitSiteModel()
+    
+    var remainImageList: [String]?
     
     struct Input {
         let completeTap: Observable<Void>
@@ -42,12 +48,32 @@ final class EditFitSiteViewModel : ViewModelType {
         let completePublisher: PublishSubject<Bool>
     }
     
-    init(usecase: CreateFitSiteUseCaseProtocol) {
+    init(usecase: EditFitSiteUseCaseProtocol,
+         info: FitSiteDetailDTO) {
         self.usecase = usecase
+        self.articleId = info.articleId
+        self.remainImageList = info.articlePictureList.pictureList.map { $0.pictureUrl }
+        
+        var hashTags = info.hashtags.hashtags.map { $0.name }
+        if !hashTags.isEmpty { hashTags[0] = "" }
+        
+        oldFitsiteInfo.hashtags = hashTags
+        hashTagSource.accept(hashTags)
+        
+        oldFitsiteInfo.title = info.title
+        titleSource.onNext(info.title)
+        
+        oldFitsiteInfo.content = info.contents
+        contentSource.onNext(info.contents)
+        
+        convertImages(imageStringArray: self.remainImageList)
         
         usecase.fetchCategory()
             .subscribe(onSuccess: { [weak self] categories in
                 self?.sports.onNext(categories)
+                if let idx = categories.firstIndex(where: { $0.id == info.articleCategory.categoryId }) {
+                    self?.selectedSportSource.accept(categories[idx])
+                }
             })
             .disposed(by: disposeBag)
         
@@ -58,7 +84,7 @@ final class EditFitSiteViewModel : ViewModelType {
                                  selectedSportSource)
         .map { EditFitSiteModel(title: $0.0, content: $0.1, images: $0.2, hashtags: $0.3, selectedSport: $0.4)}
         .subscribe(onNext: { [weak self] model in
-            self?.fitSiteInfo = model
+            self?.newFitSiteInfo = model
         })
         .disposed(by: disposeBag)
         
@@ -74,7 +100,7 @@ final class EditFitSiteViewModel : ViewModelType {
         
         let contentSection = contentSource
             .map {
-                [EditFitSiteSectionModel.content(items: [.content(string: $0 ?? "")])]
+                [EditFitSiteSectionModel.content(items: [.content(string: $0)])]
             }
         
         let imageSourceSection = imageSource
@@ -108,11 +134,10 @@ final class EditFitSiteViewModel : ViewModelType {
                                                       selectedSportSource)
             .map { !$0.0.isEmpty && !$0.1.isEmpty && $0.2 != nil }
             
-        input .completeTap
-            .withLatestFrom(self.selectedSportSource)
-            .compactMap { $0?.id }
-            .flatMap { self.usecase.createArticle(categoryId: $0,
-                                                  feedInfo: self.fitSiteInfo).asObservable()
+        input.completeTap
+            .flatMap { self.usecase.updateArticle(articleId: self.articleId,
+                                                  feedInfo: self.newFitSiteInfo,
+                                                  remainImageList: self.remainImageList ?? []).asObservable()
                     .catchAndReturn(false)
             }
             .subscribe(onNext: { [weak self] isSuccess in
@@ -133,5 +158,25 @@ final class EditFitSiteViewModel : ViewModelType {
     
     func changeContent(_ text: String) {
         self.contentSource.onNext(text)
+    }
+}
+
+extension EditFitSiteViewModel {
+    func convertImages(imageStringArray: [String]?) {
+        guard let imageStringArray else { return }
+        var images: [UIImage] = []
+        for imageString in imageStringArray {
+            guard let url = URL(string: imageString) else { return }
+            KingfisherManager.shared.retrieveImage(with: url) { result in
+                switch result {
+                case .success(let data):
+                    let image: UIImage = data.image
+                    images.append(image)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+        self.imageSource.accept( [nil] + images)
     }
 }

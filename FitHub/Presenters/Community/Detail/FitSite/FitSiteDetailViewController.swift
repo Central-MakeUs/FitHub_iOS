@@ -29,8 +29,6 @@ final class FitSiteDetailViewController: BaseViewController {
     init(viewModel: FitSiteDetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        
-        
     }
     
     required init?(coder: NSCoder) {
@@ -41,6 +39,7 @@ final class FitSiteDetailViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.responseToKeyboardHegiht(commentInputView)
         self.tabBarController?.tabBar.isHidden = true
+        viewModel.viewWillAppear()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -135,13 +134,26 @@ final class FitSiteDetailViewController: BaseViewController {
     // MARK: - 화면 이동
     private func showMyArticleMoreInfo() {
         let actionSheet = StandardActionSheetController()
-        let edit = StandardActionSheetAction(title: "수정하기")
+        let edit = StandardActionSheetAction(title: "수정하기") { [weak self] _ in
+            guard let self,
+            let info = viewModel.fitSiteModel else { return }
+            self.showEditFitSite(info: info)
+        }
         edit.configuration?.baseForegroundColor = .textDefault
         let delete = StandardActionSheetAction(title: "삭제하기")
         
         actionSheet.addAction([edit,delete])
         
         self.present(actionSheet, animated: false)
+    }
+    
+    private func showEditFitSite(info: FitSiteDetailDTO) {
+        let usecase = EditFitSiteUseCase(fitSiteRepo: FitSiteRepository(service: ArticleService()),
+                                       userRepo: UserRepository(service: UserService()))
+        let editFitSiteVC = EditFitSiteViewController(EditFitSiteViewModel(usecase: usecase,
+                                                                           info: info))
+        
+        self.navigationController?.pushViewController(editFitSiteVC, animated: true)
     }
     
     private func showOtherArticleMoreInfo() {
