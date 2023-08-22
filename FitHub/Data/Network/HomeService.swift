@@ -114,4 +114,32 @@ class HomeService {
             return Disposables.create()
         }
     }
+    
+    func fetchTermList() -> Single<TermsListDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String
+        else { return Single.error(CertificationError.invalidURL) }
+        
+        let urlString = baseURL + "home/terms-list"
+        
+        return Single<TermsListDTO>.create { emitter in
+            AF.request(urlString, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<TermsListDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            emitter(.success(result))
+                        } else {
+                            print(response.code)
+                            print(response.message)
+                            emitter(.failure(CertificationError.serverError))
+                        }
+                    case .failure(let error):
+                        emitter(.failure(error))
+                    }
+                }
+            return Disposables.create()
+        }
+    }
+    
 }

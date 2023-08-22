@@ -359,6 +359,13 @@ extension MyPageViewController {
                 self?.showMyFeedVC()
             })
             .disposed(by: disposeBag)
+        
+        termsOfUse.rx.tapGesture()
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                self?.showTermOfUse()
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -372,4 +379,12 @@ extension MyPageViewController {
         let feedVC = MyFeedViewController(MyFeedViewModel(usecase))
         self.navigationController?.pushViewController(feedVC, animated: true)
     }
+    
+    private func showTermOfUse() {
+        let usecase = TermUseCase(homeRepo: HomeRepository(homeService: HomeService(),
+                                                           authService: UserService()))
+        let termOfUseVC = TermsOfUseViewController(viewModel: TermOfUseViewModel(usecase: usecase))
+        self.navigationController?.pushViewController(termOfUseVC, animated: true)
+    }
+    
 }

@@ -45,6 +45,10 @@ final class MyPageTabItemView: UIStackView {
         }
     }
     
+    func configureTitle(title: String) {
+        self.titleLabel.text = title
+    }
+    
     func configureLabelMode(text: String) {
         subLabel.text = text
         subLabel.isHidden = false
