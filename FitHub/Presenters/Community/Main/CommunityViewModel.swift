@@ -29,6 +29,7 @@ final class CommunityViewModel {
     let fitStieSortingType = BehaviorSubject<SortingType>(value: .recent)
     let certificationDidScroll = PublishSubject<(CGFloat,CGFloat,CGFloat)>()
     let fitSiteDidScroll = PublishSubject<(CGFloat,CGFloat,CGFloat)>()
+    let refresh = PublishSubject<Void>()
     
     // MARK: - Output
     let feedType = Observable.of(["운동인증","핏사이트"])
@@ -37,6 +38,7 @@ final class CommunityViewModel {
     let certificationFeedList = BehaviorRelay<[CertificationDTO]>(value: [])
     let fitSiteFeedList = BehaviorRelay<[ArticleDTO]>(value: [])
     var communityType = BehaviorSubject<CommunityType>(value: .certification)
+    let checkTodayHandler = PublishSubject<Bool>()
     
     init(_ usecase: CommunityUseCaseProtocol) {
         self.usecase = usecase
@@ -92,8 +94,10 @@ final class CommunityViewModel {
                 self?.fetchCertification(isReset: true)
             })
             .disposed(by: disposeBag)
+
         
         didScroll()
+        refreshFeed()
     }
     
     func didScroll() {
@@ -114,6 +118,27 @@ final class CommunityViewModel {
                 if offsetY > (contentHeight - frameHeight) {
                     if self.isPaging == false && !isLastCertification { self.certifiactionPaging() }
                 }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func refreshFeed() {
+        communityType.asObserver()
+            .take(1)
+            .subscribe(onNext: { [weak self] type in
+                if type == .certification {
+                    self?.fetchCertification(isReset: true)
+                } else {
+                    self?.fetchFitSite(isReset: true)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func checkToday() {
+        usecase.checkHasTodayCertification()
+            .subscribe(onSuccess: { [weak self] result in
+                self?.checkTodayHandler.onNext(result.isWrite)
             })
             .disposed(by: disposeBag)
     }

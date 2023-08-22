@@ -13,6 +13,7 @@ protocol CommunityUseCaseProtocol {
     func fetchCertificationFeed(id: Int, page: Int, sortingType: SortingType)-> Single<CertificationFeedDTO>
     func fetchFitSiteFeed(_ cateogryId: Int, page: Int, type: SortingType) -> Single<FitSiteFeedDTO>
     func fetchCategory()->Single<[CategoryDTO]>
+    func checkHasTodayCertification()->Single<CheckTodayDTO>
 }
 
 final class CommunityUseCase: CommunityUseCaseProtocol {
@@ -35,5 +36,9 @@ final class CommunityUseCase: CommunityUseCaseProtocol {
     
     func fetchFitSiteFeed(_ cateogryId: Int, page: Int, type: SortingType) -> Single<FitSiteFeedDTO> {
         return self.repository.fetchFitSiteFeed(cateogryId, page: page, type: type)
+    }
+    
+    func checkHasTodayCertification()->Single<CheckTodayDTO> {
+        return repository.checkHasTodayCertification()
     }
 }

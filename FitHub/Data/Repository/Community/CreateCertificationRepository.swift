@@ -1,5 +1,5 @@
 //
-//  EditCertificationRepository.swift
+//  CreateCertificationRepository.swift
 //  FitHub
 //
 //  Created by 신상우 on 2023/07/27.
@@ -8,12 +8,12 @@
 import Foundation
 import RxSwift
 
-protocol EditCertificationRepositoryInterface {
+protocol CreateCertificationRepositoryInterface {
     func fetchCategory() -> Single<[CategoryDTO]>
-    func createCertification(_ certificationInfo: EditCertificationModel) -> Single<CreateCertificationDTO>
+    func createCertification(_ certificationInfo: CreateCertificationModel) -> Single<CreateCertificationDTO>
 }
 
-final class EditCertificationRepository: EditCertificationRepositoryInterface {
+final class CreateCertificationRepository: CreateCertificationRepositoryInterface {
     private let certificationService: CertificationService
     private let authService: UserService
     
@@ -27,7 +27,7 @@ final class EditCertificationRepository: EditCertificationRepositoryInterface {
         return authService.fetchCategory()
     }
     
-    func createCertification(_ certificationInfo: EditCertificationModel) -> Single<CreateCertificationDTO> {
+    func createCertification(_ certificationInfo: CreateCertificationModel) -> Single<CreateCertificationDTO> {
         return certificationService.createCertification(certificationInfo)
     }
 }

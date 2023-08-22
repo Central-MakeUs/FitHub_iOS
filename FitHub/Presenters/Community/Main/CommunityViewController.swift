@@ -18,7 +18,8 @@ final class CommunityViewController: BaseViewController {
     }
     private let certificationSortView = SortSwitchView()
     private let fitSiteSortView = SortSwitchView()
-    private let contentView = UIView()    
+    private let contentView = UIView()
+    private let refreshControl = UIRefreshControl()
     
     private let indicatorUnderLineView = UIView().then {
         $0.backgroundColor = .bgSub01
@@ -47,6 +48,7 @@ final class CommunityViewController: BaseViewController {
 
     private lazy var certificationCollectionView = UICollectionView(frame: .zero,
                                                                     collectionViewLayout: createCertificationLayout()).then {
+        $0.refreshControl = refreshControl
         $0.showsVerticalScrollIndicator = false
         $0.register(CertificationCell.self, forCellWithReuseIdentifier: CertificationCell.identifier)
         $0.backgroundColor = .bgDefault
@@ -79,6 +81,7 @@ final class CommunityViewController: BaseViewController {
         super.init(nibName: nil, bundle: nil)
         self.view.gestureRecognizers = nil
         self.view.backgroundColor = .bgDefault
+        
         setCertificationDefaultView()
         setFitSiteDefaultView()
     }
@@ -91,8 +94,6 @@ final class CommunityViewController: BaseViewController {
         super.viewDidLoad()
         topTabBarBinding()
         pagingBinding()
-        
-        self.view.gestureRecognizers = nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,18 +106,17 @@ final class CommunityViewController: BaseViewController {
             self.viewModel.communityType.onNext(.certification)
             self.viewModel.isFirstViewDidAppear = false
         }
-        
-        if let selectedItems = categoryCollectionView.indexPathsForSelectedItems,
-           selectedItems.isEmpty {
-            categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0),
-                                              animated: false,
-                                              scrollPosition: .centeredVertically)
-        }
     }
     
     //MARK: - ConfigureUI
     override func configureUI() {
         self.navigationItem.leftBarButtonItem = nil
+        
+        [fitSiteTableView, certificationCollectionView].forEach { view in
+            view.refreshControl = UIRefreshControl().then {
+                $0.addTarget(self, action: #selector(self.pullRefreshFeed), for: .valueChanged)
+            }
+        }
     }
     
     //MARK: - ConfigureNavigation
@@ -149,7 +149,14 @@ final class CommunityViewController: BaseViewController {
         viewModel.category
             .bind(to: self.categoryCollectionView.rx
                 .items(cellIdentifier: CategoryCell.identifier,
-                       cellType: CategoryCell.self)) { index, name, cell in
+                       cellType: CategoryCell.self)) { [weak self] index, name, cell in
+                guard let self else { return }
+                if let selectedItems = categoryCollectionView.indexPathsForSelectedItems,
+                   selectedItems.isEmpty {
+                    categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0),
+                                                      animated: false,
+                                                      scrollPosition: .centeredVertically)
+                }
                 cell.configureLabel(name.name)
             }
                        .disposed(by: disposeBag)
@@ -164,6 +171,7 @@ final class CommunityViewController: BaseViewController {
         
         viewModel.fitSiteFeedList
             .bind(to: self.fitSiteTableView.rx.items(cellIdentifier: FitSiteCell.identifier, cellType: FitSiteCell.self)) { index, item, cell in
+                cell.delegate = self
                 cell.configureCell(item: item)
             }
             .disposed(by: disposeBag)
@@ -214,8 +222,8 @@ final class CommunityViewController: BaseViewController {
         
         self.createActionSheet.certificationButton.rx.tap
             .bind(onNext: { [weak self] in
-                self?.pushCreateCertificationVC()
-                self?.closeCreateActionSheet()
+                self?.viewModel.checkToday()
+                
             })
             .disposed(by: disposeBag)
         
@@ -231,6 +239,22 @@ final class CommunityViewController: BaseViewController {
                 self?.showSearchVC()
             })
             .disposed(by: disposeBag)
+        
+        refreshControl.rx.controlEvent(.valueChanged)
+            .bind(to: viewModel.refresh)
+            .disposed(by: disposeBag)
+        
+        viewModel.checkTodayHandler
+            .bind(onNext: { [weak self] isWrite in
+                if isWrite {
+                    self?.notiAlert("이미 운동인증을 하셨네요!\n운동인증은 하루 한 번만 가능합니다.")
+                } else {
+                    self?.pushCreateCertificationVC()
+                    self?.closeCreateActionSheet()
+                }
+            })
+            .disposed(by: disposeBag)
+            
     }
     
     private func closeCreateActionSheet() {
@@ -238,6 +262,10 @@ final class CommunityViewController: BaseViewController {
         self.createActionSheet.isHidden = true
         self.floatingButton.setImage(UIImage(named: "Plus_Floating")?.withRenderingMode(.alwaysOriginal),
                                       for: .normal)
+    }
+    
+    @objc func pullRefreshFeed() {
+        viewModel.refreshFeed()
     }
     
     //MARK: - 화면이동
@@ -248,16 +276,16 @@ final class CommunityViewController: BaseViewController {
     }
     
     private func pushCreateCertificationVC() {
-        let usecase = EditCertificationUseCase(repository: EditCertificationRepository(certificationService: CertificationService(),
+        let usecase = CreateCertificationUseCase(repository: CreateCertificationRepository(certificationService: CertificationService(),
                                                                                        authService: UserService()))
-        let editCertificationVC = EditCertificationViewController(EditCertificationViewModel(usecase: usecase))
-        self.navigationController?.pushViewController(editCertificationVC, animated: true)
+        let createCertificationVC = CreateCertificationViewController(CreateCertificationViewModel(usecase: usecase))
+        self.navigationController?.pushViewController(createCertificationVC, animated: true)
     }
     
     private func pushCreateFitSiteVC() {
         let usecase = CreateFitSiteUseCase(repository: CreateFitSiteRepository(authService: UserService(),
                                                                                articleService: ArticleService()))
-        let editFitSiteVC = EditFitSiteViewController(EditFitSiteViewModel(usecase: usecase))
+        let editFitSiteVC = CreateFitSiteViewController(CreateFitSiteViewModel(usecase: usecase))
         self.navigationController?.pushViewController(editFitSiteVC, animated: true)
     }
     
@@ -549,7 +577,10 @@ extension CommunityViewController {
         
         viewModel.fitSiteFeedList
             .map { !$0.isEmpty }
-            .bind(to: defaultView.rx.isHidden)
+            .bind(onNext: { [weak self] isHidden in
+                defaultView.isHidden = isHidden
+                self?.fitSiteTableView.refreshControl?.endRefreshing()
+            })
             .disposed(by: disposeBag)
     }
     
@@ -571,8 +602,28 @@ extension CommunityViewController {
         
         viewModel.certificationFeedList
             .map { !$0.isEmpty }
-            .bind(to: defaultView.rx.isHidden)
+            .bind(onNext: { [weak self] isHidden in
+                defaultView.isHidden = isHidden
+                self?.certificationCollectionView.refreshControl?.endRefreshing()
+            })
             .disposed(by: disposeBag)
+    }
+}
+
+extension CommunityViewController: FitSiteDelegateCell {
+    func didClickUserProfile(ownerId: Int) {
+        guard let userIdString = KeychainManager.read("userId"),
+              let userId = Int(userIdString) else { return }
+        if ownerId == userId {
+            self.tabBarController?.selectedIndex = 3
+        } else {
+            let usecase = OtherProfileUseCase(communityRepo: CommunityRepository(UserService(),
+                                                                                 certificationService: CertificationService(), articleService: ArticleService()),
+                                              mypageRepo: MyPageRepository(service: UserService()))
+            let otherProfileVC = OtherProfileViewController(viewModel: OtherProfileViewModel(userId: ownerId,
+                                                                                             usecase: usecase))
+            self.navigationController?.pushViewController(otherProfileVC, animated: true)
+        }
     }
 }
 

@@ -35,9 +35,15 @@ final class CertificationDetailViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        responseToKeyboardHeightWithScrollView(collectionView)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.responseToKeyboardHegiht(commentInputView)
+        viewModel.viewWillAppear()
         self.tabBarController?.tabBar.isHidden = true
     }
     
@@ -123,14 +129,52 @@ final class CertificationDetailViewController: BaseViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        viewModel.deleteFeedHandler
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { [weak self] isSuccess in
+                if isSuccess {
+                    self?.showDeleteCompleteAlert()
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     // MARK: - 화면 이동
+    private func showDeleteCompleteAlert() {
+        let alert = StandardAlertController(title: "삭제 완료", message: "정상적으로 삭제가 완료되었습니다.")
+        let ok = StandardAlertAction(title: "확인", style: .basic) { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        
+        alert.addAction(ok)
+        
+        self.present(alert, animated: false)
+    }
+    
+    private func showDeleteAlert() {
+        let alert = StandardAlertController(title: "게시글을 삭제하시겠어요?", message: "해당 게시글은 영구 삭제됩니다.")
+        let cancel = StandardAlertAction(title: "취소", style: .cancel)
+        let delete = StandardAlertAction(title: "삭제", style: .basic) { [weak self] _ in
+            self?.viewModel.deleteCertification()
+        }
+        
+        alert.addAction([cancel,delete])
+        
+        self.present(alert, animated: false)
+    }
+    
     private func showMyRecordMoreInfo() {
         let actionSheet = StandardActionSheetController()
-        let edit = StandardActionSheetAction(title: "수정하기")
-        edit.configuration?.baseForegroundColor = .textDefault
-        let delete = StandardActionSheetAction(title: "삭제하기")
+        let edit = StandardActionSheetAction(title: "수정하기") { [weak self] _ in
+            guard let self,
+            let info = viewModel.certificationModel else { return }
+            self.showEditCertification(info: info)
+        }
+        
+        let delete = StandardActionSheetAction(title: "삭제하기") { [weak self] _ in
+            self?.showDeleteAlert()
+        }
         
         actionSheet.addAction([edit,delete])
         
@@ -149,6 +193,15 @@ final class CertificationDetailViewController: BaseViewController {
         actionSheet.addAction([reportArticle, reportUser])
         
         self.present(actionSheet, animated: false)
+    }
+    
+    private func showEditCertification(info: CertificationDetailDTO) {
+        let uescase = EditCertificationUseCase(certificationRepo: CertificationRepository(service: CertificationService()),
+                                               userRepo: UserRepository(service: UserService()))
+        let editCertificationVC = EditCertificationViewController(EditCertificationViewModel(usecase: uescase,
+                                                                                             info: info))
+        
+        self.navigationController?.pushViewController(editCertificationVC, animated: true)
     }
     
     private func presentReportRecordAlert() {
@@ -286,6 +339,21 @@ extension CertificationDetailViewController: CertificationDetailCellDelegate {
                 completion(item)
             })
             .disposed(by: disposeBag)
+    }
+    
+    func didClickUserProfile(ownerId: Int) {
+        guard let userIdString = KeychainManager.read("userId"),
+              let userId = Int(userIdString) else { return }
+        if ownerId == userId {
+            self.tabBarController?.selectedIndex = 3
+        } else {
+            let usecase = OtherProfileUseCase(communityRepo: CommunityRepository(UserService(),
+                                                                                 certificationService: CertificationService(), articleService: ArticleService()),
+                                              mypageRepo: MyPageRepository(service: UserService()))
+            let otherProfileVC = OtherProfileViewController(viewModel: OtherProfileViewModel(userId: ownerId,
+                                                                                             usecase: usecase))
+            self.navigationController?.pushViewController(otherProfileVC, animated: true)
+        }
     }
 }
 

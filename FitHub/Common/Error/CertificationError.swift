@@ -10,5 +10,6 @@ import Foundation
 enum CertificationError: Error {
     case invalidURL
     case serverError
+    case invalidCertification
     case otherError
 }

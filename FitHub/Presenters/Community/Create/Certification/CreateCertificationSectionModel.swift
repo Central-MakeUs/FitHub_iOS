@@ -1,5 +1,5 @@
 //
-//  EditCertificationSectionModel.swift
+//  CreateCertificationSectionModel.swift
 //  FitHub
 //
 //  Created by 신상우 on 2023/07/28.
@@ -8,7 +8,7 @@
 import UIKit
 import RxDataSources
 
-enum EditCertificationSectionModel {
+enum CreateCertificationSectionModel {
     enum SectionItem: Equatable {
         case image(image: UIImage?)
         case content(string: String)
@@ -31,10 +31,10 @@ enum EditCertificationSectionModel {
     }
 }
 
-extension EditCertificationSectionModel: SectionModelType {
+extension CreateCertificationSectionModel: SectionModelType {
     typealias Item = SectionItem
     
-    init(original: EditCertificationSectionModel, items: [Item]) {
+    init(original: CreateCertificationSectionModel, items: [Item]) {
         switch original {
         case .content(items: let items):
             self = .content(items: items)

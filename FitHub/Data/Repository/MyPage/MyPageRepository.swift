@@ -23,6 +23,7 @@ protocol MyPageRepositoryInterface {
     func fetchFitSiteFeed(categoryId: Int, page: Int) -> Single<FitSiteFeedDTO>
     func fetchOtherProfileInfo(userId: Int) -> Single<BaseResponse<OtherUserInfoDTO>>
     func fetchOtherUserArticle(userId: Int, categoryId: Int, page: Int) -> Single<FitSiteFeedDTO>
+    func logout() -> Single<Bool>
 }
 
 final class MyPageRepository: MyPageRepositoryInterface {
@@ -86,5 +87,9 @@ final class MyPageRepository: MyPageRepositoryInterface {
     
     func fetchOtherUserArticle(userId: Int, categoryId: Int, page: Int) -> Single<FitSiteFeedDTO> {
         return service.fetchOtherUserArticle(userId: userId, categoryId: categoryId, page: page)
+    }
+    
+    func logout() -> Single<Bool> {
+        return service.logout()
     }
 }

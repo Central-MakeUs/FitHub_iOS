@@ -11,9 +11,9 @@ import RxCocoa
 import RxDataSources
 import PhotosUI
 
-final class EditFitSiteViewController: BaseViewController {
+final class CreateFitSiteViewController: BaseViewController {
     //MARK: - Properties
-    private let viewModel: EditFitSiteViewModel
+    private let viewModel: CreateFitSiteViewModel
 
     private let completeButton = UIButton(type: .system).then {
         $0.titleLabel?.font = .pretendard(.bodyMedium01)
@@ -34,7 +34,7 @@ final class EditFitSiteViewController: BaseViewController {
         $0.backgroundColor = .clear
     }
     
-    init(_ viewModel: EditFitSiteViewModel) {
+    init(_ viewModel: CreateFitSiteViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         self.view.gestureRecognizers = nil
@@ -46,6 +46,8 @@ final class EditFitSiteViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setFeedBackButton()
+        responseToKeyboardHeightWithScrollView(collectionView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,7 +70,7 @@ final class EditFitSiteViewController: BaseViewController {
     
     //MARK: - SetupBinding
     override func setupBinding() {
-        let input = EditFitSiteViewModel.Input(completeTap: completeButton.rx.tap.asObservable())
+        let input = CreateFitSiteViewModel.Input(completeTap: completeButton.rx.tap.asObservable())
         
         let output = self.viewModel.transform(input: input)
         
@@ -92,6 +94,7 @@ final class EditFitSiteViewController: BaseViewController {
         
         self.collectionView.rx.modelSelected(EditFitSiteSectionModel.Item.self)
             .subscribe(onNext: { [weak self] model in
+                self?.view.endEditing(true)
                 switch model {
                 case .sport(item: let item):
                     self?.viewModel.selectedSportSource.accept(item)
@@ -142,7 +145,7 @@ final class EditFitSiteViewController: BaseViewController {
 }
 
 // MARK: - DataSoruce
-extension EditFitSiteViewController {
+extension CreateFitSiteViewController {
     private func createDataSoruce() -> RxCollectionViewSectionedReloadDataSource<EditFitSiteSectionModel> {
         return RxCollectionViewSectionedReloadDataSource<EditFitSiteSectionModel> {
             (dataSource, collectionView, indexPath, item) in
@@ -209,7 +212,7 @@ extension EditFitSiteViewController {
 }
 
 //MARK: - PHPicker Delegate
-extension EditFitSiteViewController: PHPickerViewControllerDelegate, UINavigationControllerDelegate {
+extension CreateFitSiteViewController: PHPickerViewControllerDelegate, UINavigationControllerDelegate {
     private func showPhotoAlbum() {
         var configuration = PHPickerConfiguration()
         configuration.selectionLimit = 10
@@ -237,7 +240,7 @@ extension EditFitSiteViewController: PHPickerViewControllerDelegate, UINavigatio
 }
 
 // MARK: - Compositional
-extension EditFitSiteViewController {
+extension CreateFitSiteViewController {
     private func createLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout() { (sectionIndex: Int,
                                                               environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
@@ -361,7 +364,7 @@ extension EditFitSiteViewController {
 }
 
 // MARK: - Content
-extension EditFitSiteViewController: ContentCellDelegate {
+extension CreateFitSiteViewController: ContentCellDelegate {
     func changeContentFrame() {
         self.collectionView.reloadSections(IndexSet(integer: 2))
     }
@@ -372,7 +375,7 @@ extension EditFitSiteViewController: ContentCellDelegate {
 }
 
 // MARK: - Title
-extension EditFitSiteViewController: TitleCellDelegate {
+extension CreateFitSiteViewController: TitleCellDelegate {
     func changeTitleFrame() {
         self.collectionView.reloadSections(IndexSet(integer: 2))
     }
@@ -383,7 +386,11 @@ extension EditFitSiteViewController: TitleCellDelegate {
 }
 
 //MARK: - HashTag
-extension EditFitSiteViewController: HashTagDelegate {
+extension CreateFitSiteViewController: HashTagDelegate {
+    func changeSize() {
+        self.collectionView.reloadSections(IndexSet(integer: 3))
+    }
+    
     func addHashTag(_ text: String) {
         self.viewModel.addHashTag(text)
     }

@@ -12,6 +12,8 @@ import RxCocoa
 protocol FitSiteDetailCellDelegate: AnyObject {
     func toggleLike(articleId: Int, completion: @escaping (LikeFitSiteDTO)->Void)
     func toggleScrap(articleId: Int, completion: @escaping ( FitSiteScrapDTO)->Void)
+    func didClickUserProfile(ownerId: Int)
+    func didClickContentImage(image: PictureList)
 }
 
 final class FitSiteDetailCell: UICollectionViewCell {
@@ -56,7 +58,7 @@ final class FitSiteDetailCell: UICollectionViewCell {
     }
     
     private lazy var imageCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout()).then {
-        $0.backgroundColor = .clear
+        $0.backgroundColor = .bgDefault
         $0.register(SimpleImageCell.self, forCellWithReuseIdentifier: SimpleImageCell.identifier)
     }
     
@@ -149,6 +151,7 @@ final class FitSiteDetailCell: UICollectionViewCell {
         configureImageList(pictureList: item.articlePictureList.pictureList)
         
         self.likeButton.tag = item.articleId
+        self.profileImageView.tag = item.userInfo.ownerId
     }
     
     func configureLikeButton(isLiked: Bool) {
@@ -211,13 +214,26 @@ final class FitSiteDetailCell: UICollectionViewCell {
                 }
             })
             .disposed(by: disposeBag)
+        
+        profileImageView.rx.tapGesture()
+            .bind(onNext: { [weak self] _ in
+                guard let self else { return }
+                self.delegate?.didClickUserProfile(ownerId: self.profileImageView.tag)
+            })
+            .disposed(by: disposeBag)
+        
+        imageCollectionView.rx.modelSelected(PictureList.self)
+            .bind(onNext: { [weak self] image in
+                self?.delegate?.didClickContentImage(image: image)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func addSubViews() {
         [profileImageView, nameLabel, sportLabel, gradeLabel, timeLabel,
          imageCollectionView, titleLabel, contentLabel, hashTagLabel,
          likeButton, commentButton, bookmarkButton, dividerView].forEach {
-            self.addSubview($0)
+            self.contentView.addSubview($0)
         }
     }
     

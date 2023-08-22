@@ -657,4 +657,26 @@ class UserService {
             return Disposables.create()
         }
     }
+    
+    func logout() -> Single<Bool> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "users/logout"
+        
+        return Single<Bool>.create { emitter in
+            AF.request(urlString, method: .post, interceptor: AuthManager())
+            .responseDecodable(of: BaseResponse<LogoutDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        emitter(.success(true))
+                    } else {
+                        emitter(.success(false))
+                    }
+                case .failure(let error):
+                    emitter(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
 }
