@@ -1,31 +1,27 @@
 //
-//  MyPageTabItemView.swift
+//  SwitchView.swift
 //  FitHub
 //
-//  Created by iOS신상우 on 2023/08/17.
+//  Created by iOS신상우 on 2023/08/22.
 //
 
 import UIKit
 
-final class MyPageTabItemView: UIStackView {
+final class SwitchView: UIStackView {
     private let titleLabel = PaddingLabel(padding: .init(top: 12, left: 0, bottom: 12, right: 0)).then {
         $0.font = .pretendard(.bodyLarge02)
         $0.textColor = .textDefault
     }
     
-    private let disclosureImageView = UIImageView(image: UIImage(named: "Disclosure")?.withRenderingMode(.alwaysOriginal))
-    
-    private let subLabel = UILabel().then {
-        $0.font = .pretendard(.bodyLarge02)
-        $0.textColor = .textSub02
-        $0.isHidden = true
+    let switchButton = UIButton().then {
+        $0.setImage(UIImage(named: "btn_toggle_Off"), for: .normal)
     }
     
     init(title: String) {
         self.titleLabel.text = title
         
         super.init(frame: .zero)
-        [titleLabel, disclosureImageView, subLabel].forEach {
+        [titleLabel, switchButton].forEach {
             self.addSubview($0)
         }
         
@@ -34,14 +30,11 @@ final class MyPageTabItemView: UIStackView {
             $0.leading.trailing.equalToSuperview().inset(20)
         }
         
-        disclosureImageView.snp.makeConstraints {
+        switchButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(20)
             $0.centerY.equalToSuperview()
-        }
-        
-        subLabel.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(20)
-            $0.centerY.equalToSuperview()
+            $0.width.equalTo(46)
+            $0.height.equalTo(28)
         }
     }
     
@@ -49,10 +42,9 @@ final class MyPageTabItemView: UIStackView {
         self.titleLabel.text = title
     }
     
-    func configureLabelMode(text: String) {
-        subLabel.text = text
-        subLabel.isHidden = false
-        disclosureImageView.isHidden = true
+    func configureSwitch(isOn: Bool) {
+        let image = isOn ? UIImage(named: "btn_toggle_On") : UIImage(named: "btn_toggle_Off")
+        self.switchButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
     required init(coder: NSCoder) {

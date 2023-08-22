@@ -128,6 +128,8 @@ final class MyFeedViewController: BaseViewController {
                 self?.navigationController?.pushViewController(bookMarkVC, animated: true)
             })
             .disposed(by: disposeBag)
+        
+        self.title = "내 글 관리"
     }
     
     //MARK: - SetupBinding
@@ -174,8 +176,6 @@ final class MyFeedViewController: BaseViewController {
         
         viewModel.feedType
             .bind(to: self.topTabBarCollectionView.rx.items(cellIdentifier: TopTabBarItemCell.identifier, cellType: TopTabBarItemCell.self)) { [weak self] index, item, cell in
-                guard let self else { return }
-
                 cell.configureCell(text: item)
             }
             .disposed(by: disposeBag)
