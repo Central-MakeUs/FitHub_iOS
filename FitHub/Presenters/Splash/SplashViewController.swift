@@ -78,7 +78,15 @@ final class SplashViewController: BaseViewController {
         myPageVC.tabBarItem.image = UIImage(named: "MyPageIcon")
         myPageVC.tabBarItem.title = "마이핏허브"
         
-        tabBarController.viewControllers = [homeVC, communityVC, lookUpVC, myPageVC]
+        let exceptionVC = ExceptionViewController(title: "아직 준비중이에요!",
+                                                  subTitle: "핏허브에서 열심히 공사중이니 조금만 기다려주시면 감사하겠습니다!")
+        exceptionVC.navigationItem.leftBarButtonItem = nil
+        let readyVC = UINavigationController(rootViewController: exceptionVC)
+                                             
+        readyVC.tabBarItem.image = UIImage(named: "LookUpIcon")
+        readyVC.tabBarItem.title = "둘러보기"
+        
+        tabBarController.viewControllers = [homeVC, communityVC, readyVC, myPageVC]
         
         return tabBarController
     }

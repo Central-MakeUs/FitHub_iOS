@@ -97,6 +97,7 @@
 		B58D3C392A94FC16008F06D2 /* NotiSettingDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C382A94FC16008F06D2 /* NotiSettingDTO.swift */; };
 		B58D3C3C2A94FD66008F06D2 /* NotiSettingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C3B2A94FD66008F06D2 /* NotiSettingUseCase.swift */; };
 		B58D3C3E2A94FDBD008F06D2 /* NotiSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C3D2A94FDBD008F06D2 /* NotiSettingViewModel.swift */; };
+		B58D3C412A9506C9008F06D2 /* ExceptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C402A9506C9008F06D2 /* ExceptionViewController.swift */; };
 		B5B2C3942A7D097E004FC66C /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3932A7D097E004FC66C /* UILabel+.swift */; };
 		B5B2C3972A7D0F37004FC66C /* RankStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3962A7D0F37004FC66C /* RankStatus.swift */; };
 		B5B2C3992A7D2CEB004FC66C /* GradeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3982A7D2CEB004FC66C /* GradeType.swift */; };
@@ -379,6 +380,7 @@
 		B58D3C382A94FC16008F06D2 /* NotiSettingDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiSettingDTO.swift; sourceTree = "<group>"; };
 		B58D3C3B2A94FD66008F06D2 /* NotiSettingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiSettingUseCase.swift; sourceTree = "<group>"; };
 		B58D3C3D2A94FDBD008F06D2 /* NotiSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiSettingViewModel.swift; sourceTree = "<group>"; };
+		B58D3C402A9506C9008F06D2 /* ExceptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExceptionViewController.swift; sourceTree = "<group>"; };
 		B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
 		B5B2C3932A7D097E004FC66C /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		B5B2C3962A7D0F37004FC66C /* RankStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankStatus.swift; sourceTree = "<group>"; };
@@ -766,6 +768,14 @@
 				B58D3C3D2A94FDBD008F06D2 /* NotiSettingViewModel.swift */,
 			);
 			path = NotiSetting;
+			sourceTree = "<group>";
+		};
+		B58D3C3F2A950696008F06D2 /* OnBorading */ = {
+			isa = PBXGroup;
+			children = (
+				B58D3C402A9506C9008F06D2 /* ExceptionViewController.swift */,
+			);
+			path = OnBorading;
 			sourceTree = "<group>";
 		};
 		B5B2C3952A7D0F23004FC66C /* Home */ = {
@@ -1379,6 +1389,7 @@
 		DBFF258B2A5B925E00CF6DD4 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				B58D3C3F2A950696008F06D2 /* OnBorading */,
 				B5705CF02A8B855700408233 /* Search */,
 				B5B2C39F2A7E396A004FC66C /* Splash */,
 				DB002BB92A67C3BA001B5672 /* MyPage */,
@@ -1826,6 +1837,7 @@
 				DB71348D2A5BDBF90006EAAB /* UserService.swift in Sources */,
 				DBFFDA3B2A4983F90008C2B5 /* BaseViewController.swift in Sources */,
 				DB8CD7252A6E58A1004735C8 /* CommunityType.swift in Sources */,
+				B58D3C412A9506C9008F06D2 /* ExceptionViewController.swift in Sources */,
 				B5705C952A87B07700408233 /* CertificationDetailCell.swift in Sources */,
 				DB57122D2A72059300DCAD9C /* ResetPasswordUseCase.swift in Sources */,
 				DB0D220C2A769DD100ABF6A2 /* UICollectionView+.swift in Sources */,
