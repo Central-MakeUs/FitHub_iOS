@@ -85,6 +85,7 @@
 		B58D3C172A93D052008F06D2 /* FitSiteDetailContentImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C162A93D052008F06D2 /* FitSiteDetailContentImageViewController.swift */; };
 		B58D3C192A93E488008F06D2 /* ExpandTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C182A93E488008F06D2 /* ExpandTextField.swift */; };
 		B58D3C1B2A93EB0A008F06D2 /* CheckTodayDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C1A2A93EB0A008F06D2 /* CheckTodayDTO.swift */; };
+		B58D3C1D2A9441BB008F06D2 /* LogoutDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C1C2A9441BB008F06D2 /* LogoutDTO.swift */; };
 		B5B2C3942A7D097E004FC66C /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3932A7D097E004FC66C /* UILabel+.swift */; };
 		B5B2C3972A7D0F37004FC66C /* RankStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3962A7D0F37004FC66C /* RankStatus.swift */; };
 		B5B2C3992A7D2CEB004FC66C /* GradeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3982A7D2CEB004FC66C /* GradeType.swift */; };
@@ -355,6 +356,7 @@
 		B58D3C162A93D052008F06D2 /* FitSiteDetailContentImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteDetailContentImageViewController.swift; sourceTree = "<group>"; };
 		B58D3C182A93E488008F06D2 /* ExpandTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandTextField.swift; sourceTree = "<group>"; };
 		B58D3C1A2A93EB0A008F06D2 /* CheckTodayDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckTodayDTO.swift; sourceTree = "<group>"; };
+		B58D3C1C2A9441BB008F06D2 /* LogoutDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutDTO.swift; sourceTree = "<group>"; };
 		B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
 		B5B2C3932A7D097E004FC66C /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		B5B2C3962A7D0F37004FC66C /* RankStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankStatus.swift; sourceTree = "<group>"; };
@@ -764,6 +766,7 @@
 				B5ED13112A9085F8002769BE /* QuitDTO.swift */,
 				B5ED133A2A91C93C002769BE /* OtherUserInfoDTO.swift */,
 				B5ED133E2A920017002769BE /* ReportUserDTO.swift */,
+				B58D3C1C2A9441BB008F06D2 /* LogoutDTO.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -1882,6 +1885,7 @@
 				B5ED127D2A8E7C77002769BE /* MyPageViewModel.swift in Sources */,
 				B5ED132B2A9128DA002769BE /* CertificationDeleteRecordsDTO.swift in Sources */,
 				B5ED13202A90C986002769BE /* MyFeedViewController.swift in Sources */,
+				B58D3C1D2A9441BB008F06D2 /* LogoutDTO.swift in Sources */,
 				DB57123A2A72590B00DCAD9C /* OAuthRegistInputViewModel.swift in Sources */,
 				B5705CEC2A8B735F00408233 /* FitSiteScrapDTO.swift in Sources */,
 				DB57123C2A7259B700DCAD9C /* OAuthRegistInputUseCase.swift in Sources */,

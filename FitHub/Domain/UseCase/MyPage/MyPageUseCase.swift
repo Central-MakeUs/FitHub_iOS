@@ -17,6 +17,7 @@ protocol MyPageUseCaseProtocol {
     func getCurrentMainExercise()-> Single<CurrentExerciseDTO>
     func fetchPrivacyInfo() -> Single<PrivacyInfoDTO>
     func quitAuth() -> Single<Bool>
+    func logout() -> Single<Bool>
 }
 
 final class MyPageUseCase: MyPageUseCaseProtocol {
@@ -56,5 +57,9 @@ final class MyPageUseCase: MyPageUseCaseProtocol {
     
     func quitAuth() -> Single<Bool> {
         return mypageRepository.quitAuth()
+    }
+    
+    func logout() -> Single<Bool> {
+        return mypageRepository.logout()
     }
 }
