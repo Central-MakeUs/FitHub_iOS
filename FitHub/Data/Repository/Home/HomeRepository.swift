@@ -15,6 +15,8 @@ protocol HomeRepositoryInterface {
     func fetchLevelInfo() -> Single<LevelInfoDTO>
     func fetchBookMark(categoryId: Int, page: Int) -> Single<BookMarkDTO>
     func fetchTermList() -> Single<TermsListDTO>
+    func checkNotiSetting() -> Single<NotiSettingDTO>
+    func updateNotiSetting(communityPermit: Bool, marketingPermit: Bool) -> Single<NotiSettingDTO>
 }
 
 final class HomeRepository: HomeRepositoryInterface {
@@ -49,5 +51,13 @@ final class HomeRepository: HomeRepositoryInterface {
     
     func fetchTermList() -> Single<TermsListDTO> {
         return homeService.fetchTermList()
+    }
+    
+    func checkNotiSetting() -> Single<NotiSettingDTO> {
+        return homeService.checkNotiSetting()
+    }
+    
+    func updateNotiSetting(communityPermit: Bool, marketingPermit: Bool) -> Single<NotiSettingDTO> {
+        return homeService.updateNotiSetting(communityPermit: communityPermit, marketingPermit: marketingPermit)
     }
 }

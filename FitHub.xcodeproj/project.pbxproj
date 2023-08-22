@@ -92,6 +92,11 @@
 		B58D3C2E2A94EAEF008F06D2 /* TermUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C2D2A94EAEF008F06D2 /* TermUseCase.swift */; };
 		B58D3C302A94EBE3008F06D2 /* TermsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C2F2A94EBE3008F06D2 /* TermsDTO.swift */; };
 		B58D3C322A94EBFF008F06D2 /* TermsListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C312A94EBFE008F06D2 /* TermsListDTO.swift */; };
+		B58D3C352A94F693008F06D2 /* NotiSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C342A94F693008F06D2 /* NotiSettingViewController.swift */; };
+		B58D3C372A94F707008F06D2 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C362A94F707008F06D2 /* SwitchView.swift */; };
+		B58D3C392A94FC16008F06D2 /* NotiSettingDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C382A94FC16008F06D2 /* NotiSettingDTO.swift */; };
+		B58D3C3C2A94FD66008F06D2 /* NotiSettingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C3B2A94FD66008F06D2 /* NotiSettingUseCase.swift */; };
+		B58D3C3E2A94FDBD008F06D2 /* NotiSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C3D2A94FDBD008F06D2 /* NotiSettingViewModel.swift */; };
 		B5B2C3942A7D097E004FC66C /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3932A7D097E004FC66C /* UILabel+.swift */; };
 		B5B2C3972A7D0F37004FC66C /* RankStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3962A7D0F37004FC66C /* RankStatus.swift */; };
 		B5B2C3992A7D2CEB004FC66C /* GradeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3982A7D2CEB004FC66C /* GradeType.swift */; };
@@ -369,6 +374,11 @@
 		B58D3C2D2A94EAEF008F06D2 /* TermUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermUseCase.swift; sourceTree = "<group>"; };
 		B58D3C2F2A94EBE3008F06D2 /* TermsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsDTO.swift; sourceTree = "<group>"; };
 		B58D3C312A94EBFE008F06D2 /* TermsListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsListDTO.swift; sourceTree = "<group>"; };
+		B58D3C342A94F693008F06D2 /* NotiSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiSettingViewController.swift; sourceTree = "<group>"; };
+		B58D3C362A94F707008F06D2 /* SwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchView.swift; sourceTree = "<group>"; };
+		B58D3C382A94FC16008F06D2 /* NotiSettingDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiSettingDTO.swift; sourceTree = "<group>"; };
+		B58D3C3B2A94FD66008F06D2 /* NotiSettingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiSettingUseCase.swift; sourceTree = "<group>"; };
+		B58D3C3D2A94FDBD008F06D2 /* NotiSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiSettingViewModel.swift; sourceTree = "<group>"; };
 		B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
 		B5B2C3932A7D097E004FC66C /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		B5B2C3962A7D0F37004FC66C /* RankStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankStatus.swift; sourceTree = "<group>"; };
@@ -749,6 +759,15 @@
 			path = TermsOfUse;
 			sourceTree = "<group>";
 		};
+		B58D3C332A94F676008F06D2 /* NotiSetting */ = {
+			isa = PBXGroup;
+			children = (
+				B58D3C342A94F693008F06D2 /* NotiSettingViewController.swift */,
+				B58D3C3D2A94FDBD008F06D2 /* NotiSettingViewModel.swift */,
+			);
+			path = NotiSetting;
+			sourceTree = "<group>";
+		};
 		B5B2C3952A7D0F23004FC66C /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -809,6 +828,7 @@
 				B5ED13232A90CB1C002769BE /* MyFeedUseCase.swift */,
 				B5ED13382A91C795002769BE /* OtherProfileUseCase.swift */,
 				B58D3C2D2A94EAEF008F06D2 /* TermUseCase.swift */,
+				B58D3C3B2A94FD66008F06D2 /* NotiSettingUseCase.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -819,6 +839,7 @@
 				B5ED12712A8E7102002769BE /* CardPagingControlView.swift */,
 				B5DE49E22A8DA47B0006A46A /* MyPageExerciseCardView.swift */,
 				B5ED126F2A8E5A61002769BE /* MyPageTabItemView.swift */,
+				B58D3C362A94F707008F06D2 /* SwitchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -915,6 +936,7 @@
 		DB002BB92A67C3BA001B5672 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				B58D3C332A94F676008F06D2 /* NotiSetting */,
 				B58D3C262A94E837008F06D2 /* TermsOfUse */,
 				B5ED13332A91C432002769BE /* OtherProfile */,
 				B5ED131E2A90C977002769BE /* MyFeed */,
@@ -1131,6 +1153,7 @@
 				B5705CD82A8AA42600408233 /* BookMarkDTO.swift */,
 				B58D3C2F2A94EBE3008F06D2 /* TermsDTO.swift */,
 				B58D3C312A94EBFE008F06D2 /* TermsListDTO.swift */,
+				B58D3C382A94FC16008F06D2 /* NotiSettingDTO.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1762,6 +1785,7 @@
 				DB7559E52A55035800B88B96 /* SportsSelectingViewModel.swift in Sources */,
 				B5705CC92A89508F00408233 /* FitSiteDetailCell.swift in Sources */,
 				DB8CD7012A6D0BFE004735C8 /* PhoneVerificationRepository.swift in Sources */,
+				B58D3C3E2A94FDBD008F06D2 /* NotiSettingViewModel.swift in Sources */,
 				DB8CD7132A6D2855004735C8 /* SortSwitchView.swift in Sources */,
 				B5705CC32A894D2C00408233 /* FitSiteDetailViewModel.swift in Sources */,
 				DB002BB42A67C332001B5672 /* CommunityViewController.swift in Sources */,
@@ -1781,7 +1805,9 @@
 				B5ED13292A91231F002769BE /* AllCheckButton.swift in Sources */,
 				B5ED13122A9085F8002769BE /* QuitDTO.swift in Sources */,
 				B5ED12822A8EDC17002769BE /* DefaultProfileDTO.swift in Sources */,
+				B58D3C392A94FC16008F06D2 /* NotiSettingDTO.swift in Sources */,
 				B5DE49E32A8DA47B0006A46A /* MyPageExerciseCardView.swift in Sources */,
+				B58D3C3C2A94FD66008F06D2 /* NotiSettingUseCase.swift in Sources */,
 				B5ED12782A8E7B27002769BE /* MyPageRepository.swift in Sources */,
 				B5705CC52A894D3A00408233 /* FitSiteDetailSectionModel.swift in Sources */,
 				B5ED132E2A913C42002769BE /* MyFitSiteCell.swift in Sources */,
@@ -1914,6 +1940,7 @@
 				DB51D2572A4BB8B5002415B0 /* AgreementViewModel.swift in Sources */,
 				DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */,
 				B5ED127D2A8E7C77002769BE /* MyPageViewModel.swift in Sources */,
+				B58D3C352A94F693008F06D2 /* NotiSettingViewController.swift in Sources */,
 				B5ED132B2A9128DA002769BE /* CertificationDeleteRecordsDTO.swift in Sources */,
 				B5ED13202A90C986002769BE /* MyFeedViewController.swift in Sources */,
 				B58D3C1D2A9441BB008F06D2 /* LogoutDTO.swift in Sources */,
@@ -1956,6 +1983,7 @@
 				B5705D052A8C313600408233 /* SearchTotalSectionModel.swift in Sources */,
 				DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */,
 				DB8CD7292A6E72C0004735C8 /* AgreementUseCase.swift in Sources */,
+				B58D3C372A94F707008F06D2 /* SwitchView.swift in Sources */,
 				DB5712462A72985D00DCAD9C /* CreateCertificationUseCase.swift in Sources */,
 				DBF125E32A5E885D004DA4B9 /* PasswordUseCase.swift in Sources */,
 				B5705CA82A89089900408233 /* StandardActionSheetAction.swift in Sources */,
