@@ -388,6 +388,10 @@ extension EditFitSiteViewController: TitleCellDelegate {
 
 //MARK: - HashTag
 extension EditFitSiteViewController: HashTagDelegate {
+    func changeSize() {
+        self.collectionView.reloadSections(IndexSet(integer: 3))
+    }
+    
     func addHashTag(_ text: String) {
         self.viewModel.addHashTag(text)
     }

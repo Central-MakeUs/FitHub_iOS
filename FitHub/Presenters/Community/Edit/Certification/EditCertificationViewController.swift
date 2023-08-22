@@ -191,6 +191,10 @@ extension EditCertificationViewController {
 
 //MARK: - HashTag
 extension EditCertificationViewController: HashTagDelegate {
+    func changeSize() {
+        self.collectionView.reloadSections(IndexSet(integer: 3))
+    }
+    
     func addHashTag(_ text: String) {
         self.viewModel.addHashTag(text)
     }

@@ -11,6 +11,7 @@ import RxSwift
 protocol HashTagDelegate: AnyObject {
     func addHashTag(_ text: String)
     func deleteHashTag(_ text: String)
+    func changeSize()
 }
 
 final class HashTagCell: UICollectionViewCell {
@@ -26,7 +27,7 @@ final class HashTagCell: UICollectionViewCell {
         $0.distribution = .equalSpacing
     }
     
-    let tagTextField = UITextField().then {
+    let tagTextField = ExpandTextField().then {
         $0.textAlignment = .center
         $0.placeholder = "+태그추가"
         $0.isEnabled = false
@@ -73,6 +74,16 @@ final class HashTagCell: UICollectionViewCell {
             .bind(to: self.tagTextField.rx.text)
             .disposed(by: disposeBag)
         
+//        self.tagTextField.rx.text
+//            .distinctUntilChanged({ $0?.count == $1?.count })
+//            .bind(onNext: { [weak self] _ in
+//                self?.tagTextField.canResign = false
+//                self?.tagTextField.sizeToFit()
+//                self?.delegate?.changeSize()
+//                self?.tagTextField.canResign = true
+//            })
+//            .disposed(by: disposeBag)
+        
         self.tagTextField.rx.controlEvent(.editingDidEnd)
             .withLatestFrom(self.tagTextField.rx.text.orEmpty.asObservable())
             .filter { !$0.isEmpty }
@@ -88,6 +99,22 @@ final class HashTagCell: UICollectionViewCell {
                 self?.delegate?.deleteHashTag(text)
             })
             .disposed(by: disposeBag)
+        
+        tagTextField.rx.controlEvent(.editingDidBegin)
+            .bind{
+                if self.tagTextField.text == "" {
+                    self.tagTextField.placeholder = "태그입력중"
+                }
+            }.disposed(by: disposeBag)
+        
+        tagTextField.rx.controlEvent(.editingDidEnd)
+            .bind { [weak self] in
+                guard let self = self else { return }
+
+                if self.tagTextField.text == "" {
+                    self.tagTextField.placeholder = "+태그추가"
+                }
+            }.disposed(by: disposeBag)
     }
     
     required init?(coder: NSCoder) {

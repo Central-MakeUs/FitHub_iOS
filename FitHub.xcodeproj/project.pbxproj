@@ -83,6 +83,8 @@
 		B58D3C132A93A32E008F06D2 /* EditFitSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C122A93A32E008F06D2 /* EditFitSiteViewController.swift */; };
 		B58D3C152A93C24D008F06D2 /* FitSiteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C142A93C24D008F06D2 /* FitSiteError.swift */; };
 		B58D3C172A93D052008F06D2 /* FitSiteDetailContentImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C162A93D052008F06D2 /* FitSiteDetailContentImageViewController.swift */; };
+		B58D3C192A93E488008F06D2 /* ExpandTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C182A93E488008F06D2 /* ExpandTextField.swift */; };
+		B58D3C1B2A93EB0A008F06D2 /* CheckTodayDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C1A2A93EB0A008F06D2 /* CheckTodayDTO.swift */; };
 		B5B2C3942A7D097E004FC66C /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3932A7D097E004FC66C /* UILabel+.swift */; };
 		B5B2C3972A7D0F37004FC66C /* RankStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3962A7D0F37004FC66C /* RankStatus.swift */; };
 		B5B2C3992A7D2CEB004FC66C /* GradeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3982A7D2CEB004FC66C /* GradeType.swift */; };
@@ -351,6 +353,8 @@
 		B58D3C122A93A32E008F06D2 /* EditFitSiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteViewController.swift; sourceTree = "<group>"; };
 		B58D3C142A93C24D008F06D2 /* FitSiteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteError.swift; sourceTree = "<group>"; };
 		B58D3C162A93D052008F06D2 /* FitSiteDetailContentImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteDetailContentImageViewController.swift; sourceTree = "<group>"; };
+		B58D3C182A93E488008F06D2 /* ExpandTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandTextField.swift; sourceTree = "<group>"; };
+		B58D3C1A2A93EB0A008F06D2 /* CheckTodayDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckTodayDTO.swift; sourceTree = "<group>"; };
 		B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
 		B5B2C3932A7D097E004FC66C /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		B5B2C3962A7D0F37004FC66C /* RankStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankStatus.swift; sourceTree = "<group>"; };
@@ -609,6 +613,7 @@
 				B5705CD22A8A933500408233 /* ReportCertificationDTO.swift */,
 				B5705CD42A8A96F300408233 /* LikeCertificationDTO.swift */,
 				B5ED132A2A9128DA002769BE /* CertificationDeleteRecordsDTO.swift */,
+				B58D3C1A2A93EB0A008F06D2 /* CheckTodayDTO.swift */,
 			);
 			path = Certification;
 			sourceTree = "<group>";
@@ -1479,6 +1484,7 @@
 				B5705C962A87CB9000408233 /* CommentInputView.swift */,
 				B5705CA52A89027A00408233 /* StandardActionSheetController.swift */,
 				B5705CA72A89089900408233 /* StandardActionSheetAction.swift */,
+				B58D3C182A93E488008F06D2 /* ExpandTextField.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1842,6 +1848,7 @@
 				DB51ECC02A692EFC009F4690 /* TopTabbarItem.swift in Sources */,
 				B5ED13322A91B7F4002769BE /* MyFeedCertificationDefaultView.swift in Sources */,
 				B5705CE82A8B50B100408233 /* BookMarkUseCase.swift in Sources */,
+				B58D3C1B2A93EB0A008F06D2 /* CheckTodayDTO.swift in Sources */,
 				DB8CD71B2A6E0C93004735C8 /* CategoryDTO.swift in Sources */,
 				B5705CD92A8AA42600408233 /* BookMarkDTO.swift in Sources */,
 				DB0D220A2A7698D200ABF6A2 /* SportHeaderView.swift in Sources */,
@@ -1885,6 +1892,7 @@
 				DB6CC3F12A70BF5600C4C2BC /* SportsSelectingRepository.swift in Sources */,
 				DB668AF92A4F06D000D702A1 /* AuthUserInfo.swift in Sources */,
 				DB51ECBA2A68488C009F4690 /* FitHubSearchBar.swift in Sources */,
+				B58D3C192A93E488008F06D2 /* ExpandTextField.swift in Sources */,
 				DBFFDA422A499BC00008C2B5 /* StandardTextFieldView.swift in Sources */,
 				B58D3C132A93A32E008F06D2 /* EditFitSiteViewController.swift in Sources */,
 				B5705CF52A8B86D500408233 /* RecommendKeywordDTO.swift in Sources */,
