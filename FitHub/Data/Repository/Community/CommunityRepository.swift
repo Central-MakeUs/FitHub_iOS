@@ -15,6 +15,7 @@ protocol CommunityRepositoryInterface {
     func deleteCertifications(recordIdList: [Int])->Single<CertificationDeleteRecordsDTO>
     func deleteFitSites(articleIdList: [Int])->Single<DeleteFitSitesDTO>
     func reportUser(userId: Int) -> Single<Int>
+    func checkHasTodayCertification()->Single<CheckTodayDTO>
 }
 
 final class CommunityRepository: CommunityRepositoryInterface {
@@ -52,5 +53,9 @@ final class CommunityRepository: CommunityRepositoryInterface {
     
     func reportUser(userId: Int) -> Single<Int> {
         return authService.reportUser(userId: userId)
+    }
+    
+    func checkHasTodayCertification()->Single<CheckTodayDTO> {
+        return certificationService.checkHasTodayCertification()
     }
 }

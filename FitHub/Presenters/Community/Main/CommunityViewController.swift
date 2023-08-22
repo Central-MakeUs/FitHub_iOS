@@ -222,8 +222,8 @@ final class CommunityViewController: BaseViewController {
         
         self.createActionSheet.certificationButton.rx.tap
             .bind(onNext: { [weak self] in
-                self?.pushCreateCertificationVC()
-                self?.closeCreateActionSheet()
+                self?.viewModel.checkToday()
+                
             })
             .disposed(by: disposeBag)
         
@@ -243,6 +243,18 @@ final class CommunityViewController: BaseViewController {
         refreshControl.rx.controlEvent(.valueChanged)
             .bind(to: viewModel.refresh)
             .disposed(by: disposeBag)
+        
+        viewModel.checkTodayHandler
+            .bind(onNext: { [weak self] isWrite in
+                if isWrite {
+                    self?.notiAlert("이미 운동인증을 하셨네요!\n운동인증은 하루 한 번만 가능합니다.")
+                } else {
+                    self?.pushCreateCertificationVC()
+                    self?.closeCreateActionSheet()
+                }
+            })
+            .disposed(by: disposeBag)
+            
     }
     
     private func closeCreateActionSheet() {

@@ -38,6 +38,7 @@ final class CommunityViewModel {
     let certificationFeedList = BehaviorRelay<[CertificationDTO]>(value: [])
     let fitSiteFeedList = BehaviorRelay<[ArticleDTO]>(value: [])
     var communityType = BehaviorSubject<CommunityType>(value: .certification)
+    let checkTodayHandler = PublishSubject<Bool>()
     
     init(_ usecase: CommunityUseCaseProtocol) {
         self.usecase = usecase
@@ -130,6 +131,14 @@ final class CommunityViewModel {
                 } else {
                     self?.fetchFitSite(isReset: true)
                 }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func checkToday() {
+        usecase.checkHasTodayCertification()
+            .subscribe(onSuccess: { [weak self] result in
+                self?.checkTodayHandler.onNext(result.isWrite)
             })
             .disposed(by: disposeBag)
     }

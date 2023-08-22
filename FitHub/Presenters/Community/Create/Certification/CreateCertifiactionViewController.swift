@@ -188,6 +188,10 @@ extension CreateCertificationViewController {
 
 //MARK: - HashTag
 extension CreateCertificationViewController: HashTagDelegate {
+    func changeSize() {
+        self.collectionView.reloadSections([3], animationStyle: .automatic)
+    }
+    
     func addHashTag(_ text: String) {
         self.viewModel.addHashTag(text)
     }
@@ -239,6 +243,7 @@ extension CreateCertificationViewController {
         
         return layout
     }
+    
     
     private func createImageSection() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1.0),
