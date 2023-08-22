@@ -86,6 +86,12 @@
 		B58D3C192A93E488008F06D2 /* ExpandTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C182A93E488008F06D2 /* ExpandTextField.swift */; };
 		B58D3C1B2A93EB0A008F06D2 /* CheckTodayDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C1A2A93EB0A008F06D2 /* CheckTodayDTO.swift */; };
 		B58D3C1D2A9441BB008F06D2 /* LogoutDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C1C2A9441BB008F06D2 /* LogoutDTO.swift */; };
+		B58D3C282A94E85B008F06D2 /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C272A94E85B008F06D2 /* TermsOfUseViewController.swift */; };
+		B58D3C2A2A94E8CF008F06D2 /* TermsOfUseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C292A94E8CF008F06D2 /* TermsOfUseCell.swift */; };
+		B58D3C2C2A94EA94008F06D2 /* TermOfUseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C2B2A94EA94008F06D2 /* TermOfUseViewModel.swift */; };
+		B58D3C2E2A94EAEF008F06D2 /* TermUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C2D2A94EAEF008F06D2 /* TermUseCase.swift */; };
+		B58D3C302A94EBE3008F06D2 /* TermsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C2F2A94EBE3008F06D2 /* TermsDTO.swift */; };
+		B58D3C322A94EBFF008F06D2 /* TermsListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C312A94EBFE008F06D2 /* TermsListDTO.swift */; };
 		B5B2C3942A7D097E004FC66C /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3932A7D097E004FC66C /* UILabel+.swift */; };
 		B5B2C3972A7D0F37004FC66C /* RankStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3962A7D0F37004FC66C /* RankStatus.swift */; };
 		B5B2C3992A7D2CEB004FC66C /* GradeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3982A7D2CEB004FC66C /* GradeType.swift */; };
@@ -357,6 +363,12 @@
 		B58D3C182A93E488008F06D2 /* ExpandTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandTextField.swift; sourceTree = "<group>"; };
 		B58D3C1A2A93EB0A008F06D2 /* CheckTodayDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckTodayDTO.swift; sourceTree = "<group>"; };
 		B58D3C1C2A9441BB008F06D2 /* LogoutDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutDTO.swift; sourceTree = "<group>"; };
+		B58D3C272A94E85B008F06D2 /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
+		B58D3C292A94E8CF008F06D2 /* TermsOfUseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseCell.swift; sourceTree = "<group>"; };
+		B58D3C2B2A94EA94008F06D2 /* TermOfUseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermOfUseViewModel.swift; sourceTree = "<group>"; };
+		B58D3C2D2A94EAEF008F06D2 /* TermUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermUseCase.swift; sourceTree = "<group>"; };
+		B58D3C2F2A94EBE3008F06D2 /* TermsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsDTO.swift; sourceTree = "<group>"; };
+		B58D3C312A94EBFE008F06D2 /* TermsListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsListDTO.swift; sourceTree = "<group>"; };
 		B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
 		B5B2C3932A7D097E004FC66C /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		B5B2C3962A7D0F37004FC66C /* RankStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankStatus.swift; sourceTree = "<group>"; };
@@ -727,6 +739,16 @@
 			path = FitSite;
 			sourceTree = "<group>";
 		};
+		B58D3C262A94E837008F06D2 /* TermsOfUse */ = {
+			isa = PBXGroup;
+			children = (
+				B58D3C272A94E85B008F06D2 /* TermsOfUseViewController.swift */,
+				B58D3C292A94E8CF008F06D2 /* TermsOfUseCell.swift */,
+				B58D3C2B2A94EA94008F06D2 /* TermOfUseViewModel.swift */,
+			);
+			path = TermsOfUse;
+			sourceTree = "<group>";
+		};
 		B5B2C3952A7D0F23004FC66C /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -786,6 +808,7 @@
 				B5ED13182A909367002769BE /* ResetPWUseCase.swift */,
 				B5ED13232A90CB1C002769BE /* MyFeedUseCase.swift */,
 				B5ED13382A91C795002769BE /* OtherProfileUseCase.swift */,
+				B58D3C2D2A94EAEF008F06D2 /* TermUseCase.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -892,6 +915,7 @@
 		DB002BB92A67C3BA001B5672 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				B58D3C262A94E837008F06D2 /* TermsOfUse */,
 				B5ED13332A91C432002769BE /* OtherProfile */,
 				B5ED131E2A90C977002769BE /* MyFeed */,
 				B5ED13152A9092AA002769BE /* ResetPW */,
@@ -1105,6 +1129,8 @@
 				B5B2C39B2A7DC980004FC66C /* CheckAuthDTO.swift */,
 				B5705CD62A8AA2E200408233 /* LevelInfoDTO.swift */,
 				B5705CD82A8AA42600408233 /* BookMarkDTO.swift */,
+				B58D3C2F2A94EBE3008F06D2 /* TermsDTO.swift */,
+				B58D3C312A94EBFE008F06D2 /* TermsListDTO.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1714,6 +1740,7 @@
 				DB6D93DE2A4E7E340011F9BC /* RegistInfoInputViewController.swift in Sources */,
 				DB8CD7152A6D2C9F004735C8 /* CertificationCell.swift in Sources */,
 				DB7559E32A55030400B88B96 /* SportsSelectingViewController.swift in Sources */,
+				B58D3C322A94EBFF008F06D2 /* TermsListDTO.swift in Sources */,
 				B5705C992A87DD0E00408233 /* CommentCell.swift in Sources */,
 				B5ED13222A90C9A4002769BE /* MyFeedViewModel.swift in Sources */,
 				B5705CA62A89027A00408233 /* StandardActionSheetController.swift in Sources */,
@@ -1826,6 +1853,7 @@
 				B5705CE62A8B506D00408233 /* BookMarkViewModel.swift in Sources */,
 				DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */,
 				B5ED12802A8EDBE7002769BE /* ChangeProfileDTO.swift in Sources */,
+				B58D3C282A94E85B008F06D2 /* TermsOfUseViewController.swift in Sources */,
 				DB5712422A7295E400DCAD9C /* CreateCertifiactionViewController.swift in Sources */,
 				B5705C772A866AC600408233 /* EditFitSiteModel.swift in Sources */,
 				DB8CD7192A6E0B7D004735C8 /* CommunityViewModel.swift in Sources */,
@@ -1843,6 +1871,7 @@
 				DB668AFC2A50017700D702A1 /* UserInfoStatus.swift in Sources */,
 				DB8CD7172A6D3995004735C8 /* CreateActionSheet.swift in Sources */,
 				DB0D21F92A73E40700ABF6A2 /* CreateCertifiactionViewModel.swift in Sources */,
+				B58D3C2A2A94E8CF008F06D2 /* TermsOfUseCell.swift in Sources */,
 				B5ED133F2A920017002769BE /* ReportUserDTO.swift in Sources */,
 				DB57123E2A72651500DCAD9C /* RegistType.swift in Sources */,
 				B5B2C3A32A7E39AE004FC66C /* SplashViewModel.swift in Sources */,
@@ -1866,9 +1895,11 @@
 				DB746F732A71308400FBA8D4 /* RegistCompletionViewController.swift in Sources */,
 				B5B2C3992A7D2CEB004FC66C /* GradeType.swift in Sources */,
 				DB55B6D62A6C2339006FEA7F /* PhoneAuthNumberDTO.swift in Sources */,
+				B58D3C2C2A94EA94008F06D2 /* TermOfUseViewModel.swift in Sources */,
 				DB0D220E2A76ACFE00ABF6A2 /* SportFooterView.swift in Sources */,
 				DB0D21FB2A73E91900ABF6A2 /* CreateCertificationSectionModel.swift in Sources */,
 				B5705CB52A89453C00408233 /* LikeFitSiteDTO.swift in Sources */,
+				B58D3C2E2A94EAEF008F06D2 /* TermUseCase.swift in Sources */,
 				DB0D22112A76C35D00ABF6A2 /* CreateCertificationModel.swift in Sources */,
 				B5705C9D2A87F05900408233 /* FetchCommentDTO.swift in Sources */,
 				DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */,
@@ -1948,6 +1979,7 @@
 				B5705CD32A8A933500408233 /* ReportCertificationDTO.swift in Sources */,
 				DBF125E72A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift in Sources */,
 				B5705CEA2A8B661E00408233 /* BookMarkDefaultView.swift in Sources */,
+				B58D3C302A94EBE3008F06D2 /* TermsDTO.swift in Sources */,
 				B5ED12752A8E73BB002769BE /* MyPageDTO.swift in Sources */,
 				DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */,
 				B5705CCF2A8A92BA00408233 /* DeleteCertificationDTO.swift in Sources */,
