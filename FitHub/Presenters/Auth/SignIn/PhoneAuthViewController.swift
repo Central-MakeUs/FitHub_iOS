@@ -96,12 +96,14 @@ final class PhoneAuthViewController: BaseViewController {
         
         output.loginPublisher
             .bind(onNext: { [weak self] res in
+                guard let self else { return }
                 switch res {
                 case .success:
-                    self?.navigationController?.dismiss(animated: true)
+                    let tabBar = self.setTapbar()
+                    self.changeRootViewController(tabBar)
                 case .failure(let error):
                     print("실패")
-                    self?.responseAuthError(error)
+                    self.responseAuthError(error)
                 }
             })
             .disposed(by: disposeBag)

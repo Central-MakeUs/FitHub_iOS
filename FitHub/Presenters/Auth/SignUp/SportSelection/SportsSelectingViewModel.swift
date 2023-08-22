@@ -60,6 +60,7 @@ final class SportsSelectingViewModel: ViewModelType {
             .subscribe(onNext: { res in
                 self.registPublisher.onNext(res.nickname)
                 guard let accessToken = res.accessToken else { return }
+                KeychainManager.create(key: "accessToken", value: accessToken)
                 KeychainManager.create(key: "userId", value: String(res.userId))
             })
             .disposed(by: disposeBag)

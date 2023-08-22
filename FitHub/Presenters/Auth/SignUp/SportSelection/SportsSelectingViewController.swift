@@ -82,9 +82,11 @@ final class SportsSelectingViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output.registPublisher
-            .bind(onNext: { nickName in
+            .bind(onNext: { [weak self] nickName in
+                guard let self else { return }
                 if let nickName {
-                    self.navigationController?.pushViewController(RegistCompletionViewController(name: nickName), animated: true)
+                    let tabBar = self.setTapbar()
+                    self.changeRootViewController(tabBar)
                 } else {
                     self.notiAlert("회원가입 실패. 다시 시도해주세요.")
                 }
@@ -135,7 +137,6 @@ extension SportsSelectingViewController {
             $0.minimumInteritemSpacing = 8
             $0.minimumLineSpacing = 25
             $0.itemSize = .init(width: itemWidth, height: itemWidth + 30)
-//            $0.sectionInset = .init(top: 0, left: 20, bottom: 0, right: 0)
         }
     }
 }
