@@ -13,6 +13,7 @@ final class SplashViewModel {
     private let disposeBag = DisposeBag()
     
     var checkStatusPublisher = PublishSubject<Bool>()
+    let errorHandler = PublishSubject<Error>()
     
     init(homeService: HomeService) {
         self.homeService = homeService
@@ -27,7 +28,7 @@ final class SplashViewModel {
                     self?.checkStatusPublisher.onNext(false)
                 }
             }, onFailure: { [weak self] error in
-                self?.checkStatusPublisher.onNext(false)
+                self?.errorHandler.onNext(error)
             })
             .disposed(by: disposeBag)
             

@@ -23,71 +23,34 @@ final class SplashViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if let _ = KeychainManager.read("accessToken") {
-            viewModel.checkUserLoginStatus()
-        } else {
-            let tabBar = self.setTapbar()
-            tabBar.modalPresentationStyle = .fullScreen
-            self.present(tabBar, animated: true)
-        }
+        viewModel.checkUserLoginStatus()
     }
     
     override func setupBinding() {
         viewModel.checkStatusPublisher
             .subscribe(onNext:  { [weak self] hasLogin in
                 guard let self else { return }
-                
                 if !hasLogin {
-                    KeychainManager.delete(key: "accessToken")
-                    KeychainManager.delete(key: "userId")
+                    let usecase = OAuthLoginUseCase(OAuthLoginRepository(UserService()))
+                    let authVC = UINavigationController(rootViewController: OAuthLoginViewController(
+                        OAuthLoginViewModel(usecase)))
+                    self.changeRootViewController(authVC)
                 }
                 let tabBar = self.setTapbar()
-                tabBar.modalPresentationStyle = .fullScreen
-                self.present(tabBar, animated: true)
+                self.changeRootViewController(tabBar)
             })
             .disposed(by: disposeBag)
-    }
-    
-    func setTapbar() -> UITabBarController {
-        let tabBarController = UITabBarController()
-        tabBarController.tabBar.backgroundColor = .bgDefault
-        tabBarController.selectedIndex = 1
-        tabBarController.tabBar.unselectedItemTintColor = .iconDisabled
-        tabBarController.tabBar.tintColor = .white
         
-        let homeUsecase = HomeUseCase(repository: HomeRepository(homeService: HomeService(),
-                                                                 authService: UserService()))
-        let homeVC = UINavigationController(rootViewController: HomeViewController(HomeViewModel(usecase: homeUsecase)))
-        homeVC.tabBarItem.image = UIImage(named: "HomeIcon")
-        homeVC.tabBarItem.title = "홈"
-        
-        let communityVCUsecase = CommunityUseCase(CommunityRepository(UserService(),
-                                                                      certificationService: CertificationService(),
-                                                                      articleService: ArticleService()))
-        let communityVC = UINavigationController(rootViewController: CommunityViewController(CommunityViewModel(communityVCUsecase)))
-        communityVC.tabBarItem.image = UIImage(named: "CommunityIcon")
-        communityVC.tabBarItem.title = "커뮤니티"
-        
-        let lookUpVC = UINavigationController(rootViewController: LookUpViewController())
-        lookUpVC.tabBarItem.image = UIImage(named: "LookUpIcon")
-        lookUpVC.tabBarItem.title = "둘러보기"
-        
-        let myPageUsecase = MyPageUseCase(mypageRepository: MyPageRepository(service: UserService()))
-        let myPageVC = UINavigationController(rootViewController: MyPageViewController(viewModel: MyPageViewModel(usecase: myPageUsecase)))
-        
-        myPageVC.tabBarItem.image = UIImage(named: "MyPageIcon")
-        myPageVC.tabBarItem.title = "마이핏허브"
-        
-        let exceptionVC = ExceptionViewController(title: "아직 준비중이에요!",
-                                                  subTitle: "핏허브에서 열심히 공사중이니 조금만 기다려주시면 감사하겠습니다!")
-        exceptionVC.navigationItem.leftBarButtonItem = nil
-        let readyVC = UINavigationController(rootViewController: exceptionVC)
-                                             
-        readyVC.tabBarItem.image = UIImage(named: "LookUpIcon")
-        readyVC.tabBarItem.title = "둘러보기"
-        
-        tabBarController.viewControllers = [homeVC, communityVC, readyVC, myPageVC]
-        
-        return tabBarController
+        viewModel.errorHandler
+            .bind(onNext: { [weak self] error in
+                print(error.localizedDescription)
+                let exceptionVC = ExceptionViewController(title: "오류가 발생하였습니다.",
+                                                          subTitle: "잠시 후 다시 시도해 주세요!")
+                exceptionVC.navigationItem.leftBarButtonItem = nil
+                let errorVC = UINavigationController(rootViewController: exceptionVC)
+                errorVC.modalPresentationStyle = .fullScreen
+                self?.present(errorVC, animated: false)
+            })
+            .disposed(by: disposeBag)
     }
 }

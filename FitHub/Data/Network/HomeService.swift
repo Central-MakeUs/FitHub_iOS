@@ -38,8 +38,11 @@ class HomeService {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String
         else { return Single.error(CertificationError.invalidURL) }
         
+        let accessToken = KeychainManager.read("accessToken") ?? ""
+        var header: HTTPHeaders = HTTPHeaders()
+        header.add(.authorization(bearerToken: accessToken))
         return Single<Bool>.create { emitter in
-            AF.request(baseURL, interceptor: AuthManager())
+            AF.request(baseURL, headers: header)
                 .responseDecodable(of:BaseResponse<CheckAuthDTO>.self) { res in
                     
                     switch res.result {

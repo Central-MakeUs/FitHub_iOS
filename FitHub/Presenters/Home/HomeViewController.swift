@@ -261,12 +261,11 @@ extension HomeViewController {
     private func addNotificationCenter() {
         NotificationCenter.default.rx.notification(.presentAlert)
             .subscribe(onNext: { [weak self] notification in
-                let authRepository = OAuthLoginRepository(UserService())
+                guard let self else { return }
+                let usecase = OAuthLoginUseCase(OAuthLoginRepository(UserService()))
                 let authVC = UINavigationController(rootViewController: OAuthLoginViewController(
-                    OAuthLoginViewModel(OAuthLoginUseCase(authRepository))))
-                authVC.modalPresentationStyle = .fullScreen
-                
-                self?.present(authVC, animated: true)
+                    OAuthLoginViewModel(usecase)))
+                self.changeRootViewController(authVC)
             })
             .disposed(by: disposeBag)
     }
