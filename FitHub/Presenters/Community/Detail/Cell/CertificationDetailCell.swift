@@ -10,6 +10,7 @@ import RxSwift
 
 protocol CertificationDetailCellDelegate: AnyObject {
     func toggleLike(articleId: Int, completion: @escaping (LikeCertificationDTO)->Void)
+    func didClickUserProfile(ownerId: Int)
 }
 
 final class CertificationDetailCell: UICollectionViewCell {
@@ -133,6 +134,8 @@ final class CertificationDetailCell: UICollectionViewCell {
         commentButton.configuration?.title = "\(item.comments)"
         likeButton.configuration?.attributedTitle?.font = .pretendard(.bodySmall01)
         commentButton.configuration?.attributedTitle?.font = .pretendard(.bodySmall01)
+        
+        profileImageView.tag = item.userInfo.ownerId
     }
     
     func configureLikeButton(isLiked: Bool) {
@@ -152,6 +155,13 @@ final class CertificationDetailCell: UICollectionViewCell {
                     self.likeButton.configuration?.title = "\(item.newLikes)"
                     self.likeButton.configuration?.attributedTitle?.font = .pretendard(.bodySmall01)
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        profileImageView.rx.tapGesture()
+            .bind(onNext: { [weak self] _ in
+                guard let self else { return }
+                self.delegate?.didClickUserProfile(ownerId: self.profileImageView.tag)
             })
             .disposed(by: disposeBag)
     }

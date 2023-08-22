@@ -6,9 +6,17 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+
+protocol FitSiteDelegateCell: AnyObject {
+    func didClickUserProfile(ownerId: Int)
+}
 
 final class FitSiteCell: UITableViewCell {
     static let identifier = "FitSiteCell"
+    weak var delegate: FitSiteDelegateCell?
+    private let disposeBag = DisposeBag()
     
     private let profileImageView = UIImageView().then {
         $0.image = UIImage(named: "DefaultProfile")
@@ -102,6 +110,7 @@ final class FitSiteCell: UITableViewCell {
         
         addSubViews()
         layout()
+        setUpBidning()
         self.layoutIfNeeded()
     }
     
@@ -129,6 +138,17 @@ final class FitSiteCell: UITableViewCell {
         
         self.contentImageView.kf.setImage(with: URL(string: item.pictureUrl ?? ""))
         self.profileImageView.kf.setImage(with: URL(string: item.userInfo.profileUrl ?? ""))
+        
+        profileImageView.tag = item.userInfo.ownerId
+    }
+    
+    private func setUpBidning() {
+        profileImageView.rx.tapGesture()
+            .bind(onNext: { [weak self] _ in
+                guard let self else { return }
+                self.delegate?.didClickUserProfile(ownerId: self.profileImageView.tag)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func addSubViews() {

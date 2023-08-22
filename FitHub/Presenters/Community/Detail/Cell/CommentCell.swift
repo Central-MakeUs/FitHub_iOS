@@ -11,6 +11,7 @@ import RxSwift
 protocol CommentCellDelegate: AnyObject {
     func toggleLike(commentId: Int, completion: @escaping (LikeCommentDTO)->Void)
     func didClickMoreButton(ownerId: Int, commentId: Int)
+    func didClickUserProfile(ownerId: Int)
 }
 
 final class CommentCell: UICollectionViewCell {
@@ -108,6 +109,8 @@ final class CommentCell: UICollectionViewCell {
         self.likeButton.configuration?.attributedTitle?.font = .pretendard(.labelSmall)
         self.likeButton.tag = item.commentId
         self.moreButton.tag = item.userInfo.ownerId
+        
+        self.profileImageView.tag = item.userInfo.ownerId
     }
     
     func configureLikeButton(isLiked: Bool) {
@@ -136,6 +139,13 @@ final class CommentCell: UICollectionViewCell {
                 guard let self else { return }
                 self.delegate?.didClickMoreButton(ownerId: self.moreButton.tag,
                                                   commentId: self.likeButton.tag)
+            })
+            .disposed(by: disposeBag)
+        
+        profileImageView.rx.tapGesture()
+            .bind(onNext: { [weak self] _ in
+                guard let self else { return }
+                self.delegate?.didClickUserProfile(ownerId: self.profileImageView.tag)
             })
             .disposed(by: disposeBag)
     }

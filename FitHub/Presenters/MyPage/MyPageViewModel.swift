@@ -93,6 +93,14 @@ final class MyPageViewModel {
             .disposed(by: disposeBag)
     }
     
+    func logout() {
+        usecase.logout()
+            .subscribe(onSuccess: {[weak self] isSuccess in
+                self?.logoutHandler.onNext(isSuccess)
+            })
+            .disposed(by: disposeBag)
+    }
+    
     // MARK: - Output
     let errorHandler = PublishSubject<Error>()
     let myPageInfo = PublishSubject<MyPageDTO>()
@@ -105,5 +113,6 @@ final class MyPageViewModel {
     let changeButtonEnable = BehaviorSubject<Bool>(value: false)
     
     let privacyInfo = PublishSubject<PrivacyInfoDTO>()
+    let logoutHandler = PublishSubject<Bool>()
     let quitHandler = PublishSubject<Bool>()
 }

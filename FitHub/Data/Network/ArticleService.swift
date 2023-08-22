@@ -89,9 +89,60 @@ class ArticleService {
         }
     }
     
+    func updateArticle(articleId: Int, feedInfo: EditFitSiteModel, remainImageList: [String])->Single<Bool> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String,
+              let token = KeychainManager.read("accessToken") else { return Single.error(AuthError.invalidURL)}
+        let urlString = baseURL + "articles/\(articleId)"
+        
+        var headers: HTTPHeaders = ["Content-Type" : "multipart/form-data"]
+        headers.add(.authorization(bearerToken: token))
+        
+        guard let contents = feedInfo.content,
+              let title = feedInfo.title,
+              let exerciseTag = feedInfo.selectedSport?.name,
+              let categoryId = feedInfo.selectedSport?.id else { return Single.error(AuthError.invalidURL)}
+                
+        let tagList = feedInfo.hashtags.filter { !$0.isEmpty }.joined(separator: ",")
+        let images = feedInfo.images.compactMap { $0?.jpegData(compressionQuality: .leastNormalMagnitude) }
+        let parameter: Parameters = ["title" : title,
+                                     "contents" : contents,
+                                     "category" : categoryId,
+                                     "exerciseTag" : exerciseTag,
+                                     "hashTagList" : tagList,
+                                     "remainPictureUrlList" : remainImageList]
+        
+        return Single<Bool>.create { observer in
+            AF.upload(multipartFormData: { multipartFormData in
+                for image in images {
+                    multipartFormData.append(image, withName: "newPictureList", fileName: "\(image)", mimeType: "image/jpeg")
+                }
+                
+                for (key,value) in parameter {
+                    multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
+                }
+                
+            }, to: urlString, method: .patch, headers: headers)
+            .responseDecodable(of: BaseResponse<UpdateFitSiteDTO>.self) { res in
+                switch res.result {
+                case .success(let response):
+                    if response.code == 2000 {
+                        observer(.success(true))
+                    } else {
+                        observer(.success(false))
+                    }
+                case .failure(let error):
+                    print(error)
+                    observer(.failure(error))
+                }
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
     func fetchFitSiteDetail(articleId: Int)->Single<FitSiteDetailDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
-        var urlString = baseURL + "articles/\(articleId)/spec"
+        let urlString = baseURL + "articles/\(articleId)/spec"
         
         return Single<FitSiteDetailDTO>.create { observer in
             AF.request(urlString, interceptor: AuthManager())
@@ -101,6 +152,8 @@ class ArticleService {
                         if response.code == 2000 {
                             guard let result = response.result else { return }
                             observer(.success(result))
+                        } else if response.code == 4031 {
+                            observer(.failure(FitSiteError.invalidArticle))
                         } else {
                             print(response.message)
                             print(response.code)
@@ -117,7 +170,7 @@ class ArticleService {
     
     func toggleLikeFitSite(articleId: Int)->Single<LikeFitSiteDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
-        var urlString = baseURL + "articles/\(articleId)/likes"
+        let urlString = baseURL + "articles/\(articleId)/likes"
         
         return Single<LikeFitSiteDTO>.create { observer in
             AF.request(urlString, method: .post, interceptor: AuthManager())
@@ -162,7 +215,7 @@ class ArticleService {
     
     func deleteFitSite(articleId: Int)->Single<Bool> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
-        var urlString = baseURL + "articles/\(articleId)"
+        let urlString = baseURL + "articles/\(articleId)"
         
         return Single<Bool>.create { observer in
             AF.request(urlString, method: .delete, interceptor: AuthManager())

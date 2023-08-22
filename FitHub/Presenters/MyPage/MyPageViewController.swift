@@ -13,10 +13,6 @@ import PhotosUI
 final class MyPageViewController: BaseViewController {
     private let viewModel: MyPageViewModel
     
-    private let logoutButton = UIButton().then {
-        $0.setTitle("임시로그아웃", for: .normal)
-    }
-    
     private let scrollView = UIScrollView()
     
     private let profileImageButton = UIButton().then {
@@ -183,12 +179,26 @@ final class MyPageViewController: BaseViewController {
                 self.gradeLabel.highlightGradeName(grade: result.myInfo.mainExerciseInfo.gradeName, highlightText: grade)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.logoutHandler
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { [weak self] isSuccess in
+                if isSuccess {
+                    KeychainManager.delete(key: "accessToken")
+                    KeychainManager.delete(key: "userId")
+                    self?.notiAlert("로그아웃 되었습니다.")
+                    NotificationCenter.default.post(name: .presentAlert, object: nil)
+                } else {
+                    self?.notiAlert("로그아웃 실패")
+                }
+            })
+            .disposed(by: disposeBag)
     }
 
     override func addSubView() {
         self.view.addSubview(scrollView)
         
-        [logoutButton, profileImageButton, cameraImageView, deleteProfileImageButton, nameLabel, sportLabel, gradeLabel, exerciseCardList,
+        [profileImageButton, cameraImageView, deleteProfileImageButton, nameLabel, sportLabel, gradeLabel, exerciseCardList,
          myFeedItem, separatorLineView, privacyInfoSetting, notiSetting, registrationRequest, termsOfUse, dividerView, versionInfo, logoutItem].forEach {
             self.scrollView.addSubview($0)
         }
@@ -211,10 +221,6 @@ final class MyPageViewController: BaseViewController {
             $0.top.bottom.equalTo(self.view.safeAreaLayoutGuide)
             $0.width.equalTo(self.view.frame.width)
         }
-        
-//        logoutButton.snp.makeConstraints {
-//            $0.center.equalToSuperview()
-//        }
         
         profileImageButton.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(20)
@@ -335,9 +341,7 @@ extension MyPageViewController {
             .asDriver()
             .skip(1)
             .drive(onNext: { [weak self] _ in
-                KeychainManager.delete(key: "accessToken")
-                KeychainManager.delete(key: "userId")
-                self?.notiAlert("로그아웃 되었습니다.")
+                self?.viewModel.logout()
             })
             .disposed(by: disposeBag)
         

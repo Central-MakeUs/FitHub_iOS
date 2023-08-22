@@ -19,7 +19,6 @@ class CertificationDetailDTO: Decodable {
     let likes: Int
     let isLiked: Bool
     let hashtags: HashTagsDTO
-    
 }
 
 class HashTagsDTO: Decodable {

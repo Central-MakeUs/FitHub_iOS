@@ -74,10 +74,18 @@
 		B588B7D72A828BD00031C723 /* FitSiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7D62A828BD00031C723 /* FitSiteCell.swift */; };
 		B588B7DB2A83AD710031C723 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DA2A83AD710031C723 /* ArticleService.swift */; };
 		B588B7E02A85405B0031C723 /* EditFitSiteSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DF2A85405B0031C723 /* EditFitSiteSectionModel.swift */; };
-		B588B7E22A85435E0031C723 /* EditFitSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7E12A85435E0031C723 /* EditFitSiteViewController.swift */; };
-		B588B7E42A8543C00031C723 /* EditFitSiteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7E32A8543C00031C723 /* EditFitSiteViewModel.swift */; };
+		B588B7E22A85435E0031C723 /* CreateFitSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7E12A85435E0031C723 /* CreateFitSiteViewController.swift */; };
+		B588B7E42A8543C00031C723 /* CreateFitSiteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7E32A8543C00031C723 /* CreateFitSiteViewModel.swift */; };
 		B588B7E62A8544940031C723 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7E52A8544940031C723 /* TitleCell.swift */; };
 		B588B7E82A8545110031C723 /* FitSiteImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7E72A8545110031C723 /* FitSiteImageCell.swift */; };
+		B58D3C0F2A939E76008F06D2 /* EditFitSiteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C0E2A939E76008F06D2 /* EditFitSiteViewModel.swift */; };
+		B58D3C112A939F46008F06D2 /* EditFitSiteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C102A939F46008F06D2 /* EditFitSiteUseCase.swift */; };
+		B58D3C132A93A32E008F06D2 /* EditFitSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C122A93A32E008F06D2 /* EditFitSiteViewController.swift */; };
+		B58D3C152A93C24D008F06D2 /* FitSiteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C142A93C24D008F06D2 /* FitSiteError.swift */; };
+		B58D3C172A93D052008F06D2 /* FitSiteDetailContentImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C162A93D052008F06D2 /* FitSiteDetailContentImageViewController.swift */; };
+		B58D3C192A93E488008F06D2 /* ExpandTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C182A93E488008F06D2 /* ExpandTextField.swift */; };
+		B58D3C1B2A93EB0A008F06D2 /* CheckTodayDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C1A2A93EB0A008F06D2 /* CheckTodayDTO.swift */; };
+		B58D3C1D2A9441BB008F06D2 /* LogoutDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C1C2A9441BB008F06D2 /* LogoutDTO.swift */; };
 		B5B2C3942A7D097E004FC66C /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3932A7D097E004FC66C /* UILabel+.swift */; };
 		B5B2C3972A7D0F37004FC66C /* RankStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3962A7D0F37004FC66C /* RankStatus.swift */; };
 		B5B2C3992A7D2CEB004FC66C /* GradeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3982A7D2CEB004FC66C /* GradeType.swift */; };
@@ -122,12 +130,16 @@
 		B5ED133B2A91C93C002769BE /* OtherUserInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED133A2A91C93C002769BE /* OtherUserInfoDTO.swift */; };
 		B5ED133D2A91F173002769BE /* OtherFitSiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED133C2A91F173002769BE /* OtherFitSiteCell.swift */; };
 		B5ED133F2A920017002769BE /* ReportUserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED133E2A920017002769BE /* ReportUserDTO.swift */; };
+		B5ED13422A923B03002769BE /* EditCertificationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED13412A923B03002769BE /* EditCertificationUseCase.swift */; };
+		B5ED13452A923BB4002769BE /* EditCertificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED13442A923BB4002769BE /* EditCertificationViewModel.swift */; };
+		B5ED13472A923C09002769BE /* EditCertificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED13462A923C09002769BE /* EditCertificationViewController.swift */; };
+		B5ED13492A923E68002769BE /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED13482A923E68002769BE /* UserRepository.swift */; };
 		DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB02A67C273001B5672 /* HomeViewController.swift */; };
 		DB002BB42A67C332001B5672 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB32A67C332001B5672 /* CommunityViewController.swift */; };
 		DB002BB82A67C36F001B5672 /* LookUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BB72A67C36F001B5672 /* LookUpViewController.swift */; };
 		DB002BBB2A67C3C7001B5672 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB002BBA2A67C3C7001B5672 /* MyPageViewController.swift */; };
-		DB0D21F92A73E40700ABF6A2 /* EditCertifiactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D21F82A73E40700ABF6A2 /* EditCertifiactionViewModel.swift */; };
-		DB0D21FB2A73E91900ABF6A2 /* EditCertificationSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D21FA2A73E91900ABF6A2 /* EditCertificationSectionModel.swift */; };
+		DB0D21F92A73E40700ABF6A2 /* CreateCertifiactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D21F82A73E40700ABF6A2 /* CreateCertifiactionViewModel.swift */; };
+		DB0D21FB2A73E91900ABF6A2 /* CreateCertificationSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D21FA2A73E91900ABF6A2 /* CreateCertificationSectionModel.swift */; };
 		DB0D21FD2A73F78800ABF6A2 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D21FC2A73F78800ABF6A2 /* ImageCell.swift */; };
 		DB0D22002A73F95100ABF6A2 /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D21FF2A73F95100ABF6A2 /* ContentCell.swift */; };
 		DB0D22022A73FB0B00ABF6A2 /* HashTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D22012A73FB0B00ABF6A2 /* HashTagCell.swift */; };
@@ -136,7 +148,7 @@
 		DB0D220A2A7698D200ABF6A2 /* SportHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D22092A7698D200ABF6A2 /* SportHeaderView.swift */; };
 		DB0D220C2A769DD100ABF6A2 /* UICollectionView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D220B2A769DD100ABF6A2 /* UICollectionView+.swift */; };
 		DB0D220E2A76ACFE00ABF6A2 /* SportFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D220D2A76ACFE00ABF6A2 /* SportFooterView.swift */; };
-		DB0D22112A76C35D00ABF6A2 /* EditCertificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D22102A76C35D00ABF6A2 /* EditCertificationModel.swift */; };
+		DB0D22112A76C35D00ABF6A2 /* CreateCertificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D22102A76C35D00ABF6A2 /* CreateCertificationModel.swift */; };
 		DB0D22132A76DAF600ABF6A2 /* CreateCertificationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0D22122A76DAF600ABF6A2 /* CreateCertificationDTO.swift */; };
 		DB51D2532A4B36A5002415B0 /* AgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51D2522A4B36A5002415B0 /* AgreementView.swift */; };
 		DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51D2542A4B3DC0002415B0 /* AgreementViewController.swift */; };
@@ -159,9 +171,9 @@
 		DB57123A2A72590B00DCAD9C /* OAuthRegistInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5712392A72590B00DCAD9C /* OAuthRegistInputViewModel.swift */; };
 		DB57123C2A7259B700DCAD9C /* OAuthRegistInputUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57123B2A7259B700DCAD9C /* OAuthRegistInputUseCase.swift */; };
 		DB57123E2A72651500DCAD9C /* RegistType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57123D2A72651500DCAD9C /* RegistType.swift */; };
-		DB5712422A7295E400DCAD9C /* EditCertifiactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5712412A7295E400DCAD9C /* EditCertifiactionViewController.swift */; };
-		DB5712462A72985D00DCAD9C /* EditCertificationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5712452A72985D00DCAD9C /* EditCertificationUseCase.swift */; };
-		DB5712492A729B4000DCAD9C /* EditCertificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5712482A729B4000DCAD9C /* EditCertificationRepository.swift */; };
+		DB5712422A7295E400DCAD9C /* CreateCertifiactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5712412A7295E400DCAD9C /* CreateCertifiactionViewController.swift */; };
+		DB5712462A72985D00DCAD9C /* CreateCertificationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5712452A72985D00DCAD9C /* CreateCertificationUseCase.swift */; };
+		DB5712492A729B4000DCAD9C /* CreateCertificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5712482A729B4000DCAD9C /* CreateCertificationRepository.swift */; };
 		DB57124B2A729BC200DCAD9C /* CertificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57124A2A729BC200DCAD9C /* CertificationService.swift */; };
 		DB57124D2A72ABF700DCAD9C /* CertificationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57124C2A72ABF700DCAD9C /* CertificationError.swift */; };
 		DB5712502A72ACDB00DCAD9C /* CertificationFeedDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB57124F2A72ACDB00DCAD9C /* CertificationFeedDTO.swift */; };
@@ -333,10 +345,18 @@
 		B588B7D62A828BD00031C723 /* FitSiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteCell.swift; sourceTree = "<group>"; };
 		B588B7DA2A83AD710031C723 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		B588B7DF2A85405B0031C723 /* EditFitSiteSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteSectionModel.swift; sourceTree = "<group>"; };
-		B588B7E12A85435E0031C723 /* EditFitSiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteViewController.swift; sourceTree = "<group>"; };
-		B588B7E32A8543C00031C723 /* EditFitSiteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteViewModel.swift; sourceTree = "<group>"; };
+		B588B7E12A85435E0031C723 /* CreateFitSiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFitSiteViewController.swift; sourceTree = "<group>"; };
+		B588B7E32A8543C00031C723 /* CreateFitSiteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFitSiteViewModel.swift; sourceTree = "<group>"; };
 		B588B7E52A8544940031C723 /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		B588B7E72A8545110031C723 /* FitSiteImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteImageCell.swift; sourceTree = "<group>"; };
+		B58D3C0E2A939E76008F06D2 /* EditFitSiteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteViewModel.swift; sourceTree = "<group>"; };
+		B58D3C102A939F46008F06D2 /* EditFitSiteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteUseCase.swift; sourceTree = "<group>"; };
+		B58D3C122A93A32E008F06D2 /* EditFitSiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteViewController.swift; sourceTree = "<group>"; };
+		B58D3C142A93C24D008F06D2 /* FitSiteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteError.swift; sourceTree = "<group>"; };
+		B58D3C162A93D052008F06D2 /* FitSiteDetailContentImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteDetailContentImageViewController.swift; sourceTree = "<group>"; };
+		B58D3C182A93E488008F06D2 /* ExpandTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandTextField.swift; sourceTree = "<group>"; };
+		B58D3C1A2A93EB0A008F06D2 /* CheckTodayDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckTodayDTO.swift; sourceTree = "<group>"; };
+		B58D3C1C2A9441BB008F06D2 /* LogoutDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutDTO.swift; sourceTree = "<group>"; };
 		B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
 		B5B2C3932A7D097E004FC66C /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		B5B2C3962A7D0F37004FC66C /* RankStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankStatus.swift; sourceTree = "<group>"; };
@@ -382,12 +402,16 @@
 		B5ED133A2A91C93C002769BE /* OtherUserInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserInfoDTO.swift; sourceTree = "<group>"; };
 		B5ED133C2A91F173002769BE /* OtherFitSiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherFitSiteCell.swift; sourceTree = "<group>"; };
 		B5ED133E2A920017002769BE /* ReportUserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUserDTO.swift; sourceTree = "<group>"; };
+		B5ED13412A923B03002769BE /* EditCertificationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCertificationUseCase.swift; sourceTree = "<group>"; };
+		B5ED13442A923BB4002769BE /* EditCertificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCertificationViewModel.swift; sourceTree = "<group>"; };
+		B5ED13462A923C09002769BE /* EditCertificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCertificationViewController.swift; sourceTree = "<group>"; };
+		B5ED13482A923E68002769BE /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		DB002BB02A67C273001B5672 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DB002BB32A67C332001B5672 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		DB002BB72A67C36F001B5672 /* LookUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpViewController.swift; sourceTree = "<group>"; };
 		DB002BBA2A67C3C7001B5672 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
-		DB0D21F82A73E40700ABF6A2 /* EditCertifiactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCertifiactionViewModel.swift; sourceTree = "<group>"; };
-		DB0D21FA2A73E91900ABF6A2 /* EditCertificationSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCertificationSectionModel.swift; sourceTree = "<group>"; };
+		DB0D21F82A73E40700ABF6A2 /* CreateCertifiactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCertifiactionViewModel.swift; sourceTree = "<group>"; };
+		DB0D21FA2A73E91900ABF6A2 /* CreateCertificationSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCertificationSectionModel.swift; sourceTree = "<group>"; };
 		DB0D21FC2A73F78800ABF6A2 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		DB0D21FF2A73F95100ABF6A2 /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
 		DB0D22012A73FB0B00ABF6A2 /* HashTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTagCell.swift; sourceTree = "<group>"; };
@@ -396,7 +420,7 @@
 		DB0D22092A7698D200ABF6A2 /* SportHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportHeaderView.swift; sourceTree = "<group>"; };
 		DB0D220B2A769DD100ABF6A2 /* UICollectionView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+.swift"; sourceTree = "<group>"; };
 		DB0D220D2A76ACFE00ABF6A2 /* SportFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportFooterView.swift; sourceTree = "<group>"; };
-		DB0D22102A76C35D00ABF6A2 /* EditCertificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCertificationModel.swift; sourceTree = "<group>"; };
+		DB0D22102A76C35D00ABF6A2 /* CreateCertificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCertificationModel.swift; sourceTree = "<group>"; };
 		DB0D22122A76DAF600ABF6A2 /* CreateCertificationDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCertificationDTO.swift; sourceTree = "<group>"; };
 		DB51D2522A4B36A5002415B0 /* AgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementView.swift; sourceTree = "<group>"; };
 		DB51D2542A4B3DC0002415B0 /* AgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewController.swift; sourceTree = "<group>"; };
@@ -419,9 +443,9 @@
 		DB5712392A72590B00DCAD9C /* OAuthRegistInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthRegistInputViewModel.swift; sourceTree = "<group>"; };
 		DB57123B2A7259B700DCAD9C /* OAuthRegistInputUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthRegistInputUseCase.swift; sourceTree = "<group>"; };
 		DB57123D2A72651500DCAD9C /* RegistType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistType.swift; sourceTree = "<group>"; };
-		DB5712412A7295E400DCAD9C /* EditCertifiactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCertifiactionViewController.swift; sourceTree = "<group>"; };
-		DB5712452A72985D00DCAD9C /* EditCertificationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCertificationUseCase.swift; sourceTree = "<group>"; };
-		DB5712482A729B4000DCAD9C /* EditCertificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCertificationRepository.swift; sourceTree = "<group>"; };
+		DB5712412A7295E400DCAD9C /* CreateCertifiactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCertifiactionViewController.swift; sourceTree = "<group>"; };
+		DB5712452A72985D00DCAD9C /* CreateCertificationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCertificationUseCase.swift; sourceTree = "<group>"; };
+		DB5712482A729B4000DCAD9C /* CreateCertificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCertificationRepository.swift; sourceTree = "<group>"; };
 		DB57124A2A729BC200DCAD9C /* CertificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationService.swift; sourceTree = "<group>"; };
 		DB57124C2A72ABF700DCAD9C /* CertificationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationError.swift; sourceTree = "<group>"; };
 		DB57124F2A72ACDB00DCAD9C /* CertificationFeedDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationFeedDTO.swift; sourceTree = "<group>"; };
@@ -591,6 +615,7 @@
 				B5705CD22A8A933500408233 /* ReportCertificationDTO.swift */,
 				B5705CD42A8A96F300408233 /* LikeCertificationDTO.swift */,
 				B5ED132A2A9128DA002769BE /* CertificationDeleteRecordsDTO.swift */,
+				B58D3C1A2A93EB0A008F06D2 /* CheckTodayDTO.swift */,
 			);
 			path = Certification;
 			sourceTree = "<group>";
@@ -626,6 +651,7 @@
 				B5705CC22A894D2C00408233 /* FitSiteDetailViewModel.swift */,
 				B5705CC42A894D3A00408233 /* FitSiteDetailSectionModel.swift */,
 				B5705CC62A894D9B00408233 /* FitSiteDetailViewController.swift */,
+				B58D3C162A93D052008F06D2 /* FitSiteDetailContentImageViewController.swift */,
 			);
 			path = FitSite;
 			sourceTree = "<group>";
@@ -677,8 +703,26 @@
 			isa = PBXGroup;
 			children = (
 				B588B7DF2A85405B0031C723 /* EditFitSiteSectionModel.swift */,
-				B588B7E12A85435E0031C723 /* EditFitSiteViewController.swift */,
-				B588B7E32A8543C00031C723 /* EditFitSiteViewModel.swift */,
+				B588B7E12A85435E0031C723 /* CreateFitSiteViewController.swift */,
+				B588B7E32A8543C00031C723 /* CreateFitSiteViewModel.swift */,
+			);
+			path = FitSite;
+			sourceTree = "<group>";
+		};
+		B58D3C0C2A939E51008F06D2 /* Certification */ = {
+			isa = PBXGroup;
+			children = (
+				B5ED13442A923BB4002769BE /* EditCertificationViewModel.swift */,
+				B5ED13462A923C09002769BE /* EditCertificationViewController.swift */,
+			);
+			path = Certification;
+			sourceTree = "<group>";
+		};
+		B58D3C0D2A939E63008F06D2 /* FitSite */ = {
+			isa = PBXGroup;
+			children = (
+				B58D3C0E2A939E76008F06D2 /* EditFitSiteViewModel.swift */,
+				B58D3C122A93A32E008F06D2 /* EditFitSiteViewController.swift */,
 			);
 			path = FitSite;
 			sourceTree = "<group>";
@@ -722,6 +766,7 @@
 				B5ED13112A9085F8002769BE /* QuitDTO.swift */,
 				B5ED133A2A91C93C002769BE /* OtherUserInfoDTO.swift */,
 				B5ED133E2A920017002769BE /* ReportUserDTO.swift */,
+				B58D3C1C2A9441BB008F06D2 /* LogoutDTO.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -795,6 +840,24 @@
 			path = OtherProfile;
 			sourceTree = "<group>";
 		};
+		B5ED13402A923AEF002769BE /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				B5ED13412A923B03002769BE /* EditCertificationUseCase.swift */,
+				B58D3C102A939F46008F06D2 /* EditFitSiteUseCase.swift */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		B5ED13432A923BA2002769BE /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				B58D3C0D2A939E63008F06D2 /* FitSite */,
+				B58D3C0C2A939E51008F06D2 /* Certification */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
 		DB002BAF2A67C262001B5672 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -810,6 +873,7 @@
 		DB002BB22A67C2D5001B5672 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				B5ED13432A923BA2002769BE /* Edit */,
 				B5705C812A87775B00408233 /* Detail */,
 				DB5712402A72916D00DCAD9C /* Create */,
 				DB57123F2A72915C00DCAD9C /* Main */,
@@ -859,7 +923,7 @@
 		DB0D220F2A76C33400ABF6A2 /* Community */ = {
 			isa = PBXGroup;
 			children = (
-				DB0D22102A76C35D00ABF6A2 /* EditCertificationModel.swift */,
+				DB0D22102A76C35D00ABF6A2 /* CreateCertificationModel.swift */,
 				B5705C762A866AC600408233 /* EditFitSiteModel.swift */,
 			);
 			path = Community;
@@ -941,6 +1005,7 @@
 			children = (
 				DB7134902A5BF46C0006EAAB /* AuthError.swift */,
 				DB57124C2A72ABF700DCAD9C /* CertificationError.swift */,
+				B58D3C142A93C24D008F06D2 /* FitSiteError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -986,9 +1051,9 @@
 			isa = PBXGroup;
 			children = (
 				DB0D21FE2A73F94000ABF6A2 /* Cell */,
-				DB5712412A7295E400DCAD9C /* EditCertifiactionViewController.swift */,
-				DB0D21F82A73E40700ABF6A2 /* EditCertifiactionViewModel.swift */,
-				DB0D21FA2A73E91900ABF6A2 /* EditCertificationSectionModel.swift */,
+				DB5712412A7295E400DCAD9C /* CreateCertifiactionViewController.swift */,
+				DB0D21F82A73E40700ABF6A2 /* CreateCertifiactionViewModel.swift */,
+				DB0D21FA2A73E91900ABF6A2 /* CreateCertificationSectionModel.swift */,
 			);
 			path = Certification;
 			sourceTree = "<group>";
@@ -996,7 +1061,7 @@
 		DB5712442A72983100DCAD9C /* Create */ = {
 			isa = PBXGroup;
 			children = (
-				DB5712452A72985D00DCAD9C /* EditCertificationUseCase.swift */,
+				DB5712452A72985D00DCAD9C /* CreateCertificationUseCase.swift */,
 				B5705C782A86762D00408233 /* CreateFitSiteUseCase.swift */,
 			);
 			path = Create;
@@ -1089,6 +1154,7 @@
 				DB8CD7092A6D0DF7004735C8 /* FindPW */,
 				DB8CD7022A6D0C43004735C8 /* SignIn */,
 				DB8CD6FD2A6D0B66004735C8 /* SignUp */,
+				B5ED13482A923E68002769BE /* UserRepository.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1145,6 +1211,7 @@
 		DB8CD71D2A6E163C004735C8 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				B5ED13402A923AEF002769BE /* Edit */,
 				DB5712442A72983100DCAD9C /* Create */,
 				DB8CD71E2A6E164A004735C8 /* CommunityUseCase.swift */,
 				B5705C862A87785600408233 /* CertifiactionDetailUseCase.swift */,
@@ -1159,7 +1226,7 @@
 			children = (
 				B5705C882A87787B00408233 /* Detail */,
 				DB8CD7212A6E16FA004735C8 /* CommunityRepository.swift */,
-				DB5712482A729B4000DCAD9C /* EditCertificationRepository.swift */,
+				DB5712482A729B4000DCAD9C /* CreateCertificationRepository.swift */,
 				B5705C7A2A86790100408233 /* CreateFitSiteRepository.swift */,
 				B5705CA32A87F5B800408233 /* CommentRepository.swift */,
 				B5705CBC2A894ABE00408233 /* FitSiteRepository.swift */,
@@ -1420,6 +1487,7 @@
 				B5705C962A87CB9000408233 /* CommentInputView.swift */,
 				B5705CA52A89027A00408233 /* StandardActionSheetController.swift */,
 				B5705CA72A89089900408233 /* StandardActionSheetAction.swift */,
+				B58D3C182A93E488008F06D2 /* ExpandTextField.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1681,6 +1749,7 @@
 				B5705C7D2A871DF900408233 /* ExpandTextView.swift in Sources */,
 				B5705C8A2A87788B00408233 /* CertifiactionDetailRepository.swift in Sources */,
 				DB7559DF2A548BC000B88B96 /* ProfileSettingViewController.swift in Sources */,
+				B58D3C172A93D052008F06D2 /* FitSiteDetailContentImageViewController.swift in Sources */,
 				B5705CB32A8943A600408233 /* FitSiteDetailDTO.swift in Sources */,
 				B5ED13292A91231F002769BE /* AllCheckButton.swift in Sources */,
 				B5ED13122A9085F8002769BE /* QuitDTO.swift in Sources */,
@@ -1690,6 +1759,7 @@
 				B5705CC52A894D3A00408233 /* FitSiteDetailSectionModel.swift in Sources */,
 				B5ED132E2A913C42002769BE /* MyFitSiteCell.swift in Sources */,
 				DB5DAB452A7BF6C2009AA427 /* HomeService.swift in Sources */,
+				B58D3C0F2A939E76008F06D2 /* EditFitSiteViewModel.swift in Sources */,
 				B5B2C39E2A7DE8A1004FC66C /* RegistInfoRepository.swift in Sources */,
 				DB5D22302A546AB400B32485 /* PhoneVerificationViewModel.swift in Sources */,
 				DB8CD71F2A6E164A004735C8 /* CommunityUseCase.swift in Sources */,
@@ -1697,7 +1767,7 @@
 				DB55B6C92A6BB28A006FEA7F /* PhoneNumLoginUseCase.swift in Sources */,
 				B5705CA42A87F5B800408233 /* CommentRepository.swift in Sources */,
 				B5705CF92A8B90FD00408233 /* SearchRepository.swift in Sources */,
-				DB5712492A729B4000DCAD9C /* EditCertificationRepository.swift in Sources */,
+				DB5712492A729B4000DCAD9C /* CreateCertificationRepository.swift in Sources */,
 				DB5DAB432A7BF65B009AA427 /* HomeRepository.swift in Sources */,
 				B5ED13302A9144B2002769BE /* DeleteFitSitesDTO.swift in Sources */,
 				DB71348D2A5BDBF90006EAAB /* UserService.swift in Sources */,
@@ -1708,7 +1778,7 @@
 				DB0D220C2A769DD100ABF6A2 /* UICollectionView+.swift in Sources */,
 				B5705CFB2A8B91D500408233 /* SearchUseCase.swift in Sources */,
 				B5ED13372A91C74D002769BE /* OtherProfileViewModel.swift in Sources */,
-				B588B7E22A85435E0031C723 /* EditFitSiteViewController.swift in Sources */,
+				B588B7E22A85435E0031C723 /* CreateFitSiteViewController.swift in Sources */,
 				DB5A7C6F2A79545200931DA0 /* CertifyCardView.swift in Sources */,
 				DBFF25A02A5B991A00CF6DD4 /* OAuthLoginUseCase.swift in Sources */,
 				B5ED13352A91C446002769BE /* OtherProfileViewController.swift in Sources */,
@@ -1745,6 +1815,7 @@
 				B5705CF72A8B879300408233 /* SearchTotalDTO.swift in Sources */,
 				B5705C832A87776800408233 /* CertificationDetailViewController.swift in Sources */,
 				B588B7DB2A83AD710031C723 /* ArticleService.swift in Sources */,
+				B5ED13492A923E68002769BE /* UserRepository.swift in Sources */,
 				DB7559E72A55062C00B88B96 /* SportsCell.swift in Sources */,
 				DB7559E12A548C6800B88B96 /* ProfileSettingViewModel.swift in Sources */,
 				DB97F8352A527BCF009C09A1 /* StandardNotificationAlertView.swift in Sources */,
@@ -1755,7 +1826,7 @@
 				B5705CE62A8B506D00408233 /* BookMarkViewModel.swift in Sources */,
 				DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */,
 				B5ED12802A8EDBE7002769BE /* ChangeProfileDTO.swift in Sources */,
-				DB5712422A7295E400DCAD9C /* EditCertifiactionViewController.swift in Sources */,
+				DB5712422A7295E400DCAD9C /* CreateCertifiactionViewController.swift in Sources */,
 				B5705C772A866AC600408233 /* EditFitSiteModel.swift in Sources */,
 				DB8CD7192A6E0B7D004735C8 /* CommunityViewModel.swift in Sources */,
 				DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */,
@@ -1771,7 +1842,7 @@
 				DB7134912A5BF46C0006EAAB /* AuthError.swift in Sources */,
 				DB668AFC2A50017700D702A1 /* UserInfoStatus.swift in Sources */,
 				DB8CD7172A6D3995004735C8 /* CreateActionSheet.swift in Sources */,
-				DB0D21F92A73E40700ABF6A2 /* EditCertifiactionViewModel.swift in Sources */,
+				DB0D21F92A73E40700ABF6A2 /* CreateCertifiactionViewModel.swift in Sources */,
 				B5ED133F2A920017002769BE /* ReportUserDTO.swift in Sources */,
 				DB57123E2A72651500DCAD9C /* RegistType.swift in Sources */,
 				B5B2C3A32A7E39AE004FC66C /* SplashViewModel.swift in Sources */,
@@ -1780,6 +1851,7 @@
 				DB51ECC02A692EFC009F4690 /* TopTabbarItem.swift in Sources */,
 				B5ED13322A91B7F4002769BE /* MyFeedCertificationDefaultView.swift in Sources */,
 				B5705CE82A8B50B100408233 /* BookMarkUseCase.swift in Sources */,
+				B58D3C1B2A93EB0A008F06D2 /* CheckTodayDTO.swift in Sources */,
 				DB8CD71B2A6E0C93004735C8 /* CategoryDTO.swift in Sources */,
 				B5705CD92A8AA42600408233 /* BookMarkDTO.swift in Sources */,
 				DB0D220A2A7698D200ABF6A2 /* SportHeaderView.swift in Sources */,
@@ -1788,15 +1860,16 @@
 				B588B7E02A85405B0031C723 /* EditFitSiteSectionModel.swift in Sources */,
 				B5705C972A87CB9000408233 /* CommentInputView.swift in Sources */,
 				DB0D22002A73F95100ABF6A2 /* ContentCell.swift in Sources */,
+				B5ED13452A923BB4002769BE /* EditCertificationViewModel.swift in Sources */,
 				B5705CB72A8945D400408233 /* ReportFitSiteDTO.swift in Sources */,
 				DB5712332A7235D200DCAD9C /* KeychainManager.swift in Sources */,
 				DB746F732A71308400FBA8D4 /* RegistCompletionViewController.swift in Sources */,
 				B5B2C3992A7D2CEB004FC66C /* GradeType.swift in Sources */,
 				DB55B6D62A6C2339006FEA7F /* PhoneAuthNumberDTO.swift in Sources */,
 				DB0D220E2A76ACFE00ABF6A2 /* SportFooterView.swift in Sources */,
-				DB0D21FB2A73E91900ABF6A2 /* EditCertificationSectionModel.swift in Sources */,
+				DB0D21FB2A73E91900ABF6A2 /* CreateCertificationSectionModel.swift in Sources */,
 				B5705CB52A89453C00408233 /* LikeFitSiteDTO.swift in Sources */,
-				DB0D22112A76C35D00ABF6A2 /* EditCertificationModel.swift in Sources */,
+				DB0D22112A76C35D00ABF6A2 /* CreateCertificationModel.swift in Sources */,
 				B5705C9D2A87F05900408233 /* FetchCommentDTO.swift in Sources */,
 				DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */,
 				B5705C8E2A8779C100408233 /* CategoryInfoDTO.swift in Sources */,
@@ -1812,6 +1885,7 @@
 				B5ED127D2A8E7C77002769BE /* MyPageViewModel.swift in Sources */,
 				B5ED132B2A9128DA002769BE /* CertificationDeleteRecordsDTO.swift in Sources */,
 				B5ED13202A90C986002769BE /* MyFeedViewController.swift in Sources */,
+				B58D3C1D2A9441BB008F06D2 /* LogoutDTO.swift in Sources */,
 				DB57123A2A72590B00DCAD9C /* OAuthRegistInputViewModel.swift in Sources */,
 				B5705CEC2A8B735F00408233 /* FitSiteScrapDTO.swift in Sources */,
 				DB57123C2A7259B700DCAD9C /* OAuthRegistInputUseCase.swift in Sources */,
@@ -1822,16 +1896,20 @@
 				DB6CC3F12A70BF5600C4C2BC /* SportsSelectingRepository.swift in Sources */,
 				DB668AF92A4F06D000D702A1 /* AuthUserInfo.swift in Sources */,
 				DB51ECBA2A68488C009F4690 /* FitHubSearchBar.swift in Sources */,
+				B58D3C192A93E488008F06D2 /* ExpandTextField.swift in Sources */,
 				DBFFDA422A499BC00008C2B5 /* StandardTextFieldView.swift in Sources */,
+				B58D3C132A93A32E008F06D2 /* EditFitSiteViewController.swift in Sources */,
 				B5705CF52A8B86D500408233 /* RecommendKeywordDTO.swift in Sources */,
 				DBB820B82A5E45940016CB63 /* FindPWViewController.swift in Sources */,
 				DB0D22062A7666B600ABF6A2 /* HashTagFooterView.swift in Sources */,
 				B5705CAC2A89283F00408233 /* ReportCommentDTO.swift in Sources */,
+				B5ED13472A923C09002769BE /* EditCertificationViewController.swift in Sources */,
 				DB0D21FD2A73F78800ABF6A2 /* ImageCell.swift in Sources */,
 				DB62F1D82A7AAF1E0045E8DC /* RankInfoCell.swift in Sources */,
 				B5705D0B2A8CF50700408233 /* EmptyResultView.swift in Sources */,
 				DBB820BA2A5E47BA0016CB63 /* FindPWViewModel.swift in Sources */,
 				B5705D012A8BB66200408233 /* CustomSearchBar.swift in Sources */,
+				B58D3C112A939F46008F06D2 /* EditFitSiteUseCase.swift in Sources */,
 				B5705CBF2A894B9800408233 /* FitSiteDetailUseCase.swift in Sources */,
 				DB97F83C2A52B36E009C09A1 /* NotificationName+.swift in Sources */,
 				B588B7E82A8545110031C723 /* FitSiteImageCell.swift in Sources */,
@@ -1847,10 +1925,11 @@
 				B5705D052A8C313600408233 /* SearchTotalSectionModel.swift in Sources */,
 				DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */,
 				DB8CD7292A6E72C0004735C8 /* AgreementUseCase.swift in Sources */,
-				DB5712462A72985D00DCAD9C /* EditCertificationUseCase.swift in Sources */,
+				DB5712462A72985D00DCAD9C /* CreateCertificationUseCase.swift in Sources */,
 				DBF125E32A5E885D004DA4B9 /* PasswordUseCase.swift in Sources */,
 				B5705CA82A89089900408233 /* StandardActionSheetAction.swift in Sources */,
 				DB8CD70B2A6D0E07004735C8 /* FindPWRepository.swift in Sources */,
+				B5ED13422A923B03002769BE /* EditCertificationUseCase.swift in Sources */,
 				B5B2C39C2A7DC980004FC66C /* CheckAuthDTO.swift in Sources */,
 				DB97F83E2A52C1E3009C09A1 /* PaddingLabel.swift in Sources */,
 				DB97F83A2A52B2F7009C09A1 /* StandardAlertAction.swift in Sources */,
@@ -1873,12 +1952,13 @@
 				DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */,
 				B5705CCF2A8A92BA00408233 /* DeleteCertificationDTO.swift in Sources */,
 				DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */,
-				B588B7E42A8543C00031C723 /* EditFitSiteViewModel.swift in Sources */,
+				B588B7E42A8543C00031C723 /* CreateFitSiteViewModel.swift in Sources */,
 				DB668AF72A4F041100D702A1 /* ViewModelType.swift in Sources */,
 				B5705CFF2A8B93CE00408233 /* SearchViewModel.swift in Sources */,
 				B5705CF22A8B85D800408233 /* SearchService.swift in Sources */,
 				B5ED131B2A9096F8002769BE /* PasswordConfirmViewController.swift in Sources */,
 				B5705CA02A87F33600408233 /* CreateCommentDTO.swift in Sources */,
+				B58D3C152A93C24D008F06D2 /* FitSiteError.swift in Sources */,
 				B5ED131D2A909EE7002769BE /* ResetPWViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -22,6 +22,7 @@ final class OtherProfileViewController: BaseViewController {
     }
     
     private let profileImageView = UIImageView().then {
+        $0.backgroundColor = .bgSub01
         $0.contentMode = .scaleAspectFill
         $0.layer.cornerRadius = 40
         $0.layer.masksToBounds = true
@@ -89,16 +90,6 @@ final class OtherProfileViewController: BaseViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if let selectedItems = categoryCollectionView.indexPathsForSelectedItems,
-           selectedItems.isEmpty {
-            categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0),
-                                              animated: false,
-                                              scrollPosition: .centeredVertically)
-        }
-    }
-    
     override func configureNavigation() {
         super.configureNavigation()
         navigationItem.rightBarButtonItem = moreButton
@@ -108,7 +99,14 @@ final class OtherProfileViewController: BaseViewController {
         viewModel.category
             .bind(to: self.categoryCollectionView.rx
                 .items(cellIdentifier: CategoryCell.identifier,
-                       cellType: CategoryCell.self)) { index, name, cell in
+                       cellType: CategoryCell.self)) { [weak self] index, name, cell in
+                guard let self else { return }
+                if let selectedItems = categoryCollectionView.indexPathsForSelectedItems,
+                   selectedItems.isEmpty {
+                    categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0),
+                                                      animated: false,
+                                                      scrollPosition: .centeredVertically)
+                }
                 cell.configureLabel(name.name)
             }
                        .disposed(by: disposeBag)

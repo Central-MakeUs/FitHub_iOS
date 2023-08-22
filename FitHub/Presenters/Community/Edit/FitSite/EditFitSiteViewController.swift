@@ -1,8 +1,8 @@
 //
-//  EditCertifiactionViewController.swift
+//  EditFitSiteViewController.swift
 //  FitHub
 //
-//  Created by 신상우 on 2023/07/27.
+//  Created by iOS신상우 on 2023/08/21.
 //
 
 import UIKit
@@ -11,10 +11,10 @@ import RxCocoa
 import RxDataSources
 import PhotosUI
 
-final class EditCertificationViewController: BaseViewController {
+final class EditFitSiteViewController: BaseViewController {
     //MARK: - Properties
-    private let viewModel: EditCertificationViewModel
-    
+    private let viewModel: EditFitSiteViewModel
+
     private let completeButton = UIButton(type: .system).then {
         $0.titleLabel?.font = .pretendard(.bodyMedium01)
         $0.setTitle("등록", for: .normal)
@@ -25,7 +25,8 @@ final class EditCertificationViewController: BaseViewController {
         $0.register(SportFooterView.self, forSupplementaryViewOfKind: SportFooterView.reuseIdentifier, withReuseIdentifier: SportFooterView.identifier)
         $0.register(SportHeaderView.self, forSupplementaryViewOfKind: SportHeaderView.reuseIdentifier, withReuseIdentifier: SportHeaderView.identifier)
         $0.register(HashTagFooterView.self, forSupplementaryViewOfKind: HashTagFooterView.reuseIdentifier, withReuseIdentifier: HashTagFooterView.identifier)
-        $0.register(ImageCell.self, forCellWithReuseIdentifier: ImageCell.identifier)
+        $0.register(TitleCell.self, forCellWithReuseIdentifier: TitleCell.identifier)
+        $0.register(FitSiteImageCell.self, forCellWithReuseIdentifier: FitSiteImageCell.identifier)
         $0.register(HashTagCell.self, forCellWithReuseIdentifier: HashTagCell.identifier)
         $0.register(ContentCell.self, forCellWithReuseIdentifier: ContentCell.identifier)
         $0.register(SportCell.self, forCellWithReuseIdentifier: SportCell.identifier)
@@ -33,7 +34,7 @@ final class EditCertificationViewController: BaseViewController {
         $0.backgroundColor = .clear
     }
     
-    init(_ viewModel: EditCertificationViewModel) {
+    init(_ viewModel: EditFitSiteViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         self.view.gestureRecognizers = nil
@@ -45,6 +46,7 @@ final class EditCertificationViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setFeedBackButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,14 +62,14 @@ final class EditCertificationViewController: BaseViewController {
     //MARK: - Init
     override func configureNavigation() {
         super.configureNavigation()
-        self.title = "운동 인증하기"
+        self.title = "게시글 작성하기"
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: completeButton)
     }
     
     //MARK: - SetupBinding
     override func setupBinding() {
-        let input = EditCertificationViewModel.Input(completeTap: completeButton.rx.tap.asObservable())
+        let input = EditFitSiteViewModel.Input(completeTap: completeButton.rx.tap.asObservable())
         
         let output = self.viewModel.transform(input: input)
         
@@ -89,12 +91,13 @@ final class EditCertificationViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        self.collectionView.rx.modelSelected(EditCertificationSectionModel.Item.self)
+        self.collectionView.rx.modelSelected(EditFitSiteSectionModel.Item.self)
             .subscribe(onNext: { [weak self] model in
+                self?.view.endEditing(true)
                 switch model {
                 case .sport(item: let item):
                     self?.viewModel.selectedSportSource.accept(item)
-                    self?.collectionView.reloadSections(.init(integer: 3))
+                    self?.collectionView.reloadSections(.init(integer: 4))
                 default: print("예외")
                 }
             })
@@ -104,10 +107,24 @@ final class EditCertificationViewController: BaseViewController {
             .asDriver(onErrorJustReturn: false)
             .drive(onNext: { isSuccess in
                 if isSuccess {
-                    print("성공")
                     self.navigationController?.popViewController(animated: true)
                 } else {
                     self.notiAlert("작성 실패: 서버 오류")
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        self.collectionView.rx.itemSelected
+            .filter { $0.section == 2 }
+            .map { $0.item }
+            .subscribe(onNext: { [weak self] itemIdx in
+                guard let self else { return }
+                if itemIdx == 0 {
+                    self.showPhotoAlbum()
+                } else {
+                    var newImages = self.viewModel.imageSource.value
+                    newImages.remove(at: itemIdx)
+                    self.viewModel.imageSource.accept(newImages)
                 }
             })
             .disposed(by: disposeBag)
@@ -127,21 +144,31 @@ final class EditCertificationViewController: BaseViewController {
 }
 
 // MARK: - DataSoruce
-extension EditCertificationViewController {
-    private func createDataSoruce() -> RxCollectionViewSectionedReloadDataSource<EditCertificationSectionModel> {
-        return RxCollectionViewSectionedReloadDataSource<EditCertificationSectionModel> {
+extension EditFitSiteViewController {
+    private func createDataSoruce() -> RxCollectionViewSectionedReloadDataSource<EditFitSiteSectionModel> {
+        return RxCollectionViewSectionedReloadDataSource<EditFitSiteSectionModel> {
             (dataSource, collectionView, indexPath, item) in
             switch item {
-            case .image(image: let image):
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.identifier, for: indexPath) as! ImageCell
-                cell.tapButton = { [weak self] in self?.showPhotoAlbum() }
-                cell.configureCell(image: image)
-                return cell
-            case .content(string: _):
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentCell.identifier, for: indexPath) as! ContentCell
-                cell.placeholder = "오늘 운동은 어땠나요? 느낀점을 작성해봐요"
+            case .title(string: let title):
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCell.identifier, for: indexPath) as! TitleCell
+                cell.configureCell(text: title)
                 cell.delegate = self
                 
+                return cell
+            case .content(string: let text):
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentCell.identifier, for: indexPath) as! ContentCell
+                cell.placeholder = "꿀팁을 공유하거나 운동과 관련해서 궁금한 점을 물어보세요."
+                cell.delegate = self
+                cell.configureCell(text: text)
+                
+                return cell
+            case .image(image: let image):
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FitSiteImageCell.identifier, for: indexPath) as! FitSiteImageCell
+                cell.prepareForReuse()
+                cell.configureCell(image: image)
+                if indexPath.row == 0 {
+                    cell.configureCameraCell(isEnable: true, count: self.viewModel.imageSource.value.count-1)
+                }
                 return cell
             case .hashtag(string: let string):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HashTagCell.identifier, for: indexPath) as! HashTagCell
@@ -149,13 +176,14 @@ extension EditCertificationViewController {
                 cell.prepareForReuse()
                 cell.delegate = self
                 
-                if indexPath == IndexPath(item: 0, section: 2) {
+                if indexPath == IndexPath(item: 0, section: 3) {
                     cell.configureAddCell(self.viewModel.addHashTagEnable.value)
                 }
                 return cell
             case .sport(item: let item):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SportCell.identifier, for: indexPath) as! SportCell
                 let selectedItem = self.viewModel.selectedSportSource.value
+                
                 cell.configureCell(item: item, selectedItem: selectedItem)
                 
                 return cell
@@ -183,23 +211,11 @@ extension EditCertificationViewController {
     }
 }
 
-//MARK: - HashTag
-extension EditCertificationViewController: HashTagDelegate {
-    func addHashTag(_ text: String) {
-        self.viewModel.addHashTag(text)
-    }
-    
-    func deleteHashTag(_ text: String) {
-        let newHashTag = self.viewModel.hashTagSource.value.filter { $0 != text }
-        self.viewModel.hashTagSource.accept(newHashTag)
-    }
-}
-
 //MARK: - PHPicker Delegate
-extension EditCertificationViewController: PHPickerViewControllerDelegate, UINavigationControllerDelegate {
+extension EditFitSiteViewController: PHPickerViewControllerDelegate, UINavigationControllerDelegate {
     private func showPhotoAlbum() {
         var configuration = PHPickerConfiguration()
-        configuration.selectionLimit = 1
+        configuration.selectionLimit = 10
         configuration.filter = .images
         let photoPickerVC = PHPickerViewController(configuration: configuration)
         photoPickerVC.delegate = self
@@ -208,28 +224,32 @@ extension EditCertificationViewController: PHPickerViewControllerDelegate, UINav
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
-        
-        guard let item = results.first else { return }
-        let itemProvider = item.itemProvider
-
-        if itemProvider.canLoadObject(ofClass: UIImage.self) {
-            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] result, error in
-                guard let image = result as? UIImage else { return }
-                self?.viewModel.imageSource.onNext(image)
+        var images: [UIImage?] = [nil]
+        results.forEach {
+            let itemProvider = $0.itemProvider
+            
+            if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                itemProvider.loadObject(ofClass: UIImage.self) { [weak self] result, error in
+                    guard let image = result as? UIImage else { return }
+                    images.append(image)
+                    self?.viewModel.imageSource.accept(images)
+                }
             }
         }
+        viewModel.remainImageList = nil
     }
 }
 
 // MARK: - Compositional
-extension EditCertificationViewController {
+extension EditFitSiteViewController {
     private func createLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout() { (sectionIndex: Int,
                                                               environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             switch sectionIndex {
-            case 0: return self.createImageSection()
+            case 0: return self.createTitleSection()
             case 1: return self.createContentSection()
-            case 2: return self.createHashTagSection()
+            case 2: return self.createFeedImageSection()
+            case 3: return self.createHashTagSection()
             default: return self.createSportSection()
             }
         }
@@ -237,14 +257,17 @@ extension EditCertificationViewController {
         return layout
     }
     
-    private func createImageSection() -> NSCollectionLayoutSection {
+    private func createTitleSection() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1.0),
-                                                            heightDimension: .fractionalHeight(1.0)))
+                                                            heightDimension: .estimated(30)))
         
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1.0),
-                                                                         heightDimension: .fractionalWidth(1.33)),
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(self.view.frame.width - 40),
+                                                                         heightDimension: .estimated(30)),
                                                        subitems: [item])
-        
+        group.edgeSpacing = .init(leading: .fixed(20),
+                                  top: .fixed(20),
+                                  trailing: .fixed(20),
+                                  bottom: .fixed(0))
         return NSCollectionLayoutSection(group: group)
     }
     
@@ -257,13 +280,33 @@ extension EditCertificationViewController {
                                                      subitems: [item])
         
         group.edgeSpacing = .init(leading: .fixed(20),
-                                  top: .fixed(20),
+                                  top: .fixed(0),
                                   trailing: .fixed(20),
                                   bottom: .fixed(0))
         
         let section = NSCollectionLayoutSection(group: group)
     
         section.orthogonalScrollingBehavior = .none
+        
+        return section
+    }
+    
+    private func createFeedImageSection() -> NSCollectionLayoutSection {
+        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .absolute(100),
+                                                            heightDimension: .absolute(100)))
+
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(4.0),
+                                                                         heightDimension: .absolute(100)),
+                                                       subitems: [item])
+        group.interItemSpacing = .fixed(10)
+        group.edgeSpacing = .init(leading: .fixed(20),
+                                  top: .fixed(0),
+                                  trailing: .fixed(20),
+                                  bottom: .fixed(0))
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 40, leading: 0, bottom: 25, trailing: 0)
+        section.orthogonalScrollingBehavior = .continuous
         
         return section
     }
@@ -287,6 +330,7 @@ extension EditCertificationViewController {
                                                                  alignment: .bottom)
         
         let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .none
         section.boundarySupplementaryItems = [footer]
         
         return section
@@ -320,12 +364,40 @@ extension EditCertificationViewController {
     }
 }
 
-extension EditCertificationViewController: ContentCellDelegate {
+// MARK: - Content
+extension EditFitSiteViewController: ContentCellDelegate {
     func changeContentFrame() {
         self.collectionView.reloadSections(IndexSet(integer: 2))
     }
     
     func changeContent(string: String) {
         self.viewModel.changeContent(string)
+    }
+}
+
+// MARK: - Title
+extension EditFitSiteViewController: TitleCellDelegate {
+    func changeTitleFrame() {
+        self.collectionView.reloadSections(IndexSet(integer: 2))
+    }
+
+    func changeTitle(string: String) {
+        self.viewModel.titleSource.onNext(string)
+    }
+}
+
+//MARK: - HashTag
+extension EditFitSiteViewController: HashTagDelegate {
+    func changeSize() {
+        self.collectionView.reloadSections(IndexSet(integer: 3))
+    }
+    
+    func addHashTag(_ text: String) {
+        self.viewModel.addHashTag(text)
+    }
+    
+    func deleteHashTag(_ text: String) {
+        let newHashTag = self.viewModel.hashTagSource.value.filter { $0 != text }
+        self.viewModel.hashTagSource.accept(newHashTag)
     }
 }
