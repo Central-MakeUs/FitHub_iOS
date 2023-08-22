@@ -359,6 +359,20 @@ extension MyPageViewController {
                 self?.showMyFeedVC()
             })
             .disposed(by: disposeBag)
+        
+        termsOfUse.rx.tapGesture()
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                self?.showTermOfUseVC()
+            })
+            .disposed(by: disposeBag)
+        
+        notiSetting.rx.tapGesture()
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                self?.showNotiSettingVC()
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -371,5 +385,19 @@ extension MyPageViewController {
                                     mypageRepo: MyPageRepository(service: UserService()))
         let feedVC = MyFeedViewController(MyFeedViewModel(usecase))
         self.navigationController?.pushViewController(feedVC, animated: true)
+    }
+    
+    private func showTermOfUseVC() {
+        let usecase = TermUseCase(homeRepo: HomeRepository(homeService: HomeService(),
+                                                           authService: UserService()))
+        let termOfUseVC = TermsOfUseViewController(viewModel: TermOfUseViewModel(usecase: usecase))
+        self.navigationController?.pushViewController(termOfUseVC, animated: true)
+    }
+    
+    private func showNotiSettingVC() {
+        let usecase = NotiSettingUseCase(homeRepo: HomeRepository(homeService: HomeService(),
+                                                                  authService: UserService()))
+        let notiSettingVC = NotiSettingViewController(viewModel: NotiSettingViewModel(usecase: usecase))
+        self.navigationController?.pushViewController(notiSettingVC, animated: true)
     }
 }

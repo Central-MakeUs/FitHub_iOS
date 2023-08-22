@@ -86,6 +86,18 @@
 		B58D3C192A93E488008F06D2 /* ExpandTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C182A93E488008F06D2 /* ExpandTextField.swift */; };
 		B58D3C1B2A93EB0A008F06D2 /* CheckTodayDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C1A2A93EB0A008F06D2 /* CheckTodayDTO.swift */; };
 		B58D3C1D2A9441BB008F06D2 /* LogoutDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C1C2A9441BB008F06D2 /* LogoutDTO.swift */; };
+		B58D3C282A94E85B008F06D2 /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C272A94E85B008F06D2 /* TermsOfUseViewController.swift */; };
+		B58D3C2A2A94E8CF008F06D2 /* TermsOfUseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C292A94E8CF008F06D2 /* TermsOfUseCell.swift */; };
+		B58D3C2C2A94EA94008F06D2 /* TermOfUseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C2B2A94EA94008F06D2 /* TermOfUseViewModel.swift */; };
+		B58D3C2E2A94EAEF008F06D2 /* TermUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C2D2A94EAEF008F06D2 /* TermUseCase.swift */; };
+		B58D3C302A94EBE3008F06D2 /* TermsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C2F2A94EBE3008F06D2 /* TermsDTO.swift */; };
+		B58D3C322A94EBFF008F06D2 /* TermsListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C312A94EBFE008F06D2 /* TermsListDTO.swift */; };
+		B58D3C352A94F693008F06D2 /* NotiSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C342A94F693008F06D2 /* NotiSettingViewController.swift */; };
+		B58D3C372A94F707008F06D2 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C362A94F707008F06D2 /* SwitchView.swift */; };
+		B58D3C392A94FC16008F06D2 /* NotiSettingDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C382A94FC16008F06D2 /* NotiSettingDTO.swift */; };
+		B58D3C3C2A94FD66008F06D2 /* NotiSettingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C3B2A94FD66008F06D2 /* NotiSettingUseCase.swift */; };
+		B58D3C3E2A94FDBD008F06D2 /* NotiSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C3D2A94FDBD008F06D2 /* NotiSettingViewModel.swift */; };
+		B58D3C412A9506C9008F06D2 /* ExceptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C402A9506C9008F06D2 /* ExceptionViewController.swift */; };
 		B5B2C3942A7D097E004FC66C /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3932A7D097E004FC66C /* UILabel+.swift */; };
 		B5B2C3972A7D0F37004FC66C /* RankStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3962A7D0F37004FC66C /* RankStatus.swift */; };
 		B5B2C3992A7D2CEB004FC66C /* GradeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3982A7D2CEB004FC66C /* GradeType.swift */; };
@@ -357,6 +369,18 @@
 		B58D3C182A93E488008F06D2 /* ExpandTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandTextField.swift; sourceTree = "<group>"; };
 		B58D3C1A2A93EB0A008F06D2 /* CheckTodayDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckTodayDTO.swift; sourceTree = "<group>"; };
 		B58D3C1C2A9441BB008F06D2 /* LogoutDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutDTO.swift; sourceTree = "<group>"; };
+		B58D3C272A94E85B008F06D2 /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
+		B58D3C292A94E8CF008F06D2 /* TermsOfUseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseCell.swift; sourceTree = "<group>"; };
+		B58D3C2B2A94EA94008F06D2 /* TermOfUseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermOfUseViewModel.swift; sourceTree = "<group>"; };
+		B58D3C2D2A94EAEF008F06D2 /* TermUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermUseCase.swift; sourceTree = "<group>"; };
+		B58D3C2F2A94EBE3008F06D2 /* TermsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsDTO.swift; sourceTree = "<group>"; };
+		B58D3C312A94EBFE008F06D2 /* TermsListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsListDTO.swift; sourceTree = "<group>"; };
+		B58D3C342A94F693008F06D2 /* NotiSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiSettingViewController.swift; sourceTree = "<group>"; };
+		B58D3C362A94F707008F06D2 /* SwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchView.swift; sourceTree = "<group>"; };
+		B58D3C382A94FC16008F06D2 /* NotiSettingDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiSettingDTO.swift; sourceTree = "<group>"; };
+		B58D3C3B2A94FD66008F06D2 /* NotiSettingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiSettingUseCase.swift; sourceTree = "<group>"; };
+		B58D3C3D2A94FDBD008F06D2 /* NotiSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiSettingViewModel.swift; sourceTree = "<group>"; };
+		B58D3C402A9506C9008F06D2 /* ExceptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExceptionViewController.swift; sourceTree = "<group>"; };
 		B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
 		B5B2C3932A7D097E004FC66C /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		B5B2C3962A7D0F37004FC66C /* RankStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankStatus.swift; sourceTree = "<group>"; };
@@ -727,6 +751,33 @@
 			path = FitSite;
 			sourceTree = "<group>";
 		};
+		B58D3C262A94E837008F06D2 /* TermsOfUse */ = {
+			isa = PBXGroup;
+			children = (
+				B58D3C272A94E85B008F06D2 /* TermsOfUseViewController.swift */,
+				B58D3C292A94E8CF008F06D2 /* TermsOfUseCell.swift */,
+				B58D3C2B2A94EA94008F06D2 /* TermOfUseViewModel.swift */,
+			);
+			path = TermsOfUse;
+			sourceTree = "<group>";
+		};
+		B58D3C332A94F676008F06D2 /* NotiSetting */ = {
+			isa = PBXGroup;
+			children = (
+				B58D3C342A94F693008F06D2 /* NotiSettingViewController.swift */,
+				B58D3C3D2A94FDBD008F06D2 /* NotiSettingViewModel.swift */,
+			);
+			path = NotiSetting;
+			sourceTree = "<group>";
+		};
+		B58D3C3F2A950696008F06D2 /* OnBorading */ = {
+			isa = PBXGroup;
+			children = (
+				B58D3C402A9506C9008F06D2 /* ExceptionViewController.swift */,
+			);
+			path = OnBorading;
+			sourceTree = "<group>";
+		};
 		B5B2C3952A7D0F23004FC66C /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -786,6 +837,8 @@
 				B5ED13182A909367002769BE /* ResetPWUseCase.swift */,
 				B5ED13232A90CB1C002769BE /* MyFeedUseCase.swift */,
 				B5ED13382A91C795002769BE /* OtherProfileUseCase.swift */,
+				B58D3C2D2A94EAEF008F06D2 /* TermUseCase.swift */,
+				B58D3C3B2A94FD66008F06D2 /* NotiSettingUseCase.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -796,6 +849,7 @@
 				B5ED12712A8E7102002769BE /* CardPagingControlView.swift */,
 				B5DE49E22A8DA47B0006A46A /* MyPageExerciseCardView.swift */,
 				B5ED126F2A8E5A61002769BE /* MyPageTabItemView.swift */,
+				B58D3C362A94F707008F06D2 /* SwitchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -892,6 +946,8 @@
 		DB002BB92A67C3BA001B5672 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				B58D3C332A94F676008F06D2 /* NotiSetting */,
+				B58D3C262A94E837008F06D2 /* TermsOfUse */,
 				B5ED13332A91C432002769BE /* OtherProfile */,
 				B5ED131E2A90C977002769BE /* MyFeed */,
 				B5ED13152A9092AA002769BE /* ResetPW */,
@@ -1105,6 +1161,9 @@
 				B5B2C39B2A7DC980004FC66C /* CheckAuthDTO.swift */,
 				B5705CD62A8AA2E200408233 /* LevelInfoDTO.swift */,
 				B5705CD82A8AA42600408233 /* BookMarkDTO.swift */,
+				B58D3C2F2A94EBE3008F06D2 /* TermsDTO.swift */,
+				B58D3C312A94EBFE008F06D2 /* TermsListDTO.swift */,
+				B58D3C382A94FC16008F06D2 /* NotiSettingDTO.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1330,6 +1389,7 @@
 		DBFF258B2A5B925E00CF6DD4 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				B58D3C3F2A950696008F06D2 /* OnBorading */,
 				B5705CF02A8B855700408233 /* Search */,
 				B5B2C39F2A7E396A004FC66C /* Splash */,
 				DB002BB92A67C3BA001B5672 /* MyPage */,
@@ -1714,6 +1774,7 @@
 				DB6D93DE2A4E7E340011F9BC /* RegistInfoInputViewController.swift in Sources */,
 				DB8CD7152A6D2C9F004735C8 /* CertificationCell.swift in Sources */,
 				DB7559E32A55030400B88B96 /* SportsSelectingViewController.swift in Sources */,
+				B58D3C322A94EBFF008F06D2 /* TermsListDTO.swift in Sources */,
 				B5705C992A87DD0E00408233 /* CommentCell.swift in Sources */,
 				B5ED13222A90C9A4002769BE /* MyFeedViewModel.swift in Sources */,
 				B5705CA62A89027A00408233 /* StandardActionSheetController.swift in Sources */,
@@ -1735,6 +1796,7 @@
 				DB7559E52A55035800B88B96 /* SportsSelectingViewModel.swift in Sources */,
 				B5705CC92A89508F00408233 /* FitSiteDetailCell.swift in Sources */,
 				DB8CD7012A6D0BFE004735C8 /* PhoneVerificationRepository.swift in Sources */,
+				B58D3C3E2A94FDBD008F06D2 /* NotiSettingViewModel.swift in Sources */,
 				DB8CD7132A6D2855004735C8 /* SortSwitchView.swift in Sources */,
 				B5705CC32A894D2C00408233 /* FitSiteDetailViewModel.swift in Sources */,
 				DB002BB42A67C332001B5672 /* CommunityViewController.swift in Sources */,
@@ -1754,7 +1816,9 @@
 				B5ED13292A91231F002769BE /* AllCheckButton.swift in Sources */,
 				B5ED13122A9085F8002769BE /* QuitDTO.swift in Sources */,
 				B5ED12822A8EDC17002769BE /* DefaultProfileDTO.swift in Sources */,
+				B58D3C392A94FC16008F06D2 /* NotiSettingDTO.swift in Sources */,
 				B5DE49E32A8DA47B0006A46A /* MyPageExerciseCardView.swift in Sources */,
+				B58D3C3C2A94FD66008F06D2 /* NotiSettingUseCase.swift in Sources */,
 				B5ED12782A8E7B27002769BE /* MyPageRepository.swift in Sources */,
 				B5705CC52A894D3A00408233 /* FitSiteDetailSectionModel.swift in Sources */,
 				B5ED132E2A913C42002769BE /* MyFitSiteCell.swift in Sources */,
@@ -1773,6 +1837,7 @@
 				DB71348D2A5BDBF90006EAAB /* UserService.swift in Sources */,
 				DBFFDA3B2A4983F90008C2B5 /* BaseViewController.swift in Sources */,
 				DB8CD7252A6E58A1004735C8 /* CommunityType.swift in Sources */,
+				B58D3C412A9506C9008F06D2 /* ExceptionViewController.swift in Sources */,
 				B5705C952A87B07700408233 /* CertificationDetailCell.swift in Sources */,
 				DB57122D2A72059300DCAD9C /* ResetPasswordUseCase.swift in Sources */,
 				DB0D220C2A769DD100ABF6A2 /* UICollectionView+.swift in Sources */,
@@ -1826,6 +1891,7 @@
 				B5705CE62A8B506D00408233 /* BookMarkViewModel.swift in Sources */,
 				DBFFD9EE2A47E2E20008C2B5 /* OAuthLoginViewController.swift in Sources */,
 				B5ED12802A8EDBE7002769BE /* ChangeProfileDTO.swift in Sources */,
+				B58D3C282A94E85B008F06D2 /* TermsOfUseViewController.swift in Sources */,
 				DB5712422A7295E400DCAD9C /* CreateCertifiactionViewController.swift in Sources */,
 				B5705C772A866AC600408233 /* EditFitSiteModel.swift in Sources */,
 				DB8CD7192A6E0B7D004735C8 /* CommunityViewModel.swift in Sources */,
@@ -1843,6 +1909,7 @@
 				DB668AFC2A50017700D702A1 /* UserInfoStatus.swift in Sources */,
 				DB8CD7172A6D3995004735C8 /* CreateActionSheet.swift in Sources */,
 				DB0D21F92A73E40700ABF6A2 /* CreateCertifiactionViewModel.swift in Sources */,
+				B58D3C2A2A94E8CF008F06D2 /* TermsOfUseCell.swift in Sources */,
 				B5ED133F2A920017002769BE /* ReportUserDTO.swift in Sources */,
 				DB57123E2A72651500DCAD9C /* RegistType.swift in Sources */,
 				B5B2C3A32A7E39AE004FC66C /* SplashViewModel.swift in Sources */,
@@ -1866,9 +1933,11 @@
 				DB746F732A71308400FBA8D4 /* RegistCompletionViewController.swift in Sources */,
 				B5B2C3992A7D2CEB004FC66C /* GradeType.swift in Sources */,
 				DB55B6D62A6C2339006FEA7F /* PhoneAuthNumberDTO.swift in Sources */,
+				B58D3C2C2A94EA94008F06D2 /* TermOfUseViewModel.swift in Sources */,
 				DB0D220E2A76ACFE00ABF6A2 /* SportFooterView.swift in Sources */,
 				DB0D21FB2A73E91900ABF6A2 /* CreateCertificationSectionModel.swift in Sources */,
 				B5705CB52A89453C00408233 /* LikeFitSiteDTO.swift in Sources */,
+				B58D3C2E2A94EAEF008F06D2 /* TermUseCase.swift in Sources */,
 				DB0D22112A76C35D00ABF6A2 /* CreateCertificationModel.swift in Sources */,
 				B5705C9D2A87F05900408233 /* FetchCommentDTO.swift in Sources */,
 				DB6D93D12A4D5D2F0011F9BC /* SimpleLabelCell.swift in Sources */,
@@ -1883,6 +1952,7 @@
 				DB51D2572A4BB8B5002415B0 /* AgreementViewModel.swift in Sources */,
 				DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */,
 				B5ED127D2A8E7C77002769BE /* MyPageViewModel.swift in Sources */,
+				B58D3C352A94F693008F06D2 /* NotiSettingViewController.swift in Sources */,
 				B5ED132B2A9128DA002769BE /* CertificationDeleteRecordsDTO.swift in Sources */,
 				B5ED13202A90C986002769BE /* MyFeedViewController.swift in Sources */,
 				B58D3C1D2A9441BB008F06D2 /* LogoutDTO.swift in Sources */,
@@ -1925,6 +1995,7 @@
 				B5705D052A8C313600408233 /* SearchTotalSectionModel.swift in Sources */,
 				DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */,
 				DB8CD7292A6E72C0004735C8 /* AgreementUseCase.swift in Sources */,
+				B58D3C372A94F707008F06D2 /* SwitchView.swift in Sources */,
 				DB5712462A72985D00DCAD9C /* CreateCertificationUseCase.swift in Sources */,
 				DBF125E32A5E885D004DA4B9 /* PasswordUseCase.swift in Sources */,
 				B5705CA82A89089900408233 /* StandardActionSheetAction.swift in Sources */,
@@ -1948,6 +2019,7 @@
 				B5705CD32A8A933500408233 /* ReportCertificationDTO.swift in Sources */,
 				DBF125E72A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift in Sources */,
 				B5705CEA2A8B661E00408233 /* BookMarkDefaultView.swift in Sources */,
+				B58D3C302A94EBE3008F06D2 /* TermsDTO.swift in Sources */,
 				B5ED12752A8E73BB002769BE /* MyPageDTO.swift in Sources */,
 				DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */,
 				B5705CCF2A8A92BA00408233 /* DeleteCertificationDTO.swift in Sources */,
