@@ -24,8 +24,10 @@ final class HomeViewController: BaseViewController {
     }
     
     private let certificationButton = UIButton(type: .system).then {
+        $0.semanticContentAttribute = .forceRightToLeft
         $0.setTitleColor(.textSub01, for: .normal)
         $0.setTitle("운동인증하러가기", for: .normal)
+        $0.setImage(UIImage(named: "ic_arrow_back_ios")?.withRenderingMode(.alwaysOriginal), for: .normal)
         $0.titleLabel?.font = .pretendard(.bodyMedium01)
     }
     
@@ -162,6 +164,18 @@ final class HomeViewController: BaseViewController {
                 } else {
                     self?.showOtherUserProfile(userId: model.id)
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        certificationButton.rx.tap
+            .bind(onNext: { [weak self] in
+                self?.tabBarController?.selectedIndex = 1
+            })
+            .disposed(by: disposeBag)
+        
+        collectionView.rx.modelSelected(CategoryDTO.self)
+            .bind(onNext: { [weak self] _ in
+                self?.tabBarController?.selectedIndex = 2
             })
             .disposed(by: disposeBag)
     }
