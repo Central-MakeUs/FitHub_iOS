@@ -142,4 +142,60 @@ class HomeService {
         }
     }
     
+    func checkNotiSetting() -> Single<NotiSettingDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String
+        else { return Single.error(CertificationError.invalidURL) }
+        
+        let urlString = baseURL + "home/notification-permit"
+        
+        return Single<NotiSettingDTO>.create { emitter in
+            AF.request(urlString, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<NotiSettingDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            emitter(.success(result))
+                        } else {
+                            print(response.code)
+                            print(response.message)
+                            emitter(.failure(CertificationError.serverError))
+                        }
+                    case .failure(let error):
+                        emitter(.failure(error))
+                    }
+                }
+            return Disposables.create()
+        }
+    }
+    
+    func updateNotiSetting(communityPermit: Bool, marketingPermit: Bool) -> Single<NotiSettingDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String
+        else { return Single.error(CertificationError.invalidURL) }
+        
+        let urlString = baseURL + "home/notification-permit"
+        let parameter: Parameters = ["marketingPermit" : marketingPermit,
+                                     "communityPermit" : communityPermit]
+                          
+        
+        return Single<NotiSettingDTO>.create { emitter in
+            AF.request(urlString, method: .patch, parameters: parameter, encoding: JSONEncoding.default, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<NotiSettingDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            emitter(.success(result))
+                        } else {
+                            print(response.code)
+                            print(response.message)
+                            emitter(.failure(CertificationError.serverError))
+                        }
+                    case .failure(let error):
+                        emitter(.failure(error))
+                    }
+                }
+            return Disposables.create()
+        }
+    }
 }
