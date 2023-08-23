@@ -104,9 +104,9 @@ final class OAuthLoginViewController: BaseViewController {
     override func setupBinding() {
         self.otherLoginButton.rx.tap
             .asDriver()
-            .drive(onNext: {
+            .drive(onNext: { [weak self] in
                 let usecase = PhoneNumLoginUseCase(PhoneNumLoginRepository(UserService()))
-                self.navigationController?.pushViewController(PhoneAuthViewController(PhoneAuthViewModel(usecase)), animated: true)
+                self?.navigationController?.pushViewController(PhoneAuthViewController(PhoneAuthViewModel(usecase)), animated: true)
             })
             .disposed(by: self.disposeBag)
         
@@ -130,7 +130,8 @@ final class OAuthLoginViewController: BaseViewController {
                 switch res {
                 case .success(let response):
                     if response.isLogin {
-                        self.navigationController?.dismiss(animated: true)
+                        let tabBar = setTapbar()
+                        self.changeRootViewController(tabBar)
                     } else {
                         self.showUserInfoNotFoundAlert()
                     }

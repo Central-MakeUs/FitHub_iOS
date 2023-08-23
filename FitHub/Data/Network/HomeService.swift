@@ -38,8 +38,11 @@ class HomeService {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String
         else { return Single.error(CertificationError.invalidURL) }
         
+        let accessToken = KeychainManager.read("accessToken") ?? ""
+        var header: HTTPHeaders = HTTPHeaders()
+        header.add(.authorization(bearerToken: accessToken))
         return Single<Bool>.create { emitter in
-            AF.request(baseURL, interceptor: AuthManager())
+            AF.request(baseURL, headers: header)
                 .responseDecodable(of:BaseResponse<CheckAuthDTO>.self) { res in
                     
                     switch res.result {
@@ -181,6 +184,33 @@ class HomeService {
         return Single<NotiSettingDTO>.create { emitter in
             AF.request(urlString, method: .patch, parameters: parameter, encoding: JSONEncoding.default, interceptor: AuthManager())
                 .responseDecodable(of:BaseResponse<NotiSettingDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            emitter(.success(result))
+                        } else {
+                            print(response.code)
+                            print(response.message)
+                            emitter(.failure(CertificationError.serverError))
+                        }
+                    case .failure(let error):
+                        emitter(.failure(error))
+                    }
+                }
+            return Disposables.create()
+        }
+    }
+    
+    func checkRemainAlarm() -> Single<CheckRemainAlarmDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String
+        else { return Single.error(CertificationError.invalidURL) }
+        
+        let urlString = baseURL + "user/my-alarm"
+                
+        return Single<CheckRemainAlarmDTO>.create { emitter in
+            AF.request(urlString, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<CheckRemainAlarmDTO>.self) { res in
                     switch res.result {
                     case .success(let response):
                         if response.code == 2000 {

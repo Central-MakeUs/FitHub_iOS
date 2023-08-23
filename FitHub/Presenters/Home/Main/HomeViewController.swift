@@ -24,8 +24,10 @@ final class HomeViewController: BaseViewController {
     }
     
     private let certificationButton = UIButton(type: .system).then {
+        $0.semanticContentAttribute = .forceRightToLeft
         $0.setTitleColor(.textSub01, for: .normal)
         $0.setTitle("운동인증하러가기", for: .normal)
+        $0.setImage(UIImage(named: "ic_arrow_back_ios")?.withRenderingMode(.alwaysOriginal), for: .normal)
         $0.titleLabel?.font = .pretendard(.bodyMedium01)
     }
     
@@ -67,6 +69,9 @@ final class HomeViewController: BaseViewController {
         $0.register(SportCell.self, forCellWithReuseIdentifier: SportCell.identifier)
     }
     
+    let alertItem = UIBarButtonItem(image: UIImage(named: "Alert")?.withRenderingMode(.alwaysOriginal),
+                               style: .plain, target: nil, action: nil)
+    
     init(_ viewModel: HomeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -84,6 +89,7 @@ final class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.viewModel.updateHomeInfo()
+        self.viewModel.checkAlarm()
     }
     
     override func setupAttributes() {
@@ -94,12 +100,11 @@ final class HomeViewController: BaseViewController {
         super.configureNavigation()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIImageView(image: UIImage(named: "logo_basic")))
         
-        let noti = UIBarButtonItem(image: UIImage(named: "Alert")?.withRenderingMode(.alwaysOriginal),
-                                   style: .plain, target: nil, action: nil)
+        
         let bookmark = UIBarButtonItem(image: UIImage(named: "BookMark")?.withRenderingMode(.alwaysOriginal),
                                        style: .plain, target: nil, action: nil)
         
-        self.navigationItem.rightBarButtonItems = [noti,bookmark]
+        self.navigationItem.rightBarButtonItems = [alertItem,bookmark]
         
         bookmark.rx.tap
             .bind(onNext: { [weak self] in
@@ -110,6 +115,14 @@ final class HomeViewController: BaseViewController {
                 let bookMarkVC = BookMarkViewController(viewModel: BookMarkViewModel(usecase: usecase))
                 
                 self?.navigationController?.pushViewController(bookMarkVC, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        alertItem.rx.tap
+            .bind(onNext: { [weak self] in
+                let usecase = AlertUseCase(alarmRepo: AlarmRepository(service: AlarmService()))
+                let alertVC = AlertViewController(viewModel: AlertViewModel(usecase: usecase))
+                self?.navigationController?.pushViewController(alertVC, animated: true)
             })
             .disposed(by: disposeBag)
     }
@@ -162,6 +175,25 @@ final class HomeViewController: BaseViewController {
                 } else {
                     self?.showOtherUserProfile(userId: model.id)
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        certificationButton.rx.tap
+            .bind(onNext: { [weak self] in
+                self?.tabBarController?.selectedIndex = 1
+            })
+            .disposed(by: disposeBag)
+        
+        collectionView.rx.modelSelected(CategoryDTO.self)
+            .bind(onNext: { [weak self] _ in
+                self?.tabBarController?.selectedIndex = 2
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.alarmCheck
+            .bind(onNext: { [weak self] isRemain in
+                let image = isRemain ? UIImage(named: "AlertRemain") : UIImage(named: "Alert")
+                self?.alertItem.image = image?.withRenderingMode(.alwaysOriginal)
             })
             .disposed(by: disposeBag)
     }
@@ -261,12 +293,11 @@ extension HomeViewController {
     private func addNotificationCenter() {
         NotificationCenter.default.rx.notification(.presentAlert)
             .subscribe(onNext: { [weak self] notification in
-                let authRepository = OAuthLoginRepository(UserService())
+                guard let self else { return }
+                let usecase = OAuthLoginUseCase(OAuthLoginRepository(UserService()))
                 let authVC = UINavigationController(rootViewController: OAuthLoginViewController(
-                    OAuthLoginViewModel(OAuthLoginUseCase(authRepository))))
-                authVC.modalPresentationStyle = .fullScreen
-                
-                self?.present(authVC, animated: true)
+                    OAuthLoginViewModel(usecase)))
+                self.changeRootViewController(authVC)
             })
             .disposed(by: disposeBag)
     }

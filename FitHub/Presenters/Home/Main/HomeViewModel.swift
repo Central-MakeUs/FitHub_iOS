@@ -18,6 +18,7 @@ final class HomeViewModel: ViewModelType {
     let updateDate = PublishSubject<String>()
     
     let levelInfo = PublishSubject<LevelInfoDTO>()
+    let alarmCheck = PublishSubject<Bool>()
     
     struct Input {
     }
@@ -56,6 +57,14 @@ final class HomeViewModel: ViewModelType {
         usecase.fetchLevelInfo()
             .subscribe(onSuccess: { [weak self] item in
                 self?.levelInfo.onNext(item)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func checkAlarm() {
+        usecase.checkRemainAlarm()
+            .subscribe(onSuccess: { [weak self] res in
+                self?.alarmCheck.onNext(res.isRemain)
             })
             .disposed(by: disposeBag)
     }

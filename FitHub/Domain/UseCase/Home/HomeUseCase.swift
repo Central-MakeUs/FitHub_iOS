@@ -12,7 +12,7 @@ protocol HomeUseCaseProtocol {
     func fetchCategory()->Single<[CategoryDTO]>
     func fetchHomeInfo()->Single<HomeInfoDTO>
     func fetchLevelInfo() -> Single<LevelInfoDTO>
-    
+    func checkRemainAlarm() -> Single<CheckRemainAlarmDTO>
     func checkAuth() -> Single<Bool>
 }
 
@@ -37,5 +37,9 @@ final class HomeUseCase: HomeUseCaseProtocol {
     
     func fetchLevelInfo() -> Single<LevelInfoDTO> {
         return repository.fetchLevelInfo()
+    }
+    
+    func checkRemainAlarm() -> Single<CheckRemainAlarmDTO> {
+        return repository.checkRemainAlarm()
     }
 }

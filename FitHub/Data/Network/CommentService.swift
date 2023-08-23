@@ -40,7 +40,7 @@ class CommentService {
     
     func createComment(type: CommentType, id: Int, contents: String)->Single<Bool> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
-        let urlString = baseURL + "\(type.rawValue)/\(id)/comments"
+        let urlString = baseURL + "\(type.rawValue)/\(id)/comments/apple"
         let parameter: Parameters = ["contents" : contents]
         
         return Single<Bool>.create { emitter in

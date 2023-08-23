@@ -87,6 +87,9 @@ final class MyPageViewController: BaseViewController {
     
     private let logoutItem = MyPageTabItemView(title: "로그아웃")
     
+    let alertItem = UIBarButtonItem(image: UIImage(named: "Alert")?.withRenderingMode(.alwaysOriginal),
+                               style: .plain, target: nil, action: nil)
+    
     init(viewModel: MyPageViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -105,6 +108,7 @@ final class MyPageViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.viewWillAppear()
+        viewModel.checkRemainAlarm()
     }
     
     override func setupAttributes() {
@@ -120,12 +124,10 @@ final class MyPageViewController: BaseViewController {
         super.configureNavigation()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIImageView(image: UIImage(named: "logo_basic")))
         
-        let noti = UIBarButtonItem(image: UIImage(named: "Alert")?.withRenderingMode(.alwaysOriginal),
-                                   style: .plain, target: nil, action: nil)
         let bookmark = UIBarButtonItem(image: UIImage(named: "BookMark")?.withRenderingMode(.alwaysOriginal),
                                        style: .plain, target: nil, action: nil)
         
-        self.navigationItem.rightBarButtonItems = [noti,bookmark]
+        self.navigationItem.rightBarButtonItems = [alertItem,bookmark]
         
         bookmark.rx.tap
             .bind(onNext: { [weak self] in
@@ -136,6 +138,14 @@ final class MyPageViewController: BaseViewController {
                 let bookMarkVC = BookMarkViewController(viewModel: BookMarkViewModel(usecase: usecase))
                 
                 self?.navigationController?.pushViewController(bookMarkVC, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        alertItem.rx.tap
+            .bind(onNext: { [weak self] in
+                let usecase = AlertUseCase(alarmRepo: AlarmRepository(service: AlarmService()))
+                let alertVC = AlertViewController(viewModel: AlertViewModel(usecase: usecase))
+                self?.navigationController?.pushViewController(alertVC, animated: true)
             })
             .disposed(by: disposeBag)
     }
@@ -191,6 +201,13 @@ final class MyPageViewController: BaseViewController {
                 } else {
                     self?.notiAlert("로그아웃 실패")
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.alarmCheck
+            .bind(onNext: { [weak self] isRemain in
+                let image = isRemain ? UIImage(named: "AlertRemain") : UIImage(named: "Alert")
+                self?.alertItem.image = image?.withRenderingMode(.alwaysOriginal)
             })
             .disposed(by: disposeBag)
     }
