@@ -1,0 +1,11 @@
+//
+//  AppInfo_Release.xcconfig
+//  FitHub
+//
+//  Created by iOS신상우 on 2023/08/23.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+NATIVE_APP_KEY = 4bec73b36dc520d298ab561e6fc55e37
+BASE_URL = https:/$()/api.profithub.store/

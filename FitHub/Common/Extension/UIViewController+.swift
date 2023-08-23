@@ -53,7 +53,9 @@ extension UIViewController {
         
         let communityVCUsecase = CommunityUseCase(CommunityRepository(UserService(),
                                                                       certificationService: CertificationService(),
-                                                                      articleService: ArticleService()))
+                                                                      articleService: ArticleService()),
+                                                  homeRepo: HomeRepository(homeService: HomeService(),
+                                                                           authService: UserService()))
         let communityVC = UINavigationController(rootViewController: CommunityViewController(CommunityViewModel(communityVCUsecase)))
         communityVC.tabBarItem.image = UIImage(named: "CommunityIcon")
         communityVC.tabBarItem.title = "커뮤니티"
@@ -62,7 +64,9 @@ extension UIViewController {
         lookUpVC.tabBarItem.image = UIImage(named: "LookUpIcon")
         lookUpVC.tabBarItem.title = "둘러보기"
         
-        let myPageUsecase = MyPageUseCase(mypageRepository: MyPageRepository(service: UserService()))
+        let myPageUsecase = MyPageUseCase(mypageRepository: MyPageRepository(service: UserService()),
+                                          homeRepository: HomeRepository(homeService: HomeService(),
+                                                                         authService: UserService()))
         let myPageVC = UINavigationController(rootViewController: MyPageViewController(viewModel: MyPageViewModel(usecase: myPageUsecase)))
         
         myPageVC.tabBarItem.image = UIImage(named: "MyPageIcon")

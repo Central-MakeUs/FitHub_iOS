@@ -101,6 +101,14 @@ final class MyPageViewModel {
             .disposed(by: disposeBag)
     }
     
+    func checkRemainAlarm() {
+        usecase.checkRemainAlarm()
+            .subscribe(onSuccess: { [weak self] result in
+                self?.alarmCheck.onNext(result.isRemain)
+            })
+            .disposed(by: disposeBag)
+    }
+    
     // MARK: - Output
     let errorHandler = PublishSubject<Error>()
     let myPageInfo = PublishSubject<MyPageDTO>()
@@ -115,4 +123,6 @@ final class MyPageViewModel {
     let privacyInfo = PublishSubject<PrivacyInfoDTO>()
     let logoutHandler = PublishSubject<Bool>()
     let quitHandler = PublishSubject<Bool>()
+    
+    let alarmCheck = PublishSubject<Bool>()
 }

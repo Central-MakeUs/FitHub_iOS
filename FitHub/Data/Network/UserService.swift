@@ -9,14 +9,14 @@ import UIKit
 import Alamofire
 import RxSwift
 
-
 class UserService {
     //MARK: - Login
     func signInAppleLogin(_ token: String)->Single<OAuthLoginDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
-        
+        let fcmToken = UserDefaults.standard.object(forKey: "fcmToken") as? String ?? ""
         let urlString = baseURL + "users/login/social/apple"
-        let paramter: Parameters = ["identityToken" : token]
+        let paramter: Parameters = ["identityToken" : token,
+                                    "fcmToken" : fcmToken]
         
         return Single<OAuthLoginDTO>.create { observer in
             AF.request(urlString, method: .post, parameters: paramter, encoding: JSONEncoding.default)
@@ -39,9 +39,10 @@ class UserService {
     
     func signInKakaoLogin(_ socialId: String)->Single<OAuthLoginDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL) }
-        
+        let fcmToken = UserDefaults.standard.object(forKey: "fcmToken") as? String ?? ""
         let urlString = baseURL + "users/login/social/kakao"
-        let paramter: Parameters = ["socialId" : socialId]
+        let paramter: Parameters = ["socialId" : socialId,
+                                    "fcmToken" : fcmToken]
         return Single<OAuthLoginDTO>.create { observer in
             AF.request(urlString, method: .post, parameters: paramter, encoding: JSONEncoding.default)
                 .responseDecodable(of: BaseResponse<OAuthLoginDTO>.self) { res in
@@ -63,10 +64,11 @@ class UserService {
     
     func signInPhoneNumber(_ phoneNum: String, _ password: String)->Single<PhoneNumLoginDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
-        
+        let fcmToken = UserDefaults.standard.object(forKey: "fcmToken") as? String ?? ""
         let urlString = baseURL + "users/sign-in"
         let parameter: Parameters = ["targetPhoneNum" : phoneNum,
-                                    "password" : password]
+                                     "password" : password,
+                                     "fcmToken" : fcmToken]
         
         return Single<PhoneNumLoginDTO>.create { observer in
             AF.request(urlString, method: .post, parameters: parameter, encoding: JSONEncoding.default)
@@ -94,7 +96,7 @@ class UserService {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL) }
         let urlString = baseURL + "users/sign-up"
         let headers: HTTPHeaders = ["Content-Type" : "multipart/form-data"]
-        
+        let fcmToken = UserDefaults.standard.object(forKey: "fcmToken") as? String ?? ""
         let marketingAgree = registUserInfo.marketingAgree
         let preferExercises = registUserInfo.preferExercise.map { $0.id }
         guard let birth = registUserInfo.dateOfBirth,
@@ -112,7 +114,8 @@ class UserService {
             "name" : name,
             "nickname" : nickname,
             "phoneNumber" : phoneNumber,
-            "password" : password]
+            "password" : password,
+            "fcmToken" : fcmToken]
         
         return Single<RegistResponseDTO>.create { emitter in
             AF.upload(multipartFormData: { multipartFormData in
@@ -146,6 +149,7 @@ class UserService {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL) }
         let urlString = baseURL + "users/sign-up/oauth"
         guard let accessToken = KeychainManager.read("accessToken") else { return Single.error(AuthError.invalidURL) }
+        let fcmToken = UserDefaults.standard.object(forKey: "fcmToken") as? String ?? ""
         
         var headers: HTTPHeaders = ["Content-Type" : "multipart/form-data"]
         headers.add(name: "Authorization", value: "Bearer " + accessToken)
@@ -164,7 +168,8 @@ class UserService {
             "marketingAgree" : marketingAgree,
             "birth" : birth,
             "name" : name,
-            "nickname" : nickname]
+            "nickname" : nickname,
+            "fcmToken" : fcmToken]
         
         return Single<RegistResponseDTO>.create { emitter in
             AF.upload(multipartFormData: { multipartFormData in

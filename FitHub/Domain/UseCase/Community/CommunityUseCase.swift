@@ -14,14 +14,18 @@ protocol CommunityUseCaseProtocol {
     func fetchFitSiteFeed(_ cateogryId: Int, page: Int, type: SortingType) -> Single<FitSiteFeedDTO>
     func fetchCategory()->Single<[CategoryDTO]>
     func checkHasTodayCertification()->Single<CheckTodayDTO>
+    func checkRemainAlarm() -> Single<CheckRemainAlarmDTO>
 }
 
 final class CommunityUseCase: CommunityUseCaseProtocol {
     private let disposeBag = DisposeBag()
     private let repository: CommunityRepositoryInterface
+    private let homeRepo: HomeRepositoryInterface
 
-    init(_ repository: CommunityRepositoryInterface) {
+    init(_ repository: CommunityRepositoryInterface,
+         homeRepo: HomeRepositoryInterface) {
         self.repository = repository
+        self.homeRepo = homeRepo
     }
     
     func fetchCategory()->Single<[CategoryDTO]> {
@@ -40,5 +44,9 @@ final class CommunityUseCase: CommunityUseCaseProtocol {
     
     func checkHasTodayCertification()->Single<CheckTodayDTO> {
         return repository.checkHasTodayCertification()
+    }
+    
+    func checkRemainAlarm() -> Single<CheckRemainAlarmDTO> {
+        return homeRepo.checkRemainAlarm()
     }
 }
