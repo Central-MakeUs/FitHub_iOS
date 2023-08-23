@@ -45,17 +45,8 @@ final class SportsCell: UICollectionViewCell {
     }
     
     func configureCell(item: CategoryDTO) {
-        do {
-            if let urlString = item.imageUrl,
-               let url = URL(string: urlString) {
-                let data = try Data(contentsOf: url)
-                self.imageView.image = UIImage(data: data)
-            }
-        } catch {
-            print(error)
-        }
-        
-        self.titleLabel.text = item.name
+        imageView.kf.setImage(with: URL(string: item.imageUrl ?? ""))
+        titleLabel.text = item.name
     }
     
     private func updateSelection(_ isSelected: Bool) {
@@ -84,8 +75,8 @@ final class SportsCell: UICollectionViewCell {
         }
         
         self.imageView.snp.makeConstraints {
-            $0.leading.trailing.top.bottom.equalToSuperview()
-            $0.width.height.equalTo(40)
+            $0.width.height.equalTo(self.frameView.snp.width).multipliedBy(0.55)
+            $0.center.equalToSuperview()
         }
         
         self.titleLabel.snp.makeConstraints {

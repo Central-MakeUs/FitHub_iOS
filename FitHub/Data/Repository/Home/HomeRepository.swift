@@ -17,6 +17,7 @@ protocol HomeRepositoryInterface {
     func fetchTermList() -> Single<TermsListDTO>
     func checkNotiSetting() -> Single<NotiSettingDTO>
     func updateNotiSetting(communityPermit: Bool, marketingPermit: Bool) -> Single<NotiSettingDTO>
+    func checkRemainAlarm() -> Single<CheckRemainAlarmDTO>
 }
 
 final class HomeRepository: HomeRepositoryInterface {
@@ -59,5 +60,9 @@ final class HomeRepository: HomeRepositoryInterface {
     
     func updateNotiSetting(communityPermit: Bool, marketingPermit: Bool) -> Single<NotiSettingDTO> {
         return homeService.updateNotiSetting(communityPermit: communityPermit, marketingPermit: marketingPermit)
+    }
+    
+    func checkRemainAlarm() -> Single<CheckRemainAlarmDTO> {
+        return homeService.checkRemainAlarm()
     }
 }

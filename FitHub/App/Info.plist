@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NativeAppKey</key>
-	<string>$(NATIVE_APP_KEY)</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<string>NO</string>
 	<key>BaseURL</key>
 	<string>$(BASE_URL)</string>
 	<key>CFBundleURLTypes</key>
@@ -19,6 +19,13 @@
 			</array>
 		</dict>
 	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>kakaokompassauth</string>
+		<string>kakaolink</string>
+	</array>
+	<key>NativeAppKey</key>
+	<string>$(NATIVE_APP_KEY)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Pretendard-SemiBold.otf</string>
@@ -42,10 +49,9 @@
 			</array>
 		</dict>
 	</dict>
-	<key>LSApplicationQueriesSchemes</key>
+	<key>UIBackgroundModes</key>
 	<array>
-		<string>kakaokompassauth</string>
-		<string>kakaolink</string>
+		<string>remote-notification</string>
 	</array>
 </dict>
 </plist>

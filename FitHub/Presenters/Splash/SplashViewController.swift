@@ -35,9 +35,10 @@ final class SplashViewController: BaseViewController {
                     let authVC = UINavigationController(rootViewController: OAuthLoginViewController(
                         OAuthLoginViewModel(usecase)))
                     self.changeRootViewController(authVC)
+                } else {
+                    let tabBar = self.setTapbar()
+                    self.changeRootViewController(tabBar)
                 }
-                let tabBar = self.setTapbar()
-                self.changeRootViewController(tabBar)
             })
             .disposed(by: disposeBag)
         

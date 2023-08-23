@@ -170,7 +170,7 @@ class ArticleService {
     
     func toggleLikeFitSite(articleId: Int)->Single<LikeFitSiteDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
-        let urlString = baseURL + "articles/\(articleId)/likes"
+        let urlString = baseURL + "articles/\(articleId)/likes/apple"
         
         return Single<LikeFitSiteDTO>.create { observer in
             AF.request(urlString, method: .post, interceptor: AuthManager())

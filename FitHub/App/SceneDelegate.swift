@@ -70,39 +70,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
     }
-    
-    func setTapbar() -> UITabBarController {
-        let tabBarController = UITabBarController()
-        tabBarController.tabBar.backgroundColor = .bgDefault
-        tabBarController.selectedIndex = 1
-        tabBarController.tabBar.unselectedItemTintColor = .iconDisabled
-        tabBarController.tabBar.tintColor = .white
-        
-        let homeUsecase = HomeUseCase(repository: HomeRepository(homeService: HomeService(),
-                                                                 authService: UserService()))
-        let homeVC = UINavigationController(rootViewController: HomeViewController(HomeViewModel(usecase: homeUsecase)))
-        homeVC.tabBarItem.image = UIImage(named: "HomeIcon")
-        homeVC.tabBarItem.title = "홈"
-        
-        let communityVCUsecase = CommunityUseCase(CommunityRepository(UserService(),
-                                                                      certificationService: CertificationService(),
-                                                                      articleService: ArticleService()))
-        let communityVC = UINavigationController(rootViewController: CommunityViewController(CommunityViewModel(communityVCUsecase)))
-        communityVC.tabBarItem.image = UIImage(named: "CommunityIcon")
-        communityVC.tabBarItem.title = "커뮤니티"
-        
-        let lookUpVC = UINavigationController(rootViewController: LookUpViewController())
-        lookUpVC.tabBarItem.image = UIImage(named: "LookUpIcon")
-        lookUpVC.tabBarItem.title = "둘러보기"
-        
-        let myPageUsecase = MyPageUseCase(mypageRepository: MyPageRepository(service: UserService()))
-        let myPageVC = UINavigationController(rootViewController: MyPageViewController(viewModel: MyPageViewModel(usecase: myPageUsecase)))
-        myPageVC.tabBarItem.image = UIImage(named: "MyPageIcon")
-        myPageVC.tabBarItem.title = "마이핏허브"
-        
-        tabBarController.viewControllers = [homeVC, communityVC, lookUpVC, myPageVC]
-        
-        return tabBarController
-    }
 }
 

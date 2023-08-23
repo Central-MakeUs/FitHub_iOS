@@ -206,7 +206,7 @@ class CertificationService {
     func toggleLikeCertification(recordId: Int)->Single<LikeCertificationDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(CertificationError.invalidURL) }
     
-        let urlString = baseURL + "records/\(recordId)/likes"
+        let urlString = baseURL + "records/\(recordId)/likes/apple"
         
         return Single<LikeCertificationDTO>.create { emitter in
             AF.request(urlString, method: .post, interceptor: AuthManager())

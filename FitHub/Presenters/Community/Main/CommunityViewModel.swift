@@ -39,6 +39,7 @@ final class CommunityViewModel {
     let fitSiteFeedList = BehaviorRelay<[ArticleDTO]>(value: [])
     var communityType = BehaviorSubject<CommunityType>(value: .certification)
     let checkTodayHandler = PublishSubject<Bool>()
+    let alarmCheck = PublishSubject<Bool>()
     
     init(_ usecase: CommunityUseCaseProtocol) {
         self.usecase = usecase
@@ -139,6 +140,14 @@ final class CommunityViewModel {
         usecase.checkHasTodayCertification()
             .subscribe(onSuccess: { [weak self] result in
                 self?.checkTodayHandler.onNext(result.isWrite)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func checkAlarm() {
+        usecase.checkRemainAlarm()
+            .subscribe(onSuccess: { [weak self] result in
+                self?.alarmCheck.onNext(result.isRemain)
             })
             .disposed(by: disposeBag)
     }

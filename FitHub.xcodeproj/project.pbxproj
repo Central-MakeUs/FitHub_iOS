@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B50CB9B12A96503600BA78B0 /* AlarmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50CB9B02A96503600BA78B0 /* AlarmRepository.swift */; };
+		B50CB9B32A96509200BA78B0 /* ConfirmAlertDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50CB9B22A96509200BA78B0 /* ConfirmAlertDTO.swift */; };
+		B50CB9B52A9667E700BA78B0 /* AlramCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50CB9B42A9667E700BA78B0 /* AlramCell.swift */; };
 		B5705C772A866AC600408233 /* EditFitSiteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C762A866AC600408233 /* EditFitSiteModel.swift */; };
 		B5705C792A86762D00408233 /* CreateFitSiteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C782A86762D00408233 /* CreateFitSiteUseCase.swift */; };
 		B5705C7B2A86790100408233 /* CreateFitSiteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C7A2A86790100408233 /* CreateFitSiteRepository.swift */; };
@@ -98,6 +101,16 @@
 		B58D3C3C2A94FD66008F06D2 /* NotiSettingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C3B2A94FD66008F06D2 /* NotiSettingUseCase.swift */; };
 		B58D3C3E2A94FDBD008F06D2 /* NotiSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C3D2A94FDBD008F06D2 /* NotiSettingViewModel.swift */; };
 		B58D3C412A9506C9008F06D2 /* ExceptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C402A9506C9008F06D2 /* ExceptionViewController.swift */; };
+		B58D3C452A951DA5008F06D2 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C442A951DA5008F06D2 /* AlertViewController.swift */; };
+		B58D3C472A951DF4008F06D2 /* AlertDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C462A951DF4008F06D2 /* AlertDefaultView.swift */; };
+		B58D3C492A951F12008F06D2 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C482A951F12008F06D2 /* AlertViewModel.swift */; };
+		B58D3C4B2A951F78008F06D2 /* AlertUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C4A2A951F78008F06D2 /* AlertUseCase.swift */; };
+		B58D3C4D2A95203D008F06D2 /* CheckRemainAlarmDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C4C2A95203D008F06D2 /* CheckRemainAlarmDTO.swift */; };
+		B58D3C532A952683008F06D2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B58D3C522A952683008F06D2 /* FirebaseAnalytics */; };
+		B58D3C592A952683008F06D2 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = B58D3C582A952683008F06D2 /* FirebaseMessaging */; };
+		B58D3C5D2A953922008F06D2 /* AlarmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C5C2A953922008F06D2 /* AlarmService.swift */; };
+		B58D3C602A953A03008F06D2 /* AlarmListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C5F2A953A03008F06D2 /* AlarmListDTO.swift */; };
+		B58D3C622A953F0B008F06D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B58D3C612A953F0B008F06D2 /* GoogleService-Info.plist */; };
 		B5B2C3942A7D097E004FC66C /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3932A7D097E004FC66C /* UILabel+.swift */; };
 		B5B2C3972A7D0F37004FC66C /* RankStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3962A7D0F37004FC66C /* RankStatus.swift */; };
 		B5B2C3992A7D2CEB004FC66C /* GradeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3982A7D2CEB004FC66C /* GradeType.swift */; };
@@ -290,6 +303,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B50CB9AF2A963D9400BA78B0 /* AppInfo_Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo_Release.xcconfig; sourceTree = "<group>"; };
+		B50CB9B02A96503600BA78B0 /* AlarmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmRepository.swift; sourceTree = "<group>"; };
+		B50CB9B22A96509200BA78B0 /* ConfirmAlertDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmAlertDTO.swift; sourceTree = "<group>"; };
+		B50CB9B42A9667E700BA78B0 /* AlramCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlramCell.swift; sourceTree = "<group>"; };
 		B5705C762A866AC600408233 /* EditFitSiteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteModel.swift; sourceTree = "<group>"; };
 		B5705C782A86762D00408233 /* CreateFitSiteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFitSiteUseCase.swift; sourceTree = "<group>"; };
 		B5705C7A2A86790100408233 /* CreateFitSiteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFitSiteRepository.swift; sourceTree = "<group>"; };
@@ -381,6 +398,15 @@
 		B58D3C3B2A94FD66008F06D2 /* NotiSettingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiSettingUseCase.swift; sourceTree = "<group>"; };
 		B58D3C3D2A94FDBD008F06D2 /* NotiSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiSettingViewModel.swift; sourceTree = "<group>"; };
 		B58D3C402A9506C9008F06D2 /* ExceptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExceptionViewController.swift; sourceTree = "<group>"; };
+		B58D3C442A951DA5008F06D2 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		B58D3C462A951DF4008F06D2 /* AlertDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDefaultView.swift; sourceTree = "<group>"; };
+		B58D3C482A951F12008F06D2 /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
+		B58D3C4A2A951F78008F06D2 /* AlertUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUseCase.swift; sourceTree = "<group>"; };
+		B58D3C4C2A95203D008F06D2 /* CheckRemainAlarmDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckRemainAlarmDTO.swift; sourceTree = "<group>"; };
+		B58D3C502A952616008F06D2 /* FitHubRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FitHubRelease.entitlements; sourceTree = "<group>"; };
+		B58D3C5C2A953922008F06D2 /* AlarmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmService.swift; sourceTree = "<group>"; };
+		B58D3C5F2A953A03008F06D2 /* AlarmListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmListDTO.swift; sourceTree = "<group>"; };
+		B58D3C612A953F0B008F06D2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
 		B5B2C3932A7D097E004FC66C /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		B5B2C3962A7D0F37004FC66C /* RankStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankStatus.swift; sourceTree = "<group>"; };
@@ -567,6 +593,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B58D3C592A952683008F06D2 /* FirebaseMessaging in Frameworks */,
 				DBFFDA1A2A47E8A70008C2B5 /* RxKakaoSDKUser in Frameworks */,
 				DBFFDA0E2A47E6E60008C2B5 /* Alamofire in Frameworks */,
 				DBFFDA0B2A47E64C0008C2B5 /* Then in Frameworks */,
@@ -575,6 +602,7 @@
 				DBFFDA042A47E4A50008C2B5 /* RxRelay in Frameworks */,
 				DBFFDA112A47E71C0008C2B5 /* Kingfisher in Frameworks */,
 				DBFFDA022A47E4A50008C2B5 /* RxCocoa in Frameworks */,
+				B58D3C532A952683008F06D2 /* FirebaseAnalytics in Frameworks */,
 				DBFFDA162A47E8A70008C2B5 /* RxKakaoSDKCommon in Frameworks */,
 				DBFFDA142A47E8A70008C2B5 /* RxKakaoSDKAuth in Frameworks */,
 				DBFFDA062A47E4A50008C2B5 /* RxSwift in Frameworks */,
@@ -778,6 +806,35 @@
 			path = OnBorading;
 			sourceTree = "<group>";
 		};
+		B58D3C422A951D85008F06D2 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				B58D3C442A951DA5008F06D2 /* AlertViewController.swift */,
+				B58D3C462A951DF4008F06D2 /* AlertDefaultView.swift */,
+				B58D3C482A951F12008F06D2 /* AlertViewModel.swift */,
+				B50CB9B42A9667E700BA78B0 /* AlramCell.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
+		B58D3C432A951D8E008F06D2 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				DB002BB02A67C273001B5672 /* HomeViewController.swift */,
+				DB5DAB3C2A7BF2F8009AA427 /* HomeViewModel.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		B58D3C5E2A9539F7008F06D2 /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				B58D3C5F2A953A03008F06D2 /* AlarmListDTO.swift */,
+				B50CB9B22A96509200BA78B0 /* ConfirmAlertDTO.swift */,
+			);
+			path = Alarm;
+			sourceTree = "<group>";
+		};
 		B5B2C3952A7D0F23004FC66C /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -915,11 +972,11 @@
 		DB002BAF2A67C262001B5672 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				B58D3C432A951D8E008F06D2 /* Main */,
+				B58D3C422A951D85008F06D2 /* Alert */,
 				B5705CE22A8B4E4400408233 /* BookMark */,
 				B5705CDD2A8AA99A00408233 /* LevelInfo */,
 				B5B2C39A2A7D4CA9004FC66C /* View */,
-				DB002BB02A67C273001B5672 /* HomeViewController.swift */,
-				DB5DAB3C2A7BF2F8009AA427 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1140,6 +1197,7 @@
 			children = (
 				DB5DAB3F2A7BF331009AA427 /* HomeUseCase.swift */,
 				B5705CE72A8B50B100408233 /* BookMarkUseCase.swift */,
+				B58D3C4A2A951F78008F06D2 /* AlertUseCase.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1164,6 +1222,7 @@
 				B58D3C2F2A94EBE3008F06D2 /* TermsDTO.swift */,
 				B58D3C312A94EBFE008F06D2 /* TermsListDTO.swift */,
 				B58D3C382A94FC16008F06D2 /* NotiSettingDTO.swift */,
+				B58D3C4C2A95203D008F06D2 /* CheckRemainAlarmDTO.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1355,6 +1414,7 @@
 		DBF125EA2A5EA0DA004DA4B9 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				B58D3C5E2A9539F7008F06D2 /* Alarm */,
 				B5ED12732A8E73AA002769BE /* MyPage */,
 				B5705CF32A8B86BD00408233 /* Search */,
 				DB5DAB462A7BF9C6009AA427 /* Home */,
@@ -1372,6 +1432,7 @@
 				DB5DAB412A7BF643009AA427 /* Home */,
 				DB8CD7202A6E16EA004735C8 /* Community */,
 				DB8CD6FC2A6D0B5C004735C8 /* Auth */,
+				B50CB9B02A96503600BA78B0 /* AlarmRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -1561,6 +1622,8 @@
 				DBFFD9F42A47E2E40008C2B5 /* LaunchScreen.storyboard */,
 				DBFFD9F72A47E2E40008C2B5 /* Info.plist */,
 				B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */,
+				B50CB9AF2A963D9400BA78B0 /* AppInfo_Release.xcconfig */,
+				B58D3C612A953F0B008F06D2 /* GoogleService-Info.plist */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -1605,6 +1668,7 @@
 		DBFFD9E82A47E2E20008C2B5 /* FitHub */ = {
 			isa = PBXGroup;
 			children = (
+				B58D3C502A952616008F06D2 /* FitHubRelease.entitlements */,
 				DBD8526B2A5C4BB400588BF4 /* FitHub.entitlements */,
 				DBFF259B2A5B981E00CF6DD4 /* App */,
 				DBFF258B2A5B925E00CF6DD4 /* Presenters */,
@@ -1643,6 +1707,7 @@
 				B588B7DA2A83AD710031C723 /* ArticleService.swift */,
 				B5705C9A2A87EF1F00408233 /* CommentService.swift */,
 				B5705CF12A8B85D800408233 /* SearchService.swift */,
+				B58D3C5C2A953922008F06D2 /* AlarmService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1702,6 +1767,8 @@
 				DB98D4E52A56E7970096D88F /* RxGesture */,
 				DBDBA30B2A64D2B700F1CDA5 /* RxKeyboard */,
 				DB8CD70F2A6D2385004735C8 /* RxDataSources */,
+				B58D3C522A952683008F06D2 /* FirebaseAnalytics */,
+				B58D3C582A952683008F06D2 /* FirebaseMessaging */,
 			);
 			productName = FitHub;
 			productReference = DBFFD9E62A47E2E20008C2B5 /* FitHub.app */;
@@ -1741,6 +1808,7 @@
 				DB98D4E42A56E7970096D88F /* XCRemoteSwiftPackageReference "RxGesture" */,
 				DBDBA30A2A64D2B700F1CDA5 /* XCRemoteSwiftPackageReference "RxKeyboard" */,
 				DB8CD70E2A6D2385004735C8 /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				B58D3C512A952683008F06D2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = DBFFD9E72A47E2E20008C2B5 /* Products */;
 			projectDirPath = "";
@@ -1761,6 +1829,7 @@
 				DBFFDA322A4860330008C2B5 /* Pretendard-Regular.otf in Resources */,
 				DBFFDA302A4860330008C2B5 /* Pretendard-Medium.otf in Resources */,
 				DBFFDA312A4860330008C2B5 /* Pretendard-SemiBold.otf in Resources */,
+				B58D3C622A953F0B008F06D2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1798,6 +1867,7 @@
 				DB8CD7012A6D0BFE004735C8 /* PhoneVerificationRepository.swift in Sources */,
 				B58D3C3E2A94FDBD008F06D2 /* NotiSettingViewModel.swift in Sources */,
 				DB8CD7132A6D2855004735C8 /* SortSwitchView.swift in Sources */,
+				B58D3C492A951F12008F06D2 /* AlertViewModel.swift in Sources */,
 				B5705CC32A894D2C00408233 /* FitSiteDetailViewModel.swift in Sources */,
 				DB002BB42A67C332001B5672 /* CommunityViewController.swift in Sources */,
 				B5705CC72A894D9B00408233 /* FitSiteDetailViewController.swift in Sources */,
@@ -1826,6 +1896,7 @@
 				B58D3C0F2A939E76008F06D2 /* EditFitSiteViewModel.swift in Sources */,
 				B5B2C39E2A7DE8A1004FC66C /* RegistInfoRepository.swift in Sources */,
 				DB5D22302A546AB400B32485 /* PhoneVerificationViewModel.swift in Sources */,
+				B50CB9B52A9667E700BA78B0 /* AlramCell.swift in Sources */,
 				DB8CD71F2A6E164A004735C8 /* CommunityUseCase.swift in Sources */,
 				DB57122F2A7205DA00DCAD9C /* ResetPasswordRepository.swift in Sources */,
 				DB55B6C92A6BB28A006FEA7F /* PhoneNumLoginUseCase.swift in Sources */,
@@ -1897,6 +1968,7 @@
 				DB8CD7192A6E0B7D004735C8 /* CommunityViewModel.swift in Sources */,
 				DBFFD9EA2A47E2E20008C2B5 /* AppDelegate.swift in Sources */,
 				B5705C9B2A87EF1F00408233 /* CommentService.swift in Sources */,
+				B58D3C472A951DF4008F06D2 /* AlertDefaultView.swift in Sources */,
 				DB5DAB3D2A7BF2F8009AA427 /* HomeViewModel.swift in Sources */,
 				DB55B6D32A6C0855006FEA7F /* PhoneVerificationUseCase.swift in Sources */,
 				B5705CD12A8A930200408233 /* UpdateCertificationDTO.swift in Sources */,
@@ -1950,12 +2022,15 @@
 				B588B7E62A8544940031C723 /* TitleCell.swift in Sources */,
 				DB0D22132A76DAF600ABF6A2 /* CreateCertificationDTO.swift in Sources */,
 				DB51D2572A4BB8B5002415B0 /* AgreementViewModel.swift in Sources */,
+				B58D3C5D2A953922008F06D2 /* AlarmService.swift in Sources */,
 				DBFFD9EC2A47E2E20008C2B5 /* SceneDelegate.swift in Sources */,
 				B5ED127D2A8E7C77002769BE /* MyPageViewModel.swift in Sources */,
 				B58D3C352A94F693008F06D2 /* NotiSettingViewController.swift in Sources */,
 				B5ED132B2A9128DA002769BE /* CertificationDeleteRecordsDTO.swift in Sources */,
 				B5ED13202A90C986002769BE /* MyFeedViewController.swift in Sources */,
+				B58D3C4B2A951F78008F06D2 /* AlertUseCase.swift in Sources */,
 				B58D3C1D2A9441BB008F06D2 /* LogoutDTO.swift in Sources */,
+				B58D3C452A951DA5008F06D2 /* AlertViewController.swift in Sources */,
 				DB57123A2A72590B00DCAD9C /* OAuthRegistInputViewModel.swift in Sources */,
 				B5705CEC2A8B735F00408233 /* FitSiteScrapDTO.swift in Sources */,
 				DB57123C2A7259B700DCAD9C /* OAuthRegistInputUseCase.swift in Sources */,
@@ -1991,6 +2066,7 @@
 				B5705CDB2A8AA95C00408233 /* LevelInfoViewController.swift in Sources */,
 				B5705C852A8777EB00408233 /* CertificationDetailViewModel.swift in Sources */,
 				B5ED133B2A91C93C002769BE /* OtherUserInfoDTO.swift in Sources */,
+				B58D3C602A953A03008F06D2 /* AlarmListDTO.swift in Sources */,
 				DB51ECBD2A68E846009F4690 /* FitHubTopTabbar.swift in Sources */,
 				B5705D052A8C313600408233 /* SearchTotalSectionModel.swift in Sources */,
 				DBFFDA442A49BD910008C2B5 /* StandardButton.swift in Sources */,
@@ -1999,6 +2075,7 @@
 				DB5712462A72985D00DCAD9C /* CreateCertificationUseCase.swift in Sources */,
 				DBF125E32A5E885D004DA4B9 /* PasswordUseCase.swift in Sources */,
 				B5705CA82A89089900408233 /* StandardActionSheetAction.swift in Sources */,
+				B50CB9B12A96503600BA78B0 /* AlarmRepository.swift in Sources */,
 				DB8CD70B2A6D0E07004735C8 /* FindPWRepository.swift in Sources */,
 				B5ED13422A923B03002769BE /* EditCertificationUseCase.swift in Sources */,
 				B5B2C39C2A7DC980004FC66C /* CheckAuthDTO.swift in Sources */,
@@ -2013,12 +2090,14 @@
 				DB6CC3F32A70E59700C4C2BC /* RegistResponseDTO.swift in Sources */,
 				DBDBA30E2A64EC8200F1CDA5 /* NickNameDTO.swift in Sources */,
 				DB002BB82A67C36F001B5672 /* LookUpViewController.swift in Sources */,
+				B50CB9B32A96509200BA78B0 /* ConfirmAlertDTO.swift in Sources */,
 				DB8CD6FF2A6D0B7C004735C8 /* ProfileSettingRepository.swift in Sources */,
 				B5705CE12A8AB89600408233 /* LevelIconView.swift in Sources */,
 				B5705CCB2A895A0700408233 /* SimpleImageCell.swift in Sources */,
 				B5705CD32A8A933500408233 /* ReportCertificationDTO.swift in Sources */,
 				DBF125E72A5E9EDD004DA4B9 /* ProfileSettingUseCase.swift in Sources */,
 				B5705CEA2A8B661E00408233 /* BookMarkDefaultView.swift in Sources */,
+				B58D3C4D2A95203D008F06D2 /* CheckRemainAlarmDTO.swift in Sources */,
 				B58D3C302A94EBE3008F06D2 /* TermsDTO.swift in Sources */,
 				B5ED12752A8E73BB002769BE /* MyPageDTO.swift in Sources */,
 				DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */,
@@ -2101,7 +2180,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2113,7 +2192,7 @@
 		};
 		DBFFD9F92A47E2E40008C2B5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */;
+			baseConfigurationReference = B50CB9AF2A963D9400BA78B0 /* AppInfo_Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2157,7 +2236,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -2205,11 +2284,11 @@
 		};
 		DBFFD9FC2A47E2E40008C2B5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */;
+			baseConfigurationReference = B50CB9AF2A963D9400BA78B0 /* AppInfo_Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = FitHub/FitHub.entitlements;
+				CODE_SIGN_ENTITLEMENTS = FitHub/FitHubRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 19;
@@ -2263,6 +2342,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B58D3C512A952683008F06D2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 		DB8CD70E2A6D2385004735C8 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
@@ -2338,6 +2425,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B58D3C522A952683008F06D2 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B58D3C512A952683008F06D2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		B58D3C582A952683008F06D2 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B58D3C512A952683008F06D2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
 		DB8CD70F2A6D2385004735C8 /* RxDataSources */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DB8CD70E2A6D2385004735C8 /* XCRemoteSwiftPackageReference "RxDataSources" */;

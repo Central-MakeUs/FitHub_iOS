@@ -18,13 +18,18 @@ protocol MyPageUseCaseProtocol {
     func fetchPrivacyInfo() -> Single<PrivacyInfoDTO>
     func quitAuth() -> Single<Bool>
     func logout() -> Single<Bool>
+    
+    func checkRemainAlarm() -> Single<CheckRemainAlarmDTO>
 }
 
 final class MyPageUseCase: MyPageUseCaseProtocol {
     private let mypageRepository: MyPageRepositoryInterface
+    private let homeRepository: HomeRepositoryInterface
     
-    init(mypageRepository: MyPageRepositoryInterface) {
+    init(mypageRepository: MyPageRepositoryInterface,
+         homeRepository: HomeRepository) {
         self.mypageRepository = mypageRepository
+        self.homeRepository = homeRepository
     }
     
     func fetchMyPage() -> Single<MyPageDTO> {
@@ -61,5 +66,9 @@ final class MyPageUseCase: MyPageUseCaseProtocol {
     
     func logout() -> Single<Bool> {
         return mypageRepository.logout()
+    }
+    
+    func checkRemainAlarm() -> Single<CheckRemainAlarmDTO> {
+        return homeRepository.checkRemainAlarm()
     }
 }

@@ -75,6 +75,9 @@ final class CommunityViewController: BaseViewController {
         $0.isHidden = true
     }
     
+    let alertItem = UIBarButtonItem(image: UIImage(named: "Alert")?.withRenderingMode(.alwaysOriginal),
+                               style: .plain, target: nil, action: nil)
+    
     //MARK: - Init
     init(_ viewModel: CommunityViewModel) {
         self.viewModel = viewModel
@@ -98,6 +101,7 @@ final class CommunityViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.checkAlarm()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -122,12 +126,10 @@ final class CommunityViewController: BaseViewController {
     //MARK: - ConfigureNavigation
     override func configureNavigation() {
         super.configureNavigation()
-        let noti = UIBarButtonItem(image: UIImage(named: "Alert")?.withRenderingMode(.alwaysOriginal),
-                                   style: .plain, target: nil, action: nil)
         let bookmark = UIBarButtonItem(image: UIImage(named: "BookMark")?.withRenderingMode(.alwaysOriginal),
                                        style: .plain, target: nil, action: nil)
         
-        self.navigationItem.rightBarButtonItems = [noti,bookmark]
+        self.navigationItem.rightBarButtonItems = [alertItem,bookmark]
         
         self.navigationItem.titleView = searchBar
         
@@ -140,6 +142,14 @@ final class CommunityViewController: BaseViewController {
                 let bookMarkVC = BookMarkViewController(viewModel: BookMarkViewModel(usecase: usecase))
                 
                 self?.navigationController?.pushViewController(bookMarkVC, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        alertItem.rx.tap
+            .bind(onNext: { [weak self] in
+                let usecase = AlertUseCase(alarmRepo: AlarmRepository(service: AlarmService()))
+                let alertVC = AlertViewController(viewModel: AlertViewModel(usecase: usecase))
+                self?.navigationController?.pushViewController(alertVC, animated: true)
             })
             .disposed(by: disposeBag)
     }
@@ -255,6 +265,12 @@ final class CommunityViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
             
+        viewModel.alarmCheck
+            .bind(onNext: { [weak self] isRemain in
+                let image = isRemain ? UIImage(named: "AlertRemain") : UIImage(named: "Alert")
+                self?.alertItem.image = image?.withRenderingMode(.alwaysOriginal)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func closeCreateActionSheet() {
