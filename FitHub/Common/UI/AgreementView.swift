@@ -22,7 +22,9 @@ final class AgreementView: UIView {
         $0.textColor = .textSub02
     }
     
-    let disclosureButton = UIButton()
+    let disclosureButton = UIButton(type: .system).then {
+        $0.setImage(UIImage(named: "Disclosure")?.withRenderingMode(.alwaysOriginal), for: .normal)
+    }
     
     //MARK: - Init
     init(_ content: String, isRequired: Bool) {

@@ -56,6 +56,7 @@ final class SearchViewController: BaseViewController {
     
     private lazy var topTabBarCollectionView = UICollectionView(frame: .zero,
                                                                 collectionViewLayout: createTopTabBar()).then {
+        $0.bounces = false
         $0.register(TopTabBarItemCell.self, forCellWithReuseIdentifier: TopTabBarItemCell.identifier)
         $0.backgroundColor = .clear
     }

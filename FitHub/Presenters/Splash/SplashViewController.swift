@@ -23,7 +23,12 @@ final class SplashViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        viewModel.checkUserLoginStatus()
+        if let showOnBoarding = UserDefaults.standard.object(forKey: "showOnBoarding") as? Bool,
+           !showOnBoarding  {
+            viewModel.checkUserLoginStatus()
+        } else {
+            showOnboardingVC()
+        }
     }
     
     override func setupBinding() {
@@ -53,5 +58,10 @@ final class SplashViewController: BaseViewController {
                 self?.present(errorVC, animated: false)
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func showOnboardingVC() {
+        let onboardingVC = OnBoardingViewController()
+        self.present(onboardingVC, animated: true)
     }
 }

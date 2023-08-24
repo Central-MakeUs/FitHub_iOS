@@ -31,12 +31,15 @@ final class CommunityViewController: BaseViewController {
     
     private lazy var topTabBarCollectionView = UICollectionView(frame: .zero,
                                                            collectionViewLayout: createTopTabBar()).then {
+        $0.bounces = false
         $0.register(TopTabBarItemCell.self, forCellWithReuseIdentifier: TopTabBarItemCell.identifier)
         $0.backgroundColor = .clear
     }
     
     private lazy var categoryCollectionView = UICollectionView(frame: .zero,
                                                                collectionViewLayout: self.createLayout()).then {
+        $0.showsHorizontalScrollIndicator = false
+        $0.bounces = false
         $0.backgroundColor = .clear
         $0.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifier)
     }
@@ -445,7 +448,7 @@ extension CommunityViewController {
         
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        
+
         return UICollectionViewCompositionalLayout(section: section)
     }
     
@@ -462,7 +465,6 @@ extension CommunityViewController {
         group.interItemSpacing = .fixed(5)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .none
         section.interGroupSpacing = 5
         
         return UICollectionViewCompositionalLayout(section: section)
@@ -476,6 +478,7 @@ extension CommunityViewController {
                                                        subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .none
         
         return UICollectionViewCompositionalLayout(section: section)
     }

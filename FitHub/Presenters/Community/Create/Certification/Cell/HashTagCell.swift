@@ -123,6 +123,7 @@ final class HashTagCell: UICollectionViewCell {
     
     func configureLabel(_ name: String) {
         self.tagTextField.text = name
+        self.layer.borderColor = UIColor.iconSub.cgColor
     }
     
     func configureAddCell(_ isEnable: Bool) {

@@ -38,7 +38,7 @@ final class OAuthRegistInputViewController: BaseViewController {
     }
     
     private let nextButton = StandardButton(type: .system).then {
-        $0.setTitle("인증번호 전송", for: .normal)
+        $0.setTitle("다음", for: .normal)
         $0.layer.cornerRadius = 0
         $0.isEnabled = false
     }

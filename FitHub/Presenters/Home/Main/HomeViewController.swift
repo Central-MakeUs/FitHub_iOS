@@ -13,6 +13,7 @@ final class HomeViewController: BaseViewController {
     private let viewModel: HomeViewModel
     
     private let scrollView = UIScrollView().then {
+        $0.showsVerticalScrollIndicator = false
         $0.isScrollEnabled = true
     }
     

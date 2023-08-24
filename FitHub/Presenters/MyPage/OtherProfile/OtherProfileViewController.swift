@@ -52,6 +52,7 @@ final class OtherProfileViewController: BaseViewController {
     
     private lazy var categoryCollectionView = UICollectionView(frame: .zero,
                                                                collectionViewLayout: self.createLayout()).then {
+        $0.bounces = false
         $0.backgroundColor = .clear
         $0.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifier)
     }

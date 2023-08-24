@@ -53,7 +53,7 @@ final class EditFitSiteViewModel: ViewModelType {
         self.usecase = usecase
         self.articleId = info.articleId
         self.remainImageList = info.articlePictureList.pictureList.map { $0.pictureUrl }
-        
+        print(info.hashtags.hashtags.map { $0.name })
         var hashTags = info.hashtags.hashtags.map { $0.name }
         if !hashTags.isEmpty { hashTags[0] = "" }
         
