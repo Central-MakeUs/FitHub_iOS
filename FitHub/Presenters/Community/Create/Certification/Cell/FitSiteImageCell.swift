@@ -48,7 +48,6 @@ final class FitSiteImageCell: UICollectionViewCell {
         super.prepareForReuse()
         self.layer.borderColor = UIColor.iconEnabled.cgColor
         self.layer.borderWidth = 0
-//        self.imageView.image = nil
         self.cameraImageView.isHidden = true
         self.photoCountLabel.isHidden = true
         self.deleteImageView.isHidden = true

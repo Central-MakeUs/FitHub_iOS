@@ -49,12 +49,14 @@ final class MyFeedViewController: BaseViewController {
     
     private lazy var topTabBarCollectionView = UICollectionView(frame: .zero,
                                                            collectionViewLayout: createTopTabBar()).then {
+        $0.bounces = false
         $0.register(TopTabBarItemCell.self, forCellWithReuseIdentifier: TopTabBarItemCell.identifier)
         $0.backgroundColor = .clear
     }
     
     private lazy var categoryCollectionView = UICollectionView(frame: .zero,
                                                                collectionViewLayout: self.createLayout()).then {
+        $0.bounces = false
         $0.backgroundColor = .clear
         $0.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifier)
     }

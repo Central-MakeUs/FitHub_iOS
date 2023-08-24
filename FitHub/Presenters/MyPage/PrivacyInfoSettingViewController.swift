@@ -131,6 +131,7 @@ final class PrivacyInfoSettingViewController: BaseViewController {
             $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(0)
         }
+        changePasswordItem.isHidden = true
     }
     
     override func addSubView() {

@@ -38,6 +38,7 @@ final class CommunityViewController: BaseViewController {
     
     private lazy var categoryCollectionView = UICollectionView(frame: .zero,
                                                                collectionViewLayout: self.createLayout()).then {
+        $0.showsHorizontalScrollIndicator = false
         $0.bounces = false
         $0.backgroundColor = .clear
         $0.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifier)
@@ -446,8 +447,8 @@ extension CommunityViewController {
         group.interItemSpacing = .fixed(8)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .none
-        
+        section.orthogonalScrollingBehavior = .continuous
+
         return UICollectionViewCompositionalLayout(section: section)
     }
     
@@ -464,7 +465,6 @@ extension CommunityViewController {
         group.interItemSpacing = .fixed(5)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuous
         section.interGroupSpacing = 5
         
         return UICollectionViewCompositionalLayout(section: section)

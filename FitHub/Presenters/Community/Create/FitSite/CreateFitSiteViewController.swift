@@ -22,6 +22,7 @@ final class CreateFitSiteViewController: BaseViewController {
     }
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout()).then {
+        $0.showsVerticalScrollIndicator = false
         $0.register(SportFooterView.self, forSupplementaryViewOfKind: SportFooterView.reuseIdentifier, withReuseIdentifier: SportFooterView.identifier)
         $0.register(SportHeaderView.self, forSupplementaryViewOfKind: SportHeaderView.reuseIdentifier, withReuseIdentifier: SportHeaderView.identifier)
         $0.register(HashTagFooterView.self, forSupplementaryViewOfKind: HashTagFooterView.reuseIdentifier, withReuseIdentifier: HashTagFooterView.identifier)
@@ -126,6 +127,7 @@ final class CreateFitSiteViewController: BaseViewController {
                     var newImages = self.viewModel.imageSource.value
                     newImages.remove(at: itemIdx)
                     self.viewModel.imageSource.accept(newImages)
+                    self.view.layoutIfNeeded()
                 }
             })
             .disposed(by: disposeBag)
