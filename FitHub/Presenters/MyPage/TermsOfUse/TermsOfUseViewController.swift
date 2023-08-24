@@ -57,7 +57,6 @@ final class TermsOfUseViewController: BaseViewController {
         guard let termURL = URL(string: item.link)   else { return }
 
         let safariViewController = SFSafariViewController(url: termURL)
-//        safariViewController.delegate = self
         safariViewController.modalPresentationStyle = .automatic
         self.present(safariViewController, animated: true, completion: nil)
     }

@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxRelay
+import SafariServices
 
 final class AgreementViewController: BaseViewController {
     //MARK: - Propeties
@@ -43,7 +44,9 @@ final class AgreementViewController: BaseViewController {
     
     private let locationAgreementView = AgreementView("위치 기반 서비스 약관에 동의합니다.", isRequired: true)
     
-    private let ageAgreementView = AgreementView("만 14세 이상 입니다.", isRequired: true)
+    private let ageAgreementView = AgreementView("만 14세 이상 입니다.", isRequired: true).then {
+        $0.disclosureButton.isHidden = true
+    }
     
     private let marketingAgreementView = AgreementView("마케팅 정보 수신에 동의합니다.", isRequired: false)
     
@@ -127,13 +130,45 @@ final class AgreementViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         self.nextButton.rx.tap
-            .bind {
-                self.pushRegistInfoViewController()
+            .bind { [weak self] in
+                self?.pushRegistInfoViewController()
+            }
+            .disposed(by: disposeBag)
+        
+        privateAgreementView.disclosureButton.rx.tap
+            .bind { [weak self] in
+                self?.openTermOfUseContentWithSafari(urlString: "https://fithub-pro.notion.site/8cd486867f66444ea28a36cbe67d4883?pvs=4")
+            }
+            .disposed(by: disposeBag)
+        
+        useAgreementView.disclosureButton.rx.tap
+            .bind { [weak self] in
+                self?.openTermOfUseContentWithSafari(urlString: "https://fithub-pro.notion.site/ad824d4667a4464a88884eb9cb94a583")
+            }
+            .disposed(by: disposeBag)
+        
+        locationAgreementView.disclosureButton.rx.tap
+            .bind { [weak self] in
+                self?.openTermOfUseContentWithSafari(urlString: "https://fithub-pro.notion.site/fe5b8bae5f674605a86bc3f01bc17ebd?pvs=4")
+            }
+            .disposed(by: disposeBag)
+        
+        marketingAgreementView.disclosureButton.rx.tap
+            .bind { [weak self] in
+                self?.openTermOfUseContentWithSafari(urlString: "https://fithub-pro.notion.site/fce06470eb59435890a1aa5556b3ac66?pvs=4")
             }
             .disposed(by: disposeBag)
     }
     
     //MARK: - 화면 이동
+    private func openTermOfUseContentWithSafari(urlString: String) {
+        guard let termURL = URL(string: urlString)   else { return }
+
+        let safariViewController = SFSafariViewController(url: termURL)
+        safariViewController.modalPresentationStyle = .automatic
+        self.present(safariViewController, animated: true, completion: nil)
+    }
+    
     private func pushRegistInfoViewController() {
         let userInfo = self.viewModel.usecase.registUserInfo
         if self.viewModel.registType == .OAuth {

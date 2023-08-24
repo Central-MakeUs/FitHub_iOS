@@ -12,7 +12,6 @@
 		B50CB9B52A9667E700BA78B0 /* AlramCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50CB9B42A9667E700BA78B0 /* AlramCell.swift */; };
 		B50CB9B72A976DD500BA78B0 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50CB9B62A976DD500BA78B0 /* OnBoardingViewController.swift */; };
 		B50CB9BB2A97744000BA78B0 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50CB9BA2A97744000BA78B0 /* OnboardingView.swift */; };
-		B50CB9BD2A9776A300BA78B0 /* SecondOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50CB9BC2A9776A300BA78B0 /* SecondOnboardingView.swift */; };
 		B5705C772A866AC600408233 /* EditFitSiteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C762A866AC600408233 /* EditFitSiteModel.swift */; };
 		B5705C792A86762D00408233 /* CreateFitSiteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C782A86762D00408233 /* CreateFitSiteUseCase.swift */; };
 		B5705C7B2A86790100408233 /* CreateFitSiteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C7A2A86790100408233 /* CreateFitSiteRepository.swift */; };
@@ -312,7 +311,6 @@
 		B50CB9B42A9667E700BA78B0 /* AlramCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlramCell.swift; sourceTree = "<group>"; };
 		B50CB9B62A976DD500BA78B0 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		B50CB9BA2A97744000BA78B0 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		B50CB9BC2A9776A300BA78B0 /* SecondOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondOnboardingView.swift; sourceTree = "<group>"; };
 		B5705C762A866AC600408233 /* EditFitSiteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteModel.swift; sourceTree = "<group>"; };
 		B5705C782A86762D00408233 /* CreateFitSiteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFitSiteUseCase.swift; sourceTree = "<group>"; };
 		B5705C7A2A86790100408233 /* CreateFitSiteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFitSiteRepository.swift; sourceTree = "<group>"; };
@@ -810,7 +808,6 @@
 				B58D3C402A9506C9008F06D2 /* ExceptionViewController.swift */,
 				B50CB9B62A976DD500BA78B0 /* OnBoardingViewController.swift */,
 				B50CB9BA2A97744000BA78B0 /* OnboardingView.swift */,
-				B50CB9BC2A9776A300BA78B0 /* SecondOnboardingView.swift */,
 			);
 			path = OnBorading;
 			sourceTree = "<group>";
@@ -2088,7 +2085,6 @@
 				B5705CA82A89089900408233 /* StandardActionSheetAction.swift in Sources */,
 				B50CB9B12A96503600BA78B0 /* AlarmRepository.swift in Sources */,
 				DB8CD70B2A6D0E07004735C8 /* FindPWRepository.swift in Sources */,
-				B50CB9BD2A9776A300BA78B0 /* SecondOnboardingView.swift in Sources */,
 				B5ED13422A923B03002769BE /* EditCertificationUseCase.swift in Sources */,
 				B5B2C39C2A7DC980004FC66C /* CheckAuthDTO.swift in Sources */,
 				DB97F83E2A52C1E3009C09A1 /* PaddingLabel.swift in Sources */,
