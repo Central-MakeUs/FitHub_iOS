@@ -2267,6 +2267,7 @@
 				DEVELOPMENT_TEAM = V2YNV9QV27;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FitHub/App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FitHub;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "프로필 설정 및 운동인증, 게시글 설정에 사용하기 위해 앨범 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -2304,6 +2305,7 @@
 				DEVELOPMENT_TEAM = V2YNV9QV27;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FitHub/App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FitHub;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "프로필 설정 및 운동인증, 게시글 설정에 사용하기 위해 앨범 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
