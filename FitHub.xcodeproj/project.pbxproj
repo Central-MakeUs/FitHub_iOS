@@ -77,12 +77,6 @@
 		B5705D092A8C410C00408233 /* SearchTotalHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705D082A8C410C00408233 /* SearchTotalHeaderView.swift */; };
 		B5705D0B2A8CF50700408233 /* EmptyResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705D0A2A8CF50700408233 /* EmptyResultView.swift */; };
 		B580D3452A9B1C4300D95AB4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B580D3442A9B1C4300D95AB4 /* CoreLocation.framework */; };
-		B580D3472A9B1C4F00D95AB4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B580D3462A9B1C4E00D95AB4 /* QuartzCore.framework */; };
-		B580D3492A9B1C5F00D95AB4 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B580D3482A9B1C5F00D95AB4 /* libc++.tbd */; };
-		B580D34B2A9B1C6800D95AB4 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B580D34A2A9B1C6700D95AB4 /* libxml2.tbd */; };
-		B580D34D2A9B1C7100D95AB4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B580D34C2A9B1C7100D95AB4 /* libsqlite3.tbd */; };
-		B580D34F2A9B1C8C00D95AB4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B580D34E2A9B1C8C00D95AB4 /* SystemConfiguration.framework */; };
-		B580D3512A9B1CA200D95AB4 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B580D3502A9B1CA200D95AB4 /* Metal.framework */; };
 		B588B7D72A828BD00031C723 /* FitSiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7D62A828BD00031C723 /* FitSiteCell.swift */; };
 		B588B7DB2A83AD710031C723 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DA2A83AD710031C723 /* ArticleService.swift */; };
 		B588B7E02A85405B0031C723 /* EditFitSiteSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DF2A85405B0031C723 /* EditFitSiteSectionModel.swift */; };
@@ -120,8 +114,6 @@
 		B58D3C5D2A953922008F06D2 /* AlarmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C5C2A953922008F06D2 /* AlarmService.swift */; };
 		B58D3C602A953A03008F06D2 /* AlarmListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C5F2A953A03008F06D2 /* AlarmListDTO.swift */; };
 		B58D3C622A953F0B008F06D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B58D3C612A953F0B008F06D2 /* GoogleService-Info.plist */; };
-		B5AA9EE92A9B288100D37E2C /* DaumMap.embeddedframework in Resources */ = {isa = PBXBuildFile; fileRef = B5AA9EE82A9B288100D37E2C /* DaumMap.embeddedframework */; };
-		B5AA9EEB2A9B28A400D37E2C /* DaumMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AA9EEA2A9B28A400D37E2C /* DaumMap.framework */; };
 		B5AA9EEF2A9B842800D37E2C /* FacilitiesDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AA9EEE2A9B842800D37E2C /* FacilitiesDTO.swift */; };
 		B5AA9EF12A9B84FD00D37E2C /* FacilitySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AA9EF02A9B84FD00D37E2C /* FacilitySearch.swift */; };
 		B5AA9EF42A9B86B300D37E2C /* LookUpRepositiory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AA9EF32A9B86B300D37E2C /* LookUpRepositiory.swift */; };
@@ -397,7 +389,6 @@
 		B580D34C2A9B1C7100D95AB4 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		B580D34E2A9B1C8C00D95AB4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B580D3502A9B1CA200D95AB4 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
-		B580D3522A9B1D2F00D95AB4 /* KakaoMapBridgeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KakaoMapBridgeHeader.h; sourceTree = "<group>"; };
 		B588B7D62A828BD00031C723 /* FitSiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteCell.swift; sourceTree = "<group>"; };
 		B588B7DA2A83AD710031C723 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		B588B7DF2A85405B0031C723 /* EditFitSiteSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteSectionModel.swift; sourceTree = "<group>"; };
@@ -434,8 +425,6 @@
 		B58D3C5C2A953922008F06D2 /* AlarmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmService.swift; sourceTree = "<group>"; };
 		B58D3C5F2A953A03008F06D2 /* AlarmListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmListDTO.swift; sourceTree = "<group>"; };
 		B58D3C612A953F0B008F06D2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		B5AA9EE82A9B288100D37E2C /* DaumMap.embeddedframework */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DaumMap.embeddedframework; sourceTree = "<group>"; };
-		B5AA9EEA2A9B28A400D37E2C /* DaumMap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DaumMap.framework; path = FitHub/DaumMap.embeddedframework/DaumMap.framework; sourceTree = "<group>"; };
 		B5AA9EEE2A9B842800D37E2C /* FacilitiesDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitiesDTO.swift; sourceTree = "<group>"; };
 		B5AA9EF02A9B84FD00D37E2C /* FacilitySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySearch.swift; sourceTree = "<group>"; };
 		B5AA9EF32A9B86B300D37E2C /* LookUpRepositiory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpRepositiory.swift; sourceTree = "<group>"; };
@@ -628,17 +617,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B580D3512A9B1CA200D95AB4 /* Metal.framework in Frameworks */,
-				B580D34F2A9B1C8C00D95AB4 /* SystemConfiguration.framework in Frameworks */,
-				B580D34D2A9B1C7100D95AB4 /* libsqlite3.tbd in Frameworks */,
-				B580D34B2A9B1C6800D95AB4 /* libxml2.tbd in Frameworks */,
-				B580D3492A9B1C5F00D95AB4 /* libc++.tbd in Frameworks */,
-				B580D3472A9B1C4F00D95AB4 /* QuartzCore.framework in Frameworks */,
 				B580D3452A9B1C4300D95AB4 /* CoreLocation.framework in Frameworks */,
 				B58D3C592A952683008F06D2 /* FirebaseMessaging in Frameworks */,
 				DBFFDA1A2A47E8A70008C2B5 /* RxKakaoSDKUser in Frameworks */,
 				DBFFDA0E2A47E6E60008C2B5 /* Alamofire in Frameworks */,
-				B5AA9EEB2A9B28A400D37E2C /* DaumMap.framework in Frameworks */,
 				DBFFDA0B2A47E64C0008C2B5 /* Then in Frameworks */,
 				DBDBA30C2A64D2B700F1CDA5 /* RxKeyboard in Frameworks */,
 				DBFFDA182A47E8A70008C2B5 /* RxKakaoSDKShare in Frameworks */,
@@ -797,7 +779,6 @@
 		B580D3432A9B1C4300D95AB4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B5AA9EEA2A9B28A400D37E2C /* DaumMap.framework */,
 				B580D3502A9B1CA200D95AB4 /* Metal.framework */,
 				B580D34E2A9B1C8C00D95AB4 /* SystemConfiguration.framework */,
 				B580D34C2A9B1C7100D95AB4 /* libsqlite3.tbd */,
@@ -1758,8 +1739,6 @@
 		DBFFD9E82A47E2E20008C2B5 /* FitHub */ = {
 			isa = PBXGroup;
 			children = (
-				B5AA9EE82A9B288100D37E2C /* DaumMap.embeddedframework */,
-				B580D3522A9B1D2F00D95AB4 /* KakaoMapBridgeHeader.h */,
 				B58D3C502A952616008F06D2 /* FitHubRelease.entitlements */,
 				DBD8526B2A5C4BB400588BF4 /* FitHub.entitlements */,
 				DBFF259B2A5B981E00CF6DD4 /* App */,
@@ -1902,7 +1881,6 @@
 				DBDBA30A2A64D2B700F1CDA5 /* XCRemoteSwiftPackageReference "RxKeyboard" */,
 				DB8CD70E2A6D2385004735C8 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				B58D3C512A952683008F06D2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				B580D3402A9B145D00D95AB4 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */,
 			);
 			productRefGroup = DBFFD9E72A47E2E20008C2B5 /* Products */;
 			projectDirPath = "";
@@ -1922,7 +1900,6 @@
 				DBFFD9F32A47E2E40008C2B5 /* Assets.xcassets in Resources */,
 				DBFFDA322A4860330008C2B5 /* Pretendard-Regular.otf in Resources */,
 				DBFFDA302A4860330008C2B5 /* Pretendard-Medium.otf in Resources */,
-				B5AA9EE92A9B288100D37E2C /* DaumMap.embeddedframework in Resources */,
 				DBFFDA312A4860330008C2B5 /* Pretendard-SemiBold.otf in Resources */,
 				B58D3C622A953F0B008F06D2 /* GoogleService-Info.plist in Resources */,
 			);
@@ -2359,7 +2336,7 @@
 				CODE_SIGN_ENTITLEMENTS = FitHub/FitHub.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = V2YNV9QV27;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2390,7 +2367,6 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/sinsang/Documents/Developments/iOS/Project/FitHub_iOS/FitHub/KakaoMapBridgeHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2406,7 +2382,7 @@
 				CODE_SIGN_ENTITLEMENTS = FitHub/FitHubRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = V2YNV9QV27;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2437,7 +2413,6 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/sinsang/Documents/Developments/iOS/Project/FitHub_iOS/FitHub/KakaoMapBridgeHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2467,14 +2442,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B580D3402A9B145D00D95AB4 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kakao-mapsSDK/KakaoMapsSDK-SPM.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 		B58D3C512A952683008F06D2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
