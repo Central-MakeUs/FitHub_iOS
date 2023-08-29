@@ -172,9 +172,13 @@ final class AgreementViewController: BaseViewController {
     private func pushRegistInfoViewController() {
         let userInfo = self.viewModel.usecase.registUserInfo
         if self.viewModel.registType == .OAuth {
-            let usecase = OAuthRegistInputUseCase(registUserInfo: userInfo)
-            let oAuthRegistInputVC = OAuthRegistInputViewController(OAuthRegistInputViewModel(usecase))
-            self.navigationController?.pushViewController(oAuthRegistInputVC, animated: true)
+//            let usecase = OAuthRegistInputUseCase(registUserInfo: userInfo)
+//            let oAuthRegistInputVC = OAuthRegistInputViewController(OAuthRegistInputViewModel(usecase))
+            let usecase = ProfileSettingUseCase(repository: ProfileSettingRepository(UserService()),
+                                                userInfo: userInfo)
+            let profileSettingVC = ProfileSettingViewController(ProfileSettingViewModel(usecase,
+                                                                                        registType: .OAuth))
+            self.navigationController?.pushViewController(profileSettingVC, animated: true)
         } else {
             let usecase = RegistInfoUseCase(userInfo,
                                             repository: RegistInfoRepository(service: UserService()))

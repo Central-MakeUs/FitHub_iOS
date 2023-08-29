@@ -15,11 +15,11 @@ class UserService {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
         let fcmToken = UserDefaults.standard.object(forKey: "fcmToken") as? String ?? ""
         let urlString = baseURL + "users/login/social/apple"
-        let paramter: Parameters = ["identityToken" : token,
+        let parameter: Parameters = ["identityToken" : token,
                                     "fcmToken" : fcmToken]
         
         return Single<OAuthLoginDTO>.create { observer in
-            AF.request(urlString, method: .post, parameters: paramter, encoding: JSONEncoding.default)
+            AF.request(urlString, method: .post, parameters: parameter, encoding: JSONEncoding.default)
                 .responseDecodable(of: BaseResponse<OAuthLoginDTO>.self) { res in
                     switch res.result {
                     case .success(let response):
@@ -610,6 +610,15 @@ class UserService {
 
         return Single<BaseResponse<OtherUserInfoDTO>>.create { emitter in
             AF.request(urlString, interceptor: AuthManager())
+                .responseString() { res in
+                    switch res.result {
+                    case .success(let response):
+                        print(response)
+                    case .failure(let error):
+                        print(error)
+//                        emitter(.failure(error))
+                    }
+                }
             .responseDecodable(of: BaseResponse<OtherUserInfoDTO>.self) { res in
                 switch res.result {
                 case .success(let response):

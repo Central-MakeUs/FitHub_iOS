@@ -76,6 +76,13 @@
 		B5705D072A8C33A900408233 /* FitSiteCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705D062A8C33A900408233 /* FitSiteCollectionCell.swift */; };
 		B5705D092A8C410C00408233 /* SearchTotalHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705D082A8C410C00408233 /* SearchTotalHeaderView.swift */; };
 		B5705D0B2A8CF50700408233 /* EmptyResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705D0A2A8CF50700408233 /* EmptyResultView.swift */; };
+		B580D3452A9B1C4300D95AB4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B580D3442A9B1C4300D95AB4 /* CoreLocation.framework */; };
+		B580D3472A9B1C4F00D95AB4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B580D3462A9B1C4E00D95AB4 /* QuartzCore.framework */; };
+		B580D3492A9B1C5F00D95AB4 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B580D3482A9B1C5F00D95AB4 /* libc++.tbd */; };
+		B580D34B2A9B1C6800D95AB4 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B580D34A2A9B1C6700D95AB4 /* libxml2.tbd */; };
+		B580D34D2A9B1C7100D95AB4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B580D34C2A9B1C7100D95AB4 /* libsqlite3.tbd */; };
+		B580D34F2A9B1C8C00D95AB4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B580D34E2A9B1C8C00D95AB4 /* SystemConfiguration.framework */; };
+		B580D3512A9B1CA200D95AB4 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B580D3502A9B1CA200D95AB4 /* Metal.framework */; };
 		B588B7D72A828BD00031C723 /* FitSiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7D62A828BD00031C723 /* FitSiteCell.swift */; };
 		B588B7DB2A83AD710031C723 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DA2A83AD710031C723 /* ArticleService.swift */; };
 		B588B7E02A85405B0031C723 /* EditFitSiteSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DF2A85405B0031C723 /* EditFitSiteSectionModel.swift */; };
@@ -113,6 +120,14 @@
 		B58D3C5D2A953922008F06D2 /* AlarmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C5C2A953922008F06D2 /* AlarmService.swift */; };
 		B58D3C602A953A03008F06D2 /* AlarmListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D3C5F2A953A03008F06D2 /* AlarmListDTO.swift */; };
 		B58D3C622A953F0B008F06D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B58D3C612A953F0B008F06D2 /* GoogleService-Info.plist */; };
+		B5AA9EE92A9B288100D37E2C /* DaumMap.embeddedframework in Resources */ = {isa = PBXBuildFile; fileRef = B5AA9EE82A9B288100D37E2C /* DaumMap.embeddedframework */; };
+		B5AA9EEB2A9B28A400D37E2C /* DaumMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AA9EEA2A9B28A400D37E2C /* DaumMap.framework */; };
+		B5AA9EEF2A9B842800D37E2C /* FacilitiesDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AA9EEE2A9B842800D37E2C /* FacilitiesDTO.swift */; };
+		B5AA9EF12A9B84FD00D37E2C /* FacilitySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AA9EF02A9B84FD00D37E2C /* FacilitySearch.swift */; };
+		B5AA9EF42A9B86B300D37E2C /* LookUpRepositiory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AA9EF32A9B86B300D37E2C /* LookUpRepositiory.swift */; };
+		B5AA9EF72A9B87B400D37E2C /* LookUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AA9EF62A9B87B400D37E2C /* LookUpUseCase.swift */; };
+		B5AA9EF92A9B884600D37E2C /* LookUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AA9EF82A9B884600D37E2C /* LookUpViewModel.swift */; };
+		B5AA9EFC2A9DB8A100D37E2C /* LookUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AA9EFB2A9DB8A100D37E2C /* LookUpButton.swift */; };
 		B5B2C3942A7D097E004FC66C /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3932A7D097E004FC66C /* UILabel+.swift */; };
 		B5B2C3972A7D0F37004FC66C /* RankStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3962A7D0F37004FC66C /* RankStatus.swift */; };
 		B5B2C3992A7D2CEB004FC66C /* GradeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B2C3982A7D2CEB004FC66C /* GradeType.swift */; };
@@ -375,6 +390,14 @@
 		B5705D062A8C33A900408233 /* FitSiteCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteCollectionCell.swift; sourceTree = "<group>"; };
 		B5705D082A8C410C00408233 /* SearchTotalHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTotalHeaderView.swift; sourceTree = "<group>"; };
 		B5705D0A2A8CF50700408233 /* EmptyResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultView.swift; sourceTree = "<group>"; };
+		B580D3442A9B1C4300D95AB4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B580D3462A9B1C4E00D95AB4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B580D3482A9B1C5F00D95AB4 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		B580D34A2A9B1C6700D95AB4 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		B580D34C2A9B1C7100D95AB4 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		B580D34E2A9B1C8C00D95AB4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B580D3502A9B1CA200D95AB4 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		B580D3522A9B1D2F00D95AB4 /* KakaoMapBridgeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KakaoMapBridgeHeader.h; sourceTree = "<group>"; };
 		B588B7D62A828BD00031C723 /* FitSiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteCell.swift; sourceTree = "<group>"; };
 		B588B7DA2A83AD710031C723 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		B588B7DF2A85405B0031C723 /* EditFitSiteSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteSectionModel.swift; sourceTree = "<group>"; };
@@ -411,6 +434,14 @@
 		B58D3C5C2A953922008F06D2 /* AlarmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmService.swift; sourceTree = "<group>"; };
 		B58D3C5F2A953A03008F06D2 /* AlarmListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmListDTO.swift; sourceTree = "<group>"; };
 		B58D3C612A953F0B008F06D2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B5AA9EE82A9B288100D37E2C /* DaumMap.embeddedframework */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DaumMap.embeddedframework; sourceTree = "<group>"; };
+		B5AA9EEA2A9B28A400D37E2C /* DaumMap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DaumMap.framework; path = FitHub/DaumMap.embeddedframework/DaumMap.framework; sourceTree = "<group>"; };
+		B5AA9EEE2A9B842800D37E2C /* FacilitiesDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitiesDTO.swift; sourceTree = "<group>"; };
+		B5AA9EF02A9B84FD00D37E2C /* FacilitySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySearch.swift; sourceTree = "<group>"; };
+		B5AA9EF32A9B86B300D37E2C /* LookUpRepositiory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpRepositiory.swift; sourceTree = "<group>"; };
+		B5AA9EF62A9B87B400D37E2C /* LookUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpUseCase.swift; sourceTree = "<group>"; };
+		B5AA9EF82A9B884600D37E2C /* LookUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpViewModel.swift; sourceTree = "<group>"; };
+		B5AA9EFB2A9DB8A100D37E2C /* LookUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpButton.swift; sourceTree = "<group>"; };
 		B5B2C3902A7C8261004FC66C /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
 		B5B2C3932A7D097E004FC66C /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		B5B2C3962A7D0F37004FC66C /* RankStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankStatus.swift; sourceTree = "<group>"; };
@@ -597,9 +628,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B580D3512A9B1CA200D95AB4 /* Metal.framework in Frameworks */,
+				B580D34F2A9B1C8C00D95AB4 /* SystemConfiguration.framework in Frameworks */,
+				B580D34D2A9B1C7100D95AB4 /* libsqlite3.tbd in Frameworks */,
+				B580D34B2A9B1C6800D95AB4 /* libxml2.tbd in Frameworks */,
+				B580D3492A9B1C5F00D95AB4 /* libc++.tbd in Frameworks */,
+				B580D3472A9B1C4F00D95AB4 /* QuartzCore.framework in Frameworks */,
+				B580D3452A9B1C4300D95AB4 /* CoreLocation.framework in Frameworks */,
 				B58D3C592A952683008F06D2 /* FirebaseMessaging in Frameworks */,
 				DBFFDA1A2A47E8A70008C2B5 /* RxKakaoSDKUser in Frameworks */,
 				DBFFDA0E2A47E6E60008C2B5 /* Alamofire in Frameworks */,
+				B5AA9EEB2A9B28A400D37E2C /* DaumMap.framework in Frameworks */,
 				DBFFDA0B2A47E64C0008C2B5 /* Then in Frameworks */,
 				DBDBA30C2A64D2B700F1CDA5 /* RxKeyboard in Frameworks */,
 				DBFFDA182A47E8A70008C2B5 /* RxKakaoSDKShare in Frameworks */,
@@ -755,6 +794,21 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		B580D3432A9B1C4300D95AB4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B5AA9EEA2A9B28A400D37E2C /* DaumMap.framework */,
+				B580D3502A9B1CA200D95AB4 /* Metal.framework */,
+				B580D34E2A9B1C8C00D95AB4 /* SystemConfiguration.framework */,
+				B580D34C2A9B1C7100D95AB4 /* libsqlite3.tbd */,
+				B580D34A2A9B1C6700D95AB4 /* libxml2.tbd */,
+				B580D3482A9B1C5F00D95AB4 /* libc++.tbd */,
+				B580D3462A9B1C4E00D95AB4 /* QuartzCore.framework */,
+				B580D3442A9B1C4300D95AB4 /* CoreLocation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B588B7DE2A8540070031C723 /* FitSite */ = {
 			isa = PBXGroup;
 			children = (
@@ -839,6 +893,30 @@
 				B50CB9B22A96509200BA78B0 /* ConfirmAlertDTO.swift */,
 			);
 			path = Alarm;
+			sourceTree = "<group>";
+		};
+		B5AA9EF22A9B866700D37E2C /* LookUp */ = {
+			isa = PBXGroup;
+			children = (
+				B5AA9EF32A9B86B300D37E2C /* LookUpRepositiory.swift */,
+			);
+			path = LookUp;
+			sourceTree = "<group>";
+		};
+		B5AA9EF52A9B87A800D37E2C /* LookUp */ = {
+			isa = PBXGroup;
+			children = (
+				B5AA9EF62A9B87B400D37E2C /* LookUpUseCase.swift */,
+			);
+			path = LookUp;
+			sourceTree = "<group>";
+		};
+		B5AA9EFA2A9DB88500D37E2C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5AA9EFB2A9DB8A100D37E2C /* LookUpButton.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		B5B2C3952A7D0F23004FC66C /* Home */ = {
@@ -1001,7 +1079,9 @@
 		DB002BB52A67C350001B5672 /* LookUp */ = {
 			isa = PBXGroup;
 			children = (
+				B5AA9EFA2A9DB88500D37E2C /* View */,
 				DB002BB72A67C36F001B5672 /* LookUpViewController.swift */,
+				B5AA9EF82A9B884600D37E2C /* LookUpViewModel.swift */,
 			);
 			path = LookUp;
 			sourceTree = "<group>";
@@ -1229,6 +1309,7 @@
 				B58D3C312A94EBFE008F06D2 /* TermsListDTO.swift */,
 				B58D3C382A94FC16008F06D2 /* NotiSettingDTO.swift */,
 				B58D3C4C2A95203D008F06D2 /* CheckRemainAlarmDTO.swift */,
+				B5AA9EEE2A9B842800D37E2C /* FacilitiesDTO.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1434,6 +1515,7 @@
 		DBF125EB2A5EB5E9004DA4B9 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				B5AA9EF22A9B866700D37E2C /* LookUp */,
 				B5ED12762A8E7B18002769BE /* MyPage */,
 				DB5DAB412A7BF643009AA427 /* Home */,
 				DB8CD7202A6E16EA004735C8 /* Community */,
@@ -1637,6 +1719,7 @@
 		DBFF259E2A5B990200CF6DD4 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				B5AA9EF52A9B87A800D37E2C /* LookUp */,
 				B5ED12792A8E7BCD002769BE /* MyPage */,
 				DB5DAB3E2A7BF326009AA427 /* Home */,
 				DB8CD71D2A6E163C004735C8 /* Community */,
@@ -1660,6 +1743,7 @@
 			children = (
 				DBFFD9E82A47E2E20008C2B5 /* FitHub */,
 				DBFFD9E72A47E2E20008C2B5 /* Products */,
+				B580D3432A9B1C4300D95AB4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1674,6 +1758,8 @@
 		DBFFD9E82A47E2E20008C2B5 /* FitHub */ = {
 			isa = PBXGroup;
 			children = (
+				B5AA9EE82A9B288100D37E2C /* DaumMap.embeddedframework */,
+				B580D3522A9B1D2F00D95AB4 /* KakaoMapBridgeHeader.h */,
 				B58D3C502A952616008F06D2 /* FitHubRelease.entitlements */,
 				DBD8526B2A5C4BB400588BF4 /* FitHub.entitlements */,
 				DBFF259B2A5B981E00CF6DD4 /* App */,
@@ -1691,6 +1777,7 @@
 				DB0D220F2A76C33400ABF6A2 /* Community */,
 				DB51D2582A4C2719002415B0 /* AgreementModel.swift */,
 				DB668AF82A4F06D000D702A1 /* AuthUserInfo.swift */,
+				B5AA9EF02A9B84FD00D37E2C /* FacilitySearch.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1815,6 +1902,7 @@
 				DBDBA30A2A64D2B700F1CDA5 /* XCRemoteSwiftPackageReference "RxKeyboard" */,
 				DB8CD70E2A6D2385004735C8 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				B58D3C512A952683008F06D2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B580D3402A9B145D00D95AB4 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */,
 			);
 			productRefGroup = DBFFD9E72A47E2E20008C2B5 /* Products */;
 			projectDirPath = "";
@@ -1834,6 +1922,7 @@
 				DBFFD9F32A47E2E40008C2B5 /* Assets.xcassets in Resources */,
 				DBFFDA322A4860330008C2B5 /* Pretendard-Regular.otf in Resources */,
 				DBFFDA302A4860330008C2B5 /* Pretendard-Medium.otf in Resources */,
+				B5AA9EE92A9B288100D37E2C /* DaumMap.embeddedframework in Resources */,
 				DBFFDA312A4860330008C2B5 /* Pretendard-SemiBold.otf in Resources */,
 				B58D3C622A953F0B008F06D2 /* GoogleService-Info.plist in Resources */,
 			);
@@ -1881,6 +1970,7 @@
 				DB55B6C32A6B9B55006FEA7F /* BaseResponse.swift in Sources */,
 				B5ED13192A909367002769BE /* ResetPWUseCase.swift in Sources */,
 				B5ED13092A8F7DC0002769BE /* CurrentExerciseDTO.swift in Sources */,
+				B5AA9EFC2A9DB8A100D37E2C /* LookUpButton.swift in Sources */,
 				B5ED13172A9092FE002769BE /* ResetPWViewModel.swift in Sources */,
 				DB57124B2A729BC200DCAD9C /* CertificationService.swift in Sources */,
 				DBFFDA392A497A460008C2B5 /* PhoneAuthViewController.swift in Sources */,
@@ -1907,6 +1997,7 @@
 				DB8CD71F2A6E164A004735C8 /* CommunityUseCase.swift in Sources */,
 				DB57122F2A7205DA00DCAD9C /* ResetPasswordRepository.swift in Sources */,
 				DB55B6C92A6BB28A006FEA7F /* PhoneNumLoginUseCase.swift in Sources */,
+				B5AA9EF12A9B84FD00D37E2C /* FacilitySearch.swift in Sources */,
 				B5705CA42A87F5B800408233 /* CommentRepository.swift in Sources */,
 				B5705CF92A8B90FD00408233 /* SearchRepository.swift in Sources */,
 				DB5712492A729B4000DCAD9C /* CreateCertificationRepository.swift in Sources */,
@@ -2010,6 +2101,7 @@
 				B5ED13452A923BB4002769BE /* EditCertificationViewModel.swift in Sources */,
 				B5705CB72A8945D400408233 /* ReportFitSiteDTO.swift in Sources */,
 				DB5712332A7235D200DCAD9C /* KeychainManager.swift in Sources */,
+				B5AA9EF42A9B86B300D37E2C /* LookUpRepositiory.swift in Sources */,
 				DB746F732A71308400FBA8D4 /* RegistCompletionViewController.swift in Sources */,
 				B5B2C3992A7D2CEB004FC66C /* GradeType.swift in Sources */,
 				DB55B6D62A6C2339006FEA7F /* PhoneAuthNumberDTO.swift in Sources */,
@@ -2055,6 +2147,7 @@
 				B5705CF52A8B86D500408233 /* RecommendKeywordDTO.swift in Sources */,
 				DBB820B82A5E45940016CB63 /* FindPWViewController.swift in Sources */,
 				DB0D22062A7666B600ABF6A2 /* HashTagFooterView.swift in Sources */,
+				B5AA9EF72A9B87B400D37E2C /* LookUpUseCase.swift in Sources */,
 				B5705CAC2A89283F00408233 /* ReportCommentDTO.swift in Sources */,
 				B5ED13472A923C09002769BE /* EditCertificationViewController.swift in Sources */,
 				DB0D21FD2A73F78800ABF6A2 /* ImageCell.swift in Sources */,
@@ -2100,6 +2193,7 @@
 				DB002BB82A67C36F001B5672 /* LookUpViewController.swift in Sources */,
 				B50CB9B32A96509200BA78B0 /* ConfirmAlertDTO.swift in Sources */,
 				DB8CD6FF2A6D0B7C004735C8 /* ProfileSettingRepository.swift in Sources */,
+				B5AA9EEF2A9B842800D37E2C /* FacilitiesDTO.swift in Sources */,
 				B5705CE12A8AB89600408233 /* LevelIconView.swift in Sources */,
 				B5705CCB2A895A0700408233 /* SimpleImageCell.swift in Sources */,
 				B5705CD32A8A933500408233 /* ReportCertificationDTO.swift in Sources */,
@@ -2110,6 +2204,7 @@
 				B5ED12752A8E73BB002769BE /* MyPageDTO.swift in Sources */,
 				DB002BB12A67C273001B5672 /* HomeViewController.swift in Sources */,
 				B5705CCF2A8A92BA00408233 /* DeleteCertificationDTO.swift in Sources */,
+				B5AA9EF92A9B884600D37E2C /* LookUpViewModel.swift in Sources */,
 				DB51D2552A4B3DC0002415B0 /* AgreementViewController.swift in Sources */,
 				B588B7E42A8543C00031C723 /* CreateFitSiteViewModel.swift in Sources */,
 				DB668AF72A4F041100D702A1 /* ViewModelType.swift in Sources */,
@@ -2260,15 +2355,23 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = FitHub/FitHub.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = V2YNV9QV27;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FitHub/DaumMap.embeddedframework",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FitHub/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = FitHub;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "가까운 거리 순으로 주변 운동시설 정보를 제공하기 위해 현재 위치 정보가 필요합니다.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "가까운 거리 순으로 주변 운동시설 정보를 제공하기 위해 현재 위치 정보가 필요합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "가까운 거리 순으로 주변 운동시설 정보를 제공하기 위해 현재 위치 정보가 필요합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "프로필 설정 및 운동인증, 게시글 설정에 사용하기 위해 앨범 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
@@ -2287,6 +2390,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/sinsang/Documents/Developments/iOS/Project/FitHub_iOS/FitHub/KakaoMapBridgeHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2298,15 +2402,23 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = FitHub/FitHubRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = V2YNV9QV27;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FitHub/DaumMap.embeddedframework",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FitHub/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = FitHub;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "가까운 거리 순으로 주변 운동시설 정보를 제공하기 위해 현재 위치 정보가 필요합니다.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "가까운 거리 순으로 주변 운동시설 정보를 제공하기 위해 현재 위치 정보가 필요합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "가까운 거리 순으로 주변 운동시설 정보를 제공하기 위해 현재 위치 정보가 필요합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "프로필 설정 및 운동인증, 게시글 설정에 사용하기 위해 앨범 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
@@ -2325,6 +2437,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/sinsang/Documents/Developments/iOS/Project/FitHub_iOS/FitHub/KakaoMapBridgeHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2354,6 +2467,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B580D3402A9B145D00D95AB4 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao-mapsSDK/KakaoMapsSDK-SPM.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		B58D3C512A952683008F06D2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";

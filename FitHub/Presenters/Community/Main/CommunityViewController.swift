@@ -13,7 +13,7 @@ final class CommunityViewController: BaseViewController {
     //MARK: - Properties
     private let viewModel: CommunityViewModel
     
-    private let searchBar = FitHubSearchBar(frame: .init(x: 0, y: 0, width: 100, height: 44)).then {
+    private let searchBar = FitHubSearchBar().then {
         $0.searchTextField.isEnabled = false
     }
     private let certificationSortView = SortSwitchView()
@@ -78,8 +78,13 @@ final class CommunityViewController: BaseViewController {
         $0.isHidden = true
     }
     
-    let alertItem = UIBarButtonItem(image: UIImage(named: "Alert")?.withRenderingMode(.alwaysOriginal),
-                               style: .plain, target: nil, action: nil)
+    let alertItem = UIButton().then {
+        $0.setImage(UIImage(named: "Alert")?.withRenderingMode(.alwaysOriginal), for: .normal)
+    }
+    
+    let bookmark = UIButton().then {
+        $0.setImage(UIImage(named: "BookMark")?.withRenderingMode(.alwaysOriginal), for: .normal)
+    }
     
     //MARK: - Init
     init(_ viewModel: CommunityViewModel) {
@@ -105,6 +110,12 @@ final class CommunityViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.checkAlarm()
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -124,37 +135,6 @@ final class CommunityViewController: BaseViewController {
                 $0.addTarget(self, action: #selector(self.pullRefreshFeed), for: .valueChanged)
             }
         }
-    }
-    
-    //MARK: - ConfigureNavigation
-    override func configureNavigation() {
-        super.configureNavigation()
-        let bookmark = UIBarButtonItem(image: UIImage(named: "BookMark")?.withRenderingMode(.alwaysOriginal),
-                                       style: .plain, target: nil, action: nil)
-        
-        self.navigationItem.rightBarButtonItems = [alertItem,bookmark]
-        
-        self.navigationItem.titleView = searchBar
-        
-        bookmark.rx.tap
-            .bind(onNext: { [weak self] in
-                let usecase = BookMarkUseCase(homeRepository: HomeRepository(homeService: HomeService(),
-                                                                             authService: UserService()),
-                                              communityRepository: CommunityRepository(UserService(),
-                                                                                       certificationService: CertificationService(), articleService: ArticleService()))
-                let bookMarkVC = BookMarkViewController(viewModel: BookMarkViewModel(usecase: usecase))
-                
-                self?.navigationController?.pushViewController(bookMarkVC, animated: true)
-            })
-            .disposed(by: disposeBag)
-        
-        alertItem.rx.tap
-            .bind(onNext: { [weak self] in
-                let usecase = AlertUseCase(alarmRepo: AlarmRepository(service: AlarmService()))
-                let alertVC = AlertViewController(viewModel: AlertViewModel(usecase: usecase))
-                self?.navigationController?.pushViewController(alertVC, animated: true)
-            })
-            .disposed(by: disposeBag)
     }
     
     //MARK: - SetupBinding
@@ -271,7 +251,27 @@ final class CommunityViewController: BaseViewController {
         viewModel.alarmCheck
             .bind(onNext: { [weak self] isRemain in
                 let image = isRemain ? UIImage(named: "AlertRemain") : UIImage(named: "Alert")
-                self?.alertItem.image = image?.withRenderingMode(.alwaysOriginal)
+                self?.alertItem.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+            })
+            .disposed(by: disposeBag)
+        
+        bookmark.rx.tap
+            .bind(onNext: { [weak self] in
+                let usecase = BookMarkUseCase(homeRepository: HomeRepository(homeService: HomeService(),
+                                                                             authService: UserService()),
+                                              communityRepository: CommunityRepository(UserService(),
+                                                                                       certificationService: CertificationService(), articleService: ArticleService()))
+                let bookMarkVC = BookMarkViewController(viewModel: BookMarkViewModel(usecase: usecase))
+                
+                self?.navigationController?.pushViewController(bookMarkVC, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        alertItem.rx.tap
+            .bind(onNext: { [weak self] in
+                let usecase = AlertUseCase(alarmRepo: AlarmRepository(service: AlarmService()))
+                let alertVC = AlertViewController(viewModel: AlertViewModel(usecase: usecase))
+                self?.navigationController?.pushViewController(alertVC, animated: true)
             })
             .disposed(by: disposeBag)
     }
@@ -342,6 +342,9 @@ final class CommunityViewController: BaseViewController {
         self.view.addSubview(actionSheetBackView)
         self.view.addSubview(floatingButton)
         self.view.addSubview(createActionSheet)
+        self.view.addSubview(searchBar)
+        self.view.addSubview(alertItem)
+        self.view.addSubview(bookmark)
         
         self.feedScrollView.addSubview(contentView)
         self.feedScrollView.addSubview(certificationSortView)
@@ -352,9 +355,26 @@ final class CommunityViewController: BaseViewController {
     
     //MARK: - layout
     override func layout() {
+        searchBar.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(20)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
+            $0.height.equalTo(44)
+            $0.trailing.equalTo(bookmark.snp.leading).offset(-13)
+        }
+        
+        alertItem.snp.makeConstraints {
+            $0.trailing.equalToSuperview().offset(-20)
+            $0.centerY.equalTo(searchBar)
+        }
+        
+        bookmark.snp.makeConstraints {
+            $0.trailing.equalTo(alertItem.snp.leading).offset(-12)
+            $0.centerY.equalTo(searchBar)
+        }
+        
         self.topTabBarCollectionView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(6)
+            $0.top.equalTo(searchBar.snp.bottom).offset(10)
             $0.height.equalTo(50)
         }
         

@@ -13,6 +13,9 @@ final class FitHubSearchBar: UISearchBar {
         super.init(frame: frame)
         configure()
         layout()
+        
+        self.backgroundImage = UIImage()
+        self.backgroundColor = .bgDefault
     }
     
     required init?(coder: NSCoder) {
@@ -40,10 +43,8 @@ final class FitHubSearchBar: UISearchBar {
     
     private func layout() {
         self.searchTextField.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(20)
-            $0.centerY.equalToSuperview()
             $0.height.equalTo(44)
-            $0.trailing.equalToSuperview().offset(-110)
+            $0.trailing.centerY.leading.equalToSuperview()
         }
     }
 }
