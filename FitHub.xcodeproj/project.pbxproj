@@ -2512,7 +2512,7 @@
 				CODE_SIGN_ENTITLEMENTS = FitHub/FitHub.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = V2YNV9QV27;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2559,7 +2559,7 @@
 				CODE_SIGN_ENTITLEMENTS = FitHub/FitHubRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = V2YNV9QV27;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
