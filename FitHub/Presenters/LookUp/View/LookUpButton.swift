@@ -19,9 +19,10 @@ final class LookUpButton: UIButton {
         configure.attributedTitle?.foregroundColor = .textDefault
         configure.image = image
         configure.imagePadding = 4
-        configure.contentInsets = .init(top: 10, leading: 16, bottom: 10, trailing: 16)
+        configure.contentInsets = .init(top: 12, leading: 16, bottom: 12, trailing: 16)
         
         self.configuration = configure
+        self.layer.masksToBounds = true
     }
     
     required init?(coder: NSCoder) {

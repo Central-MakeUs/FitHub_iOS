@@ -14,7 +14,7 @@ struct FacilitiesDTO: Decodable {
     let userY: String
 }
 
-struct FacilityDTO: Decodable {
+class FacilityDTO: NSObject, Decodable {
     let name: String
     let address: String
     let roadAddress: String

@@ -81,7 +81,7 @@ extension UIViewController {
         readyVC.tabBarItem.image = UIImage(named: "LookUpIcon")
         readyVC.tabBarItem.title = "둘러보기"
         
-        tabBarController.viewControllers = [homeVC, communityVC, readyVC, myPageVC]
+        tabBarController.viewControllers = [homeVC, communityVC, lookUpVC, myPageVC]
         
         return tabBarController
     }

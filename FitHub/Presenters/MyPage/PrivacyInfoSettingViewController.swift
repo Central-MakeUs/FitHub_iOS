@@ -105,7 +105,10 @@ final class PrivacyInfoSettingViewController: BaseViewController {
         let ok = StandardAlertAction(title: "확인", style: .basic) { [weak self] _ in
             KeychainManager.delete(key: "accessToken")
             KeychainManager.delete(key: "userId")
-            self?.navigationController?.popViewController(animated: true)
+            let usecase = OAuthLoginUseCase(OAuthLoginRepository(UserService()))
+            let authVC = UINavigationController(rootViewController: OAuthLoginViewController(
+                OAuthLoginViewModel(usecase)))
+            self?.changeRootViewController(authVC)
         }
         
         alert.addAction(ok)

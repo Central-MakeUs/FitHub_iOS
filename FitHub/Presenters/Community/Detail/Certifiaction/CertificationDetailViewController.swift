@@ -186,7 +186,7 @@ final class CertificationDetailViewController: BaseViewController {
         let reportArticle = StandardActionSheetAction(title: "게시글 신고하기") { [weak self] _ in
             self?.presentReportRecordAlert()
         }
-        let reportUser = StandardActionSheetAction(title: "사용자 신고하기") { [weak self] _ in
+        let reportUser = StandardActionSheetAction(title: "사용자 신고/차단하기") { [weak self] _ in
             self?.showReportUserAlert()
         }
         
@@ -217,7 +217,7 @@ final class CertificationDetailViewController: BaseViewController {
     }
     
     private func showReportUserAlert() {
-        let alert = StandardAlertController(title: "사용자를 신고하시겠습니까?", message: "신고된 사용자는 차단되어 글과 댓글이\n숨겨지고, 차단은 취소할 수 없습니다.")
+        let alert = StandardAlertController(title: "사용자를 신고/차단 하시겠습니까?", message: "신고된 사용자는 차단되어 글과 댓글이\n숨겨지고, 차단은 취소할 수 없습니다.")
         let report = StandardAlertAction(title: "신고", style: .basic) { [weak self] _ in
             self?.viewModel.reportUser()
         }
@@ -294,7 +294,7 @@ extension CertificationDetailViewController: CommentCellDelegate {
             }
             actionSheet.addAction(deleteComment)
         } else {
-            let reportUser = StandardActionSheetAction(title: "사용자 신고하기") { [weak self] _ in
+            let reportUser = StandardActionSheetAction(title: "사용자 신고/차단하기") { [weak self] _ in
                 self?.showReportUserAlert()
             }
             

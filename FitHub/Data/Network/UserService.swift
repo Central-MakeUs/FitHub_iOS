@@ -156,10 +156,11 @@ class UserService {
         
         let marketingAgree = registUserInfo.marketingAgree
         let preferExercises = registUserInfo.preferExercise.map { $0.id }
-        guard let birth = registUserInfo.dateOfBirth,
-              let gender = registUserInfo.sexNumber,
-              let nickname = registUserInfo.nickName,
-              let name = registUserInfo.name,
+        let birth = registUserInfo.dateOfBirth ?? "123456"
+        let gender = registUserInfo.sexNumber ?? "1"
+        let name = registUserInfo.name ?? "임시이름"
+        
+        guard let nickname = registUserInfo.nickName,
               let profileImage = registUserInfo.profileImage?.pngData() else { return Single.error(AuthError.invalidURL)
         }
         
