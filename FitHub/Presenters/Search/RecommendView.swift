@@ -35,6 +35,8 @@ final class RecommendView: UIView {
             $0.leading.trailing.bottom.equalToSuperview()
             $0.top.equalTo(titleLabel.snp.bottom).offset(15)
         }
+        
+        self.backgroundColor = .bgDefault
     }
     
     required init?(coder: NSCoder) {

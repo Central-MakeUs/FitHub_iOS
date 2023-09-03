@@ -11,6 +11,8 @@ import RxSwift
 protocol LookUpRepositioryInterface {
     func fetchCategory()->Single<[CategoryDTO]>
     func fetchFacilities(searchInfo: FacilitySearch)->Single<FacilitiesDTO>
+    func fetchRecommendFacilites() -> Single<RecommendKeywordDTO>
+    func fetchFacilitiesWithKeyword(searchInfo: FacilitySearch)-> Single<FacilitiesKeywordDTO>
 }
 
 final class LookUpRepositiory: LookUpRepositioryInterface {
@@ -29,5 +31,13 @@ final class LookUpRepositiory: LookUpRepositioryInterface {
     
     func fetchFacilities(searchInfo: FacilitySearch) -> Single<FacilitiesDTO> {
         return homeService.fetchFacilities(searchInfo: searchInfo)
+    }
+    
+    func fetchRecommendFacilites() -> Single<RecommendKeywordDTO> {
+        return homeService.fetchRecommendFacilites()
+    }
+    
+    func fetchFacilitiesWithKeyword(searchInfo: FacilitySearch)-> Single<FacilitiesKeywordDTO> {
+        return homeService.fetchFacilitiesWithKeyword(searchInfo: searchInfo)
     }
 }

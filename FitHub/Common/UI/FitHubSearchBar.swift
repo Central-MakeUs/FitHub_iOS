@@ -33,6 +33,7 @@ final class FitHubSearchBar: UISearchBar {
         if let clearButton = self.searchTextField.value(forKeyPath: "_clearButton") as? UIButton {
             clearButton.setImage(UIImage(named: "CancelIcon"), for: .normal)
         }
+        
         let leftView = UIView(frame: CGRectMake(0, 0, 34, 24))
         let imgView = UIImageView(image: UIImage(named: "searchIcon")?.withRenderingMode(.alwaysOriginal))
         imgView.frame = .init(x: 10, y: 0, width: 24, height: 24)

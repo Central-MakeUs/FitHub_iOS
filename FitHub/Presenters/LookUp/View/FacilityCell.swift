@@ -14,6 +14,8 @@ final class FacilityCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.backgroundColor = .bgDefault
+        self.selectionStyle = .none
         
         self.addSubview(infoView)
         

@@ -14,6 +14,13 @@ struct FacilitiesDTO: Decodable {
     let userY: String
 }
 
+struct FacilitiesKeywordDTO: Decodable {
+    let facilitiesList: [FacilityDTO]
+    let size: Int
+    let userX: String
+    let userY: String
+}
+
 class FacilityDTO: NSObject, Decodable {
     let name: String
     let address: String
@@ -21,6 +28,7 @@ class FacilityDTO: NSObject, Decodable {
     let imageUrl: String?
     let phoneNumber: String?
     let category: String
+    let categoryId: Int
     let x: String
     let y: String
     let dist: String

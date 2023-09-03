@@ -26,9 +26,11 @@ final class LookUpViewModel {
     let categories = BehaviorSubject<[CategoryDTO]>(value: [])
     let currentUserLocation = PublishSubject<MTMapPoint?>()
     let currentCenterLocation = PublishSubject<MTMapPoint?>()
-    let selectedCategoryId = BehaviorRelay<Int>(value: 0)
+    let selectedCategoryId  = BehaviorRelay<Int>(value: 0)
     let searchQuery = BehaviorRelay<String>(value: "")
     let queryResult = BehaviorRelay<[FacilityDTO]>(value: [])
+    let filterResult = BehaviorRelay<[FacilityDTO]>(value: [])
+    let recommentKeywords = PublishSubject<[String]>()
 
     init(usecase: LookUpUseCaseProtocol) {
         self.usecase = usecase
@@ -54,13 +56,50 @@ final class LookUpViewModel {
             self.searchInfo = info
         })
         .disposed(by: disposeBag)
+        
+        selectedCategoryId
+            .withLatestFrom(queryResult)
+            .bind(onNext: { [weak self] items in
+                if self?.selectedCategoryId.value == 0 {
+                    self?.filterResult.accept(items)
+                } else {
+                    let filterResult = items.filter { $0.categoryId == self?.selectedCategoryId.value }
+                    self?.filterResult.accept(filterResult)
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     func fetchFacilities() {
         usecase.fetchFacilities(searchInfo: searchInfo)
             .subscribe(onSuccess: { [weak self] info in
-                print(info)
-                self?.queryResult.accept(info.facilitiesList)
+                guard let self else { return }
+                self.queryResult.accept(info.facilitiesList)
+
+                if self.selectedCategoryId.value == 0 {
+                    self.filterResult.accept(info.facilitiesList)
+                } else {
+                    let filterResult = info.facilitiesList.filter { $0.categoryId == self.selectedCategoryId.value }
+                    self.filterResult.accept(filterResult)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func searchFacilities() {
+        usecase.fetchFacilitiesWithKeyword(searchInfo: searchInfo)
+            .subscribe(onSuccess: { [weak self] info in
+                guard let self else { return }
+                self.queryResult.accept(info.facilitiesList)
+                selectedCategoryId.accept(0)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func fetchRecommendKeyword() {
+        usecase.fetchRecommendFacilites()
+            .subscribe(onSuccess: { [weak self] info in
+                self?.recommentKeywords.onNext(info.keywordList)
             })
             .disposed(by: disposeBag)
     }

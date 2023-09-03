@@ -138,6 +138,12 @@ final class CertificationDetailViewController: BaseViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        viewModel.userProfileImage
+            .bind(onNext: { [weak self] imageString in
+                self?.commentInputView.configureProfile(imageURL: imageString)
+            })
+            .disposed(by: disposeBag)
     }
     
     // MARK: - 화면 이동

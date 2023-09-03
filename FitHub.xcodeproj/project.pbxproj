@@ -13,6 +13,8 @@
 		B50CB9B72A976DD500BA78B0 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50CB9B62A976DD500BA78B0 /* OnBoardingViewController.swift */; };
 		B50CB9BB2A97744000BA78B0 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50CB9BA2A97744000BA78B0 /* OnboardingView.swift */; };
 		B50EE9C42A9E73BF002F1C02 /* FacilityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50EE9C32A9E73BF002F1C02 /* FacilityCell.swift */; };
+		B50EE9CC2AA2D207002F1C02 /* FacilitySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50EE9CB2AA2D207002F1C02 /* FacilitySearchViewController.swift */; };
+		B50EE9CE2AA2D228002F1C02 /* FacilitySearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50EE9CD2AA2D228002F1C02 /* FacilitySearchViewModel.swift */; };
 		B5705C772A866AC600408233 /* EditFitSiteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C762A866AC600408233 /* EditFitSiteModel.swift */; };
 		B5705C792A86762D00408233 /* CreateFitSiteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C782A86762D00408233 /* CreateFitSiteUseCase.swift */; };
 		B5705C7B2A86790100408233 /* CreateFitSiteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705C7A2A86790100408233 /* CreateFitSiteRepository.swift */; };
@@ -355,6 +357,8 @@
 		B50CB9B62A976DD500BA78B0 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		B50CB9BA2A97744000BA78B0 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		B50EE9C32A9E73BF002F1C02 /* FacilityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityCell.swift; sourceTree = "<group>"; };
+		B50EE9CB2AA2D207002F1C02 /* FacilitySearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySearchViewController.swift; sourceTree = "<group>"; };
+		B50EE9CD2AA2D228002F1C02 /* FacilitySearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySearchViewModel.swift; sourceTree = "<group>"; };
 		B5705C762A866AC600408233 /* EditFitSiteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFitSiteModel.swift; sourceTree = "<group>"; };
 		B5705C782A86762D00408233 /* CreateFitSiteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFitSiteUseCase.swift; sourceTree = "<group>"; };
 		B5705C7A2A86790100408233 /* CreateFitSiteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFitSiteRepository.swift; sourceTree = "<group>"; };
@@ -723,6 +727,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B50EE9CA2AA2D1F9002F1C02 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				B50EE9CB2AA2D207002F1C02 /* FacilitySearchViewController.swift */,
+				B50EE9CD2AA2D228002F1C02 /* FacilitySearchViewModel.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		B50EE9CF2AA2D361002F1C02 /* LookUp */ = {
+			isa = PBXGroup;
+			children = (
+				B5AA9EEE2A9B842800D37E2C /* FacilitiesDTO.swift */,
+			);
+			path = LookUp;
+			sourceTree = "<group>";
+		};
 		B5705C812A87775B00408233 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -1205,6 +1226,7 @@
 		DB002BB52A67C350001B5672 /* LookUp */ = {
 			isa = PBXGroup;
 			children = (
+				B50EE9CA2AA2D1F9002F1C02 /* Search */,
 				B5AA9EFA2A9DB88500D37E2C /* View */,
 				DB002BB72A67C36F001B5672 /* LookUpViewController.swift */,
 				B5AA9EF82A9B884600D37E2C /* LookUpViewModel.swift */,
@@ -1435,7 +1457,6 @@
 				B58D3C312A94EBFE008F06D2 /* TermsListDTO.swift */,
 				B58D3C382A94FC16008F06D2 /* NotiSettingDTO.swift */,
 				B58D3C4C2A95203D008F06D2 /* CheckRemainAlarmDTO.swift */,
-				B5AA9EEE2A9B842800D37E2C /* FacilitiesDTO.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1627,6 +1648,7 @@
 		DBF125EA2A5EA0DA004DA4B9 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				B50EE9CF2AA2D361002F1C02 /* LookUp */,
 				B58D3C5E2A9539F7008F06D2 /* Alarm */,
 				B5ED12732A8E73AA002769BE /* MyPage */,
 				B5705CF32A8B86BD00408233 /* Search */,
@@ -2183,6 +2205,7 @@
 				B5ED133D2A91F173002769BE /* OtherFitSiteCell.swift in Sources */,
 				B5705D092A8C410C00408233 /* SearchTotalHeaderView.swift in Sources */,
 				B5705C922A87ABA200408233 /* CertificationDetailSectionModel.swift in Sources */,
+				B50EE9CC2AA2D207002F1C02 /* FacilitySearchViewController.swift in Sources */,
 				DB002BBB2A67C3C7001B5672 /* MyPageViewController.swift in Sources */,
 				B5ED130E2A8FE5A7002769BE /* PrivacyInfoSettingViewController.swift in Sources */,
 				DB5D22322A5470A800B32485 /* PasswordSettingViewModel.swift in Sources */,
@@ -2204,6 +2227,7 @@
 				B5705C832A87776800408233 /* CertificationDetailViewController.swift in Sources */,
 				B588B7DB2A83AD710031C723 /* ArticleService.swift in Sources */,
 				B5ED13492A923E68002769BE /* UserRepository.swift in Sources */,
+				B50EE9CE2AA2D228002F1C02 /* FacilitySearchViewModel.swift in Sources */,
 				DB7559E72A55062C00B88B96 /* SportsCell.swift in Sources */,
 				DB7559E12A548C6800B88B96 /* ProfileSettingViewModel.swift in Sources */,
 				DB97F8352A527BCF009C09A1 /* StandardNotificationAlertView.swift in Sources */,

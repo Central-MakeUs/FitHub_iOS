@@ -34,7 +34,9 @@ final class OtherProfileViewController: BaseViewController {
         $0.text = "사용자명"
     }
     
-    private let exerciseCardView = MyPageExerciseCardView()
+    private let exerciseCardView = MyPageExerciseCardView().then {
+        $0.changeMainExerciseButton.isHidden = true
+    }
     
     private let articleTitleLabel = UILabel().then {
         $0.font = .pretendard(.bodyLarge02)

@@ -27,6 +27,7 @@ final class FitSiteDetailViewModel: ViewModelType {
     let reportHandler = PublishSubject<Int>()
     let reportUserHandler = PublishSubject<Int>()
     let deleteFeedHandler = PublishSubject<Bool>()
+    let userProfileImage = PublishSubject<String>()
     
     //MARK: - Input
     let detailSource = PublishSubject<FitSiteDetailDTO>()
@@ -188,6 +189,7 @@ extension FitSiteDetailViewModel {
                 self?.ownerId = res.userInfo.ownerId
                 self?.detailSource.onNext(res)
                 self?.fitSiteModel = res
+                self?.userProfileImage.onNext(res.loginUserProfileUrl)
             }, onFailure: { [weak self] error in
                 self?.errorHandler.onNext(error)
             })

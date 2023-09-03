@@ -11,6 +11,8 @@ import RxSwift
 protocol LookUpUseCaseProtocol {
     func fetchCategory()->Single<[CategoryDTO]>
     func fetchFacilities(searchInfo: FacilitySearch)->Single<FacilitiesDTO>
+    func fetchRecommendFacilites() -> Single<RecommendKeywordDTO>
+    func fetchFacilitiesWithKeyword(searchInfo: FacilitySearch)-> Single<FacilitiesKeywordDTO>
 }
 
 final class LookUpUseCase: LookUpUseCaseProtocol {
@@ -26,5 +28,13 @@ final class LookUpUseCase: LookUpUseCaseProtocol {
     
     func fetchFacilities(searchInfo: FacilitySearch)->Single<FacilitiesDTO> {
         return lookUpRepo.fetchFacilities(searchInfo: searchInfo)
+    }
+    
+    func fetchRecommendFacilites() -> Single<RecommendKeywordDTO> {
+        return lookUpRepo.fetchRecommendFacilites()
+    }
+    
+    func fetchFacilitiesWithKeyword(searchInfo: FacilitySearch)-> Single<FacilitiesKeywordDTO> {
+        return lookUpRepo.fetchFacilitiesWithKeyword(searchInfo: searchInfo)
     }
 }

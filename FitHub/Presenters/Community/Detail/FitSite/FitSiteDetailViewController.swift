@@ -148,6 +148,12 @@ final class FitSiteDetailViewController: BaseViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        viewModel.userProfileImage
+            .bind(onNext: { [weak self] imageString in
+                self?.commentInputView.configureProfile(imageURL: imageString)
+            })
+            .disposed(by: disposeBag)
     }
     
     override func configureNavigation() {

@@ -19,7 +19,7 @@ final class HomeViewController: BaseViewController {
     
     private let titleLabel = UILabel().then {
         $0.numberOfLines = 0
-        $0.text = "은하 댕우님,\n오늘도 힘내서 운동해봐요!"
+        $0.text = "사용자님,\n오늘도 힘내서 운동해봐요!"
         $0.font = .pretendard(.titleLarge)
         $0.textColor = .textDefault
     }
@@ -186,7 +186,9 @@ final class HomeViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         collectionView.rx.modelSelected(CategoryDTO.self)
-            .bind(onNext: { [weak self] _ in
+            .map { $0.id }
+            .bind(onNext: { [weak self] categoryId in
+                NotificationCenter.default.post(name: .tapLookupWithCategory, object: categoryId)
                 self?.tabBarController?.selectedIndex = 2
             })
             .disposed(by: disposeBag)

@@ -177,7 +177,7 @@ final class MyFeedViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         viewModel.feedType
-            .bind(to: self.topTabBarCollectionView.rx.items(cellIdentifier: TopTabBarItemCell.identifier, cellType: TopTabBarItemCell.self)) { [weak self] index, item, cell in
+            .bind(to: self.topTabBarCollectionView.rx.items(cellIdentifier: TopTabBarItemCell.identifier, cellType: TopTabBarItemCell.self)) { index, item, cell in
                 cell.configureCell(text: item)
             }
             .disposed(by: disposeBag)

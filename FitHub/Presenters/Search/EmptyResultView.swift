@@ -41,6 +41,15 @@ final class EmptyResultView: UIView {
     }
     
     func configureLabel(text: String) {
-        self.titleLabel.text = "'\(text)''에 대한 검색 결과가 없습니다."
+        self.titleLabel.text = "'\(text)' 에 대한 검색 결과가 없습니다."
+    }
+    
+    func configureLabelWithMapView(text: String) {
+        if text.isEmpty {
+            self.titleLabel.text = "이 지역은 아직 시설 정보가 없어요."
+        } else {
+            self.titleLabel.text = "'\(text)' 에 대한 검색 결과가 없습니다."
+        }
+        
     }
 }
