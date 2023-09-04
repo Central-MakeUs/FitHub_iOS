@@ -13,6 +13,9 @@ final class FitHubSearchBar: UISearchBar {
         super.init(frame: frame)
         configure()
         layout()
+        
+        self.backgroundImage = UIImage()
+        self.backgroundColor = .bgDefault
     }
     
     required init?(coder: NSCoder) {
@@ -30,6 +33,7 @@ final class FitHubSearchBar: UISearchBar {
         if let clearButton = self.searchTextField.value(forKeyPath: "_clearButton") as? UIButton {
             clearButton.setImage(UIImage(named: "CancelIcon"), for: .normal)
         }
+        
         let leftView = UIView(frame: CGRectMake(0, 0, 34, 24))
         let imgView = UIImageView(image: UIImage(named: "searchIcon")?.withRenderingMode(.alwaysOriginal))
         imgView.frame = .init(x: 10, y: 0, width: 24, height: 24)
@@ -40,10 +44,8 @@ final class FitHubSearchBar: UISearchBar {
     
     private func layout() {
         self.searchTextField.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(20)
-            $0.centerY.equalToSuperview()
             $0.height.equalTo(44)
-            $0.trailing.equalToSuperview().offset(-110)
+            $0.trailing.centerY.leading.equalToSuperview()
         }
     }
 }

@@ -13,7 +13,7 @@ class AlarmService {
     func fetchAlramList(page: Int)->Single<AlarmListDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
         
-        var urlString = baseURL + "users/alarms"
+        let urlString = baseURL + "users/alarms"
         let parameter: Parameters = ["pageIndex" : page]
         
         return Single<AlarmListDTO>.create { emitter in
@@ -36,7 +36,7 @@ class AlarmService {
     func confirmAlram(alarmId: Int)->Single<Bool> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
         
-        var urlString = baseURL + "users/alarms/\(alarmId)"
+        let urlString = baseURL + "users/alarms/\(alarmId)"
         
         return Single<Bool>.create { emitter in
             
@@ -45,7 +45,7 @@ class AlarmService {
                     switch res.result {
                     case .success(let response):
                         if response.code == 2000 {
-                            guard let result = response.result else { return }
+//                            guard let result = response.result else { return }
                             emitter(.success(true))
                         } else {
                             emitter(.success(false))

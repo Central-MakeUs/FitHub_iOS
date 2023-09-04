@@ -60,7 +60,8 @@ extension UIViewController {
         communityVC.tabBarItem.image = UIImage(named: "CommunityIcon")
         communityVC.tabBarItem.title = "커뮤니티"
         
-        let lookUpVC = UINavigationController(rootViewController: LookUpViewController())
+        let lookUpUsecase = LookUpUseCase(lookUpRepo: LookUpRepositiory())
+        let lookUpVC = UINavigationController(rootViewController: LookUpViewController(viewModel: LookUpViewModel(usecase: lookUpUsecase)))
         lookUpVC.tabBarItem.image = UIImage(named: "LookUpIcon")
         lookUpVC.tabBarItem.title = "둘러보기"
         
@@ -80,7 +81,7 @@ extension UIViewController {
         readyVC.tabBarItem.image = UIImage(named: "LookUpIcon")
         readyVC.tabBarItem.title = "둘러보기"
         
-        tabBarController.viewControllers = [homeVC, communityVC, readyVC, myPageVC]
+        tabBarController.viewControllers = [homeVC, communityVC, lookUpVC, myPageVC]
         
         return tabBarController
     }

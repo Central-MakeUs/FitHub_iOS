@@ -77,7 +77,7 @@ final class AlertViewController: BaseViewController {
         
         let input = AlertViewModel.Input(didScroll: didScroll)
         
-        let output = viewModel.transform(input: input)
+        let _ = viewModel.transform(input: input)
         
         viewModel.alarmDataList
             .bind(to: alertTableView.rx.items(cellIdentifier: AlramCell.identifier, cellType: AlramCell.self)) { index, item, cell in

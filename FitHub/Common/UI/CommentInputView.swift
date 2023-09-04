@@ -14,6 +14,7 @@ final class CommentInputView: UIStackView {
     private let placeholder = "댓글 남기기"
     
     private let profileImageView = UIImageView(image: UIImage(named: "DefaultProfile")).then {
+        $0.contentMode = .scaleAspectFill
         $0.layer.cornerRadius = 15
         $0.layer.masksToBounds = true
     }
@@ -64,6 +65,14 @@ final class CommentInputView: UIStackView {
         }
     }
     
+    func configureProfile(imageURL: String?) {
+        if let imageURL {
+            self.profileImageView.kf.setImage(with: URL(string: imageURL))
+        } else {
+            self.profileImageView.image = UIImage(named: "DefaultProfile")
+        }
+    }
+    
     private func layout() {
         profileImageView.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(20)
@@ -80,11 +89,13 @@ final class CommentInputView: UIStackView {
         commentInputView.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(15)
             $0.top.bottom.equalToSuperview().inset(2)
-            $0.trailing.equalTo(registButton.snp.leading).offset(-14)
+            $0.trailing.equalTo(registButton.snp.leading).offset(-12)
         }
         
+        registButton.setContentHuggingPriority(.required, for: .horizontal)
+        registButton.setContentCompressionResistancePriority(.required, for: .horizontal)
         registButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().offset(-16)
+            $0.trailing.equalToSuperview().offset(-16).priority(.required)
             $0.bottom.equalToSuperview().offset(-4)
         }
     }

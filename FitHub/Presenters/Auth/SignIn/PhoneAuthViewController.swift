@@ -133,8 +133,6 @@ final class PhoneAuthViewController: BaseViewController {
             self.didNotFoundUserInfoAlert()
         case .passwordFaild:
             self.notiAlert("잘못된 비밀번호 입니다.")
-        default:
-            print("기타오류")
         }
     }
     
