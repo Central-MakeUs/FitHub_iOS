@@ -14,16 +14,20 @@ protocol MyFeedUseCaseProtocol {
     func fetchCategory()->Single<[CategoryDTO]>
     func deleteCertifications(recordIdList: [Int])->Single<CertificationDeleteRecordsDTO>
     func deleteFitSites(articleIdList: [Int])->Single<DeleteFitSitesDTO>
+    func checkRemainAlarm() -> Single<CheckRemainAlarmDTO>
 }
 
 final class MyFeedUseCase: MyFeedUseCaseProtocol {
     private let communityRepo: CommunityRepositoryInterface
     private let mypageRepo: MyPageRepositoryInterface
+    private let homeRepo: HomeRepositoryInterface
     
     init(communityRepo: CommunityRepositoryInterface,
-         mypageRepo: MyPageRepositoryInterface) {
+         mypageRepo: MyPageRepositoryInterface,
+         homeRepo: HomeRepositoryInterface) {
         self.communityRepo = communityRepo
         self.mypageRepo = mypageRepo
+        self.homeRepo = homeRepo
     }
     
     func fetchCategory()->Single<[CategoryDTO]> {
@@ -45,5 +49,9 @@ final class MyFeedUseCase: MyFeedUseCaseProtocol {
     
     func deleteFitSites(articleIdList: [Int]) -> Single<DeleteFitSitesDTO> {
         return communityRepo.deleteFitSites(articleIdList: articleIdList)
+    }
+    
+    func checkRemainAlarm() -> Single<CheckRemainAlarmDTO> {
+        return homeRepo.checkRemainAlarm()
     }
 }

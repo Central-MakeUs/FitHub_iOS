@@ -26,6 +26,8 @@
 	</array>
 	<key>NativeAppKey</key>
 	<string>$(NATIVE_APP_KEY)</string>
+	<key>KAKAO_APP_KEY</key>
+	<string>$(NATIVE_APP_KEY)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Pretendard-SemiBold.otf</string>

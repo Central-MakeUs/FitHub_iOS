@@ -121,13 +121,21 @@ final class EditCertificationViewModel: ViewModelType {
             .map { $0 != nil && $1 != nil }
         
         input.completeTap
+            .bind(onNext: {
+                LoadingIndicatorView.showLoading()
+            })
+            .disposed(by: disposeBag)
+        
+        input.completeTap
             .subscribe(onNext: {
                 self.usecase.updateCertification(recordId: self.recordId,
                                                  certificationInfo: self.newCertification,
                                                  remainImageUrl: self.remainImageUrl)
                     .subscribe(onSuccess: { _ in
+                        LoadingIndicatorView.hideLoading()
                         self.completePublisher.onNext(true)
                     }, onFailure: { _ in
+                        LoadingIndicatorView.hideLoading()
                         self.completePublisher.onNext(false)
                     })
                     .disposed(by: self.disposeBag)

@@ -64,6 +64,12 @@ final class PhoneAuthViewController: BaseViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UserDefaults.standard.removeObject(forKey: "targetView")
+        UserDefaults.standard.removeObject(forKey: "targetPK")
+    }
+    
     //MARK: -SetupBinding
     override func setupBinding() {
         let input = PhoneAuthViewModel.Input(phoneNumberText: self.phoneNumberTextFieldView.textField.rx.text.orEmpty.asObservable(),
@@ -133,8 +139,6 @@ final class PhoneAuthViewController: BaseViewController {
             self.didNotFoundUserInfoAlert()
         case .passwordFaild:
             self.notiAlert("잘못된 비밀번호 입니다.")
-        default:
-            print("기타오류")
         }
     }
     

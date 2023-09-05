@@ -19,7 +19,7 @@ final class HomeViewController: BaseViewController {
     
     private let titleLabel = UILabel().then {
         $0.numberOfLines = 0
-        $0.text = "은하 댕우님,\n오늘도 힘내서 운동해봐요!"
+        $0.text = "사용자님,\n오늘도 힘내서 운동해봐요!"
         $0.font = .pretendard(.titleLarge)
         $0.textColor = .textDefault
     }
@@ -70,8 +70,9 @@ final class HomeViewController: BaseViewController {
         $0.register(SportCell.self, forCellWithReuseIdentifier: SportCell.identifier)
     }
     
-    let alertItem = UIBarButtonItem(image: UIImage(named: "Alert")?.withRenderingMode(.alwaysOriginal),
-                               style: .plain, target: nil, action: nil)
+    let alertItem = UIButton().then {
+        $0.setImage(UIImage(named: "Alert"), for: .normal)
+    }
     
     init(_ viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -85,6 +86,19 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.gestureRecognizers = nil
+        
+        guard let targetView = UserDefaults.standard.object(forKey: "targetView") as? String,
+              let targetPKString = UserDefaults.standard.object(forKey: "targetPK") as? String,
+              let targetPK = Int(targetPKString) else { return }
+        
+        if targetView == "ARTICLE" {
+            self.pushFitSiteDetail(articleId: targetPK)
+        } else if targetView == "CERTIFICATION" {
+            self.pushCertificationDetail(recordId: targetPK)
+        }
+        
+        UserDefaults.standard.removeObject(forKey: "targetView")
+        UserDefaults.standard.removeObject(forKey: "targetPK")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,15 +116,22 @@ final class HomeViewController: BaseViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIImageView(image: UIImage(named: "logo_basic")))
         
         
-        let bookmark = UIBarButtonItem(image: UIImage(named: "BookMark")?.withRenderingMode(.alwaysOriginal),
-                                       style: .plain, target: nil, action: nil)
+        let bookmark = UIButton().then {
+            $0.setImage(UIImage(named: "BookMark")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
         
-        self.navigationItem.rightBarButtonItems = [alertItem,bookmark]
+        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        spacer.width = 16
+        
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: alertItem),
+                                                   spacer,
+                                                   UIBarButtonItem(customView: bookmark)]
         
         bookmark.rx.tap
             .bind(onNext: { [weak self] in
                 let usecase = BookMarkUseCase(homeRepository: HomeRepository(homeService: HomeService(),
-                                                                             authService: UserService()),
+                                                                             authService: UserService(),
+                                                                             certificationService: CertificationService()),
                                               communityRepository: CommunityRepository(UserService(),
                                                                                        certificationService: CertificationService(), articleService: ArticleService()))
                 let bookMarkVC = BookMarkViewController(viewModel: BookMarkViewModel(usecase: usecase))
@@ -181,12 +202,14 @@ final class HomeViewController: BaseViewController {
         
         certificationButton.rx.tap
             .bind(onNext: { [weak self] in
-                self?.tabBarController?.selectedIndex = 1
+                self?.viewModel.checkHasTodayCertification()
             })
             .disposed(by: disposeBag)
         
         collectionView.rx.modelSelected(CategoryDTO.self)
-            .bind(onNext: { [weak self] _ in
+            .map { $0.id }
+            .bind(onNext: { [weak self] categoryId in
+                NotificationCenter.default.post(name: .tapLookupWithCategory, object: categoryId)
                 self?.tabBarController?.selectedIndex = 2
             })
             .disposed(by: disposeBag)
@@ -194,7 +217,22 @@ final class HomeViewController: BaseViewController {
         viewModel.alarmCheck
             .bind(onNext: { [weak self] isRemain in
                 let image = isRemain ? UIImage(named: "AlertRemain") : UIImage(named: "Alert")
-                self?.alertItem.image = image?.withRenderingMode(.alwaysOriginal)
+                self?.alertItem.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.checkTodayHandler
+            .bind(onNext: { [weak self] isWrite in
+                if isWrite {
+                    self?.notiAlert("이미 운동인증을 하셨네요!\n운동인증은 하루 한 번만 가능합니다.")
+                } else {
+                    UIView.animate(withDuration: 0.1, animations: {
+                        self?.tabBarController?.selectedIndex = 1
+                        self?.view.layoutIfNeeded()
+                    }) { _ in
+                        NotificationCenter.default.post(name: .tapCertificationAtHome, object: nil)
+                    }
+                }
             })
             .disposed(by: disposeBag)
     }
@@ -301,6 +339,49 @@ extension HomeViewController {
                 self.changeRootViewController(authVC)
             })
             .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx.notification(.didRecieveAlert)
+            .subscribe(onNext: { [weak self] notification in
+                guard let self,
+                      let targetView = UserDefaults.standard.object(forKey: "targetView") as? String,
+                      let targetPKString = UserDefaults.standard.object(forKey: "targetPK") as? String,
+                      let targetPK = Int(targetPKString) else { return }
+                self.tabBarController?.selectedIndex = 0
+                self.navigationController?.popToRootViewController(animated: false)
+                
+                if targetView == "ARTICLE" {
+                    self.pushFitSiteDetail(articleId: targetPK)
+                } else if targetView == "CERTIFICATION" {
+                    self.pushCertificationDetail(recordId: targetPK)
+                }
+                UserDefaults.standard.removeObject(forKey: "targetView")
+                UserDefaults.standard.removeObject(forKey: "targetPK")
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func pushCertificationDetail(recordId: Int) {
+        let usecase = CertifiactionDetailUseCase(certificationRepository: CertificationRepository(service: CertificationService()),
+                                                 commentRepository: CommentRepository(service: CommentService()),
+                                                 communityRepostiroy: CommunityRepository(UserService(),
+                                                                                          certificationService: CertificationService(),
+                                                                                          articleService: ArticleService()))
+        let certificationDetailVC = CertificationDetailViewController(viewModel: CertificationDetailViewModel(usecase: usecase,
+                                                                                                              recordId: recordId))
+        
+        self.navigationController?.pushViewController(certificationDetailVC, animated: true)
+    }
+    
+    private func pushFitSiteDetail(articleId: Int) {
+        let usecase = FitSiteDetailUseCase(commentRepository: CommentRepository(service: CommentService()),
+                                         fitSiteRepository: FitSiteRepository(service: ArticleService()),
+                                           communityRepository: CommunityRepository(UserService(),
+                                                                                    certificationService: CertificationService(),
+                                                                                    articleService: ArticleService()))
+        let fitSiteDetailVC = FitSiteDetailViewController(viewModel: FitSiteDetailViewModel(usecase: usecase,
+                                                                                            articleId: articleId))
+        
+        self.navigationController?.pushViewController(fitSiteDetailVC, animated: true)
     }
 }
 

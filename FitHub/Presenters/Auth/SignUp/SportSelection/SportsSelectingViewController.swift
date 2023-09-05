@@ -84,7 +84,8 @@ final class SportsSelectingViewController: BaseViewController {
         output.registPublisher
             .bind(onNext: { [weak self] nickName in
                 guard let self else { return }
-                if let nickName {
+                LoadingIndicatorView.hideLoading()
+                if let _ = nickName {
                     let tabBar = self.setTapbar()
                     self.changeRootViewController(tabBar)
                 } else {

@@ -72,7 +72,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     // 포그라운드에서 받았을 때
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let content = notification.request.content
-        
+
         print("title: \(content.title)")
         print("body: \(content.body)")
         completionHandler([.badge , .banner, .sound])
@@ -80,6 +80,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     // 백그라운드에서 받았을 때
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let content = response.notification.request.content
+        let pk = content.userInfo["targetPK"] as? String ?? ""
+        let target = content.userInfo["targetView"] as? String ?? ""
+        UserDefaults.standard.setValue(pk, forKey: "targetPK")
+        UserDefaults.standard.setValue(target, forKey: "targetView")
+        NotificationCenter.default.post(name: .didRecieveAlert, object: nil)
+        
         print("title: \(content.title)")
         print("body: \(content.body)")
     }

@@ -107,16 +107,24 @@ final class CreateFitSiteViewModel : ViewModelType {
                                                       contentSource,
                                                       selectedSportSource)
             .map { !$0.0.isEmpty && !$0.1.isEmpty && $0.2 != nil }
+        
+        input.completeTap
+            .bind(onNext: {
+                LoadingIndicatorView.showLoading()
+            })
+            .disposed(by: disposeBag)
             
-        input .completeTap
+        input.completeTap
             .withLatestFrom(self.selectedSportSource)
             .compactMap { $0?.id }
-            .flatMap { self.usecase.createArticle(categoryId: $0,
-                                                  feedInfo: self.fitSiteInfo).asObservable()
+            .flatMap {
+                self.usecase.createArticle(categoryId: $0,
+                                           feedInfo: self.fitSiteInfo).asObservable()
                     .catchAndReturn(false)
             }
             .subscribe(onNext: { [weak self] isSuccess in
                 self?.completePublisher.onNext(isSuccess)
+                LoadingIndicatorView.hideLoading()
             })
             .disposed(by: disposeBag)
             

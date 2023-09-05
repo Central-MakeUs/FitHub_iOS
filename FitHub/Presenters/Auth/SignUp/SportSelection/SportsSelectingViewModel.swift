@@ -49,10 +49,17 @@ final class SportsSelectingViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         input.registTap.asObservable()
+            .bind(onNext: {
+                LoadingIndicatorView.showLoading()
+            })
+            .disposed(by: disposeBag)
+        
+        input.registTap.asObservable()
             .filter { self.registType == .OAuth }
             .flatMap { _ in
                 self.usecase.signUpWithOAuth().asObservable()
                     .catch { error in
+                        
                         self.registPublisher.onNext(nil)
                         return Observable.empty() // 에러를 무시하고 빈 Observable을 반환
                     }

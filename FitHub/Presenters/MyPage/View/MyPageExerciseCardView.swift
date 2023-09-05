@@ -42,7 +42,7 @@ final class MyPageExerciseCardView: UIView {
         $0.backgroundColor = .bgSub02
     }
     
-    private let changeMainExerciseButton = UIButton(type: .system).then {
+    let changeMainExerciseButton = UIButton(type: .system).then {
         let title = "메인 운동 변경"
         let attributedString = NSAttributedString(string: title,
                                                   attributes: [ .font : UIFont.pretendard(.bodySmall01),

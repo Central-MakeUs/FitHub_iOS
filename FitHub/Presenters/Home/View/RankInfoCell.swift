@@ -14,7 +14,7 @@ final class RankInfoCell: UITableViewCell {
     //MARK: - Properties
     private let frameView = UIView().then {
         $0.backgroundColor = .bgSub01
-        $0.layer.cornerRadius = 15
+        $0.layer.cornerRadius = 10
     }
     
     private let crownImageView = UIImageView().then {

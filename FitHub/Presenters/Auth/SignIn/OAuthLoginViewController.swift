@@ -71,6 +71,15 @@ final class OAuthLoginViewController: BaseViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        UserDefaults.standard.removeObject(forKey: "appleName")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UserDefaults.standard.removeObject(forKey: "targetPK")
+    }
+    
     //MARK: - ConfigureUI
     override func configureUI() {
         self.view.backgroundColor = .bgDefault

@@ -36,7 +36,7 @@ final class StandardNotificationAlertView: UIStackView {
         }
         
         // 5초 후에 클로저를 실행
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0, execute: workItem)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: workItem)
         
         // 현재 작업 항목을 저장 ( 추후 슈퍼뷰 탭 이벤트시 취소 기능 추가 가능성 )
         self.delayedExecutionWorkItem = workItem

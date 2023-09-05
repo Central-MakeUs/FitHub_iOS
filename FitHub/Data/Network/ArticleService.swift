@@ -196,7 +196,7 @@ class ArticleService {
     
     func reportFitSite(articleId: Int)->Single<Int> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
-        var urlString = baseURL + "articles/\(articleId)/report"
+        let urlString = baseURL + "articles/\(articleId)/report"
         
         return Single<Int>.create { observer in
             AF.request(urlString, method: .post, interceptor: AuthManager())

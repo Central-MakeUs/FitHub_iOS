@@ -77,7 +77,7 @@ final class AlertViewController: BaseViewController {
         
         let input = AlertViewModel.Input(didScroll: didScroll)
         
-        let output = viewModel.transform(input: input)
+        let _ = viewModel.transform(input: input)
         
         viewModel.alarmDataList
             .bind(to: alertTableView.rx.items(cellIdentifier: AlramCell.identifier, cellType: AlramCell.self)) { index, item, cell in
@@ -133,7 +133,8 @@ final class AlertViewController: BaseViewController {
     
     private func showNotiSetting() {
         let usecase = NotiSettingUseCase(homeRepo: HomeRepository(homeService: HomeService(),
-                                                                  authService: UserService()))
+                                                                  authService: UserService(),
+                                                                  certificationService: CertificationService()))
         let notiSettingVC = NotiSettingViewController(viewModel: NotiSettingViewModel(usecase: usecase))
         self.navigationController?.pushViewController(notiSettingVC, animated: true)
     }

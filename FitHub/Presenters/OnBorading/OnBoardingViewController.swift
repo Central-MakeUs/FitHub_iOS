@@ -39,7 +39,7 @@ final class OnBoardingViewController: BaseViewController {
                                                       image: "onbording_4")
     
     private let skipButton = UIButton(type: .system).then {
-        $0.setTitle("건너띄기", for: .normal)
+        $0.setTitle("건너뛰기", for: .normal)
         $0.setTitleColor(.textSub02, for: .normal)
         $0.titleLabel?.font = .pretendard(.bodyMedium01)
     }

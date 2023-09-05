@@ -79,6 +79,10 @@ final class MyFeedViewController: BaseViewController {
         $0.backgroundColor = .bgDefault
     }
     
+    let alertItem = UIButton().then {
+        $0.setImage(UIImage(named: "Alert")?.withRenderingMode(.alwaysOriginal), for: .normal)
+    }
+    
     //MARK: - Init
     init(_ viewModel: MyFeedViewModel) {
         self.viewModel = viewModel
@@ -100,6 +104,11 @@ final class MyFeedViewController: BaseViewController {
         self.view.gestureRecognizers = nil
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.checkRemainAlarm()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if self.viewModel.isFirstViewDidAppear {
@@ -111,18 +120,24 @@ final class MyFeedViewController: BaseViewController {
     //MARK: - ConfigureNavigation
     override func configureNavigation() {
         super.configureNavigation()
-        let noti = UIBarButtonItem(image: UIImage(named: "Alert")?.withRenderingMode(.alwaysOriginal),
-                                   style: .plain, target: nil, action: nil)
-        let bookmark = UIBarButtonItem(image: UIImage(named: "BookMark")?.withRenderingMode(.alwaysOriginal),
-                                       style: .plain, target: nil, action: nil)
+        let bookmark = UIButton().then {
+            $0.setImage(UIImage(named: "BookMark")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
         
-        self.navigationItem.rightBarButtonItems = [noti,bookmark]
+        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        spacer.width = 16
+        
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: alertItem),
+                                                   spacer,
+                                                   UIBarButtonItem(customView: bookmark)]
+        
 
         
         bookmark.rx.tap
             .bind(onNext: { [weak self] in
                 let usecase = BookMarkUseCase(homeRepository: HomeRepository(homeService: HomeService(),
-                                                                             authService: UserService()),
+                                                                             authService: UserService(),
+                                                                             certificationService: CertificationService()),
                                               communityRepository: CommunityRepository(UserService(),
                                                                                        certificationService: CertificationService(), articleService: ArticleService()))
                 let bookMarkVC = BookMarkViewController(viewModel: BookMarkViewModel(usecase: usecase))
@@ -132,6 +147,14 @@ final class MyFeedViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         self.title = "내 글 관리"
+        
+        alertItem.rx.tap
+            .bind(onNext: { [weak self] in
+                let usecase = AlertUseCase(alarmRepo: AlarmRepository(service: AlarmService()))
+                let alertVC = AlertViewController(viewModel: AlertViewModel(usecase: usecase))
+                self?.navigationController?.pushViewController(alertVC, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
     //MARK: - SetupBinding
@@ -177,7 +200,7 @@ final class MyFeedViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         viewModel.feedType
-            .bind(to: self.topTabBarCollectionView.rx.items(cellIdentifier: TopTabBarItemCell.identifier, cellType: TopTabBarItemCell.self)) { [weak self] index, item, cell in
+            .bind(to: self.topTabBarCollectionView.rx.items(cellIdentifier: TopTabBarItemCell.identifier, cellType: TopTabBarItemCell.self)) { index, item, cell in
                 cell.configureCell(text: item)
             }
             .disposed(by: disposeBag)
@@ -237,6 +260,13 @@ final class MyFeedViewController: BaseViewController {
         fitSiteSelectionDeleteButton.rx.tap
             .subscribe(onNext: {[weak self] in
                 self?.viewModel.deleteFitSites()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.alarmCheck
+            .bind(onNext: { [weak self] isRemain in
+                let image = isRemain ? UIImage(named: "AlertRemain") : UIImage(named: "Alert")
+                self?.alertItem.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
             })
             .disposed(by: disposeBag)
     }

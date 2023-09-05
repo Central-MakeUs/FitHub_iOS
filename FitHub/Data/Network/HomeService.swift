@@ -228,4 +228,94 @@ class HomeService {
             return Disposables.create()
         }
     }
+    
+    func fetchFacilities(searchInfo: FacilitySearch)-> Single<FacilitiesDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String
+        else { return Single.error(AuthError.invalidURL) }
+        
+        let urlString = baseURL + "home/facilities/\(0)"
+        var parameter: Parameters = ["x" : searchInfo.x,
+                                     "y" : searchInfo.y,
+                                     "userX" : searchInfo.userX,
+                                     "userY" : searchInfo.userY]
+        if !searchInfo.keyword.isEmpty { parameter["keyword"] = searchInfo.keyword }
+        
+        return Single<FacilitiesDTO>.create { emitter in
+            AF.request(urlString, parameters: parameter, encoding: URLEncoding.queryString, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<FacilitiesDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            emitter(.success(result))
+                        } else {
+                            print(response.code)
+                            print(response.message)
+                            emitter(.failure(CertificationError.serverError))
+                        }
+                    case .failure(let error):
+                        emitter(.failure(error))
+                    }
+                }
+            return Disposables.create()
+        }
+    }
+    
+    func fetchFacilitiesWithKeyword(searchInfo: FacilitySearch)-> Single<FacilitiesKeywordDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String
+        else { return Single.error(AuthError.invalidURL) }
+        
+        let urlString = baseURL + "home/facilities/keyword/\(0)"
+        let parameter: Parameters = ["userX" : searchInfo.userX,
+                                     "userY" : searchInfo.userY,
+                                     "keyword" : searchInfo.keyword,
+                                     "categoryId" : 0]
+        
+        return Single<FacilitiesKeywordDTO>.create { emitter in
+            AF.request(urlString, parameters: parameter, encoding: URLEncoding.queryString, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<FacilitiesKeywordDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            emitter(.success(result))
+                        } else {
+                            print(response.code)
+                            print(response.message)
+                            emitter(.failure(CertificationError.serverError))
+                        }
+                    case .failure(let error):
+                        emitter(.failure(error))
+                    }
+                }
+            return Disposables.create()
+        }
+    }
+    
+    func fetchRecommendFacilites() -> Single<RecommendKeywordDTO> {
+        guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String
+        else { return Single.error(AuthError.invalidURL) }
+        
+        let urlString = baseURL + "home/facilities/keywords"
+        
+        return Single<RecommendKeywordDTO>.create { emitter in
+            AF.request(urlString, interceptor: AuthManager())
+                .responseDecodable(of:BaseResponse<RecommendKeywordDTO>.self) { res in
+                    switch res.result {
+                    case .success(let response):
+                        if response.code == 2000 {
+                            guard let result = response.result else { return }
+                            emitter(.success(result))
+                        } else {
+                            print(response.code)
+                            print(response.message)
+                            emitter(.failure(CertificationError.serverError))
+                        }
+                    case .failure(let error):
+                        emitter(.failure(error))
+                    }
+                }
+            return Disposables.create()
+        }
+    }
 }

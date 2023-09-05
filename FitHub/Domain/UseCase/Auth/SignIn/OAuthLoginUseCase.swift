@@ -9,15 +9,15 @@ import RxSwift
 import Foundation
 
 protocol OAuthLoginUseCaseProtocol {
-    func signInWithApple(_ token: String) -> Single<OAuthLoginDTO>
+    func signInWithApple(_ token: String, name: String) -> Single<OAuthLoginDTO>
     func signInWithKakao(_ socialId: String) -> Single<OAuthLoginDTO>
 }
 
 class OAuthLoginUseCase: OAuthLoginUseCaseProtocol {
     private let repository: OAuthLoginRepositoryInterface
     
-    func signInWithApple(_ token: String) -> Single<OAuthLoginDTO> {
-        return repository.signInWithApple(token)
+    func signInWithApple(_ token: String, name: String) -> Single<OAuthLoginDTO> {
+        return repository.signInWithApple(token, name: name)
     }
     
     func signInWithKakao(_ socialId: String) -> Single<OAuthLoginDTO> {

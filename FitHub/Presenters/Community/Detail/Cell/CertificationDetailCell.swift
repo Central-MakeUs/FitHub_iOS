@@ -57,7 +57,7 @@ final class CertificationDetailCell: UICollectionViewCell {
     private let contentImageView = UIImageView().then {
         $0.layer.masksToBounds = true
         $0.backgroundColor = .bgSub01
-        $0.contentMode = .scaleAspectFill
+        $0.contentMode = .scaleToFill
     }
     
     private let contentLabel = UILabel().then {

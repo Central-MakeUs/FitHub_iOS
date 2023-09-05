@@ -46,7 +46,8 @@ extension UIViewController {
         tabBarController.tabBar.tintColor = .white
         
         let homeUsecase = HomeUseCase(repository: HomeRepository(homeService: HomeService(),
-                                                                 authService: UserService()))
+                                                                 authService: UserService(),
+                                                                 certificationService: CertificationService()))
         let homeVC = UINavigationController(rootViewController: HomeViewController(HomeViewModel(usecase: homeUsecase)))
         homeVC.tabBarItem.image = UIImage(named: "HomeIcon")
         homeVC.tabBarItem.title = "홈"
@@ -55,18 +56,21 @@ extension UIViewController {
                                                                       certificationService: CertificationService(),
                                                                       articleService: ArticleService()),
                                                   homeRepo: HomeRepository(homeService: HomeService(),
-                                                                           authService: UserService()))
+                                                                           authService: UserService(),
+                                                                           certificationService: CertificationService()))
         let communityVC = UINavigationController(rootViewController: CommunityViewController(CommunityViewModel(communityVCUsecase)))
         communityVC.tabBarItem.image = UIImage(named: "CommunityIcon")
         communityVC.tabBarItem.title = "커뮤니티"
         
-        let lookUpVC = UINavigationController(rootViewController: LookUpViewController())
+        let lookUpUsecase = LookUpUseCase(lookUpRepo: LookUpRepositiory())
+        let lookUpVC = UINavigationController(rootViewController: LookUpViewController(viewModel: LookUpViewModel(usecase: lookUpUsecase)))
         lookUpVC.tabBarItem.image = UIImage(named: "LookUpIcon")
         lookUpVC.tabBarItem.title = "둘러보기"
         
         let myPageUsecase = MyPageUseCase(mypageRepository: MyPageRepository(service: UserService()),
                                           homeRepository: HomeRepository(homeService: HomeService(),
-                                                                         authService: UserService()))
+                                                                         authService: UserService(),
+                                                                         certificationService: CertificationService()))
         let myPageVC = UINavigationController(rootViewController: MyPageViewController(viewModel: MyPageViewModel(usecase: myPageUsecase)))
         
         myPageVC.tabBarItem.image = UIImage(named: "MyPageIcon")
@@ -80,7 +84,7 @@ extension UIViewController {
         readyVC.tabBarItem.image = UIImage(named: "LookUpIcon")
         readyVC.tabBarItem.title = "둘러보기"
         
-        tabBarController.viewControllers = [homeVC, communityVC, readyVC, myPageVC]
+        tabBarController.viewControllers = [homeVC, communityVC, lookUpVC, myPageVC]
         
         return tabBarController
     }

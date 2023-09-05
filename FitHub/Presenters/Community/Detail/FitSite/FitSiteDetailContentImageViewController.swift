@@ -12,6 +12,8 @@ import Kingfisher
 
 
 final class FitSiteDetailContentImageViewController: BaseViewController {
+    private let image: PictureList
+    
     private let backButton = UIButton(type: .system).then {
         $0.setImage(UIImage(named: "ic_close")?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
@@ -21,13 +23,32 @@ final class FitSiteDetailContentImageViewController: BaseViewController {
     }
     
     init(image: PictureList) {
+        self.image = image
         super.init(nibName: nil, bundle: nil)
         self.modalPresentationStyle = .fullScreen
-        self.imageView.kf.setImage(with: URL(string: image.pictureUrl))
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.imageView.kf.setImage(with: URL(string: image.pictureUrl)) { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let item):
+                let ratio = item.image.size.height / item.image.size.width
+                imageView.snp.remakeConstraints {
+                    $0.horizontalEdges.equalToSuperview()
+                    $0.top.equalTo(self.backButton.snp.bottom).offset(20)
+                    $0.height.equalTo(self.imageView.snp.width).multipliedBy(ratio)
+                }
+            case .failure(let error):
+                print(error)
+                self.notiAlert("사진을 불러오는데 실패했습니다.")
+            }
+        }
     }
     
     override func addSubView() {

@@ -63,9 +63,9 @@ class RegistInfoViewModel: ViewModelType {
         
         let name = input.nameTextFieldDidEditEvent
         
-        let sendButtonEnable = Observable.combineLatest(name, dateOfBirth, sexNumber, phoneNumber)
-            .map { (name: $0.count > 0, dateOfBirth: $1.1, sexNumber:$2.1, phoneNumber: $3.1 == .ok) }
-            .map { $0 && $1 && $2 && $3 }
+        let sendButtonEnable = Observable.combineLatest(name, dateOfBirth, sexNumber, phoneNumber, dateOfBirthStatus)
+            .map { (name: $0.count > 0, dateOfBirth: $1.1, sexNumber:$2.1, phoneNumber: $3.1 == .ok, dateOfBirthStatus: $4.0 == .ok) }
+            .map { $0 && $1 && $2 && $3 && $4}
         
         input.sendButtonTapEvent
             .withLatestFrom(phoneNumber)

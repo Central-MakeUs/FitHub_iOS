@@ -226,8 +226,8 @@ final class RegistInfoInputViewController: BaseViewController {
     override func addSubView() {
         self.view.addSubview(self.titleLabel)
         self.view.addSubview(self.subTitleLabel)
-        self.view.addSubview(self.sendButton)
         self.view.addSubview(self.stackView)
+        self.view.addSubview(self.sendButton)
     }
     
     override func layout() {

@@ -174,6 +174,10 @@ final class AgreementViewController: BaseViewController {
         if self.viewModel.registType == .OAuth {
             let usecase = OAuthRegistInputUseCase(registUserInfo: userInfo)
             let oAuthRegistInputVC = OAuthRegistInputViewController(OAuthRegistInputViewModel(usecase))
+//            let usecase = ProfileSettingUseCase(repository: ProfileSettingRepository(UserService()),
+//                                                userInfo: userInfo)
+//            let profileSettingVC = ProfileSettingViewController(ProfileSettingViewModel(usecase,
+//                                                                                        registType: .OAuth))
             self.navigationController?.pushViewController(oAuthRegistInputVC, animated: true)
         } else {
             let usecase = RegistInfoUseCase(userInfo,

@@ -78,7 +78,7 @@ final class FitSiteCell: UITableViewCell {
         $0.contentMode = .scaleAspectFill
     }
     
-    private let heartImageView = UIImageView(image: UIImage(named: "ic_heart_default"))
+    private let heartImageView = UIImageView(image: UIImage(named: "ic_heart_14px"))
     
     private let heartCountLabel = UILabel().then {
         $0.text = "-"
@@ -169,23 +169,23 @@ final class FitSiteCell: UITableViewCell {
     private func layout() {
         profileImageView.snp.makeConstraints {
             $0.leading.equalToSuperview()
-            $0.top.equalToSuperview().offset(20)
+            $0.top.equalToSuperview()
             $0.height.width.equalTo(30)
         }
         
         nameLabel.snp.makeConstraints {
             $0.leading.equalTo(self.profileImageView.snp.trailing).offset(10)
-            $0.top.equalToSuperview().offset(20)
+            $0.top.equalToSuperview()
         }
         
         sportLabel.snp.makeConstraints {
             $0.leading.equalTo(self.nameLabel.snp.trailing).offset(6)
-            $0.top.equalToSuperview().offset(20)
+            $0.top.equalToSuperview()
         }
         
         gradeLabel.snp.makeConstraints {
             $0.leading.equalTo(self.sportLabel.snp.trailing).offset(4)
-            $0.top.equalToSuperview().offset(20)
+            $0.top.equalToSuperview()
         }
         
         timeLabel.snp.makeConstraints {
@@ -239,7 +239,7 @@ final class FitSiteCell: UITableViewCell {
         }
         
         separatorLine.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-20)
             $0.height.equalTo(1)
             $0.horizontalEdges.equalToSuperview()
         }

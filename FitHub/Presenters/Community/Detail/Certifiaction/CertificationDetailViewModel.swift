@@ -37,6 +37,7 @@ final class CertificationDetailViewModel: ViewModelType {
     let reportUserHandler = PublishSubject<Int>()
     let deleteFeedHandler = PublishSubject<Bool>()
     let updateHandler = PublishSubject<CertificationDetailDTO>()
+    let userProfileImage = PublishSubject<String>()
     
     //MARK: - Input
     let detailSource = PublishSubject<CertificationDetailDTO>()
@@ -191,6 +192,7 @@ extension CertificationDetailViewModel {
                 self?.ownerId = res.userInfo.ownerId
                 self?.detailSource.onNext(res)
                 self?.certificationModel = res
+                self?.userProfileImage.onNext(res.loginUserProfileUrl)
             }, onFailure: { [weak self] error in
                 self?.errorHandler.onNext(error)
             })

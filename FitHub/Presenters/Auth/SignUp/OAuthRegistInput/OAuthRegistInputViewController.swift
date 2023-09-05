@@ -59,10 +59,56 @@ final class OAuthRegistInputViewController: BaseViewController {
                                                     gender: self.dateOfBirthInputTextFieldView.sexNumberTextField.rx.text.orEmpty.asObservable(),
                                                     nextTap: self.nextButton.rx.tap.asObservable())
         
+        if let appleName = UserDefaults.standard.value(forKey: "appleName") as? String {
+            nameInputTextFieldView.borderColorWillChange(UIColor.iconDisabled.cgColor)
+            nameInputTextFieldView.textField.textColor = .textDisabled
+            nameInputTextFieldView.isTextFieldEnabled = false
+            self.nameInputTextFieldView.textField.rx.text.onNext(appleName)
+        }
+        
         let output = self.viewModel.transform(input: input)
         
         output.nextButtonEnable
             .bind(to: self.nextButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        output.dateOfBirthStatus
+            .asSignal(onErrorJustReturn: (.notValidSexNumber,false))
+            .withUnretained(self, resultSelector: { ($0,$1.0,$1.1) })
+            .emit(onNext: { (obj,status,isFull) in
+                if isFull {
+                    obj.dateOfBirthInputTextFieldView.verifyFormat(status)
+                    if obj.stackView.subviews.count == 3 && status == .ok {
+                        UIView.animate(withDuration: 0.3, animations: {
+                            self.stackView.insertArrangedSubview(self.nameInputTextFieldView, at: 0)
+                            self.nameInputTextFieldView.isHidden = false
+                            self.loadViewIfNeeded()
+                        }) { _ in
+                            self.nameInputTextFieldView.textField.becomeFirstResponder()
+                        }
+                    }
+                } else {
+                    obj.dateOfBirthInputTextFieldView.verifyFormat(.ok)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        output.dateOfBirth
+            .observe(on: MainScheduler.asyncInstance)
+            .withUnretained(self, resultSelector: { ($0,$1.0,$1.1) } )
+            .bind(onNext: { (obj, text, isFullNumber) in
+                obj.dateOfBirthInputTextFieldView.dateOfBirthTextField.text = text
+                if isFullNumber { obj.dateOfBirthInputTextFieldView.sexNumberTextField.becomeFirstResponder() }
+            })
+            .disposed(by: disposeBag)
+        
+        output.sexNumber
+            .observe(on: MainScheduler.asyncInstance)
+            .withUnretained(self, resultSelector: { ($0,$1.0,$1.1) } )
+            .bind(onNext: { (obj, text, isFullNumber) in
+                obj.dateOfBirthInputTextFieldView.sexNumberTextField.text = text
+                if isFullNumber { obj.dateOfBirthInputTextFieldView.sexNumberTextField.resignFirstResponder() }
+            })
             .disposed(by: disposeBag)
         
         output.nextTap

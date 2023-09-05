@@ -11,15 +11,16 @@ import RxSwift
 
 class UserService {
     //MARK: - Login
-    func signInAppleLogin(_ token: String)->Single<OAuthLoginDTO> {
+    func signInAppleLogin(_ token: String, name: String)->Single<OAuthLoginDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
         let fcmToken = UserDefaults.standard.object(forKey: "fcmToken") as? String ?? ""
         let urlString = baseURL + "users/login/social/apple"
-        let paramter: Parameters = ["identityToken" : token,
+        var parameter: Parameters = ["identityToken" : token,
                                     "fcmToken" : fcmToken]
+        if !name.isEmpty { parameter["userName"] = name }
         
         return Single<OAuthLoginDTO>.create { observer in
-            AF.request(urlString, method: .post, parameters: paramter, encoding: JSONEncoding.default)
+            AF.request(urlString, method: .post, parameters: parameter, encoding: JSONEncoding.default)
                 .responseDecodable(of: BaseResponse<OAuthLoginDTO>.self) { res in
                     switch res.result {
                     case .success(let response):
@@ -104,8 +105,8 @@ class UserService {
               let password = registUserInfo.password,
               let nickname = registUserInfo.nickName,
               let name = registUserInfo.name,
-              let phoneNumber = registUserInfo.phoneNumber,
-              let profileImage = registUserInfo.profileImage?.pngData() else { return Single.error(AuthError.invalidURL) }
+              let phoneNumber = registUserInfo.phoneNumber else { return Single.error(AuthError.invalidURL) }
+        let profileImage = registUserInfo.profileImage?.pngData()
         
         let parameters: Parameters = [
             "gender" : gender,
@@ -119,7 +120,10 @@ class UserService {
         
         return Single<RegistResponseDTO>.create { emitter in
             AF.upload(multipartFormData: { multipartFormData in
-                multipartFormData.append(profileImage, withName: "profileImage", fileName: "\(profileImage).png", mimeType: "image/png")
+                if let profileImage {
+                    multipartFormData.append(profileImage, withName: "profileImage", fileName: "\(profileImage).png", mimeType: "image/png")
+                }
+                
                 let preferExercises = preferExercises.map { String($0) }.joined(separator: ",")
                 multipartFormData.append(preferExercises.data(using: .utf8)!, withName: "preferExercises")
                 
@@ -156,12 +160,12 @@ class UserService {
         
         let marketingAgree = registUserInfo.marketingAgree
         let preferExercises = registUserInfo.preferExercise.map { $0.id }
-        guard let birth = registUserInfo.dateOfBirth,
-              let gender = registUserInfo.sexNumber,
-              let nickname = registUserInfo.nickName,
-              let name = registUserInfo.name,
-              let profileImage = registUserInfo.profileImage?.pngData() else { return Single.error(AuthError.invalidURL)
-        }
+        let birth = registUserInfo.dateOfBirth ?? "123456"
+        let gender = registUserInfo.sexNumber ?? "1"
+        let name = registUserInfo.name ?? "임시이름"
+        
+        guard let nickname = registUserInfo.nickName else { return Single.error(AuthError.invalidURL) }
+        let profileImage = registUserInfo.profileImage?.pngData()
         
         let parameters: Parameters = [
             "gender" : gender,
@@ -173,7 +177,10 @@ class UserService {
         
         return Single<RegistResponseDTO>.create { emitter in
             AF.upload(multipartFormData: { multipartFormData in
-                multipartFormData.append(profileImage, withName: "profileImage", fileName: "\(profileImage).png", mimeType: "image/png")
+                if let profileImage {
+                    multipartFormData.append(profileImage, withName: "profileImage", fileName: "\(profileImage).png", mimeType: "image/png")
+                }
+                
                 let preferExercises = preferExercises.map { String($0) }.joined(separator: ",")
                 multipartFormData.append(preferExercises.data(using: .utf8)!, withName: "preferExercises")
                 
@@ -610,6 +617,15 @@ class UserService {
 
         return Single<BaseResponse<OtherUserInfoDTO>>.create { emitter in
             AF.request(urlString, interceptor: AuthManager())
+                .responseString() { res in
+                    switch res.result {
+                    case .success(let response):
+                        print(response)
+                    case .failure(let error):
+                        print(error)
+//                        emitter(.failure(error))
+                    }
+                }
             .responseDecodable(of: BaseResponse<OtherUserInfoDTO>.self) { res in
                 switch res.result {
                 case .success(let response):

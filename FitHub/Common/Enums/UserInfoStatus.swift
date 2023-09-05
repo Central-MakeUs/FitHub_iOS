@@ -36,7 +36,7 @@ enum UserInfoStatus {
         case .matchPassword: return "비밀번호가 일치합니다."
         case .ok: return ""
         case .passwordOK: return "영어,숫자,특수문자를 조합하여 8~16자로 입력해주세요"
-        case .nickNameOK: return "한글 혹은 영문을 포함하여 1~10자로 입력해주세요."
+        case .nickNameOK: return "한글 혹은 영문을 포함하여 1~8자로 입력해주세요."
         case .duplicateNickName: return "이미 존재하는 닉네임 입니다."
         case .nickNameSuccess: return "사용 가능한 닉네임 입니다."
         }
