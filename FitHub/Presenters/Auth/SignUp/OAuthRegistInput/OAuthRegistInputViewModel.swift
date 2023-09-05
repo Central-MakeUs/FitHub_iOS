@@ -24,6 +24,9 @@ final class OAuthRegistInputViewModel: ViewModelType {
     struct Output {
         let nextButtonEnable = BehaviorSubject<Bool>(value: false)
         let nextTap = PublishSubject<Void>()
+        let dateOfBirth: Observable<(String,Bool)>
+        let sexNumber: Observable<(String,Bool)>
+        let dateOfBirthStatus: Observable<(UserInfoStatus,Bool)>
     }
     
     init(_ usecase: OAuthRegistInputUseCaseProtocol) {
@@ -31,8 +34,6 @@ final class OAuthRegistInputViewModel: ViewModelType {
     }
     
     func transform(input: Input) -> Output {
-        let output = Output()
-        
         let dateOfBirth = input.dateNumber
             .distinctUntilChanged()
             .map { (String($0.prefix(6)), $0.count >= 6) }
@@ -44,11 +45,15 @@ final class OAuthRegistInputViewModel: ViewModelType {
         let dateOfBirthStatus = Observable.combineLatest(dateOfBirth, sexNumber)
             .map { (self.usecase.verifyDateOfBirth($0.0, sexNumStr: $1.0), $0.1 && $1.1) }
         
+        let output = Output(dateOfBirth: dateOfBirth,
+                            sexNumber: sexNumber,
+                            dateOfBirthStatus: dateOfBirthStatus)
+        
         let name = input.name
         
-        Observable.combineLatest(name, dateOfBirth, sexNumber)
-            .map { (name: $0.count > 0, dateOfBirth: $1.1, sexNumber:$2.1) }
-            .map { $0 && $1 && $2 }
+        Observable.combineLatest(name, dateOfBirth, sexNumber, dateOfBirthStatus)
+            .map { (name: $0.count > 0, dateOfBirth: $1.1, sexNumber:$2.1, dateOfBirthStatus: $3.0) }
+            .map { $0 && $1 && $2 && $3 == .ok}
             .subscribe(output.nextButtonEnable)
             .disposed(by: disposeBag)
         

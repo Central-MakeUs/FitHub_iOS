@@ -86,6 +86,19 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.gestureRecognizers = nil
+        
+        guard let targetView = UserDefaults.standard.object(forKey: "targetView") as? String,
+              let targetPKString = UserDefaults.standard.object(forKey: "targetPK") as? String,
+              let targetPK = Int(targetPKString) else { return }
+        
+        if targetView == "ARTICLE" {
+            self.pushFitSiteDetail(articleId: targetPK)
+        } else if targetView == "CERTIFICATION" {
+            self.pushCertificationDetail(recordId: targetPK)
+        }
+        
+        UserDefaults.standard.removeObject(forKey: "targetView")
+        UserDefaults.standard.removeObject(forKey: "targetPK")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -326,6 +339,49 @@ extension HomeViewController {
                 self.changeRootViewController(authVC)
             })
             .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx.notification(.didRecieveAlert)
+            .subscribe(onNext: { [weak self] notification in
+                guard let self,
+                      let targetView = UserDefaults.standard.object(forKey: "targetView") as? String,
+                      let targetPKString = UserDefaults.standard.object(forKey: "targetPK") as? String,
+                      let targetPK = Int(targetPKString) else { return }
+                self.tabBarController?.selectedIndex = 0
+                self.navigationController?.popToRootViewController(animated: false)
+                
+                if targetView == "ARTICLE" {
+                    self.pushFitSiteDetail(articleId: targetPK)
+                } else if targetView == "CERTIFICATION" {
+                    self.pushCertificationDetail(recordId: targetPK)
+                }
+                UserDefaults.standard.removeObject(forKey: "targetView")
+                UserDefaults.standard.removeObject(forKey: "targetPK")
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func pushCertificationDetail(recordId: Int) {
+        let usecase = CertifiactionDetailUseCase(certificationRepository: CertificationRepository(service: CertificationService()),
+                                                 commentRepository: CommentRepository(service: CommentService()),
+                                                 communityRepostiroy: CommunityRepository(UserService(),
+                                                                                          certificationService: CertificationService(),
+                                                                                          articleService: ArticleService()))
+        let certificationDetailVC = CertificationDetailViewController(viewModel: CertificationDetailViewModel(usecase: usecase,
+                                                                                                              recordId: recordId))
+        
+        self.navigationController?.pushViewController(certificationDetailVC, animated: true)
+    }
+    
+    private func pushFitSiteDetail(articleId: Int) {
+        let usecase = FitSiteDetailUseCase(commentRepository: CommentRepository(service: CommentService()),
+                                         fitSiteRepository: FitSiteRepository(service: ArticleService()),
+                                           communityRepository: CommunityRepository(UserService(),
+                                                                                    certificationService: CertificationService(),
+                                                                                    articleService: ArticleService()))
+        let fitSiteDetailVC = FitSiteDetailViewController(viewModel: FitSiteDetailViewModel(usecase: usecase,
+                                                                                            articleId: articleId))
+        
+        self.navigationController?.pushViewController(fitSiteDetailVC, animated: true)
     }
 }
 

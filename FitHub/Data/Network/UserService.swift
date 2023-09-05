@@ -11,12 +11,13 @@ import RxSwift
 
 class UserService {
     //MARK: - Login
-    func signInAppleLogin(_ token: String)->Single<OAuthLoginDTO> {
+    func signInAppleLogin(_ token: String, name: String)->Single<OAuthLoginDTO> {
         guard let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String else { return Single.error(AuthError.invalidURL)}
         let fcmToken = UserDefaults.standard.object(forKey: "fcmToken") as? String ?? ""
         let urlString = baseURL + "users/login/social/apple"
-        let parameter: Parameters = ["identityToken" : token,
+        var parameter: Parameters = ["identityToken" : token,
                                     "fcmToken" : fcmToken]
+        if !name.isEmpty { parameter["userName"] = name }
         
         return Single<OAuthLoginDTO>.create { observer in
             AF.request(urlString, method: .post, parameters: parameter, encoding: JSONEncoding.default)

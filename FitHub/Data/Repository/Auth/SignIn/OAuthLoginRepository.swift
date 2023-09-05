@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol OAuthLoginRepositoryInterface {
-    func signInWithApple(_ token: String) -> Single<OAuthLoginDTO>
+    func signInWithApple(_ token: String, name: String) -> Single<OAuthLoginDTO>
     func signInWithKakao(_ socialId: String) -> Single<OAuthLoginDTO>
 }
 
@@ -20,8 +20,8 @@ final class OAuthLoginRepository: OAuthLoginRepositoryInterface {
         self.service = service
     }
     
-    func signInWithApple(_ token: String) -> Single<OAuthLoginDTO> {
-        return service.signInAppleLogin(token)
+    func signInWithApple(_ token: String, name: String) -> Single<OAuthLoginDTO> {
+        return service.signInAppleLogin(token, name: name)
     }
     
     func signInWithKakao(_ socialId: String) -> Single<OAuthLoginDTO> {

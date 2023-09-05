@@ -392,6 +392,15 @@ extension MyPageViewController {
             })
             .disposed(by: disposeBag)
         
+        registrationRequest.rx.tapGesture()
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                let exceptionVC = ExceptionViewController(title: "아직 준비중이에요!",
+                                                          subTitle: "핏허브에서 열심히 공사중이니 조금만 기다려주시면 감사하겠습니다!")
+                self?.navigationController?.pushViewController(exceptionVC, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
         notiSetting.rx.tapGesture()
             .asDriver()
             .drive(onNext: { [weak self] _ in

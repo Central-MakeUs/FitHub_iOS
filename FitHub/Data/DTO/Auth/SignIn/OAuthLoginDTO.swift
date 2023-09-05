@@ -11,4 +11,5 @@ class OAuthLoginDTO: Codable {
     let isLogin: Bool
     let accessToken: String
     let userId: Int
+    let userName: String?
 }
