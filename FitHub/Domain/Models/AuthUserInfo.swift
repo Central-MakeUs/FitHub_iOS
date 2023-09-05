@@ -15,7 +15,7 @@ struct AuthUserInfo {
     var name: String?
     var telecom: TelecomProviderType?
     var nickName: String?
-    var profileImage = UIImage(named: "DefaultProfile")?.withRenderingMode(.alwaysOriginal)
+    var profileImage: UIImage?
     var marketingAgree = false
     var preferExercise: [CategoryDTO] = []
 }

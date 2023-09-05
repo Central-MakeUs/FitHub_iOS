@@ -27,6 +27,7 @@ final class ProfileSettingViewController: BaseViewController {
     }
     
     private let profileImageEditButton = UIButton().then {
+        $0.setImage(UIImage(named: "DefaultPofile")?.withRenderingMode(.alwaysOriginal), for: .normal)
         $0.contentMode = .scaleAspectFit
         $0.backgroundColor = .gray
         $0.layer.cornerRadius = 60
@@ -107,6 +108,7 @@ final class ProfileSettingViewController: BaseViewController {
         
         self.viewModel.profileImage
             .asDriver()
+            .map { $0 == nil ? UIImage(named: "DefaultProfile") : $0 }
             .drive(self.profileImageEditButton.rx.image())
             .disposed(by: disposeBag)
     }
@@ -149,12 +151,14 @@ final class ProfileSettingViewController: BaseViewController {
     }
     
     private func showPhotoAlbum() {
-        var configuration = PHPickerConfiguration()
-        configuration.selectionLimit = 1
-        configuration.filter = .images
-        let photoPickerVC = PHPickerViewController(configuration: configuration)
-        photoPickerVC.delegate = self
-        self.present(photoPickerVC, animated: true)
+        DispatchQueue.main.async {
+            var configuration = PHPickerConfiguration()
+            configuration.selectionLimit = 1
+            configuration.filter = .images
+            let photoPickerVC = PHPickerViewController(configuration: configuration)
+            photoPickerVC.delegate = self
+            self.present(photoPickerVC, animated: true)
+        }
     }
     
     //MARK: - AddSubView

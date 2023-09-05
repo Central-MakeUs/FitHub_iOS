@@ -16,7 +16,7 @@ class ProfileSettingViewModel: ViewModelType {
     
     var usecase: ProfileSettingUseCaseProtocol
     
-    let profileImage = BehaviorRelay(value: UIImage(named: "DefaultProfile"))
+    let profileImage = BehaviorRelay<UIImage?>(value: nil)
     
     struct Input {
         let nickNameText: Observable<String>

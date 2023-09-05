@@ -26,8 +26,10 @@ final class CertificationCell: UICollectionViewCell {
         $0.layer.cornerRadius = 5
     }
     
-    private let likeButton = UIButton(type: .system).then {
+    private let likeButton = UIButton().then {
+        $0.isEnabled = false
         $0.setImage(UIImage(named: "ic_heart_default")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        $0.setImage(UIImage(named: "ic_heart_default")?.withRenderingMode(.alwaysOriginal), for: .disabled)
         $0.backgroundColor = .clear
     }
     

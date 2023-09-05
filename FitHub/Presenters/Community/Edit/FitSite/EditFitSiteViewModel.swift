@@ -135,12 +135,19 @@ final class EditFitSiteViewModel: ViewModelType {
             .map { !$0.0.isEmpty && !$0.1.isEmpty && $0.2 != nil }
             
         input.completeTap
+            .bind(onNext: {
+                LoadingIndicatorView.showLoading()
+            })
+            .disposed(by: disposeBag)
+        
+        input.completeTap
             .flatMap { self.usecase.updateArticle(articleId: self.articleId,
                                                   feedInfo: self.newFitSiteInfo,
                                                   remainImageList: self.remainImageList ?? []).asObservable()
                     .catchAndReturn(false)
             }
             .subscribe(onNext: { [weak self] isSuccess in
+                LoadingIndicatorView.hideLoading()
                 self?.completePublisher.onNext(isSuccess)
             })
             .disposed(by: disposeBag)

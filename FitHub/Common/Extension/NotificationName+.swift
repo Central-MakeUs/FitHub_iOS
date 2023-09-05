@@ -12,4 +12,6 @@ extension Notification.Name {
     static let presentAlert = Notification.Name("presentAlert")
     static let tapChangeMainExercise = Notification.Name("tapChangeMainExercise")
     static let tapLookupWithCategory = Notification.Name("tapLookupWithCategory")
+    static let tapCertificationAtHome = Notification.Name("tapCertificationAtHome")
+    
 }

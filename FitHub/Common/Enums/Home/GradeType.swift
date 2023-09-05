@@ -17,13 +17,13 @@ enum GradeType: String {
     var color: UIColor {
         switch self {
         case .one:
-            return UIColor(red: 210/255, green: 58/255, blue: 35/255, alpha: 1)
+            return UIColor(red: 245/255, green: 73/255, blue: 35/255, alpha: 1)
         case .two:
             return UIColor(red: 40/255, green: 104/255, blue: 194/255, alpha: 1)
         case .three:
             return UIColor(red: 255/255, green: 207/255, blue: 0/255, alpha: 1)
         case .four:
-            return UIColor(red: 78/255, green: 52/255, blue: 134/255, alpha: 1)
+            return UIColor(red: 129/255, green: 110/255, blue: 250/255, alpha: 1)
         case .five:
             return UIColor(red: 31/255, green: 153/255, blue: 80/255, alpha: 1)
         }

@@ -17,7 +17,7 @@ final class AlertDefaultView: UIView {
     private let subTitleLabel = UILabel().then {
         $0.text = "새로운 알림이 오면 알려드릴게요."
         $0.font = .pretendard(.bodyMedium01)
-        $0.textColor = .textDefault
+        $0.textColor = .textSub02
     }
     
     override init(frame: CGRect) {

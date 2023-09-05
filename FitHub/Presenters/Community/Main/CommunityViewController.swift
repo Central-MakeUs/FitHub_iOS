@@ -258,7 +258,8 @@ final class CommunityViewController: BaseViewController {
         bookmark.rx.tap
             .bind(onNext: { [weak self] in
                 let usecase = BookMarkUseCase(homeRepository: HomeRepository(homeService: HomeService(),
-                                                                             authService: UserService()),
+                                                                             authService: UserService(),
+                                                                             certificationService: CertificationService()),
                                               communityRepository: CommunityRepository(UserService(),
                                                                                        certificationService: CertificationService(), articleService: ArticleService()))
                 let bookMarkVC = BookMarkViewController(viewModel: BookMarkViewModel(usecase: usecase))
@@ -272,6 +273,12 @@ final class CommunityViewController: BaseViewController {
                 let usecase = AlertUseCase(alarmRepo: AlarmRepository(service: AlarmService()))
                 let alertVC = AlertViewController(viewModel: AlertViewModel(usecase: usecase))
                 self?.navigationController?.pushViewController(alertVC, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx.notification(.tapCertificationAtHome)
+            .bind(onNext: { [weak self] noti in
+                self?.pushCreateCertificationVC()
             })
             .disposed(by: disposeBag)
     }

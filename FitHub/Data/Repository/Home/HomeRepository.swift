@@ -18,16 +18,20 @@ protocol HomeRepositoryInterface {
     func checkNotiSetting() -> Single<NotiSettingDTO>
     func updateNotiSetting(communityPermit: Bool, marketingPermit: Bool) -> Single<NotiSettingDTO>
     func checkRemainAlarm() -> Single<CheckRemainAlarmDTO>
+    func checkHasTodayCertification()->Single<CheckTodayDTO>
 }
 
 final class HomeRepository: HomeRepositoryInterface {
     private let homeService: HomeService
     private let authService: UserService
+    private let certificationService: CertificationService
     
     init(homeService: HomeService,
-         authService: UserService) {
+         authService: UserService,
+         certificationService: CertificationService) {
         self.homeService = homeService
         self.authService = authService
+        self.certificationService = certificationService
     }
     
     func fetchCategory() -> Single<[CategoryDTO]> {
@@ -64,5 +68,9 @@ final class HomeRepository: HomeRepositoryInterface {
     
     func checkRemainAlarm() -> Single<CheckRemainAlarmDTO> {
         return homeService.checkRemainAlarm()
+    }
+    
+    func checkHasTodayCertification()->Single<CheckTodayDTO> {
+        return certificationService.checkHasTodayCertification()
     }
 }

@@ -74,12 +74,15 @@ final class LookUpViewController: BaseViewController {
         
         NotificationCenter.default.rx.notification(.tapLookupWithCategory)
             .compactMap { $0.object as? Int }
-            .bind(onNext: { [weak self] id in
+            .withLatestFrom(viewModel.currentUserLocation, resultSelector: { ($0,$1) })
+            .bind(onNext: { [weak self] (id,mapPoint) in
                 guard let self else { return }
+                viewModel.isFirstLoad = true
                 categoryCollectionView.selectItem(at: IndexPath(item: id, section: 0),
                                                   animated: false,
                                                   scrollPosition: .centeredHorizontally)
                 viewModel.selectedCategoryId.accept(id)
+                
             })
             .disposed(by: disposeBag)
     }
@@ -204,13 +207,11 @@ final class LookUpViewController: BaseViewController {
             .map { $0.isEmpty }
             .bind(onNext: { [weak self] isEmpty in
                 guard let self else { return }
-                if isEmpty {
-                    if self.listTableView.isHidden {
-                        self.notiAlert("이 지역은 아직 시설 정보가 없어요.")
-                    }
-                    
-                    listTableView.backgroundView?.isHidden = !isEmpty
+                if self.listTableView.isHidden && isEmpty {
+                    self.notiAlert("이 지역은 아직 시설 정보가 없어요.")
                 }
+                
+                listTableView.backgroundView?.isHidden = !isEmpty
             })
             .disposed(by: disposeBag)
         
@@ -392,6 +393,8 @@ extension LookUpViewController: CLLocationManagerDelegate {
             let coordinate = location.coordinate
             let mapPoint = MTMapPoint(geoCoord: .init(latitude: coordinate.latitude,
                                                       longitude: coordinate.longitude))
+            self.viewModel.currentUserLocation.onNext(mapPoint)
+            
             if viewModel.isFirstLoad {
                 viewModel.currentCenterLocation.onNext(mapPoint)
                 mapView.setMapCenter(mapPoint, animated: true)
@@ -399,7 +402,7 @@ extension LookUpViewController: CLLocationManagerDelegate {
                 viewModel.isFirstLoad = false
             }
             
-            self.viewModel.currentUserLocation.onNext(mapPoint)
+            
         }
     }
 }

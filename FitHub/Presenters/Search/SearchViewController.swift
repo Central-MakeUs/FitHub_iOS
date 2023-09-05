@@ -23,6 +23,10 @@ final class SearchViewController: BaseViewController {
         $0.isHidden = true
     }
     
+    private let totalBackGroundView = EmptyResultView().then {
+        $0.isHidden = true
+    }
+    
     private let recommendView = RecommendView()
     
     private let feedScrollView = UIScrollView().then {
@@ -184,7 +188,6 @@ final class SearchViewController: BaseViewController {
         
         totalCollectionView.rx.modelSelected(SearchTotalSectionModel.Item.self)
             .subscribe(onNext: { [weak self] result in
-                print(result)
                 switch result {
                 case .certification(record: let record):
                     self?.pushCertificationDetail(recordId: record.recordId)
@@ -472,13 +475,14 @@ extension SearchViewController {
     }
     
     private func createCertificationSection() -> NSCollectionLayoutSection {
+        let height = viewModel.certificationFeedList.value.isEmpty ? 0 : ((self.view.frame.width-60)/2)*1.33
         let itemSize = NSCollectionLayoutSize(widthDimension: .absolute((self.view.frame.width-60)/2),
-                                              heightDimension: .absolute(((self.view.frame.width-60)/2)*1.33))
+                                              heightDimension: .absolute(height))
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(2.0),
-                                               heightDimension: .estimated(0))
+                                               heightDimension: .estimated(40))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.interItemSpacing = .fixed(5)
@@ -490,10 +494,11 @@ extension SearchViewController {
                                                                                    heightDimension: .estimated(40)),
                                                                  elementKind: SearchTotalHeaderView.certification,
                                                                  alignment: .top)
+        if !viewModel.certificationFeedList.value.isEmpty {
+            section.boundarySupplementaryItems = [header]
+            section.contentInsets = .init(top: 0, leading: 0, bottom: 45, trailing: 0)
+        }
         
-        section.boundarySupplementaryItems = [header]
-        
-        section.contentInsets = .init(top: 0, leading: 0, bottom: 45, trailing: 0)
         return section
     }
     
@@ -518,7 +523,9 @@ extension SearchViewController {
                                                                  elementKind: SearchTotalHeaderView.fitSite,
                                                                  alignment: .top)
         
-        section.boundarySupplementaryItems = [header]
+        if !viewModel.fitSiteFeedList.value.isEmpty {
+            section.boundarySupplementaryItems = [header]
+        }
         
         return section
     }
@@ -560,8 +567,11 @@ extension SearchViewController {
     private func emptyResultBinding() {
         fitSiteTableView.backgroundView = fitSiteBackGroundView
         certificationCollectionView.backgroundView = certificationBackGroundView
+        totalCollectionView.backgroundView = totalBackGroundView
+        
         viewModel.searchText
             .bind(onNext: { [weak self] text in
+                self?.totalBackGroundView.configureLabel(text: text)
                 self?.certificationBackGroundView.configureLabel(text: text)
                 self?.fitSiteBackGroundView.configureLabel(text: text)
             })
@@ -576,6 +586,12 @@ extension SearchViewController {
             .map { !$0.isEmpty }
             .bind(to: certificationBackGroundView.rx.isHidden)
             .disposed(by: disposeBag)
+        
+        Observable.combineLatest(viewModel.fitSiteFeedList,
+                                 viewModel.certificationFeedList)
+        .map { !( $0.0.isEmpty && $0.1.isEmpty) }
+        .bind(to: totalBackGroundView.rx.isHidden)
+        .disposed(by: disposeBag)
         
         searchBar.rx.textDidBeginEditing
             .subscribe(onNext: { [weak self] text in

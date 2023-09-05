@@ -104,8 +104,8 @@ class UserService {
               let password = registUserInfo.password,
               let nickname = registUserInfo.nickName,
               let name = registUserInfo.name,
-              let phoneNumber = registUserInfo.phoneNumber,
-              let profileImage = registUserInfo.profileImage?.pngData() else { return Single.error(AuthError.invalidURL) }
+              let phoneNumber = registUserInfo.phoneNumber else { return Single.error(AuthError.invalidURL) }
+        let profileImage = registUserInfo.profileImage?.pngData()
         
         let parameters: Parameters = [
             "gender" : gender,
@@ -119,7 +119,10 @@ class UserService {
         
         return Single<RegistResponseDTO>.create { emitter in
             AF.upload(multipartFormData: { multipartFormData in
-                multipartFormData.append(profileImage, withName: "profileImage", fileName: "\(profileImage).png", mimeType: "image/png")
+                if let profileImage {
+                    multipartFormData.append(profileImage, withName: "profileImage", fileName: "\(profileImage).png", mimeType: "image/png")
+                }
+                
                 let preferExercises = preferExercises.map { String($0) }.joined(separator: ",")
                 multipartFormData.append(preferExercises.data(using: .utf8)!, withName: "preferExercises")
                 
@@ -160,9 +163,8 @@ class UserService {
         let gender = registUserInfo.sexNumber ?? "1"
         let name = registUserInfo.name ?? "임시이름"
         
-        guard let nickname = registUserInfo.nickName,
-              let profileImage = registUserInfo.profileImage?.pngData() else { return Single.error(AuthError.invalidURL)
-        }
+        guard let nickname = registUserInfo.nickName else { return Single.error(AuthError.invalidURL) }
+        let profileImage = registUserInfo.profileImage?.pngData()
         
         let parameters: Parameters = [
             "gender" : gender,
@@ -174,7 +176,10 @@ class UserService {
         
         return Single<RegistResponseDTO>.create { emitter in
             AF.upload(multipartFormData: { multipartFormData in
-                multipartFormData.append(profileImage, withName: "profileImage", fileName: "\(profileImage).png", mimeType: "image/png")
+                if let profileImage {
+                    multipartFormData.append(profileImage, withName: "profileImage", fileName: "\(profileImage).png", mimeType: "image/png")
+                }
+                
                 let preferExercises = preferExercises.map { String($0) }.joined(separator: ",")
                 multipartFormData.append(preferExercises.data(using: .utf8)!, withName: "preferExercises")
                 

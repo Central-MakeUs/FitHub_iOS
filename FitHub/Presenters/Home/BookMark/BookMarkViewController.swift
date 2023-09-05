@@ -28,7 +28,6 @@ final class BookMarkViewController: BaseViewController {
         $0.isHidden = true
     }
         
-    
     private lazy var categoryCollectionView = UICollectionView(frame: .zero,
                                                                collectionViewLayout: self.createLayout()).then {
         $0.backgroundColor = .bgDefault
@@ -183,7 +182,7 @@ final class BookMarkViewController: BaseViewController {
         
         fitSiteTableView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.top.equalTo(categoryCollectionView.snp.bottom)
+            $0.top.equalTo(categoryCollectionView.snp.bottom).offset(20)
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }

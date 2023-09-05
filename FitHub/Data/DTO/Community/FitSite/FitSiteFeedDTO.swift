@@ -20,7 +20,7 @@ class ArticleDTO: Decodable {
     let title: String
     let contents: String
     let pictureUrl: String?
-    let exerciseTag: String
+    let exerciseTag: String?
     let likes: Int
     let comments: Int
     let isLiked: Bool

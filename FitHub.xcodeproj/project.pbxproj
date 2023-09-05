@@ -79,6 +79,7 @@
 		B5705D072A8C33A900408233 /* FitSiteCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705D062A8C33A900408233 /* FitSiteCollectionCell.swift */; };
 		B5705D092A8C410C00408233 /* SearchTotalHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705D082A8C410C00408233 /* SearchTotalHeaderView.swift */; };
 		B5705D0B2A8CF50700408233 /* EmptyResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5705D0A2A8CF50700408233 /* EmptyResultView.swift */; };
+		B5707D2B2AA647AD00FF263B /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5707D2A2AA647AD00FF263B /* LoadingIndicatorView.swift */; };
 		B580D3452A9B1C4300D95AB4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B580D3442A9B1C4300D95AB4 /* CoreLocation.framework */; };
 		B588B7D72A828BD00031C723 /* FitSiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7D62A828BD00031C723 /* FitSiteCell.swift */; };
 		B588B7DB2A83AD710031C723 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588B7DA2A83AD710031C723 /* ArticleService.swift */; };
@@ -384,7 +385,7 @@
 		B5705CA72A89089900408233 /* StandardActionSheetAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardActionSheetAction.swift; sourceTree = "<group>"; };
 		B5705CA92A8925F400408233 /* DeleteCommentDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCommentDTO.swift; sourceTree = "<group>"; };
 		B5705CAB2A89283F00408233 /* ReportCommentDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCommentDTO.swift; sourceTree = "<group>"; };
-		B5705CB02A89432B00408233 /* FitSiteFeedDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FitSiteFeedDTO.swift; path = ../../../../../../../../../../../../Applications/FitSiteFeedDTO.swift; sourceTree = "<group>"; };
+		B5705CB02A89432B00408233 /* FitSiteFeedDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteFeedDTO.swift; sourceTree = "<group>"; };
 		B5705CB22A8943A600408233 /* FitSiteDetailDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteDetailDTO.swift; sourceTree = "<group>"; };
 		B5705CB42A89453C00408233 /* LikeFitSiteDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeFitSiteDTO.swift; sourceTree = "<group>"; };
 		B5705CB62A8945D400408233 /* ReportFitSiteDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFitSiteDTO.swift; sourceTree = "<group>"; };
@@ -423,6 +424,7 @@
 		B5705D062A8C33A900408233 /* FitSiteCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSiteCollectionCell.swift; sourceTree = "<group>"; };
 		B5705D082A8C410C00408233 /* SearchTotalHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTotalHeaderView.swift; sourceTree = "<group>"; };
 		B5705D0A2A8CF50700408233 /* EmptyResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultView.swift; sourceTree = "<group>"; };
+		B5707D2A2AA647AD00FF263B /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
 		B580D3442A9B1C4300D95AB4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B580D3462A9B1C4E00D95AB4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B580D3482A9B1C5F00D95AB4 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -1845,6 +1847,7 @@
 				B5705CA52A89027A00408233 /* StandardActionSheetController.swift */,
 				B5705CA72A89089900408233 /* StandardActionSheetAction.swift */,
 				B58D3C182A93E488008F06D2 /* ExpandTextField.swift */,
+				B5707D2A2AA647AD00FF263B /* LoadingIndicatorView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2263,6 +2266,7 @@
 				B5B2C3A32A7E39AE004FC66C /* SplashViewModel.swift in Sources */,
 				DB6D93D72A4D62920011F9BC /* RegistInfoViewModel.swift in Sources */,
 				DB62F1D42A7A8EB80045E8DC /* BestRecorderDTO.swift in Sources */,
+				B5707D2B2AA647AD00FF263B /* LoadingIndicatorView.swift in Sources */,
 				DB51ECC02A692EFC009F4690 /* TopTabbarItem.swift in Sources */,
 				B5ED13322A91B7F4002769BE /* MyFeedCertificationDefaultView.swift in Sources */,
 				B5705CE82A8B50B100408233 /* BookMarkUseCase.swift in Sources */,
@@ -2536,7 +2540,7 @@
 				CODE_SIGN_ENTITLEMENTS = FitHub/FitHub.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = V2YNV9QV27;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2559,7 +2563,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = iosdev.sw.FitHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2583,7 +2587,7 @@
 				CODE_SIGN_ENTITLEMENTS = FitHub/FitHubRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = V2YNV9QV27;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2606,7 +2610,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = iosdev.sw.FitHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

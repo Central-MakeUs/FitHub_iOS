@@ -42,6 +42,8 @@ final class MyFeedViewModel {
     let selectedArticleidIdList = BehaviorRelay<Set<Int>>(value: [])
     let fitSiteAllButtonCheck = BehaviorSubject<Bool>(value: false)
     
+    let alarmCheck = PublishSubject<Bool>()
+    
     init(_ usecase: MyFeedUseCaseProtocol) {
         self.usecase = usecase
         
@@ -155,6 +157,14 @@ final class MyFeedViewModel {
             .subscribe(onSuccess: { [weak self] _ in
                 self?.fetchFitSite(isReset: true)
                 self?.selectedArticleidIdList.accept([])
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func checkRemainAlarm() {
+        usecase.checkRemainAlarm()
+            .subscribe(onSuccess: { [weak self] result in
+                self?.alarmCheck.onNext(result.isRemain)
             })
             .disposed(by: disposeBag)
     }

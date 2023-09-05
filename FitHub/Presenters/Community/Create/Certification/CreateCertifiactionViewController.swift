@@ -46,6 +46,7 @@ final class CreateCertificationViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showPhotoAlbum()
         setFeedBackButton()
         responseToKeyboardHeightWithScrollView(collectionView)
     }

@@ -87,10 +87,18 @@ final class CreateCertificationViewModel: ViewModelType {
         
         input.completeTap
             .subscribe(onNext: {
+                LoadingIndicatorView.showLoading()
+            })
+            .disposed(by: disposeBag)
+        
+        input.completeTap
+            .subscribe(onNext: {
                 self.usecase.createCertification()
                     .subscribe(onSuccess: { _ in
+                        LoadingIndicatorView.hideLoading()
                         self.completePublisher.onNext(true)
                     }, onFailure: { _ in
+                        LoadingIndicatorView.hideLoading()
                         self.completePublisher.onNext(false)
                     })
                     .disposed(by: self.disposeBag)

@@ -19,6 +19,14 @@ class SearchService {
         return Single<SearchTotalDTO?>.create { emitter in
             
             AF.request(urlString, parameters: parameter, encoding: URLEncoding.queryString, interceptor: AuthManager())
+                .responseString() { res in
+                    switch res.result {
+                    case .success(let response):
+                        print(response)
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
                 .responseDecodable(of: BaseResponse<SearchTotalDTO>.self) { res in
                     switch res.result {
                     case .success(let response):

@@ -14,6 +14,7 @@ protocol HomeUseCaseProtocol {
     func fetchLevelInfo() -> Single<LevelInfoDTO>
     func checkRemainAlarm() -> Single<CheckRemainAlarmDTO>
     func checkAuth() -> Single<Bool>
+    func checkHasTodayCertification()->Single<CheckTodayDTO>
 }
 
 final class HomeUseCase: HomeUseCaseProtocol {
@@ -41,5 +42,9 @@ final class HomeUseCase: HomeUseCaseProtocol {
     
     func checkRemainAlarm() -> Single<CheckRemainAlarmDTO> {
         return repository.checkRemainAlarm()
+    }
+    
+    func checkHasTodayCertification()->Single<CheckTodayDTO> {
+        return repository.checkHasTodayCertification()
     }
 }

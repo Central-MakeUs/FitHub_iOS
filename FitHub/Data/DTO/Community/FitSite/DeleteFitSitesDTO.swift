@@ -9,6 +9,7 @@ import Foundation
 
 struct DeleteFitSitesDTO: Decodable {
     let deletedArticleList: [DeleteFitSiteDTO]
+    let size: Int
 }
 
 struct DeleteFitSiteDTO: Decodable {

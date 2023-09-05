@@ -133,7 +133,8 @@ final class AlertViewController: BaseViewController {
     
     private func showNotiSetting() {
         let usecase = NotiSettingUseCase(homeRepo: HomeRepository(homeService: HomeService(),
-                                                                  authService: UserService()))
+                                                                  authService: UserService(),
+                                                                  certificationService: CertificationService()))
         let notiSettingVC = NotiSettingViewController(viewModel: NotiSettingViewModel(usecase: usecase))
         self.navigationController?.pushViewController(notiSettingVC, animated: true)
     }

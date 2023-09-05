@@ -27,7 +27,7 @@ final class MyPageUseCase: MyPageUseCaseProtocol {
     private let homeRepository: HomeRepositoryInterface
     
     init(mypageRepository: MyPageRepositoryInterface,
-         homeRepository: HomeRepository) {
+         homeRepository: HomeRepositoryInterface) {
         self.mypageRepository = mypageRepository
         self.homeRepository = homeRepository
     }

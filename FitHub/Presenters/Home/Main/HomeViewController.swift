@@ -70,8 +70,9 @@ final class HomeViewController: BaseViewController {
         $0.register(SportCell.self, forCellWithReuseIdentifier: SportCell.identifier)
     }
     
-    let alertItem = UIBarButtonItem(image: UIImage(named: "Alert")?.withRenderingMode(.alwaysOriginal),
-                               style: .plain, target: nil, action: nil)
+    let alertItem = UIButton().then {
+        $0.setImage(UIImage(named: "Alert"), for: .normal)
+    }
     
     init(_ viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -102,15 +103,22 @@ final class HomeViewController: BaseViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIImageView(image: UIImage(named: "logo_basic")))
         
         
-        let bookmark = UIBarButtonItem(image: UIImage(named: "BookMark")?.withRenderingMode(.alwaysOriginal),
-                                       style: .plain, target: nil, action: nil)
+        let bookmark = UIButton().then {
+            $0.setImage(UIImage(named: "BookMark")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
         
-        self.navigationItem.rightBarButtonItems = [alertItem,bookmark]
+        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        spacer.width = 16
+        
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: alertItem),
+                                                   spacer,
+                                                   UIBarButtonItem(customView: bookmark)]
         
         bookmark.rx.tap
             .bind(onNext: { [weak self] in
                 let usecase = BookMarkUseCase(homeRepository: HomeRepository(homeService: HomeService(),
-                                                                             authService: UserService()),
+                                                                             authService: UserService(),
+                                                                             certificationService: CertificationService()),
                                               communityRepository: CommunityRepository(UserService(),
                                                                                        certificationService: CertificationService(), articleService: ArticleService()))
                 let bookMarkVC = BookMarkViewController(viewModel: BookMarkViewModel(usecase: usecase))
@@ -181,7 +189,7 @@ final class HomeViewController: BaseViewController {
         
         certificationButton.rx.tap
             .bind(onNext: { [weak self] in
-                self?.tabBarController?.selectedIndex = 1
+                self?.viewModel.checkHasTodayCertification()
             })
             .disposed(by: disposeBag)
         
@@ -196,7 +204,22 @@ final class HomeViewController: BaseViewController {
         viewModel.alarmCheck
             .bind(onNext: { [weak self] isRemain in
                 let image = isRemain ? UIImage(named: "AlertRemain") : UIImage(named: "Alert")
-                self?.alertItem.image = image?.withRenderingMode(.alwaysOriginal)
+                self?.alertItem.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.checkTodayHandler
+            .bind(onNext: { [weak self] isWrite in
+                if isWrite {
+                    self?.notiAlert("이미 운동인증을 하셨네요!\n운동인증은 하루 한 번만 가능합니다.")
+                } else {
+                    UIView.animate(withDuration: 0.1, animations: {
+                        self?.tabBarController?.selectedIndex = 1
+                        self?.view.layoutIfNeeded()
+                    }) { _ in
+                        NotificationCenter.default.post(name: .tapCertificationAtHome, object: nil)
+                    }
+                }
             })
             .disposed(by: disposeBag)
     }

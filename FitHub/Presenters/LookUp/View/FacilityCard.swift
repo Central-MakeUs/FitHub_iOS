@@ -91,7 +91,8 @@ final class FacilityCard: UIView {
         }
         
         dividerLine.snp.makeConstraints {
-            $0.verticalEdges.equalTo(sportLabel).inset(1)
+            $0.centerY.equalTo(sportLabel)
+            $0.height.equalTo(sportLabel).multipliedBy(0.6)
             $0.leading.equalTo(sportLabel.snp.trailing).offset(10)
             $0.width.equalTo(1)
         }

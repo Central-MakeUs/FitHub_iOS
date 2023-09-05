@@ -82,7 +82,7 @@ final class CertifyCardView: UIView {
         super.init(frame: frame)
         
         self.backgroundColor = .bgSub01
-        self.layer.cornerRadius = 15
+        self.layer.cornerRadius = 5 
         
         self.addSubView()
         self.layout()

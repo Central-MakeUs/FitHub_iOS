@@ -87,8 +87,9 @@ final class MyPageViewController: BaseViewController {
     
     private let logoutItem = MyPageTabItemView(title: "로그아웃")
     
-    let alertItem = UIBarButtonItem(image: UIImage(named: "Alert")?.withRenderingMode(.alwaysOriginal),
-                               style: .plain, target: nil, action: nil)
+    let alertItem = UIButton().then {
+        $0.setImage(UIImage(named: "Alert")?.withRenderingMode(.alwaysOriginal), for: .normal)
+    }
     
     init(viewModel: MyPageViewModel) {
         self.viewModel = viewModel
@@ -124,15 +125,22 @@ final class MyPageViewController: BaseViewController {
         super.configureNavigation()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIImageView(image: UIImage(named: "logo_basic")))
         
-        let bookmark = UIBarButtonItem(image: UIImage(named: "BookMark")?.withRenderingMode(.alwaysOriginal),
-                                       style: .plain, target: nil, action: nil)
+        let bookmark = UIButton().then {
+            $0.setImage(UIImage(named: "BookMark")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
         
-        self.navigationItem.rightBarButtonItems = [alertItem,bookmark]
+        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        spacer.width = 16
+        
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: alertItem),
+                                                   spacer,
+                                                   UIBarButtonItem(customView: bookmark)]
         
         bookmark.rx.tap
             .bind(onNext: { [weak self] in
                 let usecase = BookMarkUseCase(homeRepository: HomeRepository(homeService: HomeService(),
-                                                                             authService: UserService()),
+                                                                             authService: UserService(),
+                                                                             certificationService: CertificationService()),
                                               communityRepository: CommunityRepository(UserService(),
                                                                                        certificationService: CertificationService(), articleService: ArticleService()))
                 let bookMarkVC = BookMarkViewController(viewModel: BookMarkViewModel(usecase: usecase))
@@ -207,7 +215,7 @@ final class MyPageViewController: BaseViewController {
         viewModel.alarmCheck
             .bind(onNext: { [weak self] isRemain in
                 let image = isRemain ? UIImage(named: "AlertRemain") : UIImage(named: "Alert")
-                self?.alertItem.image = image?.withRenderingMode(.alwaysOriginal)
+                self?.alertItem.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
             })
             .disposed(by: disposeBag)
     }
@@ -399,21 +407,26 @@ extension MyPageViewController {
         let usecase = MyFeedUseCase(communityRepo: CommunityRepository(UserService(),
                                                                        certificationService: CertificationService(),
                                                                        articleService: ArticleService()),
-                                    mypageRepo: MyPageRepository(service: UserService()))
+                                    mypageRepo: MyPageRepository(service: UserService()),
+                                    homeRepo: HomeRepository(homeService: HomeService(),
+                                                             authService: UserService(),
+                                                             certificationService: CertificationService()))
         let feedVC = MyFeedViewController(MyFeedViewModel(usecase))
         self.navigationController?.pushViewController(feedVC, animated: true)
     }
     
     private func showTermOfUseVC() {
         let usecase = TermUseCase(homeRepo: HomeRepository(homeService: HomeService(),
-                                                           authService: UserService()))
+                                                           authService: UserService(),
+                                                           certificationService: CertificationService()))
         let termOfUseVC = TermsOfUseViewController(viewModel: TermOfUseViewModel(usecase: usecase))
         self.navigationController?.pushViewController(termOfUseVC, animated: true)
     }
     
     private func showNotiSettingVC() {
         let usecase = NotiSettingUseCase(homeRepo: HomeRepository(homeService: HomeService(),
-                                                                  authService: UserService()))
+                                                                  authService: UserService(),
+                                                                  certificationService: CertificationService()))
         let notiSettingVC = NotiSettingViewController(viewModel: NotiSettingViewModel(usecase: usecase))
         self.navigationController?.pushViewController(notiSettingVC, animated: true)
     }
