@@ -71,7 +71,8 @@ final class CreateCertificationViewController: BaseViewController {
     
     //MARK: - SetupBinding
     override func setupBinding() {
-        let input = CreateCertificationViewModel.Input(completeTap: completeButton.rx.tap.asObservable())
+        let input = CreateCertificationViewModel.Input(completeTap: completeButton.rx.tap.asObservable()
+            .map { [weak self] _ in self?.view.endEditing(true) })
         
         let output = self.viewModel.transform(input: input)
         

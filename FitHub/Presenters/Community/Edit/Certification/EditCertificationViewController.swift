@@ -69,7 +69,8 @@ final class EditCertificationViewController: BaseViewController {
     
     //MARK: - SetupBinding
     override func setupBinding() {
-        let input = EditCertificationViewModel.Input(completeTap: completeButton.rx.tap.asObservable())
+        let input = EditCertificationViewModel.Input(completeTap: completeButton.rx.tap.asObservable()
+            .map { [weak self] _ in self?.view.endEditing(true) })
         
         completeButton.rx.tap.bind(onNext: { [weak self] in self?.view.endEditing(true) }).disposed(by: disposeBag)
         
