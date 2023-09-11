@@ -64,6 +64,7 @@ final class FitSiteDetailCell: UICollectionViewCell {
     
     private let titleLabel = UILabel().then {
         $0.text = "제목"
+        $0.numberOfLines = 0
         $0.textColor = .textDefault
         $0.font = .pretendard(.titleMedium)
     }

@@ -97,10 +97,7 @@ final class MyFitSiteCell: UITableViewCell {
             self.hashTagLabel.text = nil
         }
         
-        let imageHeight = item.pictureUrl == nil ? 0 : 70
-        contentImageView.snp.updateConstraints {
-            $0.height.equalTo(imageHeight)
-        }
+        responseContentImageViewLayout(image: item.pictureUrl)
         
         self.contentImageView.kf.setImage(with: URL(string: item.pictureUrl ?? ""))
         changeCheck(isSelected: isSelected)
@@ -110,6 +107,13 @@ final class MyFitSiteCell: UITableViewCell {
     func changeCheck(isSelected: Bool) {
         let image = isSelected ? UIImage(named: "CheckOn") : UIImage(named: "CheckOff")
         checkButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+    }
+    
+    private func responseContentImageViewLayout(image: String?) {
+        let height = image == nil ? 0 : 70
+        contentImageView.snp.updateConstraints() {
+            $0.width.height.equalTo(height)
+        }
     }
     
     // MARK: - setUpBinding
