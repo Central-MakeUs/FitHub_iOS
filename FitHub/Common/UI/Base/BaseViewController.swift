@@ -36,6 +36,7 @@ class BaseViewController: UIViewController {
         setupBinding()
         
         hideKeyboardWhenTapped()
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -70,6 +71,7 @@ class BaseViewController: UIViewController {
                                                                 style: .plain,
                                                                 target: self,
                                                                 action: #selector(dldClickBackButton))
+        
     }
     
     func configureTabBar() {
@@ -150,5 +152,9 @@ class BaseViewController: UIViewController {
 }
 
 
-
+extension BaseViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return navigationController?.viewControllers.count ?? 0 > 1
+    }
+}
 
