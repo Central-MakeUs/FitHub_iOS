@@ -185,7 +185,7 @@ final class CertificationDetailViewController: BaseViewController {
         }
         
         alert.addAction([cancel,delete])
-        
+            
         self.present(alert, animated: false)
     }
     

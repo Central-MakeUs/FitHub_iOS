@@ -148,7 +148,7 @@ class CertificationService {
                         if response.code == 2000 {
                             guard let result = response.result else { return }
                             emitter(.success(result))
-                        } else if response.code == 4031 {
+                        } else if response.code == 4041 {
                             emitter(.failure(CertificationError.invalidCertification))
                         } else {
                             print(response.message)
