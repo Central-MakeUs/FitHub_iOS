@@ -186,7 +186,7 @@ final class FitSiteDetailViewController: BaseViewController {
     }
     
     private func showInvalidArticleNoti() {
-        let alert = StandardAlertController(title: "존재하지 않는 게시글입니다.", message: "차단 또는 삭제된 게시글")
+        let alert = StandardAlertController(title: "존재하지 않는 게시글", message: "존재하지 않는 게시글입니다.")
         let ok = StandardAlertAction(title: "확인", style: .basic) { [weak self] _ in
             self?.navigationController?.popViewController(animated: true)
         }
