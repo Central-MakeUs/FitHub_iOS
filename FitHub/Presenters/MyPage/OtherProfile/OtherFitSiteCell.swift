@@ -85,12 +85,16 @@ final class OtherFitSiteCell: UITableViewCell {
             self.hashTagLabel.text = nil
         }
         
-        let imageHeight = item.pictureUrl == nil ? 0 : 70
-        contentImageView.snp.updateConstraints {
-            $0.height.equalTo(imageHeight)
-        }
+        responseContentImageViewLayout(image: item.pictureUrl)
         
         self.contentImageView.kf.setImage(with: URL(string: item.pictureUrl ?? ""))
+    }
+    
+    private func responseContentImageViewLayout(image: String?) {
+        let height = image == nil ? 0 : 70
+        contentImageView.snp.updateConstraints() {
+            $0.width.height.equalTo(height)
+        }
     }
         
     private func addSubViews() {

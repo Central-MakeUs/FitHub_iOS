@@ -139,7 +139,15 @@ final class FitSiteCell: UITableViewCell {
         self.contentImageView.kf.setImage(with: URL(string: item.pictureUrl ?? ""))
         self.profileImageView.kf.setImage(with: URL(string: item.userInfo.profileUrl ?? ""))
         
+        responseContentImageViewLayout(image: item.pictureUrl)
         profileImageView.tag = item.userInfo.ownerId
+    }
+    
+    private func responseContentImageViewLayout(image: String?) {
+        let height = image == nil ? 0 : 70
+        contentImageView.snp.updateConstraints() {
+            $0.width.height.equalTo(height)
+        }
     }
     
     private func setUpBidning() {

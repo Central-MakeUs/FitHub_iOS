@@ -130,6 +130,15 @@ final class CertificationDetailViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.errorHandler
+            .bind(onNext: { [weak self] error in
+                if let fitSiteError = error as? CertificationError,
+                   fitSiteError == .invalidCertification {
+                    self?.showInvalidCertificationNoti()
+                }
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.deleteFeedHandler
             .asDriver(onErrorJustReturn: false)
             .drive(onNext: { [weak self] isSuccess in
@@ -147,6 +156,16 @@ final class CertificationDetailViewController: BaseViewController {
     }
     
     // MARK: - 화면 이동
+    private func showInvalidCertificationNoti() {
+        let alert = StandardAlertController(title: "존재하지 않는 게시글", message: "존재하지 않는 게시글입니다.")
+        let ok = StandardAlertAction(title: "확인", style: .basic) { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction(ok)
+        
+        self.present(alert, animated: false)
+    }
+    
     private func showDeleteCompleteAlert() {
         let alert = StandardAlertController(title: "삭제 완료", message: "정상적으로 삭제가 완료되었습니다.")
         let ok = StandardAlertAction(title: "확인", style: .basic) { [weak self] _ in
@@ -166,7 +185,7 @@ final class CertificationDetailViewController: BaseViewController {
         }
         
         alert.addAction([cancel,delete])
-        
+            
         self.present(alert, animated: false)
     }
     
