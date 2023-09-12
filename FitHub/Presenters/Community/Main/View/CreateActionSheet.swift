@@ -15,6 +15,9 @@ final class CreateActionSheet: UIStackView {
         configure.imagePadding = 10
         configure.baseForegroundColor = .textDefault
         configure.baseBackgroundColor = .clear
+        configure.contentInsets = .zero
+        
+        $0.contentHorizontalAlignment = .leading
         $0.configuration = configure
     }
     
@@ -29,6 +32,9 @@ final class CreateActionSheet: UIStackView {
         configure.imagePadding = 10
         configure.baseBackgroundColor = .clear
         configure.baseForegroundColor = .textDefault
+        configure.contentInsets = .zero
+        
+        $0.contentHorizontalAlignment = .leading
         $0.configuration = configure
     }
     
@@ -56,20 +62,20 @@ final class CreateActionSheet: UIStackView {
     //MARK: - Layout
     private func layout() {
         self.certificationButton.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(10)
-            $0.top.equalToSuperview().offset(12)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.top.equalToSuperview().offset(17)
         }
         
         self.separatorLine.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(1)
-            $0.top.equalTo(self.certificationButton.snp.bottom).offset(12)
+            $0.top.equalTo(self.certificationButton.snp.bottom).offset(14)
         }
         
         self.createFeedButton.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(10)
-            $0.top.equalTo(self.separatorLine.snp.bottom).offset(12)
-            $0.bottom.equalToSuperview().offset(-12)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.top.equalTo(self.separatorLine.snp.bottom).offset(14)
+            $0.bottom.equalToSuperview().offset(-17)
         }
     }
 }
